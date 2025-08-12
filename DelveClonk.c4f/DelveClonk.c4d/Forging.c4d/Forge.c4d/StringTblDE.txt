@@ -14,3 +14,4 @@ WrongWorker=Das Schmieden wurde %s zugewiesen.
 Gather=Sammeln von %s x%d für die Schmiede.
 Move=Bewegen von %s x%d zur Schmiede.
 GatherFail=Sammeln fehlgeschlagen!
+MissingItems=Kann nicht mit dem Schmieden beginnen, gesammelte Gegenstände fehlen!

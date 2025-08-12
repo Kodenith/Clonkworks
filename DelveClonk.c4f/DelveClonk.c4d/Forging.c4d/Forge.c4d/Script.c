@@ -130,6 +130,7 @@ func Continue(pByObject){
 
 
 func ContextScrap(pByObject){
+	DebugLog("Forging Interrupted: Scrapped");
 	[$CtxScrap$|Image=CXRL|Condition=IsProducing]
 	Reset();
 }
@@ -166,7 +167,6 @@ func FinishWork(){
 	var NewItem = CreateObject(Prod);
 	Enter(this(), NewItem);
 	
-	//creating the object's properties based on material
 	var Color;
 	var Mass;
 	
@@ -183,7 +183,6 @@ func FinishWork(){
 	LocalN("Color", NewItem) = Color;
 	LocalN("Mass", NewItem) = Mass;
 	
-	//apply all changes to the object
 	NewItem->FRGUpdate();
 	
 	Message("$ForgeSuccess$", this(), GetName(,Prod));
@@ -241,14 +240,13 @@ func StartWork(User){
 					EID++;
 					RemoveObject(Spec[i]);
 				}else{
-						/* FreeWork();
+						DebugLog("Forging Interrupted: Missing Items");
 						Reset();
-						Message("$ForgeFail$", this());
-						Sound("Discharge"); */
+						Message("$MissingItems$", this());
+						Sound("Discharge");
 						for(var i = 0; EmergencyItems[i] != 0; i++){
 							CreateContents(EmergencyItems[i], this(), 1);
 						}
-						ContextStartContinue(User);
 						return(0);
 				}
 			}
@@ -278,6 +276,7 @@ func Forgefx(){
 	if (Random(8*7)) Smoke(10,-24,5+Random(3));
 	
 	if(GetEnergy() < 1 && FindObject2(Find_ID(ENRG))){
+		DebugLog("Forging Interrupted: No Power");
 		FreeWork();
 		Reset();
 		Message("$ForgeFail$", this());

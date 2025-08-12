@@ -13,3 +13,4 @@ WrongWorker=Forging has been assigned to %s.
 Gather=Gathering %s x%d to Forge.
 Move=Moving %s x%d to Forge.
 GatherFail=Gathering Failed!
+MissingItems=Can't Start Forging, Gathered Items Missing!
