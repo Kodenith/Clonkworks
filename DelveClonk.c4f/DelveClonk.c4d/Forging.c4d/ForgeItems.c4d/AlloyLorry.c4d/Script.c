@@ -8,11 +8,12 @@
 public func IsLorry() { return(1); }
 local Color;
 local Mass;
+local Speed;
+local Power;
 
 /* Steuerung */
 
 func Initialize(){
-	SetGraphics("Overlay.png", this(),, 1,1);
 	Color = RGBa(177, 171, 170, 0);
 	Mass = 3;
 }

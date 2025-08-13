@@ -130,8 +130,8 @@ func Continue(pByObject){
 
 
 func ContextScrap(pByObject){
-	DebugLog("Forging Interrupted: Scrapped");
 	[$CtxScrap$|Image=CXRL|Condition=IsProducing]
+	DebugLog("Forging Interrupted: Scrapped");
 	Reset();
 }
 
@@ -169,6 +169,8 @@ func FinishWork(){
 	
 	var Color;
 	var Mass;
+	var Speed;
+	var Power;
 	
 	for(var i = 0; i < GetLength(LocalN("ForgeableColors", FindObject2(Find_ID(FALW)))); i++){
 		if(Mat == LocalN("ForgeableIDs", FindObject2(Find_ID(FALW)))[i])
@@ -180,8 +182,22 @@ func FinishWork(){
 			Mass = LocalN("ForgeableMass", FindObject2(Find_ID(FALW)))[i];
 	}
 	
+		for(var i = 0; i < GetLength(LocalN("ForgeableSpeed", FindObject2(Find_ID(FALW)))); i++){
+		if(Mat == LocalN("ForgeableIDs", FindObject2(Find_ID(FALW)))[i])
+			Speed = LocalN("ForgeableSpeed", FindObject2(Find_ID(FALW)))[i];
+	}
+	
+		for(var i = 0; i < GetLength(LocalN("ForgeablePower", FindObject2(Find_ID(FALW)))); i++){
+		if(Mat == LocalN("ForgeableIDs", FindObject2(Find_ID(FALW)))[i])
+			Power = LocalN("ForgeablePower", FindObject2(Find_ID(FALW)))[i];
+	}
+	
+	
+	
 	LocalN("Color", NewItem) = Color;
 	LocalN("Mass", NewItem) = Mass;
+	LocalN("Speed", NewItem) = Speed;
+	LocalN("Power", NewItem) = Power;
 	
 	NewItem->FRGUpdate();
 	
@@ -198,7 +214,7 @@ func MatSelected(idType, pByObject){
 
 private func MenuProduction(pCaller) {
   CreateMenu(CXCN,pCaller,this(),1,"$NoPlrKnowledge$");
-  for(var i=0,idKnowledge; idKnowledge=GetPlrKnowledge(GetOwner(pCaller),0,i,C4D_Vehicle); ++i)
+  for(var i=0,idKnowledge; idKnowledge=GetPlrKnowledge(GetOwner(pCaller),0,i, C4D_All); ++i)
   {
 	if(GetComponent(DUMM, , , idKnowledge) == 0)
 		continue;
