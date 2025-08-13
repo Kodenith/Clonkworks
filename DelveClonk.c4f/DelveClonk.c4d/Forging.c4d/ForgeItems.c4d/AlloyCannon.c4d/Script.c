@@ -61,8 +61,14 @@ public func Fire(bool fAuto)
   if (GetOCF(pProjectile) & OCF_Alive) pProjectile->SetKiller(GetController());
   pProjectile->SetController(GetController());
 
+
+	if(iXDir > 0)
+		iXDir = iXDir + (2 * Power);
+	else
+		iXDir = iXDir - (2 * Power);
+
   // Projektil abfeuern
-  Exit(pProjectile,iX,iY,Random(360),iXDir * Power,iYDir * Power,+30);
+  Exit(pProjectile,iX,iY,Random(360),iXDir,iYDir,+30);
 
   // Sicht verfolgen (wenn kein automatischer Schuss)
   if(!fAuto)
