@@ -14,6 +14,7 @@ local Prod;
 
 local Producing;
 local Forging;
+local len;
 
 func CanProduce(){return(!Producing && Forgebase != 0);}
 func IsProducing(){return(Producing && !Forging);}
@@ -64,6 +65,18 @@ func Continue(pByObject){
 
 	if(!Forging){
 		
+		//finding out the amount of unique components
+		len = 0;
+		var b = 1;
+		for(var i = 0; b != 0; i++){
+			b = GetComponent(,i,,Prod);
+			if(b){
+				len += 1;
+			}
+		}
+		
+		DebugLog("Total Length of Unique Components in %s: %d", GetName(,Prod), len);
+		
 	x = GetComponent(,y,,Prod);
 	//y++;
 	
@@ -71,8 +84,8 @@ func Continue(pByObject){
 	if(x == DUMM) x = Mat;
 	if(!Producing) return(1);
 	
-	if(x != 0){
-		DebugLog("Forge has %v %s , requires %v. Can do: %v",ContentsCount(x, this()), GetName(,x), Amt, ContentsCount(x, this()) < Amt);
+	if(x){
+		DebugLog("Finding %s", GetName(,x));
 		if(ContentsCount(x, this()) < Amt){
 			AddCommand(pByObject, "Wait", , , , , 15);
 				if(GetCategory(FindObject2(Find_ID(x))) & C4D_Vehicle()){
@@ -97,16 +110,21 @@ func Continue(pByObject){
 				}
 		}
 		y++;
+		Continue(pByObject);
+		return(0);
 		}
 		
 		if(Contained(pByObject) == this()){
 			if(pByObject == Worker){
 			var v;
-			for(var i = 0; i < y-1; i++){
+			DebugLog("Started Looking for components, len: %d", len);
+			for(var i = 0; i < len; i++){
 				v = GetComponent(,i,,Prod);
 				Amt = GetComponent(v, , , Prod);
 				if(v == DUMM) v = Mat;
+				DebugLog("%d %s needed, has %d", Amt, GetName(,v), ContentsCount(v, this()));
 				if(ContentsCount(v, this()) < Amt){
+					DebugLog("Forging Interrupted: Missing Items");
 					Message("$GatherFail$",pByObject);
 					Sound("CommandFailure", false, pByObject);
 					return(0);
@@ -257,9 +275,8 @@ func StartWork(User){
 					RemoveObject(Spec[i]);
 				}else{
 						DebugLog("Forging Interrupted: Missing Items");
-						Reset();
-						Message("$MissingItems$", this());
-						Sound("Discharge");
+						Message("$GatherFail$",User);
+						Sound("CommandFailure", false, User);
 						for(var i = 0; EmergencyItems[i] != 0; i++){
 							CreateContents(EmergencyItems[i], this(), 1);
 						}
