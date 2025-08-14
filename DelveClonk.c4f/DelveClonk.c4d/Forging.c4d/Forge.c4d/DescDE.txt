@@ -1,1 +1,1 @@
-Ein spezielles Gebäude, das für fortgeschrittenes Herstellen und Aufrüsten verwendet wird. Es kann immer nur 1 Clonk darin arbeiten.
+Die Schmiede kann fortgeschrittene Fahrzeuge herstellen oder bestehende verbessern. Die bearbeiteten Fahrzeuge bekommen je nach verwendeter Legierung andere Eigenschaften. (Wie bei allen Produktionsgeb�uden kann nur ein Clonk darin arbeiten.)

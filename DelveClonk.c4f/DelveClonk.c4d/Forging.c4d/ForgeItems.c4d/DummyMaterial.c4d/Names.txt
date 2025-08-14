@@ -1,2 +1,2 @@
-DE:Jedes Metall
-US:Any Metal
+DE:Jede Legierung
+US:Any alloy

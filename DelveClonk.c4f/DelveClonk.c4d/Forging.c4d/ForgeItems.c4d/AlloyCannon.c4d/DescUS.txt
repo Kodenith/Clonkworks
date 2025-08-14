@@ -1,1 +1,1 @@
-Heavy artillery. Requires one load of gunpowder per shot. It's weight and power are based on the material used.
+Heavy artillery. Requires one load of gunpowder per shot. It's weight and power are based on the used alloy.
