@@ -7,7 +7,7 @@ for now, only the forge system is done, but needs some polish.
 Click *"Code"* and then *"Download Zip"*. Open the zip file anywhere, find the c4f folder and move it to the same folder as **LegacyClonk**
 
 You can edit everything inside the c4f file in the Clonk Editor, which can be acquired by [Downloading Clonk Rage](http://www.clonk.de/cr.php) and pasting the editor exe file to the **LegacyClonk** folder.
-(packing in Clonk Editor recommended)
+(packing the c4f folder in Clonk Editor recommended)
 
 C4Script documentation [Can be found here](https://crdocs.clonkspot.org/en/sdk/).
 
