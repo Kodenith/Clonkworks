@@ -4,6 +4,7 @@ CtxCont=Continue Forging
 CtxScrap=Scrap Project
 MsgNoUseable=You can't use any metals yet!
 ForgeUseMat=Use
+ErrorNoRule=You can't use the forge in this scenario!
 NoPlrKnowledge=No construction plans
 Construction=Construction
 Production=Production

@@ -1,1 +1,1 @@
-This Scenario Allows the use of the Forge.
+The forge can be used in this scenario.

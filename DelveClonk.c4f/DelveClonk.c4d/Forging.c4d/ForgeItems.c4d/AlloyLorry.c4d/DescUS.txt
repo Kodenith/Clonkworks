@@ -1,1 +1,1 @@
-Useful to transport larger amounts of material. Holds up to 100 items. It's Weight is determined by the Alloy used to make it.
+Useful to transport larger amounts of material. Holds up to 100 items. It's weight is determined by the alloy used to make it.
