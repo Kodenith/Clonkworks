@@ -1,2 +1,2 @@
-DE:Schmiedesystem-Demo
-US:Forge System Demo
+DE:DelveClonk
+US:DelveClonk

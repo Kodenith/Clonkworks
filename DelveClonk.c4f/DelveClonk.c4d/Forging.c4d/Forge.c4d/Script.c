@@ -148,7 +148,7 @@ func Continue(pByObject){
 
 
 func ContextScrap(pByObject){
-	[$CtxScrap$|Image=CXRL|Condition=IsProducing]
+	[$CtxScrap$|Image=WKS2|Condition=IsProducing]
 	DebugLog("Forging Interrupted: Scrapped");
 	Reset();
 }

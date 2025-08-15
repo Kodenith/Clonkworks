@@ -23,4 +23,3 @@ func FRGUpdate(){
 	SetMass(25*Mass, this());
 	SetClrModulation(Color, this());
 }
-
