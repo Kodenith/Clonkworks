@@ -55,7 +55,7 @@ public func Fire(bool fAuto)
   var iY = GetPhase()-14;
   var iAngle = BoundBy(GetPhase()*5-5,0,90);
   var iXDir = Sin(iAngle,32*(GetDir()*2-1));
-  var iYDir = Cos(iAngle,-18);
+  var iYDir = Cos(iAngle,-18)-Power;
   
   // Fuer Killverfolgung
   if (GetOCF(pProjectile) & OCF_Alive) pProjectile->SetKiller(GetController());
@@ -63,9 +63,9 @@ public func Fire(bool fAuto)
 
 
 	if(iXDir > 0)
-		iXDir = iXDir + (2 * Power);
+		iXDir = iXDir + Power;
 	else
-		iXDir = iXDir - (2 * Power);
+		iXDir = iXDir - Power;
 
   // Projektil abfeuern
   Exit(pProjectile,iX,iY,Random(360),iXDir,iYDir,+30);
