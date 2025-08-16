@@ -24,5 +24,3 @@ GrabPutGet=C4D_GrabGet|C4D_GrabPut
 Rotate=30
 UprightAttach=8
 CollectionLimit=101
-Timer=5
-TimerCall=EffectCheck

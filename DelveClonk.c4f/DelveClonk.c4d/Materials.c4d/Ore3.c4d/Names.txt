@@ -1,0 +1,2 @@
+DE:Stück Lotiumerz
+US:Chunk of Lotium ore

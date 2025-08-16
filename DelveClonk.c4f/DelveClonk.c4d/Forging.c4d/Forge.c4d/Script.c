@@ -224,6 +224,7 @@ func FinishWork(){
 	LocalN("Effect", NewItem) = Efx;
 	
 	NewItem->FRGUpdate();
+	NewItem->AssignEffects();
 	
 	Message("$ForgeSuccess$", this(), GetName(,Prod));
 	Reset();

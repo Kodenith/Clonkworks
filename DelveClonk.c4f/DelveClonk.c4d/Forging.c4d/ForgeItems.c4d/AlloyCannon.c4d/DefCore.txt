@@ -22,5 +22,3 @@ Grab=1
 GrabPutGet=C4D_GrabGet|C4D_GrabPut
 UprightAttach=8
 VehicleControl=1
-Timer=5
-TimerCall=EffectCheck

@@ -17,5 +17,3 @@ Picture=0,6,64,64
 Rebuy=1
 Collectible=1
 Projectile=1
-Timer=5
-TimerCall=EffectCheck

@@ -1,8 +1,7 @@
 //this script handles forge effects
+//import it if you want a material affect the object it made
 
 #strict
-#appendto ALRY
-#appendto ACAN
 
 local Color;
 local Mass;
@@ -10,15 +9,26 @@ local Speed;
 local Power;
 local Effect;
 
-func EffectCheck(){
+func AssignEffects(){
 	//Burnable
 	if(WildcardMatch(Effect, "*Burnable*")){
-		if(FindObject2(Find_OCF(OCF_OnFire), Find_Distance(10))){
-			if(RandomX(0, 10) == 5) Incinerate();
-			if(OnFire(this()) && RandomX(0, 2) == 1) DoCon(-1, this());
-			//Fuming
-			if(WildcardMatch(Effect, "*Fuming*") && OnFire(this()) && RandomX(0, 2) == 1){
-				DoEnergy(-1, FindObject2(Find_OCF(OCF_Alive), Find_Distance(60)));
+		AddEffect("Burnable", this(), 50, 35, this()); 
+	}
+}
+
+
+//coffee spelled backwards is effoc
+public func FxBurnableTimer(object pTarget, int EffectNumber){
+	DebugLog("It works");
+	if( FindObject2( Find_OCF(OCF_OnFire), Find_Distance(45) ) && RandomX(1, 6) == 2){
+		Incinerate(pTarget);
+		if(OnFire(pTarget)){
+			DoCon(-1, pTarget);
+			if(WildcardMatch(Effect, "*Fuming*")){
+				var Close = FindObjects(Find_OCF(OCF_Alive), Find_Distance(50));
+				for(var element in Close){
+					DoEnergy(-1, element);
+				}
 			}
 		}
 	}
