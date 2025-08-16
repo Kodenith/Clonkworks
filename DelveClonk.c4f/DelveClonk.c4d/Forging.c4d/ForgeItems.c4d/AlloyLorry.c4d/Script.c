@@ -2,6 +2,7 @@
 
 #strict
 #include LORY
+#include DUMM
 
 /* Status */
 
@@ -10,6 +11,7 @@ local Color;
 local Mass;
 local Speed;
 local Power;
+local Effect;
 
 /* Steuerung */
 

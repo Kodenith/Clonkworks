@@ -189,6 +189,7 @@ func FinishWork(){
 	var Mass;
 	var Speed;
 	var Power;
+	var Efx;
 	
 	for(var i = 0; i < GetLength(LocalN("ForgeableColors", FindObject2(Find_ID(FALW)))); i++){
 		if(Mat == LocalN("ForgeableIDs", FindObject2(Find_ID(FALW)))[i])
@@ -210,12 +211,17 @@ func FinishWork(){
 			Power = LocalN("ForgeablePower", FindObject2(Find_ID(FALW)))[i];
 	}
 	
+	for(var i = 0; i < GetLength(LocalN("ForgeableEffect", FindObject2(Find_ID(FALW)))); i++){
+		if(Mat == LocalN("ForgeableIDs", FindObject2(Find_ID(FALW)))[i])
+			Efx = LocalN("ForgeableEffect", FindObject2(Find_ID(FALW)))[i];
+	}
 	
 	
 	LocalN("Color", NewItem) = Color;
 	LocalN("Mass", NewItem) = Mass;
 	LocalN("Speed", NewItem) = Speed;
 	LocalN("Power", NewItem) = Power;
+	LocalN("Effect", NewItem) = Efx;
 	
 	NewItem->FRGUpdate();
 	

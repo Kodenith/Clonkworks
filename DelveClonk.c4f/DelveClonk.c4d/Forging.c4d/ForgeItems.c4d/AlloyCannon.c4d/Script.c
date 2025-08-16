@@ -2,11 +2,13 @@
 
 #strict
 #include CANN
+#include DUMM
 
 local Color;
 local Mass;
 local Speed;
 local Power;
+local Effect;
 
 protected func Initialize()
 {
