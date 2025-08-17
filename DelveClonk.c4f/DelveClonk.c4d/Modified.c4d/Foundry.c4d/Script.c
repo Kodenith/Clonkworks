@@ -22,7 +22,7 @@ public func StartProduction(object clonk)
   CreateMenu(METL, clonk, this(), 4, "Foo", , 0, false, 1);
   AddMenuItem(GetName(, METL), "SelectedMat", METL,clonk, 0, clonk);
   AddMenuItem(GetName(, CPIG), "SelectedMat", CPIG,clonk, 0, clonk);
-  AddMenuItem(GetName(, LTIG), "SelectedMat", LTIG,clonk, 0, clonk);
+  //AddMenuItem(GetName(, LTIG), "SelectedMat", LTIG,clonk, 0, clonk);
 }
 
 public func SelectedMat(id item, object clonk){
@@ -57,7 +57,7 @@ public func Production(object clonk, id idProduct)
     }
   }
   
-  if(idProduct == LTIG){
+  /* if(idProduct == LTIG){
   if (!FindContents(ORE3))
     {
     // Der Arbeiter soll welches beschaffen
@@ -65,7 +65,8 @@ public func Production(object clonk, id idProduct)
     AddCommand(clonk,"Put",this(),0,0,0,0,ORE3);
     AddCommand(clonk,"Acquire",0,0,0,0,0,ORE3,3);  
     }
-  }
+  } */
+  
   // Fertig
   return(1);
 }
@@ -140,7 +141,7 @@ public func Acquisition(object pWorker)
 public func AcquisitionFailed(object pWorker)
 {
   // Materialbeschaffung fehlgeschlagen: Meldung ausgeben
-  if (!FindContents(ORE1) && !FindContents(ORE2) && !FindContents(ORE3)) 
+  if (!FindContents(ORE1) && !FindContents(ORE2)) 
     return(Message("$TxtNooreavailable$", pWorker));
   Message("$TxtNeedsfueltoburn$", pWorker);
   return(1);
@@ -195,7 +196,7 @@ private func Burning()
   SetAction("Idle");
   // Erz suchen
   var pOre;
-  if (!(pOre=FindContents(ORE1)) ) if (!(pOre=FindContents(ORE2))) if (!(pOre=FindContents(ORE3))) return(1);
+  if (!(pOre=FindContents(ORE1)) ) if (!(pOre=FindContents(ORE2))) return(1);
     // Metall auswerfen
   Exit(CreateContents(DefinitionCall(GetID(pOre), "SmeltResult")), -27,+13,0, -1);
   // Erz verbrauchen
@@ -230,8 +231,7 @@ private func ContentsCheck()
             || id==OBRL
             || id==WOOD
             || id==ORE1
-            || id==ORE2
-			|| id==ORE3 ) )
+            || id==ORE2 ) )
       if(GetDefFragile(id) || GetCategory(obj) & C4D_Vehicle)
         SetCommand(obj, "Exit");
       else

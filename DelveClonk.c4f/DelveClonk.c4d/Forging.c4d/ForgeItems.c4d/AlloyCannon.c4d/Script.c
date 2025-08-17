@@ -30,13 +30,25 @@ func FRGUpdate(){
 public func ControlUp(object clonk)     // Zielen: hoch (klassisch)
 {
   [$TxtAimup$|Image=CAN1:2]
-  AimUp(clonk, Speed, "ControlConf");
+  if(RandomX(0, 15/Speed) == 0)
+	AimUp(clonk, 38 - Speed, "ControlConf");
 }
 
 public func ControlDig(object clonk)    // Zielen: runter (klassisch)
 {
   [$TxtAimdown$|Method=Classic|Image=CAN1:0]
-  AimDown(clonk, Speed, "ControlConf");
+  if(RandomX(0, 15/Speed) == 0)
+	AimDown(clonk, 38 - Speed, "ControlConf");
+}
+
+public func ControlDown()
+{
+  [$TxtAimdown$|Method=JumpAndRun|Image=CAN1:0] // Beschreibung fuer JnR
+}
+
+public func ControlUpdate(object clonk, int comdir) // Zielen: JnR
+{
+  AimUpdate(clonk, comdir, 38 - Speed, "ControlConf");
 }
 
 public func Fire(bool fAuto)
@@ -57,7 +69,7 @@ public func Fire(bool fAuto)
   var iY = GetPhase()-14;
   var iAngle = BoundBy(GetPhase()*5-5,0,90);
   var iXDir = Sin(iAngle,32*(GetDir()*2-1));
-  var iYDir = Cos(iAngle,-18)-Power;
+  var iYDir = Cos(iAngle,-18-Power);
   
   // Fuer Killverfolgung
   if (GetOCF(pProjectile) & OCF_Alive) pProjectile->SetKiller(GetController());

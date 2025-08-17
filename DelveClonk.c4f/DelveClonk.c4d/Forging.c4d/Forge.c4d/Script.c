@@ -154,7 +154,7 @@ func ContextScrap(pByObject){
 }
 
 func FreeWork(){
-	SetAction("DoorOpen");
+	SetAction("OpenDoor");
 	for(var i = 0; i < ObjectCount2(Find_OCF(OCF_CrewMember), Find_Container(this())); i++){
 		if (GetController(FindObjects(Find_OCF(OCF_CrewMember), Find_Container(this()))[i]) == -1){
 			SetController( GetOwner(FindObjects(Find_OCF(OCF_CrewMember), Find_Container(this()))[i]), FindObjects(Find_OCF(OCF_CrewMember), Find_Container(this()))[i]);
@@ -175,13 +175,11 @@ func Reset(){
 }
 
 func FreeWorkF(){
-	Exit(Worker, -8, 25);
 	FreeWork();
 }
 	
 func FinishWork(){
 	FreeWork();
-	Exit(Worker, -8, 25);
 	var NewItem = CreateObject(Prod);
 	Enter(this(), NewItem);
 	
@@ -227,6 +225,7 @@ func FinishWork(){
 	NewItem->AssignEffects();
 	
 	Message("$ForgeSuccess$", this(), GetName(,Prod));
+	
 	Reset();
 }
 
