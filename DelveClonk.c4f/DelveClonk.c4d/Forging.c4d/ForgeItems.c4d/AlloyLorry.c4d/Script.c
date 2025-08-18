@@ -1,27 +1,161 @@
-/*-- Lore --*/
+//this script handles forge effects
+//import it if you want a material affect the object it made
 
 #strict
-#include LORY
-#include DUMM
 
-/* Status */
-
-public func IsLorry() { return(1); }
 local Color;
 local Mass;
 local Speed;
 local Power;
 local Effect;
 
-/* Steuerung */
-
-func Initialize(){
-	Color = RGBa(177, 171, 170, 0);
-	Mass = 3;
+func AssignEffects(){
+	//Burnable
+	if(WildcardMatch(Effect, "*Burnable*")){
+		AddEffect("Burnable", this(), 50, 35, this()); 
+	}
+	
+	//Meltable
+	if(WildcardMatch(Effect, "*Meltable*")){
+		AddEffect("Meltable", this(), 50, 15, this()); 
+	}
+	
+	//Affected By Wind
+	if(WildcardMatch(Effect, "*Windy*")){
+		AddEffect("Windy", this(), 50, 15, this()); 
+	}
+	
+	//Float On Water
+	if(WildcardMatch(Effect, "*Float*")){
+		AddEffect("Float", this(), 50, 1, this()); 
+	}
 }
 
-func FRGUpdate(){
-	//SetColorDw(Color, this());
-	SetMass(25*Mass, this());
-	SetClrModulation(Color, this());
+
+//coffe spelled backwards is effoc
+
+public func FxBurnableTimer(object pTarget, int EffectNumber){
+	if((FindObject2( Find_OCF(OCF_OnFire), Find_Distance(45) ) && RandomX(1, 6) == 2)) {
+		Incinerate(pTarget);
+	}
+	
+	if(GetMaterial() == Material("Lava")){
+		Incinerate(pTarget);
+	}
+	
+	if(GetMaterial() == Material("DuroLava")){
+		Incinerate(pTarget);
+	}
+	
+	if(OnFire(pTarget)){
+			DoCon(-1, pTarget);
+			if(WildcardMatch(Effect, "*Fuming*")){
+				var Close = FindObjects(Find_OCF(OCF_Alive), Find_Distance(50));
+				for(var element in Close){
+					DoEnergy(-1, element);
+				}
+			}
+	}
+}
+
+public func FxMeltableTimer(object pTarget, int EffectNumber){
+	
+	if(GetMaterial() == Material("Lava") || GetMaterial() == Material("DuroLava")){
+		
+		
+		//Making the thing look boiling red
+		var ReddishHue;
+		ReddishHue = Color;
+		if(GetRGBaValue(Color, 2) > 25){
+			ReddishHue = DoRGBaValue(ReddishHue, -25, 2);
+		}else {
+			ReddishHue = SetRGBaValue(ReddishHue, 0, 2);
+		}
+		
+		if(GetRGBaValue(Color, 3) > 25){
+			ReddishHue = DoRGBaValue(ReddishHue, -25, 3);
+		}else {
+			ReddishHue = SetRGBaValue(ReddishHue, 0, 3);
+		}
+		
+		if(GetRGBaValue(Color, 1) < 230){
+			ReddishHue = DoRGBaValue(ReddishHue, 25, 1);
+		}else {
+			ReddishHue = SetRGBaValue(ReddishHue, 255, 1);
+		}
+		
+		
+		if(GetRGBaValue(GetClrModulation(), 1) != GetRGBaValue(ReddishHue, 1)){
+			
+			var r = GetRGBaValue(ReddishHue, 1);
+			var g = GetRGBaValue(ReddishHue, 2);
+			var b = GetRGBaValue(ReddishHue, 3);
+			var mod = GetClrModulation();
+			
+			if(GetRGBaValue(mod, 1) < r) mod = DoRGBaValue(mod, 1, 1);
+			if(GetRGBaValue(mod, 1) > r) mod = DoRGBaValue(mod, -1, 1);
+			
+			if(GetRGBaValue(mod, 2) < g) mod = DoRGBaValue(mod, 1, 2);
+			if(GetRGBaValue(mod, 2) > g) mod = DoRGBaValue(mod, -1, 2);
+			
+			if(GetRGBaValue(mod, 3) < g) mod = DoRGBaValue(mod, 1, 3);
+			if(GetRGBaValue(mod, 3) > g) mod = DoRGBaValue(mod, -1, 3);
+			
+			SetClrModulation(mod);
+		}else{
+			DoCon(-1, pTarget);
+		}
+		
+	}else{
+		
+		//Normalizing color
+			var r = GetRGBaValue(Color, 1);
+			var g = GetRGBaValue(Color, 2);
+			var b = GetRGBaValue(Color, 3);
+			var mod = GetClrModulation();
+			
+			if(GetRGBaValue(mod, 1) < r) mod = DoRGBaValue(mod, 1, 1);
+			if(GetRGBaValue(mod, 1) > r) mod = DoRGBaValue(mod, -1, 1);
+			
+			if(GetRGBaValue(mod, 2) < g) mod = DoRGBaValue(mod, 1, 2);
+			if(GetRGBaValue(mod, 2) > g) mod = DoRGBaValue(mod, -1, 2);
+			
+			if(GetRGBaValue(mod, 3) < g) mod = DoRGBaValue(mod, 1, 3);
+			if(GetRGBaValue(mod, 3) > g) mod = DoRGBaValue(mod, -1, 3);
+			
+			SetClrModulation(mod);
+			
+	}
+}
+
+public func FxWindyTimer(object pTarget, int EffectNumber){
+	var WindLevel = GetWind();
+	WindLevel = (WindLevel * 6) / 5;
+	
+	if(GetMass() <= Abs(WindLevel)){
+		WindLevel = WindLevel / 10;
+		var Direction;
+		if(WindLevel >= 0){
+			Direction = GetXDir() + WindLevel;
+		}else{
+			Direction = GetXDir() + WindLevel;
+		}
+		
+		SetXDir(Direction);
+	}
+}
+
+public func FxFloatTimer(object pTarget, int EffectNumber){
+	
+	if(InLiquid()){
+		SetYDir(GetYDir()-5);
+	}
+}
+
+//Non effect stuff
+
+public func Hit(){
+	if(WildcardMatch(Effect, "*Explode*")){
+		Explode(Power*7);
+	}
 }
