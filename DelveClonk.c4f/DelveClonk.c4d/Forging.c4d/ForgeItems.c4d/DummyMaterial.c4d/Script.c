@@ -19,6 +19,26 @@ func AssignEffects(){
 	if(WildcardMatch(Effect, "*Meltable*")){
 		AddEffect("Meltable", this(), 50, 15, this()); 
 	}
+	
+	//Windy
+	if(WildcardMatch(Effect, "*Windy*")){
+		AddEffect("Windy", this(), 50, 10, this()); 
+	}
+	
+	//Float
+	if(WildcardMatch(Effect, "*Float*")){
+		AddEffect("Float", this(), 50, 1, this()); 
+	}
+	
+	//Liquid Melt
+	if(WildcardMatch(Effect, "*LQM*")){
+		AddEffect("Lquidmelt", this(), 50, 15, this()); 
+	}
+	
+	//Regen
+	if(WildcardMatch(Effect, "*Regen*")){
+		AddEffect("Regen", this(), 50, 40, this()); 
+	}
 }
 
 
@@ -115,5 +135,47 @@ public func FxMeltableTimer(object pTarget, int EffectNumber){
 			
 			SetClrModulation(mod);
 			
+	}
+}
+
+public func FxWindyTimer(object pTarget, int EffectNumber){
+	if(GetMass() < Abs(GetWind())){
+		var Vel = Abs(GetWind()) / 10;
+		if(GetWind() >= 0)
+			SetXDir(GetXDir() + Vel);
+		else
+			SetXDir(GetXDir() - Vel);
+	}
+}
+
+public func FxFloatTimer(object pTarget, int EffectNumber){
+	if(WildcardMatch(Effect, "*Explode*")){
+		Explode(Power*10);
+	}
+}
+
+public func FxLquidmeltTimer(object pTarget, int EffectNumber){
+	if(WildcardMatch(Effect, "*WaterLQM*") && GetMaterial(0,0) == Material("Water")){
+		DoCon(-1, pTarget);
+	}
+	
+	if(WildcardMatch(Effect, "*AcidLQM*") && GetMaterial(0,0) == Material("Acid")){
+		DoCon(-1, pTarget);
+	}
+	
+	if(WildcardMatch(Effect, "*OilLQM*") && GetMaterial(0,0) == Material("Oil")){
+		DoCon(-1, pTarget);
+	}
+}
+
+public func FxRegenTimer(object pTarget, int EffectNumber){
+	DoCon(1, pTarget);
+}
+
+//non effect effects
+
+func Hit(){
+	if(WildcardMatch(Effect, "*Explode*")){
+		Explode(Power*10);
 	}
 }
