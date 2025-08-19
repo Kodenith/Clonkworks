@@ -17,7 +17,6 @@ Mass=110
 Components=DUMM=8
 Picture=608,0,64,64
 CollectionLimit=10
-Rebuy=1
 Grab=1
 GrabPutGet=C4D_GrabGet|C4D_GrabPut
 UprightAttach=8

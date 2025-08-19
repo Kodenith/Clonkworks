@@ -222,6 +222,7 @@ func FinishWork(){
 	LocalN("Power", NewItem) = Power;
 	LocalN("Effect", NewItem) = Efx;
 	
+	SetOwner(GetOwner(), NewItem);
 	NewItem->FRGUpdate();
 	NewItem->AssignEffects();
 	
