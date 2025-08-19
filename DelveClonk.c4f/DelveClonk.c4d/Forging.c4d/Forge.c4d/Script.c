@@ -162,6 +162,7 @@ func FreeWork(){
 	}
 	
 	SetObjectStatus(1, Worker, false);
+	SetCommand(Worker, "Exit");
 }
 
 func Reset(){
