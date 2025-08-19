@@ -10,6 +10,6 @@ local Effect;
 
 func FRGUpdate(){
 	//SetColorDw(Color, this());
-	SetMass(35*Mass, this());
+	SetMass(25*Mass, this());
 	SetClrModulation(Color, this());
 }
