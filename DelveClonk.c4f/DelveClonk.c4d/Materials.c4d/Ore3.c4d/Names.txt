@@ -1,2 +1,2 @@
-DE:Stück Lotiumerz
-US:Chunk of Lotium ore
+DE:Stück Titanerz
+US:Chunk of Titanium ore

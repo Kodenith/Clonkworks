@@ -1,0 +1,1 @@
+Used for the creation of advanced vehicles, and for forging light and fast objects in the forge. Unlike most metals, Titanium will not melt in lava.
