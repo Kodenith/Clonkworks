@@ -176,6 +176,8 @@ public func FxRegenTimer(object pTarget, int EffectNumber){
 
 func Hit(){
 	if(WildcardMatch(Effect, "*Explode*")){
+		if(Power > 0)
 		Explode(Power*10);
+	else Explode(8);
 	}
 }
