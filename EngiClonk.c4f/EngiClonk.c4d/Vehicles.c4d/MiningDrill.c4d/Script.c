@@ -41,24 +41,24 @@ private func AdjustTrainSpeed()
     SetPhysical("Walk", 15000, 2);
 }
 
+
 protected func SignalDelay()
 {
-	if(PoweredEnough()){
+	
 	var x;
 	if(GetDir() == 0) x = -25;
 	else x = 25;
 	
+	if(PoweredEnough()){
 	if(GetMaterial(x,0) != Material("Sky") && GetMaterial(x,0) != Material("Tunnel") && Abs(GetXDir()) > 2){
 			x = GetX()+x;
 			var y;
-			y = GetY()-5;
+			y = GetY();
 		/* FreeRect(GetX(), GetY()-20, 25,30);
 		FreeRect(GetX()+x, GetY()-20, 10,30); */
-		BlastFree(x,y,15,GetOwner()-1);
+		BlastFree(x,y-2,16,GetOwner()-1);
 		Sound("Drill");
 	}
-  }else{
-	  SetComDir(COMD_None());
   }
   
   DoEnergy(-1);
@@ -68,41 +68,6 @@ protected func SignalDelay()
   // Wartezeit aufzählen
   --iWait;
   // Abfahrtszeit vorm Zählerende
-  if (iWait == 30) DepartFromSignal();
+  if (iWait == 2) DepartFromSignal();
   return(1);
-}
-
-public func ControlLeft(object pByObject)
-{
-  [$TxtLeft$|Image=STMS:1]
-  // Zähler blockieren
-  iWait = 30;
-  // Nicht angekoppelt: nur schieben lassen
-  if (GetAction() ne "Push") return(0);
-
-  if(!GetPlrJumpAndRunControl(pByObject->GetController()))
-    SetDirection(COMD_Left);
-
-  return(1);
-}
-
-public func ControlRight(object pByObject)
-{
-  [$TxtRight$|Image=STMS:2]
-  // Zähler blockieren
-  iWait = 30;
-  // Nicht angekoppelt: nur schieben lassen
-  if (GetAction() ne "Push") return(0);
-
-  if(!GetPlrJumpAndRunControl(pByObject->GetController()))
-    SetDirection(COMD_Right);
-
-  return(1);
-}
-
-public func ControlDigDouble()
-{
-  [$TxtAttachOrDetach$|Image=STMS:0]
-  if (GetAction() S= "Push") return(ReleaseTarget());
-  return(GrabTarget());
 }

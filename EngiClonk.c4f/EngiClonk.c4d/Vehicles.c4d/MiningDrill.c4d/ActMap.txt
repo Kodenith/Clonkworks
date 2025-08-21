@@ -8,6 +8,8 @@ Directions=2
 FlipDir=1
 Procedure=WALK
 NextAction=Walk
+PhaseCall=CheckSignal
+EndCall=Puff
 
 [Action]
 Name=Push
