@@ -100,7 +100,9 @@ public func ControlRight(object pByObject)
   return(1);
 }
 
-private func GrabTarget() 
+public func ControlDigDouble()
 {
-  return(0);
+  [$TxtAttachOrDetach$|Image=STMS:0]
+  if (GetAction() S= "Push") return(ReleaseTarget());
+  return(GrabTarget());
 }

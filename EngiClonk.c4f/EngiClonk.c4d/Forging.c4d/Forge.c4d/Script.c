@@ -83,24 +83,23 @@ func Continue(pByObject){
 	var Amt = GetComponent(x, , , Prod);
 	if(x == DUMM) x = Mat;
 	if(!Producing) return(1);
-	
 	if(x){
 		DebugLog("Finding %s", GetName(,x));
 		if(ContentsCount(x, this()) < Amt){
 			AddCommand(pByObject, "Wait", , , , , 15);
 				if(GetCategory(FindObject2(Find_ID(x))) & C4D_Vehicle()){
-					Message("$Move$",pByObject,GetName(,x), Amt);
+					Message("$Move$",pByObject,GetName(,x), Amt-ContentsCount(x, this()));
 					AddCommand(pByObject, "Call",this(), , , , , "Continue", 3);
-					for(var i = 0; i < Amt; i++){
+					for(var i = 0; i < Amt-ContentsCount(x, this()); i++){
 					AddCommand(pByObject, "Enter", this());
 					AddCommand(pByObject, "PushTo", FindObject2(Find_ID(x)), , , this(), , , 3);
 					}
 					y++;
 					return(0);
 				}else{
-					Message("$Gather$",pByObject,GetName(,x), Amt);
+					Message("$Gather$",pByObject,GetName(,x), Amt-ContentsCount(x, this()));
 					AddCommand(pByObject, "Call",this(), , , , , "Continue", 3);
-					for(var i = 0; i < Amt; i++){
+					for(var i = 0; i < Amt-ContentsCount(x, this()); i++){
 					AddCommand(pByObject, "Put", this());
 					AddCommand(pByObject, "Enter", this());
 					AddCommand(pByObject, "Acquire", , , , this(), , x);

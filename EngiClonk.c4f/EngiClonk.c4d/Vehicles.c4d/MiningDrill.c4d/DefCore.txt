@@ -10,6 +10,7 @@ Width=43
 Height=23
 Offset=-21,-11
 Picture=0,23,64,64
+CollectionLimit=-1
 Vertices=6
 VertexX=-7,8,-3,-13,-19,-7
 VertexY=11,1,-8,-8,2,1
@@ -27,3 +28,4 @@ Components=CPIG=3;METL=2;STMG=1;
 CanDig=1
 Energy=100000
 Walk=100000
+Push=100000
