@@ -1,0 +1,1 @@
+Mines through any material in it's path, as long as it's constantly powered. Can also be used as a much slower steam engine.
