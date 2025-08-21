@@ -45,14 +45,16 @@ protected func SignalDelay()
 {
 	if(PoweredEnough()){
 	var x;
-	if(GetDir() == 0) x = -22;
+	if(GetDir() == 0) x = -25;
 	else x = 25;
 	
 	if(GetMaterial(x,0) != Material("Sky") && GetMaterial(x,0) != Material("Tunnel") && Abs(GetXDir()) > 2){
+			x = GetX()+x;
+			var y;
+			y = GetY()-5;
 		/* FreeRect(GetX(), GetY()-20, 25,30);
 		FreeRect(GetX()+x, GetY()-20, 10,30); */
-		BlastFree(GetX()+(x/2),GetY()-5,15,GetOwner()-1);
-		BlastFree(GetX()+x,GetY()-5,5,GetOwner()-1);
+		BlastFree(x,y,15,GetOwner()-1);
 		Sound("Drill");
 	}
   }else{
@@ -96,4 +98,9 @@ public func ControlRight(object pByObject)
     SetDirection(COMD_Right);
 
   return(1);
+}
+
+private func GrabTarget() 
+{
+  return(0);
 }
