@@ -1,0 +1,17 @@
+CtxForgeHelp=Forging Help
+CtxForge=Production
+CtxCont=Continue Forging
+CtxScrap=Scrap Project
+MsgNoUseable=You can't use any metals yet!
+ForgeUseMat=Use
+ErrorNoRule=You can't use the forge in this scenario!
+NoPlrKnowledge=No construction plans
+Construction=Construction
+Production=Production
+ForgeFail=Forging Failed! Materials Have Been Wasted.
+ForgeSuccess=Successfully Forged %s!
+WrongWorker=Forging has been assigned to %s.
+Gather=Gathering %s x%d to Forge.
+Move=Moving %s x%d to Forge.
+GatherFail=Gathering Failed!
+MissingItems=Can't Start Forging, Gathered Items Missing!
