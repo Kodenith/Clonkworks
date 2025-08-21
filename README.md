@@ -1,4 +1,4 @@
-# EngiClonk
+# <img width="22" height="22" alt="Icon" src="https://github.com/user-attachments/assets/f5ddf966-19e4-4e38-8234-174805761b9d" /> EngiClonk
 EngiClonk is a mod for [LegacyClonk](https://github.com/legacyclonk/LegacyClonk), for now it adds the forge: a new production building that lets you use different materials instead of steel in recipes.
 
 Planned Features:
