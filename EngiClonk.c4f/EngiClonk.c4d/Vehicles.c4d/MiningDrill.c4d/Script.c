@@ -3,8 +3,10 @@
 #strict
 #include STMG
 
-func Initlialize(){
+local Made;
 
+func Initlialize(){
+	Made = false;
 }
 
 
@@ -37,7 +39,10 @@ public func ContextE(pCaller){
 protected func SignalDelay()
 {
 	
-	if(GetID(Contained()) == WRKS && GetCon() == 100 && RandomX(1, 5) == 3) SetCommand(this(), "Exit");
+	if(GetID(Contained()) == WRKS && GetCon() == 100 && !Made){
+		SetCommand(this(), "Exit");
+		Made = true;
+	}
 	
 	var x;
 	if(GetDir() == 0) x = -25;
