@@ -2,6 +2,7 @@
 
 #strict
 #include STMG
+#include CXEC
 
 func Initlialize(){
 
@@ -16,29 +17,9 @@ func PoweredEnough(){
 	}
 }
 
-//foo?
-func NotPoweredEnough(){
-	if(!FindObject2(Find_ID(ENRG)) || GetEnergy() > 0){
-		return(0);
-	}else{
-		return(1);
-	}
-}
-
-public func ContextPower(object pCaller){
-	[$NotPowered$|Image=LNKT|Condition=NotPoweredEnough]
-	SetCommand(pCaller, "Energy", this());
-	return(1);
-}
-
 private func AdjustTrainSpeed()
 {
-  // Zug angefasst: langsam fahren
-  if (FindObject(0, 0,0,0,0, OCF_Living(), "Push", this()) || (GetActionTarget() && FindObject(0, 0,0,0,0, OCF_Living(), "Push", GetActionTarget())))
-    SetPhysical("Walk", 15000, 2);
-  // Zug nicht angefasst: schnell fahren
-  else
-    SetPhysical("Walk", 15000, 2);
+	SetPhysical("Walk", 15000, 2);
 }
 
 
@@ -70,4 +51,16 @@ protected func SignalDelay()
   // Abfahrtszeit vorm Zählerende
   if (iWait == 2) DepartFromSignal();
   return(1);
+}
+
+protected func Puff()
+{
+  // Geräusch nur wenn wir aktiv sind
+  if (GetComDir() != COMD_None && Abs(GetXDir()) > 2 && PoweredEnough())
+  {
+    Sound("Chuff");
+	if(GetDir() == 1)
+    Smoke(-10, -8, 5 + Random(4));
+	else Smoke(18, -8, 5 + Random(4));
+  }
 }

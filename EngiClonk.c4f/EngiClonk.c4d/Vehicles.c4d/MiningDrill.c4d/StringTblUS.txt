@@ -1,4 +1,3 @@
-NotPowered=Energy Supply
 TxtLeft=Left
 TxtRight=Right
 TxtLeftDouble=Drive left permanently

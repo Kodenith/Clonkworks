@@ -1,4 +1,3 @@
-NotPowered=Energieversorgung
 TxtLeft=Fahrt links
 TxtRight=Fahrt rechts
 TxtLeftDouble=Dauerfahrt links
