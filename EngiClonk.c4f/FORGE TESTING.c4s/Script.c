@@ -20,7 +20,7 @@ func Script1(){
 
 global func FxRestockTimer(object pTarget, int EffectNumber){
 	var Itemlist;
-	Itemlist = [WOOD, METL, CPIG, TTIG, LORY, SPHR, CRYS, ARWP, FLNT, GUNP, CNKT, LNKT, CANN, XBOW];
+	Itemlist = [WOOD, METL, CPIG, TTIG, LORY, SPHR, CRYS, ARWP, FLNT, GUNP, CNKT, LNKT, CANN, XBOW, ADM3];
 	
 	for(var id in Itemlist){
 		if(ContentsCount(id, this()) == 0){
