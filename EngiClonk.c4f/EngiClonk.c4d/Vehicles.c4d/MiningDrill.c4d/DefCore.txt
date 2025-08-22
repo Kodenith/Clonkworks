@@ -2,10 +2,10 @@
 Name=MiningDrill
 id=MDRL
 Version=4,9,8
-Category=3332
+Category=C4D_Vehicle|C4D_SelectVehicle|C4D_SelectKnowledge|C4D_SelectHomebase
 MaxUserSelect=3
 Value=120
-Mass=250
+Mass=100
 Width=43
 Height=23
 Offset=-21,-11
@@ -25,7 +25,6 @@ Components=CPIG=3;METL=2;
 BorderBound=1
 
 [Physical]
-CanDig=1
 Energy=100000
 Walk=100000
 Push=100000
