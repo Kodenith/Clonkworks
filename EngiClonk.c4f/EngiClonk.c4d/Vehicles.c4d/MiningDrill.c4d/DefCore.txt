@@ -20,9 +20,9 @@ Grab=1
 Timer=15
 TimerCall=SignalDelay
 GrabPutGet=C4D_GrabGet|C4D_GrabPut
-VehicleControl=C4D_VehicleControl_Outside
 LineConnect=C4D_PowerInput|C4D_PowerConsumer
 Components=CPIG=3;METL=2;
+BorderBound=1
 
 [Physical]
 CanDig=1
