@@ -4,4 +4,3 @@ TxtLeftDouble=Drive left permanently
 TxtRightDouble=Drive right permanently
 TxtStop=Stop
 TxtAttachOrDetach=Couple/Decouple
-TxtEnergysupply=Energy supply

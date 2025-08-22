@@ -2,13 +2,13 @@
 
 #strict
 #include STMG
+#include CXEC
 
-local Made;
+local CanExit;
 
-func Initlialize(){
-	Made = false;
+func Construction(){
+	CanExit = true;
 }
-
 
 func PoweredEnough(){
 	if(!FindObject2(Find_ID(ENRG)) || GetEnergy() > 0){
@@ -18,31 +18,13 @@ func PoweredEnough(){
 	}
 }
 
-func NotPoweredEnough(){
-	if(!FindObject2(Find_ID(ENRG)) || GetEnergy() > 0){
-		return(0);
-	}else{
-		return(1);
-	}
-}
-
 private func AdjustTrainSpeed()
 {
 	SetPhysical("Walk", 15000, 2);
 }
 
-public func ContextE(pCaller){
-	[$TxtEnergysupply$|Image=LNKT|Condition=NotPoweredEnough]
-	SetCommand(pCaller,"Energy",this());
-}
-
 protected func SignalDelay()
 {
-	
-	if(GetID(Contained()) == WRKS && GetCon() == 100 && !Made){
-		SetCommand(this(), "Exit");
-		Made = true;
-	}
 	
 	var x;
 	if(GetDir() == 0) x = -25;
@@ -59,8 +41,6 @@ protected func SignalDelay()
 		Sound("Drill");
 	}
   }
-  
-  DoEnergy(-1);
   
   // Keine Wartezeit
   if (!iWait) return(0);
@@ -82,3 +62,5 @@ protected func Puff()
 	else Smoke(18, -8, 5 + Random(4));
   }
 }
+
+func ExitWorkshop(){ return(1); }

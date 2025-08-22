@@ -135,6 +135,15 @@ protected func ContainedUp(pCaller)
 /* Aktivität */
 
 private func CheckBuild() {
+	
+	for(var thing in FindObjects(Find_Container(this()))){
+		if(DefinitionCall(GetID(thing), "ExitWorkshop") == 1 && GetCon(thing) == 100 && LocalN("CanExit", thing) == true){
+			SetCommand(thing, "Exit");
+			LocalN("CanExit", thing) = false;
+		}
+	}
+	
+	
   // TimerCall: die Werkstatt startet ihre eigene Build-Aktion, sobald
   // jemand in der Werkstatt arbeitet. Die Arbeit in einem Gebäude schreitet
   // nur voran, wenn das Gebäude dies durch eine eigene Build-Aktion unterstützt.

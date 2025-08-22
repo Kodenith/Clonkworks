@@ -10,6 +10,7 @@ Procedure=WALK
 NextAction=Walk
 PhaseCall=CheckSignal
 EndCall=Puff
+EnergyUsage=500
 
 [Action]
 Name=Push
@@ -23,6 +24,7 @@ NextAction=Push
 PhaseCall=CheckSignal
 EndCall=Puff
 AbortCall=GrabLost
+EnergyUsage=500
 
 [Action]
 Name=Wait
@@ -33,6 +35,7 @@ Length=1
 Delay=100
 Facet=0,0,43,23,0,0
 NextAction=Walk
+EnergyUsage=500
 
 [Action]
 Name=Jump
@@ -44,3 +47,4 @@ Delay=1
 Facet=0,0,43,23,0,0
 NextAction=Jump
 StartCall=Puff
+EnergyUsage=500
