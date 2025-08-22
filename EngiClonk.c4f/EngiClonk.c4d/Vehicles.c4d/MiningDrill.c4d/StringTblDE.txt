@@ -4,3 +4,4 @@ TxtLeftDouble=Dauerfahrt links
 TxtRightDouble=Dauerfahrt rechts
 TxtStop=Anhalten
 TxtAttachOrDetach=An-/Abkuppeln
+TxtEnergysupply=Energieversorgung

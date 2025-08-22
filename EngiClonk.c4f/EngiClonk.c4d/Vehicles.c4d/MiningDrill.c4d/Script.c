@@ -2,7 +2,6 @@
 
 #strict
 #include STMG
-#include CXEC
 
 func Initlialize(){
 
@@ -17,14 +16,28 @@ func PoweredEnough(){
 	}
 }
 
+func NotPoweredEnough(){
+	if(!FindObject2(Find_ID(ENRG)) || GetEnergy() > 0){
+		return(0);
+	}else{
+		return(1);
+	}
+}
+
 private func AdjustTrainSpeed()
 {
 	SetPhysical("Walk", 15000, 2);
 }
 
+public func ContextE(pCaller){
+	[$TxtEnergysupply$|Image=LNKT|Condition=NotPoweredEnough]
+	SetCommand(pCaller,"Energy",this());
+}
 
 protected func SignalDelay()
 {
+	
+	if(GetID(Contained()) == WRKS && GetCon() == 100 && RandomX(1, 5) == 3) SetCommand(this(), "Exit");
 	
 	var x;
 	if(GetDir() == 0) x = -25;

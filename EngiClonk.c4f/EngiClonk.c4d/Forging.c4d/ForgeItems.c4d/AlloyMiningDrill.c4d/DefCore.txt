@@ -1,11 +1,11 @@
 [DefCore]
-Name=MiningDrill
-id=MDRL
+Name=AlloyMiningDrill
+id=AMDR
 Version=4,9,8
-Category=3332
-MaxUserSelect=3
+Category=1028
+MaxUserSelect=1
 Value=120
-Mass=250
+Mass=500
 Width=43
 Height=23
 Offset=-21,-11
@@ -22,7 +22,7 @@ TimerCall=SignalDelay
 GrabPutGet=C4D_GrabGet|C4D_GrabPut
 VehicleControl=C4D_VehicleControl_Outside
 LineConnect=C4D_PowerInput|C4D_PowerConsumer
-Components=CPIG=3;METL=2;
+Components=DUMM=6;MDRL=1;
 
 [Physical]
 CanDig=1
