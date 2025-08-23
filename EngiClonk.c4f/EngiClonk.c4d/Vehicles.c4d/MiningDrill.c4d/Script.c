@@ -31,7 +31,7 @@ protected func SignalDelay()
 	else x = 25;
 	
 	if(PoweredEnough()){
-	if(GetMaterial(x,0) != Material("Sky") && GetMaterial(x,0) != Material("Tunnel") && Abs(GetXDir()) > 2){
+	if(GetMaterial(x,0) != Material("Sky") && GetMaterial(x,0) != Material("Tunnel") && Abs(GetXDir()) != 0){
 			x = GetX()+x;
 			var y;
 			y = GetY();
@@ -54,7 +54,7 @@ protected func SignalDelay()
 protected func Puff()
 {
   // Geräusch nur wenn wir aktiv sind
-  if (GetComDir() != COMD_None && Abs(GetXDir()) > 2 && PoweredEnough())
+  if (GetComDir() != COMD_None && Abs(GetXDir()) != 0 && PoweredEnough())
   {
     Sound("Chuff");
 	if(GetDir() == 1)
@@ -63,4 +63,11 @@ protected func Puff()
   }
 }
 
-func ExitWorkshop(){ return(1); }
+func ExitWorkshop(){
+	if(CanExit && GetCon() == 100){
+		CanExit = false;
+		return(1); 
+	}else{
+		return(0);
+	}
+}

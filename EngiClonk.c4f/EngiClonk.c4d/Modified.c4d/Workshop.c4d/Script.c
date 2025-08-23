@@ -137,9 +137,8 @@ protected func ContainedUp(pCaller)
 private func CheckBuild() {
 	
 	for(var thing in FindObjects(Find_Container(this()))){
-		if(DefinitionCall(GetID(thing), "ExitWorkshop") == 1 && GetCon(thing) == 100 && LocalN("CanExit", thing) == true){
+		if(ObjectCall(thing, "ExitWorkshop") == 1){
 			SetCommand(thing, "Exit");
-			LocalN("CanExit", thing) = false;
 		}
 	}
 	
