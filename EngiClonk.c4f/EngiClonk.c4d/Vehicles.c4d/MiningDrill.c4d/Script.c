@@ -42,6 +42,8 @@ protected func SignalDelay()
 	}
   }
   
+  if(CanExit && GetCon() > 99) CanExit = false;
+  
   // Keine Wartezeit
   if (!iWait) return(0);
   // Wartezeit aufzählen

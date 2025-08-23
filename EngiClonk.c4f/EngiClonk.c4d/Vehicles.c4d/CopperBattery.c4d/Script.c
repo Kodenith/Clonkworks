@@ -4,13 +4,16 @@
 
 local CanExit;
 local previous;
+local Timer;
 
 func Construction(){
+	Timer = 0;
 	previous = 1;
 	CanExit = true;
 }
 
 func UpdateLook(){
+	Timer++;
 	var chng;
 	if(previous != GetEnergy()){
 		if(previous < GetEnergy()){
@@ -21,13 +24,13 @@ func UpdateLook(){
 			chng = 1;
 		}
 		
-		
-		
-		
 		DoEnergy(-GetEnergy());
-		if(RandomX(0,5) == 1)
+		if(Timer >= 13){
+			Timer = 0;
 			DoEnergy(previous);
-		else DoEnergy(previous+chng);
+			CanExit = false;
+		}
+		else{ DoEnergy(previous+chng); }
 	}
 	
 	if(GetAction() ne "Charge") SetAction("Charge");
