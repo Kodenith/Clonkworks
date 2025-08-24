@@ -39,6 +39,32 @@ func AssignEffects(){
 	if(WildcardMatch(Effect, "*Regen*")){
 		AddEffect("Regen", this(), 50, 40, this()); 
 	}
+	
+	//Glide
+	if(WildcardMatch(Effect, "*Glide*")){
+		AddEffect("Glide", this(), 50, 1, this()); 
+	}
+	
+	//Toxic
+	if(WildcardMatch(Effect, "*Toxic*")){
+		AddEffect("Toxic", this(), 50, 100, this()); 
+	}
+	
+	//Mod2
+	if(WildcardMatch(Effect, "*Mod2*")){
+		SetObjectBlitMode(2, this());
+	}
+	
+	//Skew
+	if(WildcardMatch(Effect, "*Skew*")){
+	   AddEffect("Skew", this(), 50, 1, this()); 
+	}
+	
+	//Glow
+	if(WildcardMatch(Effect, "*Glow*")){
+	   var wdt = GetDefCoreVal("Width", "DefCore", GetID());
+	   SetPlrViewRange(wdt, this());
+	}
 }
 
 
@@ -70,7 +96,10 @@ public func FxBurnableTimer(object pTarget, int EffectNumber){
 
 public func FxMeltableTimer(object pTarget, int EffectNumber){
 	
-	if(GetMaterial() == Material("Lava") || GetMaterial() == Material("DuroLava")){
+	var HighTemp;
+	HighTemp = WildcardMatch(Effect, "*HTM*") && GetTemperature() > 75;
+	
+	if(GetMaterial() == Material("Lava") || GetMaterial() == Material("DuroLava") || HighTemp){
 		
 		
 		//Making the thing look boiling red
@@ -166,18 +195,52 @@ public func FxLquidmeltTimer(object pTarget, int EffectNumber){
 	if(WildcardMatch(Effect, "*OilLQM*") && GetMaterial(0,0) == Material("Oil")){
 		DoCon(-1, pTarget);
 	}
+	
+	if(WildcardMatch(Effect, "*LavaLQM*") && GetMaterial(0,0) == Material("Lava")){
+		DoCon(-1, pTarget);
+	}
+	
+	if(WildcardMatch(Effect, "*LavaLQM*") && GetMaterial(0,0) == Material("DuroLava")){
+		DoCon(-1, pTarget);
+	}
 }
 
 public func FxRegenTimer(object pTarget, int EffectNumber){
 	DoCon(1, pTarget);
 }
 
+public func FxGlideTimer(object pTarget, int EffectNumber){
+	if(GetYDir() > 0) SetYDir(Mass);
+}
+
+public func FxSkewTimer(object pTarget, int EffectNumber){
+	SetObjDrawTransform(1000, 10 * GetXDir(), 0,0,1000,0,this());
+}
+
+public func FxToxicTimer(object pTarget, int EffectNumber){
+	var Close = FindObjects(Find_OCF(OCF_Alive), Find_Distance(50));
+				for(var element in Close){
+					DoEnergy(-1, element);
+				}
+}
+
 //non effect effects
 
-func Hit(){
+func Hit3( int xdir, int ydir){
+	if(WildcardMatch(Effect, "*Fragile*")){
+		for(var i = 0; i < RandomX(2,10); i++){
+			Smoke(RandomX(-10,10), RandomX(-10,10), RandomX(1,20));
+		}
+		Sound("ClonkHit*");
+		CastParticles("PxSpark",RandomX(1,5),100,0,0,15,30,RGB(255,223,127),RGB(255,223,127));
+		DoCon(RandomX(-100,-20));
+	}
+	
 	if(WildcardMatch(Effect, "*Explode*")){
 		if(Power > 0)
 		Explode(Power*10);
 	else Explode(8);
 	}
+	
+	return(_inherited(xdir, ydir));
 }
