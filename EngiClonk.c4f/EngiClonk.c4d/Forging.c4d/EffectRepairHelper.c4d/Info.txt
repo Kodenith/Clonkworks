@@ -24,6 +24,7 @@ List of effects:
 * Glow - The object will have its own area of vision
 * Explode - The Object will explode when falling from a great height
 * Fragile - The Object will break when falling from a great height
+* Lightning - Lighting strikes will appear near the object, depends on the amount of lightning strikes in scenario.txt (suggested by danghor)
 
 
 you are free to add your own, just dont edit this one! overload it then edit or edit it with system.c4g. unless you wanna edit effects for every scenario and (kinda) ruin it.

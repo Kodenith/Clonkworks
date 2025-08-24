@@ -9,7 +9,6 @@ func Initialize() {
   
   ScriptGo(1);
   
-  
   return(1);
   
 }

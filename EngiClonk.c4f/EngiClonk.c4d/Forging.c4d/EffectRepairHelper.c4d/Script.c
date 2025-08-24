@@ -106,6 +106,11 @@ func AssignEffects(){
 	   SetPlrViewRange(wdt, this());
 	}
 	
+	if(WildcardMatch(Effect, "*Lightning*")){
+	   fxFound = true;
+	   AddEffect("Lightning", this(), 50, 500, this()); 
+	}
+	
 	if(fxFound) return(1);
 	
 	AddEffect(Effect, this(), 50, 1, this()); 
@@ -266,6 +271,12 @@ public func FxToxicTimer(object pTarget, int EffectNumber){
 				for(var element in Close){
 					DoEnergy(-1, element);
 				}
+}
+
+public func FxLightningTimer(object pTarget, int EffectNumber){
+	if(RandomX(0,100) <= GetScenarioVal("Lightning", "Weather", 0)){
+		LaunchLightning(GetX(),-LandscapeHeight()+GetY(), -20, 41, +5, 15);
+	}
 }
 
 //non effect effects
