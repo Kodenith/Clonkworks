@@ -10,3 +10,5 @@ if you wanna add a material to be used in the forge, paste this into a scenario 
 4. Speed Ticks (38 - Speed)
 5. Power (Not related Electricity/Health by default)
 6. Forge Effect
+
+you can find info about forge effects in Forging > ForgeItems > Dummy material
