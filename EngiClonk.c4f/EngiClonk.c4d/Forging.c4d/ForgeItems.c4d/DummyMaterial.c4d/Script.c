@@ -10,61 +10,77 @@ local Power;
 local Effect;
 
 func AssignEffects(){
+	var fxFound = false;
 	//Burnable
 	if(WildcardMatch(Effect, "*Burnable*")){
+		fxFound = true;
 		AddEffect("Burnable", this(), 50, 35, this()); 
 	}
 	
 	//Meltable
 	if(WildcardMatch(Effect, "*Meltable*")){
+		fxFound = true;
 		AddEffect("Meltable", this(), 50, 15, this()); 
 	}
 	
 	//Windy
 	if(WildcardMatch(Effect, "*Windy*")){
+		fxFound = true;
 		AddEffect("Windy", this(), 50, 10, this()); 
 	}
 	
 	//Float
 	if(WildcardMatch(Effect, "*Float*")){
+		fxFound = true;
 		AddEffect("Float", this(), 50, 1, this()); 
 	}
 	
 	//Liquid Melt
 	if(WildcardMatch(Effect, "*LQM*")){
+		fxFound = true;
 		AddEffect("Lquidmelt", this(), 50, 15, this()); 
 	}
 	
 	//Regen
 	if(WildcardMatch(Effect, "*Regen*")){
+		fxFound = true;
 		AddEffect("Regen", this(), 50, 40, this()); 
 	}
 	
 	//Glide
 	if(WildcardMatch(Effect, "*Glide*")){
+		fxFound = true;
 		AddEffect("Glide", this(), 50, 1, this()); 
 	}
 	
 	//Toxic
 	if(WildcardMatch(Effect, "*Toxic*")){
+		fxFound = true;
 		AddEffect("Toxic", this(), 50, 100, this()); 
 	}
 	
 	//Mod2
 	if(WildcardMatch(Effect, "*Mod2*")){
+		fxFound = true;
 		SetObjectBlitMode(2, this());
 	}
 	
 	//Skew
 	if(WildcardMatch(Effect, "*Skew*")){
+		fxFound = true;
 	   AddEffect("Skew", this(), 50, 1, this()); 
 	}
 	
 	//Glow
 	if(WildcardMatch(Effect, "*Glow*")){
+	   fxFound = true;
 	   var wdt = GetDefCoreVal("Width", "DefCore", GetID());
 	   SetPlrViewRange(wdt, this());
 	}
+	
+	if(fxFound) return(1);
+	
+	AddEffect(Effect, this(), 50, 1, this()); 
 }
 
 

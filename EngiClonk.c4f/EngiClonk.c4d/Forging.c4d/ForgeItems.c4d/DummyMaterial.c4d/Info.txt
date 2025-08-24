@@ -27,3 +27,6 @@ List of effects:
 
 you are free to add your own, just dont edit this one! overload it then edit or edit it with system.c4g. unless you wanna edit effects for every scenario and (kinda) ruin it.
 if you are adding effects to the mod and not for your own stuff, do so here in the script freely ;)
+
+if you pick set the local variable Effect to something that is not on the list, the string will be interpreted as a name of an effect and not a list of forge effects, allowing you to use global effects.
+the timer is set to 1 tick.
