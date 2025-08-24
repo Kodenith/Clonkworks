@@ -1,0 +1,33 @@
+Dummy Material is used for:
+* Determnining if an object is a forgeable item (by putting it as a crafting component)
+* assigning forge effects to forgeable items (#include DUMM)
+* adding an repair option for forged vehicles
+
+(* is main effect, ` is subeffect)
+List of effects:
+* Burnable - The object can be burnt when near flames or in lava.
+ ` Fuming - While burning, nearby living beings get slightly damaged
+* Meltable - The object will overheat and start melting when in lava
+ ` HTM - This object will overheat and melt in high temperatures
+* Windy - the object will move along the wind, if its too heavy this does nothing
+* Float - the object will float on water
+* (Liquid)LQM - Object will melt in liquid without the need to overheat like in Meltable.
+` Water
+` Acid
+` Oil
+` Lava
+* Regen - this object slowly repairs itself if broken
+* Glide - This object will slowly glide down instead of falling, glide speed based on Mass in the forge material list.
+* Toxic - Like Burnable > Fuming, but doesn't require fire to work.
+* Mod2 - Sets Blit Mode to 2, makes the object look quite angelic.
+* Skew - The object will skew left and right, based on x velocity.
+* Glow - The object will have its own area of vision
+* Explode - The Object will explode when falling from a great height
+* Fragile - The Object will break when falling from a great height
+
+
+you are free to add your own, just dont edit this one! overload it then edit or edit it with system.c4g. unless you wanna edit effects for every scenario and (kinda) ruin it.
+if you are adding effects to the mod and not for your own stuff, do so here in the script freely ;)
+
+if you pick set the local variable Effect to something that is not on the list, the string will be interpreted as a name of an effect and not a list of forge effects, allowing you to use global effects.
+the timer is set to 1 tick.

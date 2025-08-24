@@ -18,6 +18,8 @@ func FRGUpdate(){
 
 protected func SignalDelay()
 {
+	if(GetAction() eq "Idle") SetAction("Walk");
+	
 	var x;
 	if(GetDir() == 0) x = -25;
 	else x = 25;
