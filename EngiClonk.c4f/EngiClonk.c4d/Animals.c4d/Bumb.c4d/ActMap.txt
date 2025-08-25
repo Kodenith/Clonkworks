@@ -54,7 +54,6 @@ FacetBase=0
 Procedure=NONE
 Directions=2
 FlipDir=1
-PhaseCall=Sleep
 
 [Action]
 Name=Tumble

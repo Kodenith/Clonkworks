@@ -12,17 +12,36 @@ local BeeState;
 
 local GrudgeTarget;
 
+local HomeX;
+local HomeY;
+
+local Comb;
+
+local Pollen;
+local RandomPlant;
+
 // 0 - Fly Wander
 // 1 - Go to ground
 // 2 - Roam Ground
 // 3 - Rest
 // 4 - Attack
-// 5 - Gather (TBA)
-// 6 - Place Comb (TBA)
-// 7 - Collect Pollen (TBA)
-// 8 - Deposit Pollen (TBA)
+// 5 - Go Home (Gather, Gossip, Construct)  REQUIRES DAY-NIGHT CYCLE
+// 6 - Collect Pollen 
+// 7 - Deposit Pollen
+
+func InColony(){ return(HomeX != 0); }
+
+func DayCheck(){
+	if(FindObject2(Find_ID(TIME))){
+		return(IsDay());
+	}else{
+		return(1);
+	}
+}
 
 func Initialize() {
+	Pollen = 0;
+	HomeX = 0;
 	BeeState = 0;
 	MaxBeenergy = RandomX(1000,3500);
 	Beenergy = MaxBeenergy;
@@ -35,6 +54,9 @@ func Initialize() {
 
 func Activity(){
 	
+	if(Pollen > 15) Pollen = 15;
+	if(Pollen >= RandomX(1,15)) CreateParticle("PSpark", 0, 0, RandomX(-10,10), -3, 25, RGBa(255,255,0));
+	
 	if(GetXDir() > 0 && GetDir() == DIR_Left)  return(TurnRight());
 	if(GetXDir() < 0 && GetDir() == DIR_Right) return(TurnLeft());
 	
@@ -45,21 +67,56 @@ func Activity(){
 	if(GetAction() == "Idle") SetAction("Fly");
 	if(GetAction() == "Walk") SetAction("Fly");
 	if(!Random(50)|| Distance(GetX(),GetY(),gX,gY) <= 5 || GBackSolid(gX-GetY(),gY-GetY()) || GBackLiquid(gX-GetY(),gY-GetY())){
-		gX = GetX() + RandomX(-1000,1000);
-		gY = GetY() + RandomX(-1000,1000);
+		gX = GetX() + RandomX(-500,500);
+		gY = GetY() + RandomX(-500,5000);
 	}
 	
 	if(gY < 50) gY = GetY() + RandomX(100,2000);
-	if(gX < 50) gX = GetX() + RandomX(1000,2000);
-	if(gX > LandscapeWidth() - 50) gX = GetX() - RandomX(1000,2000);
+	if(GetX() < 70) gX = GetX() + RandomX(1000,5000);
+	if(GetX() > LandscapeWidth() - 70) gX = GetX() - RandomX(1000,5000);
 	
 	if(Beenergy <= 200) BeeState = 1;
 	
 	Beenergy -= RandomX(1,3);
-	SetCommand(this(), "MoveTo", ,gY,gY);
+	SetCommand(this(), "MoveTo", ,gX,gY);
 	
 	if(GrudgeTarget && ObjectDistance(this(),GrudgeTarget) < 100){
 		BeeState = 4;
+		return(0);
+	}
+	
+	if(GetMaterial(GetX(),GetY()) == Material("Tunnel") && !InColony() && !Random(100)){
+		DebugLog("A Bumb Set up a Colony!");
+		HomeX = GetX();
+		HomeY = GetY();
+		//Colony Setup
+		JoinColony(2000);
+	}
+	
+	//inviting strays if part of colony
+	if(InColony() && !Random(50)){
+		JoinColony(100);
+	}
+	
+	//Collect Pollen, Only the most active bees do it
+	if(InColony() && Comb && Beenergy > 1800){
+		if(!Random(50)){
+			BeeState = 6;
+			var PlantList = FindObjects(Find_Func("IsTree"));
+			RandomPlant = PlantList[RandomX(0,GetLength(PlantList))];
+			return(0);
+		}
+		
+		//or.. deposit it
+		if(!Random(50) && Comb && Pollen > 0){
+			BeeState = 7;
+			return(0);
+		}
+	}
+	
+	//is day over? go to colony and chill
+	if(InColony() && !DayCheck()){
+		BeeState = 5;
 	}
   }
   
@@ -69,7 +126,7 @@ func Activity(){
 	  gY= LandscapeHeight();
 	  
 	  if(GetContact(this(), -1) & CNAT_Bottom){
-		  if(GetEnergy() <= 50){
+		  if(GetEnergy() <= 25 || !DayCheck()){
 			  BeeState = 3;
 			  return(0);
 		  }
@@ -79,14 +136,19 @@ func Activity(){
 	  if(GBackLiquid(0, 30)){
 		gX = GetX() + RandomX(-1000,1000);
 		gY = GetY()-10;
-	}
+		}
 	
 	if(gY < 50) gY = GetY() + RandomX(100,2000);
-	if(gX < 50) gX = GetX() + RandomX(1000,2000);
-	if(gX > LandscapeWidth() - 50) gX = GetX() - RandomX(1000,2000);
+	if(GetX() < 70) gX = GetX() + RandomX(1000,5000);
+	if(GetX() > LandscapeWidth() - 70) gX = GetX() - RandomX(1000,5000);
 	  
 	  Beenergy -= RandomX(1,5);
-	  SetCommand(this(), "MoveTo", ,gY,gY);
+	  SetCommand(this(), "MoveTo", ,gX,gY);
+	  
+	  if(GrudgeTarget && ObjectDistance(this(),GrudgeTarget) < 100){
+		BeeState = 4;
+		return(0);
+	}
   }
   
   //Roaming Ground
@@ -114,6 +176,11 @@ func Activity(){
 	  
 	  Beenergy += RandomX(1,2);
 	  if(Beenergy >= MaxBeenergy) BeeState = 0;
+	  
+	  if(GrudgeTarget && ObjectDistance(this(),GrudgeTarget) < 100){
+		BeeState = 4;
+		return(0);
+	}
   }
   
   //Sleeping
@@ -132,6 +199,7 @@ func Activity(){
   
   //Attacking (Ruthless!)
   if(BeeState == 4){
+	  if(!Random(15)) Sound("Bsss");
 	  if(GetAction() == "Idle") SetAction("Fly");
 	  if(GetAction() == "Walk") SetAction("Fly");
 	  
@@ -150,6 +218,105 @@ func Activity(){
 	  Beenergy = RandomX(-10,20);
 	  
 	  SetCommand(this(), "MoveTo", GrudgeTarget);
+  }
+  
+  //Idling in colony at night, includes constructing and gossiping
+  if(BeeState == 5){
+	  if(!Random(15)) Sound("Bsss");
+	  if(GetAction() == "Idle") SetAction("Fly");
+	  if(GetAction() == "Walk") SetAction("Fly");
+	  
+	  
+	  //check if near colony
+	  if(Distance(GetX(),GetY(),HomeX, HomeY) > 1000){
+		  SetCommand(this(), "MoveTo", ,HomeX,HomeY);
+	  }else{
+		if(!Random(50)|| Distance(GetX(),GetY(),gX,gY) <= 5 || GBackSolid(gX-GetY(),gY-GetY()) || GBackLiquid(gX-GetY(),gY-GetY())){
+		gX = GetX() + RandomX(-1000,1000);
+		gY = GetY() + RandomX(-1000,1000);
+		}
+		
+		if(gY < 50) gY = GetY() + RandomX(100,2000);
+		if(GetX() < 70) gX = GetX() + RandomX(1000,5000);
+		if(GetX() > LandscapeWidth() - 70) gX = GetX() - RandomX(1000,5000);
+		
+		//Make Comb if you dont have one
+		if(!Comb && !FindObject2(Find_ID(HNCB), Find_Distance(15)) && GetMaterial(0,0) == Material("Tunnel")){
+		  DebugLog("Bumb created a comb!");
+		  SetAction("Attack");
+		  Sound("Sting");
+		  Comb = CreateObject(HNCB);
+		  LocalN("DesignatedBumb",Comb) = this();
+		  LocalN("PollenAmount", Comb) = 0;
+		}
+		
+		//gossip
+		if(!Random(30)) InformBumbs();
+		
+		if(Beenergy <= 200) BeeState = 1;
+	
+		Beenergy -= RandomX(1,3);
+		
+		SetCommand(this(), "MoveTo", ,gX,gY);
+	  }
+	  
+	  if(GrudgeTarget && ObjectDistance(this(),GrudgeTarget) < 100){
+		BeeState = 4;
+		return(0);
+	}
+	  
+	  if(DayCheck()) BeeState = 0;
+  }
+  
+  //Collecting Pollen From Plants
+  if(BeeState == 6){
+	   if(!Random(15)) Sound("Bsss");
+	  if(GetAction() == "Idle") SetAction("Fly");
+	  if(GetAction() == "Walk") SetAction("Fly");
+	  
+	  SetCommand(this(), "MoveTo",RandomPlant);
+	  
+	  if(ObjectDistance(this(), RandomPlant) < 10 && !Random(20)){
+		  Pollen += RandomX(1,3);
+		  SetAction("Attack");
+		  Sound("Sting");
+		  BeeState = 0;
+	  }
+	  
+	  if(Beenergy <= 200) BeeState = 1;
+	
+	  Beenergy -= RandomX(1,3);
+	  
+	  if(GrudgeTarget && ObjectDistance(this(),GrudgeTarget) < 100){
+		BeeState = 4;
+		return(0);
+	}
+  }
+  
+  //Bring Honey to Combs
+   if(BeeState == 7){
+	   if(!Random(15)) Sound("Bsss");
+	  if(GetAction() == "Idle") SetAction("Fly");
+	  if(GetAction() == "Walk") SetAction("Fly");
+	  
+	  SetCommand(this(), "MoveTo",Comb);
+	  
+	  if(ObjectDistance(this(), Comb) < 10){
+		  LocalN("PollenAmount", Comb) += Pollen;
+		  Pollen = 0;
+		  SetAction("Attack");
+		  Sound("Sting");
+		  BeeState = 0;
+	  }
+	  
+	  if(Beenergy <= 200) BeeState = 1;
+	
+	  Beenergy -= RandomX(1,3);
+	  
+	  if(GrudgeTarget && ObjectDistance(this(),GrudgeTarget) < 100){
+		BeeState = 4;
+		return(0);
+	}
   }
 }
 
@@ -209,6 +376,17 @@ public func InformBumbs(){
 		if(LocalN("GrudgeTarget", bumb) != GrudgeTarget){
 		LocalN("GrudgeTarget", bumb) = GrudgeTarget;
 		bumb->InformBumbs();
+		}
+	}
+}
+
+public func JoinColony(int Distance){
+	var LocalBumbs = FindObjects(Find_ID(BUMB), Find_Distance(Distance));
+	for(var bumb in LocalBumbs){
+		if(!ObjectCall(bumb, "InColony")){
+			DebugLog("Bumb Recruited");
+			LocalN("HomeX", bumb) = HomeX;
+			LocalN("HomeY", bumb) = HomeY;
 		}
 	}
 }

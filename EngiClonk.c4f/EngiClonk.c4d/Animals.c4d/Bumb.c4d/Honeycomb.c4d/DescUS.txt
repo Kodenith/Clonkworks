@@ -1,0 +1,1 @@
+A Honeycomb is designated to a single Bumb in a colony, it slowly produces honey as pollen gets delivered to it. Coming close to it will notify it's designated Bumb and make it angry!

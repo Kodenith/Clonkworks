@@ -1,0 +1,2 @@
+DE:Wabenstruktur
+US:Honeycomb
