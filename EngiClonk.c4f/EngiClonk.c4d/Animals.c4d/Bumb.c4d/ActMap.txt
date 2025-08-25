@@ -55,7 +55,6 @@ Procedure=NONE
 Directions=2
 FlipDir=1
 PhaseCall=Sleep
-NextAction=Rest
 
 [Action]
 Name=Tumble

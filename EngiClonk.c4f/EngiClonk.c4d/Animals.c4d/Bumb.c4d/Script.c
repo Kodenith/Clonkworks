@@ -1,5 +1,5 @@
 #strict 2
-#Include ANIM
+#include ANIM
 
 //Movement Goals
 local gX;
@@ -16,8 +16,11 @@ local GrudgeTarget;
 // 1 - Go to ground
 // 2 - Roam Ground
 // 3 - Rest
-// 4 - Attack (TBA)
+// 4 - Attack
 // 5 - Gather (TBA)
+// 6 - Place Comb (TBA)
+// 7 - Collect Pollen (TBA)
+// 8 - Deposit Pollen (TBA)
 
 func Initialize() {
 	BeeState = 0;
@@ -54,6 +57,10 @@ func Activity(){
 	
 	Beenergy -= RandomX(1,3);
 	SetCommand(this(), "MoveTo", ,gY,gY);
+	
+	if(GrudgeTarget && ObjectDistance(this(),GrudgeTarget) < 100){
+		BeeState = 4;
+	}
   }
   
   //Going to ground
@@ -122,11 +129,43 @@ func Activity(){
 		if(Beenergy >= MaxBeenergy) BeeState = 0;
 	  }
   }
+  
+  //Attacking (Ruthless!)
+  if(BeeState == 4){
+	  if(GetAction() == "Idle") SetAction("Fly");
+	  if(GetAction() == "Walk") SetAction("Fly");
+	  
+	  if(!GetAlive(GrudgeTarget)){
+		BeeState = 0;
+		return(0);
+	  }
+	  
+	  if(ObjectDistance(this(), GrudgeTarget) <= 8 && GetCon() >= 80 && GetAction() == "Fly" && !Contained(GrudgeTarget)){
+		  SetAction("Attack");
+		  Sound("Sting");
+		  Punch(GrudgeTarget, RandomX(1,5));
+		  InformBumbs();
+	  }
+	  
+	  Beenergy = RandomX(-10,20);
+	  
+	  SetCommand(this(), "MoveTo", GrudgeTarget);
+  }
 }
 
 protected func CatchBlow(int iLevel, object pByObject)
 {
   if (!Random(3)) Sound("BumbHurt*");
+  
+  GrudgeTarget = 0;
+  if(GetAlive(pByObject)){
+	  GrudgeTarget = pByObject;
+  }else{
+	  GrudgeTarget = GetCursor(GetController(pByObject)); 
+  }
+
+  if(GrudgeTarget != 0) InformBumbs();
+  
   return(1);
 }
 
@@ -162,4 +201,14 @@ public func TurnLeft()
   SetDir(DIR_Left);
   SetComDir(COMD_Left); 
   return(1);
+}
+
+public func InformBumbs(){
+	var LocalBumbs = FindObjects(Find_ID(BUMB), Find_Distance(500));
+	for(var bumb in LocalBumbs){
+		if(LocalN("GrudgeTarget", bumb) != GrudgeTarget){
+		LocalN("GrudgeTarget", bumb) = GrudgeTarget;
+		bumb->InformBumbs();
+		}
+	}
 }
