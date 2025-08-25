@@ -9,34 +9,6 @@ local Speed;
 local Power;
 local Effect;
 
-local Repairman;
-
-func IsBroken(){ return(GetCon() < 100 && !GetEffect("Repair", this()) && GetCategory(this()) & C4D_Vehicle()); }
-
-public func ContextRepair(pCaller){
-	[$Repair$|Image=CXCN|Condition=IsBroken]
-	if(ObjectDistance(this(), pCaller) > 10){
-		AppendCommand(pCaller, "MoveTo", this());
-		AppendCommand(pCaller, "Call", this(), pCaller, , , ,"ContextRepair");
-	}else{
-		Repairman = pCaller;
-		ObjectSetAction(Repairman, "Process");
-		AddEffect("Repair", this(), 50, 15, this()); 
-	}
-}
-
-func FxRepairTimer(){
-	if(GetCon() >= 100 || GetAction(Repairman) ne "Process" || ObjectDistance(this(), Repairman) > 10) return(-1);
-	
-	DoCon(1);
-}
-
-func FxRepairStop(){
-	if(GetAction(Repairman) eq "Process")
-		Repairman->SetAction("Walk");
-	Repairman = 0;
-}
-
 func AssignEffects(){
 	var fxFound = false;
 	//Burnable
@@ -298,4 +270,30 @@ func Hit3( int xdir, int ydir){
 	}
 	
 	return(_inherited(xdir, ydir));
+}
+
+//Repairing
+
+func IsBroken(){ return(GetCon() < 100 && !GetEffect("Repair", this()) && GetCategory(this()) & C4D_Vehicle()); }
+
+public func ContextRepair(pCaller){
+	[$Repair$|Image=CXCN|Condition=IsBroken]
+	if(ObjectDistance(this(), pCaller) > 10){
+		AppendCommand(pCaller, "MoveTo", this());
+		AppendCommand(pCaller, "Call", this(), pCaller, , , ,"ContextRepair");
+	}else{
+		ObjectSetAction(pCaller, "Process");
+		AddEffect("Repair", pCaller, 50, 15, this()); 
+	}
+}
+
+func FxRepairTimer(pTarget){
+	if(GetCon() >= 100 || GetAction(pTarget) ne "Process" || ObjectDistance(this(), pTarget) > 10) return(-1);
+	
+	DoCon(1);
+}
+
+func FxRepairStop(pTarget){
+	if(GetAction(pTarget) eq "Process")
+		pTarget->SetAction("Walk");
 }
