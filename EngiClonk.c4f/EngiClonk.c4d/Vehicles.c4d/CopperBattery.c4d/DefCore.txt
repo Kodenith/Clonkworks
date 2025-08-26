@@ -4,7 +4,7 @@ id=CPBT
 Version=4,9,8
 Category=C4D_Vehicle|C4D_SelectKnowledge|C4D_SelectHomebase|C4D_SelectVehicle
 MaxUserSelect=5
-Value=25
+Value=40
 Mass=10
 Width=16
 Height=20
@@ -22,7 +22,7 @@ TimerCall=UpdateLook
 CollectionLimit=-1
 Grab=1
 GrabPutGet=C4D_GrabGet|C4D_GrabPut
-Components=CPIG=4;ADM3=2;
+Components=CPIG=4;ADM3=1;
 LineConnect=C4D_PowerInput|C4D_PowerOutput|C4D_EnergyHolder
 
 [Physical]

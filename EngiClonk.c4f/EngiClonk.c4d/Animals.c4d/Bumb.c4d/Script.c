@@ -85,6 +85,13 @@ func Activity(){
 		}
 	}
 	
+	if(InLiquid() && Pollen > 0){
+		for(var i = 0; i < Pollen; i++){
+			CreateParticle("PSpark", 0, 0, RandomX(-10,10), RandomX(-10,10), 25, RGBa(255,255,0));
+		}
+		Pollen = 0;
+	}
+	
 	if(GetXDir() > 0 && GetDir() == DIR_Left)  return(TurnRight());
 	if(GetXDir() < 0 && GetDir() == DIR_Right) return(TurnLeft());
 	
@@ -146,13 +153,18 @@ func Activity(){
 	
 	
 	
-	//Colony Stuff
+	//Colony Starting
 	if(ColoniesEnabled()){
-	if(GetMaterial(0,0) == Material("Tunnel") && !InColony() && !Random(100)){
+	if(GetMaterial(0,0) == Material("Tunnel") && !InColony() && !Random(100) && CheckCombSpace(false)){
 		DebugLog("A Bumb Set up a Colony!");
 		HomeX = GetX();
 		HomeY = GetY();
 		//Colony Setup
+		SetAction("Attack");
+		Sound("Dig*");
+		Comb = CreateObject(HNCB);
+		LocalN("DesignatedBumb",Comb) = this();
+		LocalN("PollenAmount", Comb) = 0;
 		JoinColony(800);
 	}
 	
@@ -326,7 +338,7 @@ func Activity(){
 	  
 	  
 	  //check if near colony
-	  if(Distance(GetX(),GetY(),HomeX, HomeY) > 1000){
+	  if(Distance(GetX(),GetY(),HomeX, HomeY) > 800){
 		  SetCommand(this(), "MoveTo", ,HomeX,HomeY);
 	  }else{
 		  
@@ -346,7 +358,7 @@ func Activity(){
 		if(GetX() > LandscapeWidth() - 70) gX = GetX() - RandomX(1000,5000);
 		
 		//Make Comb if you dont have one
-		if(!Comb && CheckCombSpace() && GetMaterial(0,0) == Material("Tunnel")){
+		if(!Comb && CheckCombSpace(true) && GetMaterial(0,0) == Material("Tunnel")){
 		  DebugLog("Bumb created a comb!");
 		  SetAction("Attack");
 		  Sound("Dig*");
@@ -525,7 +537,7 @@ public func JoinColony(int Distance){
 	}
 }
 
-public func CheckCombSpace(){
+public func CheckCombSpace(bool ColonyMode){
 	//no combs on the edges of walls :P
 	if(GBackSky(-20,0) || GBackSky(20,0) || GBackSky(0,20) || GBackSky(0,-20)) return(0);
 	
@@ -534,6 +546,11 @@ public func CheckCombSpace(){
 	
 	//Dont get too close to other honeycombs
 	if(FindObject2(Find_ID(HNCB), Find_Distance(25))) return(0);
+	
+	//Is the Bee a part of a colony? Check if any other combs are nearby first.
+	if(ColonyMode){
+		if(!FindObject2(Find_ID(HNCB), Find_Distance(35))) return(0);
+	}
 	
 	//all fine? go ahead, place it :D
 	return(1);
