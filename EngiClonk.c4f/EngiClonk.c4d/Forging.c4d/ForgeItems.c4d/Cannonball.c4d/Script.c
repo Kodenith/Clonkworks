@@ -35,16 +35,16 @@ func Hit3(int xdir, int ydir){
 		var CloseBuildings;
 		var FarBuildings;
 		
-		VeryCloseBuildings = FindObjects( Find_Category(C4D_Structure), Find_Distance(7*Power) );
+		VeryCloseBuildings = FindObjects( Find_Category(C4D_Structure), Find_Distance(10*Power) );
 		CloseBuildings = FindObjects( Find_Category(C4D_Structure), Find_Distance(27*Power) );
 		FarBuildings = FindObjects( Find_Category(C4D_Structure), Find_Distance(50*Power));
 		
 		for(var bld in VeryCloseBuildings){
-			DoCon(RandomX(-3,-14)*Power, bld);
+			DoCon(RandomX(-3,-20)*Power, bld);
 		}
 		
 		for(var bld in CloseBuildings){
-			DoCon(RandomX(-3,-7)*Power, bld);
+			DoCon(RandomX(-3,-15)*Power, bld);
 		}
 		
 		for(var bld in FarBuildings){

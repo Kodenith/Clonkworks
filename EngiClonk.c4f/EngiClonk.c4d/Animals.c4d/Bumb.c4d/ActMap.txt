@@ -54,6 +54,7 @@ FacetBase=0
 Procedure=NONE
 Directions=2
 FlipDir=1
+NextAction=Rest
 
 [Action]
 Name=Tumble

@@ -67,7 +67,6 @@ func Initialize() {
 
 public func Birth(){
 	Initialize();
-	DebugLog("A New Bumb is Born");
 }
 
 func Activity(){
@@ -185,7 +184,7 @@ func Activity(){
 	}else{
 		//honey production without colony
 		if(Beenergy > 1800){
-			if(!Random(50)){
+			if(!Random(80)){
 			BeeState = 6;
 			var PlantList = FindObjects(Find_Func("IsTree"));
 			RandomPlant = PlantList[RandomX(0,GetLength(PlantList))];
@@ -272,15 +271,19 @@ func Activity(){
   
   //Sleeping
   if(BeeState == 3){
-	  if(GetAction() != "Rest" || GetAction() != "Tumble") SetAction("Rest");
+	  if(GetAction() != "Rest") SetAction("Rest");
 	  if(GetAction() == "Rest"){
 		  if(!Random(3))
 		  DoEnergy(1);
 			 
-	    if(!Random(5))
+	    if(!Random(10))
 	    CreateParticle("Zzz",0,0, RandomX(-10,10), RandomX(-1,-10), RandomX(25,50), RGBa(255,255,255), ,true);
 		Beenergy += RandomX(1,4);
-		if(Beenergy >= MaxBeenergy) BeeState = 0;
+	  }
+	  
+	  if(Beenergy >= MaxBeenergy){
+		  BeeState = 0;
+		  SetAction("Fly");
 	  }
 	  
 	  if(InLiquid()) BeeState = 0;
@@ -343,10 +346,10 @@ func Activity(){
 		if(GetX() > LandscapeWidth() - 70) gX = GetX() - RandomX(1000,5000);
 		
 		//Make Comb if you dont have one
-		if(!Comb && !FindObject2(Find_ID(HNCB), Find_Distance(15)) && GetMaterial(0,0) == Material("Tunnel")){
+		if(!Comb && CheckCombSpace() && GetMaterial(0,0) == Material("Tunnel")){
 		  DebugLog("Bumb created a comb!");
 		  SetAction("Attack");
-		  Sound("Sting");
+		  Sound("Dig*");
 		  Comb = CreateObject(HNCB);
 		  LocalN("DesignatedBumb",Comb) = this();
 		  LocalN("PollenAmount", Comb) = 0;
@@ -520,4 +523,18 @@ public func JoinColony(int Distance){
 			LocalN("HomeY", bumb) = HomeY;
 		}
 	}
+}
+
+public func CheckCombSpace(){
+	//no combs on the edges of walls :P
+	if(GBackSky(-20,0) || GBackSky(20,0) || GBackSky(0,20) || GBackSky(0,-20)) return(0);
+	
+	//dont place near any Player-Made structures
+	if(FindObject2(Find_Category(C4D_Structure), Find_Distance(450))) return(0);
+	
+	//Dont get too close to other honeycombs
+	if(FindObject2(Find_ID(HNCB), Find_Distance(25))) return(0);
+	
+	//all fine? go ahead, place it :D
+	return(1);
 }
