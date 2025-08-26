@@ -25,7 +25,7 @@ protected func SignalDelay()
 	else x = 25;
 	
 	if(PoweredEnough()){
-	if(GetMaterial(x,0) != Material("Sky") && GetMaterial(x,0) != Material("Tunnel") && Abs(GetXDir()) > 2){
+	if(GetMaterial(x,0) != Material("Sky") && GetMaterial(x,0) != Material("Tunnel") && Abs(GetXDir()) != 0){
 			x = GetX()+x;
 			var y;
 			y = GetY();

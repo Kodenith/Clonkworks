@@ -8,7 +8,6 @@ local Walkdir;
 
 local Beenergy;
 local MaxBeenergy;
-local BeeState;
 
 local GrudgeTarget;
 
@@ -20,6 +19,10 @@ local Comb;
 local Pollen;
 local RandomPlant;
 
+local WaterX;
+local WaterY;
+
+local BeeState;
 // 0 - Fly Wander
 // 1 - Go to ground
 // 2 - Roam Ground
@@ -28,6 +31,21 @@ local RandomPlant;
 // 5 - Go Home (Gather, Gossip, Construct)  REQUIRES DAY-NIGHT CYCLE
 // 6 - Collect Pollen 
 // 7 - Deposit Pollen
+// 8 - Escape to Water
+
+
+private func SpecialRepr()
+{
+  CreateObject(BBEG, 0, 10);
+  return(1);
+}
+
+private func CountMe()
+{
+  var ReprodSize = ReproductionAreaSize();
+  var ReprodSizeHalb = ReprodSize  / -2;
+  return(ObjectCount(MONS, ReprodSizeHalb, ReprodSizeHalb, ReprodSize , ReprodSize , OCF_Alive) + ObjectCount(BBEG, ReprodSizeHalb, ReprodSizeHalb, ReprodSize , ReprodSize , 0));
+}
 
 func InColony(){ return(HomeX != 0); }
 
@@ -47,8 +65,12 @@ func Initialize() {
   return(1);
 }
 
+public func Birth(){
+	Initialize();
+	DebugLog("A New Bumb is Born");
+}
+
 func Activity(){
-	
 	if(ColoniesEnabled()){
 		if(Pollen > 15) Pollen = 15;
 		if(Pollen >= RandomX(1,15)) CreateParticle("PSpark", 0, 0, RandomX(-10,10), -3, 25, RGBa(255,255,0));
@@ -69,6 +91,31 @@ func Activity(){
 	
 	if(!Random(15)) Sound("Bsss");
 	
+	if(BeeState == 8){
+		if(GetAction() == "Idle") SetAction("Fly");
+		if(GetAction() == "Walk") SetAction("Fly");
+		
+		SetCommand(this(), "MoveTo", ,WaterX,WaterY);
+		
+		if(!OnFire()) BeeState = 0;
+		
+		Beenergy -= RandomX(2,8);
+	}
+	
+	//Before anything, search for water below, in case it gets on fire.
+	if(!WaterX){
+		if(GetMaterial(0,30) == Material("Water")){
+			WaterX = GetX();
+			WaterY = GetY() + 35;
+			DebugLog("a Bumb memorized the location of water.");
+		}
+	}
+	
+	//is on fire? ditch everything, go to the remembered water location.
+	if(OnFire() && WaterX){
+		BeeState = 8;
+	}
+	
 	//Random Wandering (Sky)
   if(BeeState == 0){
 	if(GetAction() == "Idle") SetAction("Fly");
@@ -77,6 +124,12 @@ func Activity(){
 		gX = GetX() + RandomX(-500,500);
 		gY = GetY() + RandomX(-500,5000);
 	}
+	
+	//Avoid liquids
+	  if(GBackLiquid(0, 30)){
+		gX = GetX() + RandomX(-1000,1000);
+		gY = GetY()-30;
+		}
 	
 	if(gY < 50) gY = GetY() + RandomX(100,2000);
 	if(GetX() < 70) gX = GetX() + RandomX(1000,5000);
@@ -92,9 +145,11 @@ func Activity(){
 	    return(0);
 	}
 	
+	
+	
 	//Colony Stuff
 	if(ColoniesEnabled()){
-	if(GetMaterial(GetX(),GetY()) == Material("Tunnel") && !InColony() && !Random(100)){
+	if(GetMaterial(0,0) == Material("Tunnel") && !InColony() && !Random(100)){
 		DebugLog("A Bumb Set up a Colony!");
 		HomeX = GetX();
 		HomeY = GetY();
@@ -153,9 +208,10 @@ func Activity(){
 		  else BeeState = 2;
 	  }
 	  
+	  //Avoid liquids
 	  if(GBackLiquid(0, 30)){
 		gX = GetX() + RandomX(-1000,1000);
-		gY = GetY()-10;
+		gY = GetY()-30;
 		}
 	
 	if(gY < 50) gY = GetY() + RandomX(100,2000);
@@ -182,7 +238,7 @@ func Activity(){
 	  }
 	  
 	  if(!Random(7)){
-	    var direction = Random(2);
+	    var direction = Random(3);
 		if(!direction){
 			Walkdir = COMD_Stop;
 		}else if(direction == 1){
@@ -194,6 +250,15 @@ func Activity(){
 		SetComDir(Walkdir);
 	  }
 	  
+	  	//Eat Honey
+		if(!Random(50) && FindObject2(Find_ID(HONY), Find_Distance(10))){
+			var Food = FindObject2(Find_ID(HONY), Find_Distance(10));
+			DoCon(RandomX(-30,-5), Food);
+			DoEnergy(5);
+			MaxBeenergy += 100;
+			Sound("Corrode");
+		}
+	  
 	  Beenergy += RandomX(1,4);
 	  if(Beenergy >= MaxBeenergy) BeeState = 0;
 	  
@@ -201,6 +266,8 @@ func Activity(){
 		BeeState = 4;
 		return(0);
 	 }
+	 
+	 if(InLiquid()) BeeState = 0;
   }
   
   //Sleeping
@@ -215,6 +282,8 @@ func Activity(){
 		Beenergy += RandomX(1,4);
 		if(Beenergy >= MaxBeenergy) BeeState = 0;
 	  }
+	  
+	  if(InLiquid()) BeeState = 0;
   }
   
   //Attacking (Ruthless!)
@@ -257,6 +326,13 @@ func Activity(){
 	  if(Distance(GetX(),GetY(),HomeX, HomeY) > 1000){
 		  SetCommand(this(), "MoveTo", ,HomeX,HomeY);
 	  }else{
+		  
+		  //Avoid liquids
+	  if(GBackLiquid(0, 30)){
+		gX = GetX() + RandomX(-1000,1000);
+		gY = GetY()-30;
+		}
+		  
 		if(!Random(50)|| Distance(GetX(),GetY(),gX,gY) <= 5 || GBackSolid(gX-GetY(),gY-GetY()) || GBackLiquid(gX-GetY(),gY-GetY())){
 		gX = GetX() + RandomX(-1000,1000);
 		gY = GetY() + RandomX(-1000,1000);
@@ -428,7 +504,9 @@ public func InformBumbs(){
 	for(var bumb in LocalBumbs){
 		if(LocalN("GrudgeTarget", bumb) != GrudgeTarget){
 		LocalN("GrudgeTarget", bumb) = GrudgeTarget;
-		bumb->InformBumbs();
+		}else if(LocalN("WaterX", bumb) != 0){
+		LocalN("WaterX", bumb) = WaterX;
+		LocalN("WaterY", bumb) = WaterY;
 		}
 	}
 }
