@@ -18,4 +18,15 @@ func Update(){
 	}else{
 		SetCon(100);
 	}
+	
+	if(PollenAmount == 30 && !Random(30)){
+			PollenAmount = 0;
+			for(var i = 0; i < RandomX(1,10); i++){
+			var hon = CreateObject(HONY, RandomX(-5,5), RandomX(-5,5));
+			LocalN("OwnedBy",hon) = DesignatedBumb;
+			SetXDir(RandomX(-10,10), hon);
+			SetYDir(RandomX(-10,10), hon);
+			}
+			Sound("splat*");
+		}
 }

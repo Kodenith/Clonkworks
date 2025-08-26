@@ -32,11 +32,7 @@ local RandomPlant;
 func InColony(){ return(HomeX != 0); }
 
 func DayCheck(){
-	if(FindObject2(Find_ID(TIME))){
-		return(IsDay());
-	}else{
-		return(1);
-	}
+	return(IsDay());
 }
 
 func Initialize() {
@@ -48,14 +44,25 @@ func Initialize() {
   SetAction("Fly");
   gX=0;
   gY=0;
-  
   return(1);
 }
 
 func Activity(){
 	
-	if(Pollen > 15) Pollen = 15;
-	if(Pollen >= RandomX(1,15)) CreateParticle("PSpark", 0, 0, RandomX(-10,10), -3, 25, RGBa(255,255,0));
+	if(ColoniesEnabled()){
+		if(Pollen > 15) Pollen = 15;
+		if(Pollen >= RandomX(1,15)) CreateParticle("PSpark", 0, 0, RandomX(-10,10), -3, 25, RGBa(255,255,0));
+	}else{
+		if(Pollen > 30) Pollen = 30;
+		if(Pollen >= RandomX(1,30)) CreateParticle("PSpark", 0, 0, RandomX(-10,10), -3, 25, RGBa(255,255,0));
+		if(Pollen == 30 && !Random(30)){
+			Pollen = 0;
+			for(var i = 0; i < RandomX(1,2); i++){
+			var hon = CreateObject(HONY, RandomX(-5,5), RandomX(-5,5));
+			LocalN("OwnedBy",hon) = this();
+			}
+		}
+	}
 	
 	if(GetXDir() > 0 && GetDir() == DIR_Left)  return(TurnRight());
 	if(GetXDir() < 0 && GetDir() == DIR_Right) return(TurnLeft());
@@ -80,17 +87,19 @@ func Activity(){
 	Beenergy -= RandomX(1,3);
 	SetCommand(this(), "MoveTo", ,gX,gY);
 	
-	if(GrudgeTarget && ObjectDistance(this(),GrudgeTarget) < 100){
+	if(GrudgeTarget && ObjectDistance(this(),GrudgeTarget) < 100 && !Contained(GrudgeTarget)){
 		BeeState = 4;
-		return(0);
+	    return(0);
 	}
 	
+	//Colony Stuff
+	if(ColoniesEnabled()){
 	if(GetMaterial(GetX(),GetY()) == Material("Tunnel") && !InColony() && !Random(100)){
 		DebugLog("A Bumb Set up a Colony!");
 		HomeX = GetX();
 		HomeY = GetY();
 		//Colony Setup
-		JoinColony(2000);
+		JoinColony(800);
 	}
 	
 	//inviting strays if part of colony
@@ -117,6 +126,17 @@ func Activity(){
 	//is day over? go to colony and chill
 	if(InColony() && !DayCheck()){
 		BeeState = 5;
+	}
+	}else{
+		//honey production without colony
+		if(Beenergy > 1800){
+			if(!Random(50)){
+			BeeState = 6;
+			var PlantList = FindObjects(Find_Func("IsTree"));
+			RandomPlant = PlantList[RandomX(0,GetLength(PlantList))];
+			return(0);
+			}	
+		}
 	}
   }
   
@@ -145,7 +165,7 @@ func Activity(){
 	  Beenergy -= RandomX(1,5);
 	  SetCommand(this(), "MoveTo", ,gX,gY);
 	  
-	  if(GrudgeTarget && ObjectDistance(this(),GrudgeTarget) < 100){
+	  if(GrudgeTarget && ObjectDistance(this(),GrudgeTarget) < 100 && !Contained(GrudgeTarget)){
 		BeeState = 4;
 		return(0);
 	}
@@ -174,13 +194,13 @@ func Activity(){
 		SetComDir(Walkdir);
 	  }
 	  
-	  Beenergy += RandomX(1,2);
+	  Beenergy += RandomX(1,4);
 	  if(Beenergy >= MaxBeenergy) BeeState = 0;
 	  
-	  if(GrudgeTarget && ObjectDistance(this(),GrudgeTarget) < 100){
+	  if(GrudgeTarget && ObjectDistance(this(),GrudgeTarget) < 100 && !Contained(GrudgeTarget)){
 		BeeState = 4;
 		return(0);
-	}
+	 }
   }
   
   //Sleeping
@@ -199,6 +219,9 @@ func Activity(){
   
   //Attacking (Ruthless!)
   if(BeeState == 4){
+	  if(GrudgeTarget == 0) BeeState = 0;
+	  if(BeeState == 0) return(0);
+	  
 	  if(!Random(15)) Sound("Bsss");
 	  if(GetAction() == "Idle") SetAction("Fly");
 	  if(GetAction() == "Walk") SetAction("Fly");
@@ -214,6 +237,9 @@ func Activity(){
 		  Punch(GrudgeTarget, RandomX(1,5));
 		  InformBumbs();
 	  }
+	  
+	  //if too far or in building, go away
+	  if(ObjectDistance(this(), GrudgeTarget) >= 200 || Contained(GrudgeTarget)) BeeState = 0;
 	  
 	  Beenergy = RandomX(-10,20);
 	  
@@ -260,12 +286,12 @@ func Activity(){
 		SetCommand(this(), "MoveTo", ,gX,gY);
 	  }
 	  
-	  if(GrudgeTarget && ObjectDistance(this(),GrudgeTarget) < 100){
+	  	  if(DayCheck()) BeeState = 0;
+	  
+	  if(GrudgeTarget && ObjectDistance(this(),GrudgeTarget) < 100 && !Contained(GrudgeTarget)){
 		BeeState = 4;
 		return(0);
-	}
-	  
-	  if(DayCheck()) BeeState = 0;
+		}
   }
   
   //Collecting Pollen From Plants
@@ -276,10 +302,15 @@ func Activity(){
 	  
 	  SetCommand(this(), "MoveTo",RandomPlant);
 	  
+	  if(RandomPlant == 0 || RandomPlant->IsDeadTree()) BeeState = 0;
+	  
 	  if(ObjectDistance(this(), RandomPlant) < 10 && !Random(20)){
 		  Pollen += RandomX(1,3);
 		  SetAction("Attack");
 		  Sound("Sting");
+		  if(Pollen > 13 && ColoniesEnabled())
+			  BeeState = 7;
+		  else
 		  BeeState = 0;
 	  }
 	  
@@ -287,10 +318,12 @@ func Activity(){
 	
 	  Beenergy -= RandomX(1,3);
 	  
-	  if(GrudgeTarget && ObjectDistance(this(),GrudgeTarget) < 100){
+	  if(GrudgeTarget && ObjectDistance(this(),GrudgeTarget) < 100 && !Contained(GrudgeTarget)){
 		BeeState = 4;
 		return(0);
-	}
+	 }
+	
+	 
   }
   
   //Bring Honey to Combs
@@ -313,11 +346,13 @@ func Activity(){
 	
 	  Beenergy -= RandomX(1,3);
 	  
-	  if(GrudgeTarget && ObjectDistance(this(),GrudgeTarget) < 100){
+	  if(GrudgeTarget && ObjectDistance(this(),GrudgeTarget) < 100 && !Contained(GrudgeTarget)){
 		BeeState = 4;
 		return(0);
-	}
+	  }
   }
+  
+  
 }
 
 protected func CatchBlow(int iLevel, object pByObject)
@@ -333,7 +368,17 @@ protected func CatchBlow(int iLevel, object pByObject)
 
   if(GrudgeTarget != 0) InformBumbs();
   
+  //Wake up if not tired
+  if(Beenergy >= (MaxBeenergy/3)*2) BeeState = 4;
+  
   return(1);
+}
+
+//cant get hit by honey
+func QueryCatchBlow(pByObject){
+	if(GetID(pByObject) == HONY){
+		return(1);
+	}
 }
 
 protected func Death() 
@@ -345,12 +390,20 @@ protected func Death()
   return(1);
 }
 
-func RejectCollect(c4ID, pObject){
-	return(1);
+protected func RejectCollect(c4ID, pObject)
+{
+ var iEffectNumber, pSorcerer;
+ if (iEffectNumber = GetEffect("PossessionSpell", this()))
+  if (pSorcerer = EffectVar(0, this(), iEffectNumber))
+   if (!GetEffect("IntCollectionDelay", this()))
+    if (!pSorcerer->Contents())
+     if (!(pObject-GetOCF() & OCF_Living))
+      Collect(pObject, pSorcerer);
+ return(1);
 }
 
 func RejectEntrance(pIntoObject){
-	if(GetAction() == "Rest") return(0);
+	if(GetAction() == "Rest" && FindObject2(Find_ID(COAM))) return(0);
 	return(1);
 }
 
