@@ -251,7 +251,40 @@ public func FxLightningTimer(object pTarget, int EffectNumber){
 	}
 }
 
+public func FxStickyTimer(object pTarget, int EffectNumber){
+		SetXDir(0);
+		SetYDir(0);
+	    var stickMass;
+		if(Mass <= 0) stickMass = 1;
+		else stickMass = Mass;
+		
+		if(stickMass >= RandomX(1,40)) return(-1);
+}
+
+public func FxStickyStop(object pTarget, int EffectNumber){
+	Sound("ArrowHit");
+}
+	
+	
 //non effect effects
+
+func Hit(int xdir, int ydir){
+	if(WildcardMatch(Effect, "*Sticky*")){
+		AddEffect("Sticky", this(), 50, 1, this()); 
+		Sound("ArrowHit");
+	}else if(WildcardMatch(Effect, "*Bouncy*")){
+		HitBounce(16, xdir, ydir);
+	}
+}
+
+func Hit2( int xdir, int ydir){
+	if(WildcardMatch(Effect, "*Sticky*")){
+		AddEffect("Sticky", this(), 50, 1, this()); 
+		Sound("ArrowHit");
+	}else if(WildcardMatch(Effect, "*Bouncy*")){
+		HitBounce(14, xdir, ydir);
+	}
+}
 
 func Hit3( int xdir, int ydir){
 	if(WildcardMatch(Effect, "*Fragile*")){
@@ -269,7 +302,12 @@ func Hit3( int xdir, int ydir){
 	else Explode(8);
 	}
 	
-	return(_inherited(xdir, ydir));
+	if(WildcardMatch(Effect, "*Sticky*")){
+		AddEffect("Sticky", this(), 50, 1, this()); 
+		Sound("ArrowHit");
+	}else if(WildcardMatch(Effect, "*Bouncy*")){
+		HitBounce(12, xdir, ydir);
+	}
 }
 
 //Repairing

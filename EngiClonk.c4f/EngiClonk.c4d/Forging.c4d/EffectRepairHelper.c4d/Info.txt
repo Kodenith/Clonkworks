@@ -25,6 +25,8 @@ List of effects:
 * Explode - The Object will explode when falling from a great height
 * Fragile - The Object will break when falling from a great height
 * Lightning - Lighting strikes will appear near the object, depends on the amount of lightning strikes in scenario.txt (suggested by danghor)
+* Sticky - The object will stick to whatever it hits for a short time.
+* Bouncy - Makes the object bounce off the ground and walls.
 
 
 you are free to add your own, just dont edit this one! overload it then edit or edit it with system.c4g. unless you wanna edit effects for every scenario and (kinda) ruin it.

@@ -24,7 +24,10 @@ local Worker;
 local x;
 local y;
 
+local ForgeTimer;
+
 func Initialize() {
+	ForgeTimer = 0;
 Producing = false;
 Forging=false;
 
@@ -299,6 +302,25 @@ func StartWork(User){
     Forging = true;
 	SetController(-1, User);
 	SetObjectStatus(2, User, false);
+	
+	var Mass;
+	var Speed;
+	var Power;
+	for(var i = 0; i < GetLength(LocalN("ForgeableMass", FindObject2(Find_ID(FALW)))); i++){
+		if(Mat == LocalN("ForgeableIDs", FindObject2(Find_ID(FALW)))[i])
+			Mass = LocalN("ForgeableMass", FindObject2(Find_ID(FALW)))[i];
+	}
+		for(var i = 0; i < GetLength(LocalN("ForgeableSpeed", FindObject2(Find_ID(FALW)))); i++){
+		if(Mat == LocalN("ForgeableIDs", FindObject2(Find_ID(FALW)))[i])
+			Speed = LocalN("ForgeableSpeed", FindObject2(Find_ID(FALW)))[i];
+	}
+	
+		for(var i = 0; i < GetLength(LocalN("ForgeablePower", FindObject2(Find_ID(FALW)))); i++){
+		if(Mat == LocalN("ForgeableIDs", FindObject2(Find_ID(FALW)))[i])
+			Power = LocalN("ForgeablePower", FindObject2(Find_ID(FALW)))[i];
+	}
+	
+	ForgeTimer = GetMass(,Prod) * (Mass + Power + (Speed/2));
 	SetAction("Forging");
 	Worker = User;
 }
@@ -331,7 +353,9 @@ func Forgefx(){
 	
 	}
 
-	
+	if(GetActTime() > ForgeTimer && Forging && GetAction() eq "Forging"){
+		FinishWork();
+	}
 	
 }
 

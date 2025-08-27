@@ -1,6 +1,7 @@
 /*-- Neues Objekt --*/
 
 #strict
+#include DUMM
 
 local Color;
 local Mass;
@@ -17,10 +18,6 @@ func FRGUpdate(){
 	//SetColorDw(Color, this());
 	SetMass(5*Mass, this());
 	SetClrModulation(Color, this());
-}
-
-func AssignEffects(){
-	DebugLog("Cannonball is not affected by Effects!");
 }
 
 func Hit(){
