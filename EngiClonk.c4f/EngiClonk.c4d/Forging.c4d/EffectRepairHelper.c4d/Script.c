@@ -273,16 +273,7 @@ func Hit(int xdir, int ydir){
 		AddEffect("Sticky", this(), 50, 1, this()); 
 		Sound("ArrowHit");
 	}else if(WildcardMatch(Effect, "*Bouncy*")){
-		HitBounce(16, xdir, ydir);
-	}
-}
-
-func Hit2( int xdir, int ydir){
-	if(WildcardMatch(Effect, "*Sticky*")){
-		AddEffect("Sticky", this(), 50, 1, this()); 
-		Sound("ArrowHit");
-	}else if(WildcardMatch(Effect, "*Bouncy*")){
-		HitBounce(14, xdir, ydir);
+		HitBounce(12, xdir, ydir);
 	}
 }
 
@@ -300,13 +291,6 @@ func Hit3( int xdir, int ydir){
 		if(Power > 0)
 		Explode(Power*10);
 	else Explode(8);
-	}
-	
-	if(WildcardMatch(Effect, "*Sticky*")){
-		AddEffect("Sticky", this(), 50, 1, this()); 
-		Sound("ArrowHit");
-	}else if(WildcardMatch(Effect, "*Bouncy*")){
-		HitBounce(12, xdir, ydir);
 	}
 }
 
