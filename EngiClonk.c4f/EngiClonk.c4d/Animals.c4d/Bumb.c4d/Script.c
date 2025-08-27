@@ -33,6 +33,7 @@ local BeeState;
 // 7 - Deposit Pollen
 // 8 - Escape to Water
 
+public func IsPossessible() { return(1); }
 
 private func SpecialRepr()
 {
@@ -70,6 +71,24 @@ public func Birth(){
 }
 
 func Activity(){
+	if(GetXDir() > 0 && GetDir() == DIR_Left)  return(TurnRight());
+	if(GetXDir() < 0 && GetDir() == DIR_Right) return(TurnLeft());
+	
+	//if possesed, dont do anything related to normal behaviour
+	 if(GetEffect("PossessionSpell", this())){
+		 SetPlrViewRange(300, this());
+		 if(!Random(15)) Sound("Bsss");
+		 BeeState = 0;
+		 if(GetAction() == "Rest" || GetAction() == "Idle") SetAction("Fly");
+		 if(GetContact(this(), -1) & CNAT_Bottom)
+			if(GetAction() == "Fly") SetAction("Walk");
+		   ;
+		 return(0);
+	 }else{
+		 SetPlrViewRange(0, this());
+	 }
+	 
+	
 	if(ColoniesEnabled()){
 		if(Pollen > 15) Pollen = 15;
 		if(Pollen >= RandomX(1,15)) CreateParticle("PSpark", 0, 0, RandomX(-10,10), -3, 25, RGBa(255,255,0));
@@ -87,13 +106,10 @@ func Activity(){
 	
 	if(InLiquid() && Pollen > 0){
 		for(var i = 0; i < Pollen; i++){
-			CreateParticle("PSpark", 0, 0, RandomX(-10,10), RandomX(-10,10), 25, RGBa(255,255,0));
+			CreateParticle("PxSpark", 0, 0, RandomX(-10,10), RandomX(-10,10), 25, RGBa(255,255,0));
 		}
 		Pollen = 0;
 	}
-	
-	if(GetXDir() > 0 && GetDir() == DIR_Left)  return(TurnRight());
-	if(GetXDir() < 0 && GetDir() == DIR_Right) return(TurnLeft());
 	
 	if(!Random(15)) Sound("Bsss");
 	
@@ -178,7 +194,13 @@ func Activity(){
 	if(InColony() && Comb && MaxBeenergy > 1800){
 		if(!Random(50)){
 			BeeState = 6;
-			var PlantList = FindObjects(Find_Func("IsTree"));
+			var PlantList;
+			//if flowers are available, use them instead
+			if(ObjectCount2(Find_Func("IsFlowers"))){
+				 PlantList = FindObjects(Find_Func("IsFlowers"));
+			}else{
+				PlantList = FindObjects(Find_Func("IsTree"));
+			}
 			RandomPlant = PlantList[RandomX(0,GetLength(PlantList))];
 			return(0);
 		}
@@ -307,7 +329,7 @@ func Activity(){
 	  if(GrudgeTarget == 0) BeeState = 0;
 	  if(BeeState == 0) return(0);
 	  
-	  if(!Random(15)) Sound("Bsss");
+
 	  if(GetAction() == "Idle") SetAction("Fly");
 	  if(GetAction() == "Walk") SetAction("Fly");
 	  
@@ -394,10 +416,13 @@ func Activity(){
 	  
 	  SetCommand(this(), "MoveTo",RandomPlant);
 	  
-	  if(RandomPlant == 0 || RandomPlant->IsDeadTree()) BeeState = 0;
+	  if(RandomPlant == 0 || ObjectCall(RandomPlant, "IsDeadTree")) BeeState = 0;
 	  
 	  if(ObjectDistance(this(), RandomPlant) < 10 && !Random(20)){
-		  Pollen += RandomX(1,3);
+		  Pollen += RandomX(1,2);
+		  for(var i = 0; i < RandomX(1,3); i++){
+			CreateParticle("PxSpark", 0, 0, RandomX(-20,20), RandomX(-5,20), 25, RGBa(255,255,0));
+		  }
 		  SetAction("Attack");
 		  Sound("Sting");
 		  if(Pollen > 13 && ColoniesEnabled())
@@ -551,4 +576,124 @@ public func CheckCombSpace(bool ColonyMode){
 	
 	//all fine? go ahead, place it :D
 	return(1);
+}
+
+//Possesion Control
+protected func ControlCommand(szCommand, pTarget, iTx, iTy)
+{
+ if (szCommand == "MoveTo")
+  return(SetCommand(this(),szCommand, pTarget, iTx, iTy));
+ return(0);
+}
+
+protected func ContainedLeft(object caller)
+{
+  [$TxtMovement$]
+  SetCommand(this(), "None");
+  if(!GetPlrJumpAndRunControl(caller->GetController()))
+  {
+      TurnLeft();
+  }
+  return(1);
+}
+
+protected func ContainedRight(object caller)
+{
+  [$TxtMovement$]
+  SetCommand(this(), "None");
+  if(!GetPlrJumpAndRunControl(caller->GetController()))
+  {
+     TurnRight();
+  }
+
+  return(1);
+}
+
+protected func ContainedUp(object caller)
+{
+ [$TxtMovement$]
+ SetCommand(this(), "None");
+
+ if(!GetPlrJumpAndRunControl(caller->GetController())){
+   SetComDir(COMD_Up);
+   if(GetContact(this(), -1) & CNAT_Bottom)
+			if(GetAction() == "Walk") SetAction("Fly");
+		   ;;
+ }
+ return(1);
+}
+
+protected func ContainedDown(object caller)
+{
+ [$TxtMovement$]
+ SetCommand(this(), "None");
+ if(Contained()) SetCommand(this, "Exit");
+ if(!GetPlrJumpAndRunControl(caller->GetController())){
+   SetComDir(COMD_Down);
+ }
+  return(1);
+ }
+ 
+protected func ContainedDigDouble()
+{
+ [$TxtLeave$]
+ RemoveEffect("PossessionSpell", this());
+ return(1);
+}
+
+protected func ContainedDig()
+{
+ [$TxtLead$|Image=ZAPN]
+ if(InColony()){
+	 SetCommand(this(), "MoveTo", ,HomeX,HomeY);
+ }
+}
+
+protected func ContainedThrow(object caller)
+{
+ [$TxtSting$]
+ if(!GetPlrJumpAndRunControl(caller->GetController()) && GetAction() == "Fly" && FindObject2(Find_OCF(OCF_Alive), Find_Distance(10), Find_OCF(OCF_NotContained), Find_Exclude(this()))){
+   SetAction("Attack");
+   Sound("Sting");
+   var power = RandomX(1,5);
+   Punch(FindObject2(Find_OCF(OCF_Alive), Find_Distance(18), Find_OCF(OCF_NotContained), Find_Exclude(this())), power);
+   FindObject2(Find_OCF(OCF_Alive), Find_Distance(18), Find_OCF(OCF_NotContained), Find_Exclude(this()))->CatchBlow(power,this());
+ }
+ return(1);
+}
+
+private func ClearDir(bool fX)
+{
+  if(fX && GetXDir())
+  {
+    if(GetXDir() > 0) SetXDir(Max(GetXDir() - 2, 0));
+    else SetXDir(Min(GetXDir() + 2, 0));
+  }
+  if(!fX && GetYDir())
+  {
+    if(GetYDir() > 0) SetYDir(Max(GetYDir() - 2, 0));
+    else SetYDir(Min(GetYDir() + 2, 0));
+  }
+}
+
+public func ContainedUpdate(object self, int comdir, bool dig, bool throw)
+{
+    SetComDir(comdir);
+	
+	if(throw && GetAction() == "Fly" && FindObject2(Find_OCF(OCF_Alive), Find_Distance(18), Find_OCF(OCF_NotContained), Find_Exclude(this()))){
+		var target = FindObject2(Find_OCF(OCF_Alive), Find_Distance(18), Find_OCF(OCF_NotContained), Find_Exclude(this()));
+		SetAction("Attack");
+		Sound("Sting");
+		var power = RandomX(1,5);
+		Punch(target, power);
+		if(GetAlive(target))
+		target->CatchBlow(power,this());
+	}
+		   
+    if(comdir == COMD_Up || comdir == COMD_UpLeft || comdir == COMD_UpRight)
+		if(GetContact(this(), -1) & CNAT_Bottom)
+			if(GetAction() == "Walk") SetAction("Fly");
+		   ;;
+    
+  return(1);
 }

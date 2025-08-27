@@ -1,0 +1,4 @@
+TxtMovement=Bewegen
+TxtSting=Stich
+TxtLead=Führen Sie zu Hive
+TxtLeave=Zurückverwandeln
