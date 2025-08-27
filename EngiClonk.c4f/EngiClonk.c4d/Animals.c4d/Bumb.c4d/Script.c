@@ -97,6 +97,7 @@ func Activity(){
 	
 	if(!Random(15)) Sound("Bsss");
 	
+	//retreat to remembered water location
 	if(BeeState == 8){
 		if(GetAction() == "Idle") SetAction("Fly");
 		if(GetAction() == "Walk") SetAction("Fly");
@@ -126,7 +127,7 @@ func Activity(){
   if(BeeState == 0){
 	if(GetAction() == "Idle") SetAction("Fly");
 	if(GetAction() == "Walk") SetAction("Fly");
-	if(!Random(50)|| Distance(GetX(),GetY(),gX,gY) <= 5 || GBackSolid(gX-GetY(),gY-GetY()) || GBackLiquid(gX-GetY(),gY-GetY())){
+	if(!Random(30)|| Distance(GetX(),GetY(),gX,gY) <= 5 || GBackSolid(gX-GetY(),gY-GetY()) || GBackLiquid(gX-GetY(),gY-GetY())){
 		gX = GetX() + RandomX(-500,500);
 		gY = GetY() + RandomX(-500,5000);
 	}
@@ -155,7 +156,7 @@ func Activity(){
 	
 	//Colony Starting
 	if(ColoniesEnabled()){
-	if(GetMaterial(0,0) == Material("Tunnel") && !InColony() && !Random(100) && CheckCombSpace(false)){
+	if(GetMaterial(0,0) == Material("Tunnel") && !InColony() && !Random(600) && CheckCombSpace(false)){
 		DebugLog("A Bumb Set up a Colony!");
 		HomeX = GetX();
 		HomeY = GetY();
@@ -169,12 +170,12 @@ func Activity(){
 	}
 	
 	//inviting strays if part of colony
-	if(InColony() && !Random(50)){
+	if(InColony() && !Random(70)){
 		JoinColony(100);
 	}
 	
 	//Collect Pollen, Only the most active bees do it
-	if(InColony() && Comb && Beenergy > 1800){
+	if(InColony() && Comb && MaxBeenergy > 1800){
 		if(!Random(50)){
 			BeeState = 6;
 			var PlantList = FindObjects(Find_Func("IsTree"));
@@ -195,7 +196,7 @@ func Activity(){
 	}
 	}else{
 		//honey production without colony
-		if(Beenergy > 1800){
+		if(MaxBeenergy > 1800){
 			if(!Random(80)){
 			BeeState = 6;
 			var PlantList = FindObjects(Find_Func("IsTree"));
@@ -262,11 +263,11 @@ func Activity(){
 	  }
 	  
 	  	//Eat Honey
-		if(!Random(50) && FindObject2(Find_ID(HONY), Find_Distance(10))){
+		if(!Random(10) && FindObject2(Find_ID(HONY), Find_Distance(10))){
 			var Food = FindObject2(Find_ID(HONY), Find_Distance(10));
 			DoCon(RandomX(-30,-5), Food);
 			DoEnergy(5);
-			MaxBeenergy += 100;
+			MaxBeenergy += 10;
 			Sound("Corrode");
 		}
 	  
@@ -288,8 +289,8 @@ func Activity(){
 		  if(!Random(3))
 		  DoEnergy(1);
 			 
-	    if(!Random(10))
-	    CreateParticle("Zzz",0,0, RandomX(-10,10), RandomX(-1,-10), RandomX(25,50), RGBa(255,255,255), ,true);
+	    if(!Random(6))
+	    CreateParticle("Zzz",0,0, RandomX(-5,5), -3, RandomX(25,50), RGBa(255,255,255), ,true);
 		Beenergy += RandomX(1,4);
 	  }
 	  
@@ -348,7 +349,7 @@ func Activity(){
 		gY = GetY()-30;
 		}
 		  
-		if(!Random(50)|| Distance(GetX(),GetY(),gX,gY) <= 5 || GBackSolid(gX-GetY(),gY-GetY()) || GBackLiquid(gX-GetY(),gY-GetY())){
+		if(!Random(30)|| Distance(GetX(),GetY(),gX,gY) <= 5 || GBackSolid(gX-GetY(),gY-GetY()) || GBackLiquid(gX-GetY(),gY-GetY())){
 		gX = GetX() + RandomX(-1000,1000);
 		gY = GetY() + RandomX(-1000,1000);
 		}
@@ -465,13 +466,6 @@ protected func CatchBlow(int iLevel, object pByObject)
   return(1);
 }
 
-//cant get hit by honey
-func QueryCatchBlow(pByObject){
-	if(GetID(pByObject) == HONY){
-		return(1);
-	}
-}
-
 protected func Death() 
 {
   Sound("BumbDie*");
@@ -551,6 +545,9 @@ public func CheckCombSpace(bool ColonyMode){
 	if(ColonyMode){
 		if(!FindObject2(Find_ID(HNCB), Find_Distance(35))) return(0);
 	}
+	
+	//last but not least, if you can deliver honey you are worthy of a comb
+	if(MaxBeenergy <= 1800) return(0);
 	
 	//all fine? go ahead, place it :D
 	return(1);
