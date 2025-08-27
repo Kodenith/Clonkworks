@@ -273,7 +273,17 @@ func Hit(int xdir, int ydir){
 		AddEffect("Sticky", this(), 50, 1, this()); 
 		Sound("ArrowHit");
 	}else if(WildcardMatch(Effect, "*Bouncy*")){
-		HitBounce(12, xdir, ydir);
+		HitBounce(2, xdir, ydir);
+	}
+}
+
+//Apparently without Hit 2 and Hi t3 it wont bounce as much on some objects
+func Hit2(int xdir, int ydir){
+	if(WildcardMatch(Effect, "*Sticky*")){
+		AddEffect("Sticky", this(), 50, 1, this()); 
+		Sound("ArrowHit");
+	}else if(WildcardMatch(Effect, "*Bouncy*")){
+		HitBounce(2, xdir, ydir);
 	}
 }
 
@@ -291,6 +301,14 @@ func Hit3( int xdir, int ydir){
 		if(Power > 0)
 		Explode(Power*10);
 	else Explode(8);
+	}
+	
+	//Apparently without Hit 2 and Hi t3 it wont bounce as much on some objects
+	if(WildcardMatch(Effect, "*Sticky*")){
+		AddEffect("Sticky", this(), 50, 1, this()); 
+		Sound("ArrowHit");
+	}else if(WildcardMatch(Effect, "*Bouncy*")){
+		HitBounce(2, xdir, ydir);
 	}
 }
 
