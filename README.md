@@ -1,13 +1,13 @@
 # <img width="22" height="22" alt="Icon" src="https://github.com/user-attachments/assets/f5ddf966-19e4-4e38-8234-174805761b9d" /> EngiClonk
 
-EngiClonk is a mod for [LegacyClonk](https://github.com/legacyclonk/LegacyClonk), for now it adds the forge: a new production building that lets you use different materials instead of steel in recipes.
+EngiClonk is a mod for [LegacyClonk](https://github.com/legacyclonk/LegacyClonk), that expands cave exploration and adds new tools, vahicles, creatures, systems, and more! 
+currently, the mod has a new crafting system - "Forging", which lets you choose a metal and craft anything out of it. And also Bumbs, which are plump bees that make huge hives in caves.
 
 Planned Features:
 
 * Logic Gate Systems
 * Ropes
 * New Tools (Mining drill, launchpads, etc.)
-* Bumblebees
 * New Magic Spells
 * New Gamemodes
 * New Environment Effects
@@ -29,8 +29,7 @@ To edit the 3d models in the **Models** folder, you need [Blender](https://www.b
 
 # Translations
 
-* English (Main)
-* German (Mostly translated with deepl)
+The mod is fully translated in English & German, english being the primary language. Most of the german translation was done with **deepl**, it may not be the best.
 
 # Credits
 
