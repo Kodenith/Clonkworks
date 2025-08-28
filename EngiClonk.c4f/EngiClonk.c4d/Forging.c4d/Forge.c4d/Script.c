@@ -44,9 +44,9 @@ else{
 func ContextForge(object pByObject){
 	[$CtxForge$|Image=CXCN|Condition=CanProduce]
 		CreateMenu(CXCN,pByObject,this(),4,"$MsgNoUseable$");
-		for(var i = 1; i < GetLength(LocalN("ForgeableIDs", Forgebase)); i++){
-			if(i%2==0) continue;
-			AddMenuItem("$ForgeUseMat$: %s","MatSelected",LocalN("ForgeableIDs", Forgebase)[i],pByObject,0,pByObject);
+		for(var id in LocalN("ForgeableIDs", Forgebase)){
+			if(!id) continue;
+			AddMenuItem("$ForgeUseMat$: %s","MatSelected",id,pByObject,0,pByObject);
 		}
 }
 

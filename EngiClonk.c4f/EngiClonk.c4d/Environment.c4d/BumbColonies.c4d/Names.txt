@@ -1,2 +1,2 @@
-DE:Humm-Kolonien
-US:Bumb Colonies
+DE:Humm-Nesselsucht
+US:Bumb Hives

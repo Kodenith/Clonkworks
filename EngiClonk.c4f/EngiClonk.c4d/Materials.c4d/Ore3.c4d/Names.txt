@@ -1,2 +1,2 @@
-DE:StÃ¼ck Titanerz
+DE:Stück Titanerz
 US:Chunk of Titanium ore

@@ -53,7 +53,7 @@ func HoneyUpdate(){
 	}
 	
 	//dripping
-	if(!Random(60))
+	if(!Random(60) && !Contained())
 	CreateParticle("HoneyDrip", -VelX, -VelY, RandomX(-2,2), 0, RandomX(10,25), RGBa(255,255,255));
 }
 

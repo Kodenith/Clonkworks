@@ -22,3 +22,4 @@ StretchGrowth=1
 Timer=1
 TimerCall=HoneyUpdate
 Oversize=1
+Edible=1

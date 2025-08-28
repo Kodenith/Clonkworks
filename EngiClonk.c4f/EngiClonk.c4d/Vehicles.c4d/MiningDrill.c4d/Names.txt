@@ -1,2 +1,2 @@
-DE:Bergbau-Bohrger√§t
+DE:Bergbau-Bohrger‰t
 US:Mining Drill

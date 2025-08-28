@@ -1,1 +1,1 @@
-Bumbs will create colonies, and produce honey in them instead of making it in their body. Requires Day/Night to work properly.
+Bumbs will form hives, and produce honey in them instead of making it in their body. Requires Day/Night to work.

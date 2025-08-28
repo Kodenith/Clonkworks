@@ -418,7 +418,7 @@ func Activity(){
 	  
 	  if(RandomPlant == 0 || ObjectCall(RandomPlant, "IsDeadTree")) BeeState = 0;
 	  
-	  if(ObjectDistance(this(), RandomPlant) < 10 && !Random(20)){
+	  if(ObjectDistance(this(), RandomPlant) < 18 && !Random(20)){
 		  Pollen += RandomX(1,2);
 		  for(var i = 0; i < RandomX(1,3); i++){
 			CreateParticle("PxSpark", 0, 0, RandomX(-20,20), RandomX(-5,20), 25, RGBa(255,255,0));
