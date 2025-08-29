@@ -1,6 +1,5 @@
 [Action]
 Name=OpenDoor
-Procedure=NONE
 Length=10
 Delay=1
 Facet=0,50,21,23,11,27
@@ -10,7 +9,6 @@ StartCall=SoundOpenDoor
 
 [Action]
 Name=DoorOpen
-Procedure=NONE
 Delay=15
 Facet=60,0,21,23,11,27
 FacetBase=1
@@ -30,7 +28,6 @@ Reverse=1
 
 [Action] 
 Name=Forging
-Procedure=NONE
 Length=1
 Delay=1000
 Facet=150,0,60,50,0,0

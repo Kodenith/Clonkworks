@@ -16,7 +16,7 @@ local Producing;
 local Forging;
 local len;
 
-func CanProduce(){return(!Producing && Forgebase != 0);}
+func CanProduce(){return(!Producing && Forgebase != 0 && !Forging);}
 func IsProducing(){return(Producing && !Forging);}
 
 local Worker;
@@ -27,7 +27,7 @@ local y;
 local ForgeTimer;
 
 func Initialize() {
-	ForgeTimer = 0;
+ForgeTimer = 0;
 Producing = false;
 Forging=false;
 
@@ -84,7 +84,9 @@ func Continue(pByObject){
 	//y++;
 	
 	var Amt = GetComponent(x, , , Prod);
-	if(x == DUMM) x = Mat;
+	if(x == DUMM){ x = Mat;
+	Amt += GetComponent(x, , , Prod);
+	}
 	if(!Producing) return(1);
 	if(x){
 		DebugLog("Finding %s", GetName(,x));
@@ -156,7 +158,7 @@ func ContextScrap(pByObject){
 }
 
 func FreeWork(){
-	SetAction("OpenDoor");
+	OpenEntrance();
 	for(var i = 0; i < ObjectCount2(Find_OCF(OCF_CrewMember), Find_Container(this())); i++){
 		if (GetController(FindObjects(Find_OCF(OCF_CrewMember), Find_Container(this()))[i]) == -1){
 			SetController( GetOwner(FindObjects(Find_OCF(OCF_CrewMember), Find_Container(this()))[i]), FindObjects(Find_OCF(OCF_CrewMember), Find_Container(this()))[i]);
@@ -164,7 +166,8 @@ func FreeWork(){
 	}
 	
 	SetObjectStatus(1, Worker, false);
-	SetCommand(Worker, "Exit");
+	SetAction("Idle");
+	CloseEntrance();
 }
 
 func Reset(){
@@ -179,6 +182,12 @@ func Reset(){
 
 func FreeWorkF(){
 	FreeWork();
+}
+
+protected func ActivateEntrance(pObj)
+{
+  if (ActIdle()) SetAction("OpenDoor");
+  return(1);
 }
 	
 func FinishWork(){
@@ -229,7 +238,6 @@ func FinishWork(){
 	NewItem->AssignEffects();
 	
 	Message("$ForgeSuccess$", this(), GetName(,Prod));
-	
 	Reset();
 }
 
@@ -258,7 +266,7 @@ func Gather(idType, pCaller){
 }
 
 func StartWork(User){	
-
+	CloseEntrance();
 	//clearing all needed components from the building's contents
 	var z;
 	z = 1;
@@ -323,10 +331,15 @@ func StartWork(User){
 	ForgeTimer = GetMass(,Prod) * (Mass + Power + (Speed/2));
 	SetAction("Forging");
 	Worker = User;
+	CloseMenu(Contained());
+	CloseEntrance();
 }
 
-func RejectEntrance(pIntoObj){
-	return(Forging);
+protected func ContainedUp(pCaller) 
+{
+  [$Production$|Image=CXCN]
+  if(!Forging && !Producing)
+  return(MenuProduction(pCaller));
 }
 
 func Forgefx(){
@@ -342,18 +355,20 @@ func Forgefx(){
 		FreeWork();
 		Reset();
 		Message("$ForgeFail$", this());
+		SetAction("Idle");
 		Sound("Discharge");
 	}
 	
-		for(var i = 0; i < ObjectCount2(Find_OCF(OCF_CrewMember), Find_Container(this())); i++){
+/* 		for(var i = 0; i < ObjectCount2(Find_OCF(OCF_CrewMember), Find_Container(this())); i++){
 		if(FindObjects(Find_OCF(OCF_CrewMember), Find_Container(this()))[i] != Worker){
 			Exit(FindObjects(Find_OCF(OCF_CrewMember), Find_Container(this()))[i], -8, 25);
 		}
-		}
+		} */
 	
 	}
 
 	if(GetActTime() > ForgeTimer && Forging && GetAction() eq "Forging"){
+		SetAction("Idle");
 		FinishWork();
 	}
 	
