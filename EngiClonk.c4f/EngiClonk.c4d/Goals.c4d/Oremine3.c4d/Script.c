@@ -8,12 +8,12 @@ local Sold;
 public func IsFulfilled()
 {
   // Erz noch nicht gezählt?
-  var OreCnt = GetMaterialCount(Material("CopperOre"));
+  var OreCnt = GetMaterialCount(Material("TitaniumOre"));
   if (OreCnt == -1) return();
   // noch zu viel?
   if (OreCnt >= 150) return();
   // noch Erzstücke abzubauen?
-  return(!ObjectCount(ORE2));
+  return(!ObjectCount(ORE3));
 }
 
 public func IsFulfilledforPlr (plr)
@@ -25,7 +25,7 @@ public func IsFulfilledforPlr (plr)
   return (1);
 }
 
-func SellID () { return (ORE2); }
+func SellID () { return (ORE3); }
 
 public func PlayerHasSold (plr, obj)
 {
@@ -53,8 +53,8 @@ protected func Activate(iPlayer)
   var oreTotal = ObjectCount2(Find_ID(ORE2));
   var oreOutside = ObjectCount2(Find_ID(ORE2), Find_NoContainer());
   // Noch nicht alles abgebaut (fest Menge noch unbekannt)
-  if (GetMaterialCount(Material("CopperOre")) == -1)
+  if (GetMaterialCount(Material("TitaniumOre")) == -1)
     return(MessageWindow(Format("$MsgGoalUnfulfilled2$", oreTotal, oreOutside), iPlayer));
   // Noch nicht alles abgebaut ( -50 statt -150 weil beim / 100 abgerundet wird )
-  MessageWindow(Format("$MsgGoalUnfulfilled$", Max(GetMaterialCount(Material("CopperOre")) - 50, 0) / 100, oreTotal, oreOutside), iPlayer);
+  MessageWindow(Format("$MsgGoalUnfulfilled$", Max(GetMaterialCount(Material("TitaniumOre")) - 50, 0) / 100, oreTotal, oreOutside), iPlayer);
 }

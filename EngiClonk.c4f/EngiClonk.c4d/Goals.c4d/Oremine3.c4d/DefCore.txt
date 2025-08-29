@@ -1,7 +1,7 @@
 [DefCore]
-id=COPM
+id=TITM
 Version=4,9,8
-Name=CopperOremine
+Name=TitaniumOremine
 Category=C4D_StaticBack|C4D_Goal
 MaxUserSelect=1
 Width=1

@@ -33,4 +33,8 @@ func InitializePlayer(int iPlr){
 	var flag = CreateObject(FLAG, 130+(5*iPlr),509, 0);
 	SetOwner(iPlr, flag);
 	SetFoW (0, iPlr);
+	var i, id; while (id = GetDefinition(i++)) SetPlrKnowledge(iPlr, id);
+	if(MAGE){
+		DoHomebaseMaterial(iPlr, MAGE, 3);
+	}
 }

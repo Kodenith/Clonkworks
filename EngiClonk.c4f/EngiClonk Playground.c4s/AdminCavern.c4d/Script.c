@@ -6,7 +6,7 @@
 
 //Admin Door Rules
 local adLocked;
-local adFreeWealth; 
+local adSafemode; 
 local adFreeHealth;
 local adInstantBuild;
 local adSpawnAtDoor;
@@ -18,7 +18,7 @@ local house;
 
 func Initialize() {
 	house = FindObject(HUT3);
-	adLocked = true; adFreeWealth = true;
+	adLocked = true; adSafemode = true;
 	adFreeHealth = false; adInstantBuild = false; adSpawnAtDoor = false;
 	evBees = false;
 return(1);
@@ -30,9 +30,13 @@ public func ContextExtra(pCaller){
 	if(adLocked)
 		AddMenuItem("$Lock$ ON", "TickVar", RACE, pCaller,0,"adLocked");
 	else AddMenuItem("$Lock$ OFF", "TickVar", RACE, pCaller,0,"adLocked");
-	if(adFreeWealth)
-		AddMenuItem("$EndWealth$ ON", "TickVar", GLDM, pCaller,0,"adFreeWealth");
-	else AddMenuItem("$EndWealth$ OFF", "TickVar", GLDM, pCaller,0,"adFreeWealth");
+	
+	if(GetOwner(pCaller) == 0){
+	if(adSafemode)
+		AddMenuItem("$Safe$ ON", "TickVar", KILC, pCaller,0,"adSafemode");
+	else AddMenuItem("$Safe$ OFF", "TickVar", KILC, pCaller,0,"adSafemode");
+	}
+	
 	if(adFreeHealth)
 		AddMenuItem("$EndHealth$ ON", "TickVar", WPHT, pCaller,0,"adFreeHealth");
 	else AddMenuItem("$EndHealth$ OFF", "TickVar", WPHT, pCaller,0,"adFreeHealth");
@@ -54,6 +58,12 @@ public func ContextCreateRule(pCaller){
 	AddMenuItem("$Add$","AddRuleMenu",, pCaller,0,pCaller);
 }
 
+public func ContextTeleToBase(pCaller){
+	[$res$|Image=HUT3]
+	Exit(pCaller);
+	SetPosition(102, 589, pCaller);
+}
+
 public func ContextCreateEnv(pCaller){
 	[$OP3$|Image=EGLN]
 	CreateMenu(EGLN, pCaller, this(),0,"$OP3$",,1);
@@ -64,18 +74,33 @@ public func ContextCreateEnv(pCaller){
     else AddMenuItem("$AddBees$ (ON)","Nope",BBCL, pCaller,0,pCaller);
 	
 	AddMenuItem("$inr2$",,, pCaller,0,pCaller);
+	if(GetOwner(pCaller) == 0 || !adSafemode){
 	AddMenuItem("$flood1$","Flood",WBRL,pCaller,0,0);
 	AddMenuItem("$flood2$","Flood",LBRL,pCaller,0,1);
 	AddMenuItem("$flood3$","Flood",ABRL,pCaller,0,2);
+	AddMenuItem("$wave$","Unleash",MONS,pCaller,0);
+	}
 	if(ObjectCount(BUMB))
 	AddMenuItem("$burn$","LightBumb",BUMB,pCaller,0);
-	AddMenuItem("$wave$","Unleash",MONS,pCaller,0);
+	AddMenuItem("$wind$","WindUp",WMIL,pCaller,0);
+	if(evBees) AddMenuItem("$skip$","TimeSkip",TIME,pCaller,0);
+	AddMenuItem("$heat$","Heat",LAVA,pCaller,0,100);
+	AddMenuItem("$cold$","Heat",ICE1,pCaller,0,-100);
+	AddMenuItem("$lt$","Strike",FXL1,pCaller,0,-100);
 }
 
 public func Unleash(){
 	Sound("Energize");
 	for(var i = 0; i < RandomX(10,35); i++) SpawnCreature(MONS);
 }
+
+public func WindUp(){ SetWind(100); }
+public func TimeSkip(){
+	var time = FindObject(TIME);
+	if(IsDay()) time->SetTime(30);
+	else time->SetTime(0);
+}
+public func Heat(idType, int temp){ SetTemperature(temp); }
 
 public func Flood(idType, int type){
 	Sound("Click");
@@ -87,6 +112,10 @@ public func Flood(idType, int type){
 	CastPXS(mat, 15000, 100);
 }
 
+public func Strike(){
+	LaunchLightning(Random(LandscapeWidth()), 0, -20, 41, +5, 15);
+}
+
 public func LightBumb(){
 	Sound("Click");
 	var bumbs = FindObjects(Find_ID(BUMB));
@@ -96,8 +125,9 @@ public func LightBumb(){
 public func ContextCreateCreature(pCaller){
 	[$OP4$|Image=WPHT]
 	CreateMenu(EGLN, pCaller, this(),4,"$OP4$",,0);
-	var Creaturelist = [WIPF, BUMB, BIRD, SNKE, SHRK, MONS, FISH, FMNS];
+	var Creaturelist = [WIPF, BUMB, BIRD, SNKE, SHRK, MONS, FISH, FMNS, DRGN];
 	for(var creature in Creaturelist){
+		if(GetName(,creature))
 		AddMenuItem(GetName(,creature), "SpawnCreature",creature, pCaller,0);
 	}
 }
@@ -143,9 +173,9 @@ public func RemoveRule(idItem){
 public func AddRuleMenu(idItem, iParameter){
 	Sound("Click");
 	CreateMenu(GOAL, iParameter, this(),4,"$Add$",,0);
-	var AvailableRules = [COAN, CNMT, ENRG, FGRV, REAC, NMTT, WTRS];
+	var AvailableRules = [COAN, CNMT, ENRG, FGRV, REAC, NMTT, RSWR, ALCO, MGES, NMGE, NTMG];
 	for(var rule in AvailableRules){
-		if(!ObjectCount(rule)) AddMenuItem(GetName(,rule), "AddRule",rule, iParameter,0);
+		if(!ObjectCount(rule) && GetName(,rule)) AddMenuItem(GetName(,rule), "AddRule",rule, iParameter,0);
 	}
 }
 
@@ -167,9 +197,6 @@ func Update(){
 			if(adFreeHealth){
 					DoEnergy(10, clonk);
 			}
-			if(adFreeWealth){
-					SetWealth(GetOwner(clonk), 1000);
-			}
 		}
 		
 		if(adInstantBuild){
@@ -179,9 +206,9 @@ func Update(){
 		}
 		
 	//endless content in house
-	var items = [ABRL, BARL, LBRL, OBRL, WBRL, CNKT, LNKT, ASHS, COAL, CNCR, CRYS, ERTH,LIQG, LOAM, METL, CPIG, TTIG, ROCK, WOOD, ARWP, XARP, FARP, FBMP, FLNT, GUNP, SFLN, STFN, TFLN, EFLN, TRP1, BALN, BLMP, CANN, CATA, XBOW, LORY, SLBT, STMG, SUB1, WAGN, BBEG, HONY, MDRL, CBAT];
+	var items = [ABRL, BARL, LBRL, OBRL, WBRL, CNKT, LNKT, ASHS, COAL, CNCR, CRYS, ERTH,LIQG, LOAM, METL, CPIG, TTIG, ROCK, WOOD, ARWP, XARP, FARP, FBMP, FLNT, GUNP, SFLN, STFN, TFLN, EFLN, TRP1, BALN, BLMP, CANN, CATA, XBOW, LORY, SLBT, STMG, SUB1, WAGN, BBEG, HONY, MDRL, CBAT, SPHR, ALC_];
 	for(var item in items){
-		if(!ContentsCount(item, house)) CreateContents(item, house, 1);
+		if(!ContentsCount(item, house) && GetName(,item)) CreateContents(item, house, 1);
 	}
 }
 
