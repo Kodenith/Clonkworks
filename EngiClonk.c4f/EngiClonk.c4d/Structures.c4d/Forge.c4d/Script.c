@@ -261,6 +261,9 @@ private func MenuProduction(pCaller) {
 }
 
 func Gather(idType, pCaller){
+	for(var i in FindObjects(Find_Container(this()), Find_OCF(OCF_CrewMember))){
+		CloseMenu(i);
+	}
 	Prod = idType;
 	Producing = true;
 	ContextStartContinue(pCaller);
@@ -340,7 +343,7 @@ protected func ContainedUp(pCaller)
 {
   [$Production$|Image=CXCN]
   if(!Forging && !Producing)
-  return(MenuProduction(pCaller));
+  return(ContextForge(pCaller));
 }
 
 func Forgefx(){

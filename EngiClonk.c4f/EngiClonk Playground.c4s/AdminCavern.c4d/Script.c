@@ -152,6 +152,7 @@ public func EnableBees(){
 		PlaceVegetation(GRAS, 0, 0, LandscapeWidth(), LandscapeHeight(), 100000);
 	}
 	Sound("Ding");
+	DrawMaterialQuad("Tunnel-Rough", 555, 668, 2967, 668, 2967, 1045, 555, 1045, true);
 }
 
 public func Nope(){

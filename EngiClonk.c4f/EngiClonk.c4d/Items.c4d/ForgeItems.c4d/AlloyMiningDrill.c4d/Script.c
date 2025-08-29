@@ -1,32 +1,25 @@
 /*-- Neues Script --*/
 
 #strict
-#include STMG
-#include CXEC
+#include MDRL
+#include DUMM
 
-local CanExit;
+local Color;
+local Mass;
+local Speed;
+local Power;
+local Effect;
 
-func Construction(){
-	CanExit = true;
-	return(_inherited());
-}
-
-func PoweredEnough(){
-	if(!FindObject2(Find_ID(ENRG)) || GetEnergy() > 0){
-		return(1);
-	}else{
-		return(0);
-	}
-}
-
-private func AdjustTrainSpeed()
-{
-	SetPhysical("Walk", 15000, 2);
+func FRGUpdate(){
+	//SetColorDw(Color, this());
+	SetMass(50*Mass, this());
+	SetClrModulation(Color, this());
 }
 
 protected func SignalDelay()
 {
 	if(GetAction() eq "Idle") SetAction("Walk");
+	
 	var x;
 	if(GetDir() == 0) x = -25;
 	else x = 25;
@@ -41,7 +34,7 @@ protected func SignalDelay()
 	}
   }
   
-  if(CanExit && GetCon() > 99) CanExit = false;
+  DoEnergy(-1);
   
   // Keine Wartezeit
   if (!iWait) return(0);
@@ -58,29 +51,16 @@ protected func Drill(int x){
 			y = GetY();
 		/* FreeRect(GetX(), GetY()-20, 25,30);
 		FreeRect(GetX()+x, GetY()-20, 10,30); */
-		BlastFree(x,y-2,16,GetOwner()-1);
+		BlastFree(x,(y-2)-(Power/2),16+Power,GetOwner()-1);
 		Sound("Drill");
 }
 
-protected func Puff()
+private func AdjustTrainSpeed()
 {
-  // Geräusch nur wenn wir aktiv sind
-  if (GetComDir() != COMD_None && Abs(GetXDir()) != 0 && PoweredEnough())
-  {
-    Sound("Chuff");
-	if(GetDir() == 1)
-    Smoke(-10, -8, 5 + Random(4));
-	else Smoke(18, -8, 5 + Random(4));
-  }
+	var PW;
+	PW = Power;
+	if(Power == 0) PW = 1;
+	
+	if(PW < 0) SetPhysical("Walk",(500*Abs(PW))*Speed, 2);
+	else SetPhysical("Walk",(500/PW)*Speed, 2);
 }
-
-func ExitWorkshop(){
-	if(CanExit && GetCon() == 100){
-		CanExit = false;
-		return(1); 
-	}else{
-		return(0);
-	}
-}
-
-func RejectContents(){ return(true); }

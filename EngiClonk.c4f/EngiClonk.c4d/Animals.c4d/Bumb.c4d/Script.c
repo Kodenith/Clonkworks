@@ -33,6 +33,7 @@ local BeeState;
 // 7 - Deposit Pollen
 // 8 - Escape to Water
 
+public func CanRoamFine(){ return(PathFree(GetX(), GetY(), gX, gY)); }
 public func IsPossessible() { return(1); }
 
 private func SpecialRepr()
@@ -143,7 +144,7 @@ func Activity(){
   if(BeeState == 0){
 	if(GetAction() == "Idle") SetAction("Fly");
 	if(GetAction() == "Walk") SetAction("Fly");
-	if(!Random(30)|| Distance(GetX(),GetY(),gX,gY) <= 5 || GBackSolid(gX-GetY(),gY-GetY()) || GBackLiquid(gX-GetY(),gY-GetY())){
+	if(!Random(10)|| Distance(GetX(),GetY(),gX,gY) <= 5 || GBackSolid(gX-GetY(),gY-GetY()) || GBackLiquid(gX-GetY(),gY-GetY()) || !CanRoamFine()){
 		gX = GetX() + RandomX(-500,500);
 		gY = GetY() + RandomX(-500,5000);
 	}
@@ -172,7 +173,7 @@ func Activity(){
 	
 	//Colony Starting
 	if(ColoniesEnabled()){
-	if(GetMaterial(0,0) == Material("Tunnel") && !InColony() && !Random(600) && CheckCombSpace(false)){
+	if(GetMaterial(0,0) == Material("Tunnel") && !InColony() && !Random(100) && CheckCombSpace(false)){
 		DebugLog("A Bumb Set up a Colony!");
 		HomeX = GetX();
 		HomeY = GetY();
@@ -186,13 +187,13 @@ func Activity(){
 	}
 	
 	//inviting strays if part of colony
-	if(InColony() && !Random(70)){
+	if(InColony() && !Random(40)){
 		JoinColony(100);
 	}
 	
 	//Collect Pollen, Only the most active bees do it
 	if(InColony() && Comb && MaxBeenergy > 1800){
-		if(!Random(50)){
+		if(!Random(10)){
 			BeeState = 6;
 			var PlantList;
 			//if flowers are available, use them instead
@@ -206,7 +207,7 @@ func Activity(){
 		}
 		
 		//or.. deposit it
-		if(!Random(50) && Comb && Pollen > 0){
+		if(!Random(10) && Comb && Pollen > 0){
 			BeeState = 7;
 			return(0);
 		}
@@ -219,7 +220,7 @@ func Activity(){
 	}else{
 		//honey production without colony
 		if(MaxBeenergy > 1800){
-			if(!Random(80)){
+			if(!Random(20)){
 			BeeState = 6;
 			var PlantList = FindObjects(Find_Func("IsTree"));
 			RandomPlant = PlantList[RandomX(0,GetLength(PlantList))];
@@ -293,7 +294,7 @@ func Activity(){
 			Sound("Corrode");
 		}
 	  
-	  Beenergy += RandomX(1,4);
+	  Beenergy += RandomX(1,7);
 	  if(Beenergy >= MaxBeenergy) BeeState = 0;
 	  
 	  if(GrudgeTarget && ObjectDistance(this(),GrudgeTarget) < 100 && !Contained(GrudgeTarget)){
@@ -313,7 +314,7 @@ func Activity(){
 			 
 	    if(!Random(6))
 	    CreateParticle("Zzz",0,0, RandomX(-5,5), -3, RandomX(25,50), RGBa(255,255,255), ,true);
-		Beenergy += RandomX(1,4);
+		Beenergy += RandomX(1,7);
 	  }
 	  
 	  if(Beenergy >= MaxBeenergy){
@@ -361,7 +362,7 @@ func Activity(){
 	  
 	  
 	  //check if near colony
-	  if(Distance(GetX(),GetY(),HomeX, HomeY) > 800){
+	  if(Distance(GetX(),GetY(),HomeX, HomeY) > 650){
 		  SetCommand(this(), "MoveTo", ,HomeX,HomeY);
 	  }else{
 		  
@@ -371,7 +372,7 @@ func Activity(){
 		gY = GetY()-30;
 		}
 		  
-		if(!Random(30)|| Distance(GetX(),GetY(),gX,gY) <= 5 || GBackSolid(gX-GetY(),gY-GetY()) || GBackLiquid(gX-GetY(),gY-GetY())){
+		if(!Random(10)|| Distance(GetX(),GetY(),gX,gY) <= 5 || GBackSolid(gX-GetY(),gY-GetY()) || GBackLiquid(gX-GetY(),gY-GetY()) || !CanRoamFine()){
 		gX = GetX() + RandomX(-1000,1000);
 		gY = GetY() + RandomX(-1000,1000);
 		}
@@ -418,7 +419,7 @@ func Activity(){
 	  
 	  if(RandomPlant == 0 || ObjectCall(RandomPlant, "IsDeadTree")) BeeState = 0;
 	  
-	  if(ObjectDistance(this(), RandomPlant) < 18 && !Random(20)){
+	  if(ObjectDistance(this(), RandomPlant) < 23 && !Random(5)){
 		  Pollen += RandomX(1,2);
 		  for(var i = 0; i < RandomX(1,3); i++){
 			CreateParticle("PxSpark", 0, 0, RandomX(-20,20), RandomX(-5,20), 25, RGBa(255,255,0));
@@ -430,6 +431,8 @@ func Activity(){
 		  else
 		  BeeState = 0;
 	  }
+	  
+	  if(!Random(50)) BeeState = 0;
 	  
 	  if(Beenergy <= 200) BeeState = 1;
 	
@@ -559,6 +562,9 @@ public func JoinColony(int Distance){
 public func CheckCombSpace(bool ColonyMode){
 	//no combs on the edges of walls :P
 	if(GBackSky(-20,0) || GBackSky(20,0) || GBackSky(0,20) || GBackSky(0,-20)) return(0);
+	
+	//no combs in the ground
+	if(GBackSolid(0,0)) return(0);
 	
 	//dont place near any Player-Made structures
 	if(FindObject2(Find_Category(C4D_Structure), Find_Distance(450))) return(0);

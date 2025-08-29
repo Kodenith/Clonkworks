@@ -1,0 +1,2 @@
+DE:Bergbau-Bombe
+US:Mining Bomb
