@@ -7,7 +7,7 @@ if you wanna add a material to be used in the forge, paste this into a scenario 
 1. Id of the object
 2. Color of things made with object
 3. Mass Multiplier
-4. Speed Ticks (38 - Speed)
+4. Speed Ticks (In forged items with aiming, values above 37 get turned to 37. )
 5. Power (Not related Electricity/Health by default)
 6. Forge Effect
 

@@ -30,13 +30,13 @@ func FRGUpdate(){
 public func ControlUp(object clonk)     // Zielen: hoch (klassisch)
 {
   [$TxtAimup$|Image=CAN1:2]
-	AimUp(clonk, 38 - Speed, "ControlConf");
+	AimUp(clonk, 38 - Min(Speed, 37), "ControlConf");
 }
 
 public func ControlDig(object clonk)    // Zielen: runter (klassisch)
 {
   [$TxtAimdown$|Method=Classic|Image=CAN1:0]
-	AimDown(clonk, 38 - Speed, "ControlConf");
+	AimDown(clonk, 38 - Min(Speed, 37), "ControlConf");
 }
 
 public func ControlDown()
@@ -46,7 +46,7 @@ public func ControlDown()
 
 public func ControlUpdate(object clonk, int comdir) // Zielen: JnR
 {
-  AimUpdate(clonk, comdir, 38 - Speed, "ControlConf");
+  AimUpdate(clonk, comdir, 38 - Min(Speed, 37), "ControlConf");
 }
 
 public func Fire(bool fAuto)

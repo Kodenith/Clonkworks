@@ -20,11 +20,11 @@ func Initialize() {
   FindObject2(Find_ID(FALW))->AddForgeable(TTIG, RGBa(120, 130, 139, 0), 2, 37, 0, "");
   FindObject2(Find_ID(FALW))->AddForgeable(ROCK, RGBa(190, 194, 192, 0), 6, 20, -1, "Fragile");
   FindObject2(Find_ID(FALW))->AddForgeable(GOLD, RGBa(255, 178, 18, 0), 6, 20, -1, "Fragile Glow");
-  FindObject2(Find_ID(FALW))->AddForgeable(WOOD, RGBa(202, 140, 50, 0), 1, 37, -5, "Fragile Windy Burnable");
+  FindObject2(Find_ID(FALW))->AddForgeable(WOOD, RGBa(202, 140, 50, 0), 1, 45, -5, "Fragile Windy Burnable");
   FindObject2(Find_ID(FALW))->AddForgeable(COAL, RGBa(55, 53, 54, 0), 5, 25, 2, "Fragile Burnable Fuming");
   FindObject2(Find_ID(FALW))->AddForgeable(FLNT, RGBa(255, 0, 0, 0), 5, 26, 5, "Explode");
-  FindObject2(Find_ID(FALW))->AddForgeable(HONY, RGBa(156, 57, 13, 1), 0, 37, -6, "Sticky Burnable WaterLQM Skew");
-  FindObject2(Find_ID(FALW))->AddForgeable(CRYS, RGBa(141, 169, 242, 127), 0, 37, 7, "Regen Glow Fragile");
+  FindObject2(Find_ID(FALW))->AddForgeable(HONY, RGBa(156, 57, 13, 1), 0, 36, -6, "Sticky Burnable WaterLQM Skew");
+  FindObject2(Find_ID(FALW))->AddForgeable(CRYS, RGBa(141, 169, 242, 127), 0, 45, 7, "Regen Glow Fragile");
   return(1);
 }
 

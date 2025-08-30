@@ -1,1 +1,1 @@
-Die Schmiede kann fortgeschrittene Fahrzeuge herstellen oder bestehende verbessern. Die bearbeiteten Fahrzeuge bekommen je nach verwendeter Legierung andere Eigenschaften. (Wie bei allen Produktionsgebäuden kann nur ein Clonk darin arbeiten.)
+In der Schmiede können fortschrittliche Fahrzeuge und verbesserte Versionen einiger Werkzeuge hergestellt werden. Bevor Sie mit dem Schmieden beginnen, können Sie ein Metall auswählen. Das verwendete Metall beeinflusst die Eigenschaften des hergestellten Gegenstands.

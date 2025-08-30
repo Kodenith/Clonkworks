@@ -57,10 +57,5 @@ protected func Drill(int x){
 
 private func AdjustTrainSpeed()
 {
-	var PW;
-	PW = Power;
-	if(Power == 0) PW = 1;
-	
-	if(PW < 0) SetPhysical("Walk",(500*Abs(PW))*Speed, 2);
-	else SetPhysical("Walk",(500/PW)*Speed, 2);
+   SetPhysical("Walk",(Speed*(Speed-Power))*15, 2);
 }

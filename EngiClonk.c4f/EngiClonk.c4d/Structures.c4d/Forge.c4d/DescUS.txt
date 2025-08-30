@@ -1,1 +1,1 @@
-The forge can craft advanced vehicles or improve existing ones. The crafted vehicles acquire different properties depending on the alloy used. (As with all production buildings, only one Clonk can work in it.)
+The forge can craft advanced vehicles, and better versions of some tools. You can choose a metal before you begin forging, and the metal you use changes the attributes of the item you create.

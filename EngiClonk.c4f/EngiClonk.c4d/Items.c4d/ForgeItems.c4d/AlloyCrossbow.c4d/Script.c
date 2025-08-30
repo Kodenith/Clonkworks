@@ -70,13 +70,13 @@ public func ControlConf(int conf)
 public func ControlUp(object clonk)     // Zielen: hoch
 {
   [$TxtAimup$|Image=XBO1:2]
-  AimUp(clonk, 38-Speed, "ControlConf");
+  AimUp(clonk, 38-Min(Speed, 37), "ControlConf");
 }
 
 public func ControlDig(object clonk)    // Zielen: runter (klassisch)
 {
   [$TxtAimdown$|Method=Classic|Image=XBO1:0]
-  AimDown(clonk, 38-Speed, "ControlConf");
+  AimDown(clonk, 38-Min(Speed, 37), "ControlConf");
 }
 
 public func ControlDown(object clonk)   // Zielen: runter (JumpAndRun)
@@ -86,7 +86,7 @@ public func ControlDown(object clonk)   // Zielen: runter (JumpAndRun)
 
 public func ControlUpdate(object clonk, int comdir)
 {
-  AimUpdate(clonk, comdir, 38-Speed, "ControlConf");
+  AimUpdate(clonk, comdir, 38-Min(Speed, 37), "ControlConf");
 }
 
 public func ControlDownSingle() // Sicht zurücksetzen
