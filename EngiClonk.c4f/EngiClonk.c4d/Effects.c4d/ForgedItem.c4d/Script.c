@@ -274,7 +274,7 @@ func Hit(int xdir, int ydir){
 		AddEffect("Sticky", this(), 50, 1, this()); 
 		Sound("ArrowHit");
 	}else if(WildcardMatch(Effect, "*Bouncy*")){
-		HitBounce(2, xdir, ydir);
+		HitBounce(this(),2, xdir, ydir);
 	}
 }
 
@@ -284,7 +284,7 @@ func Hit2(int xdir, int ydir){
 		AddEffect("Sticky", this(), 50, 1, this()); 
 		Sound("ArrowHit");
 	}else if(WildcardMatch(Effect, "*Bouncy*")){
-		HitBounce(2, xdir, ydir);
+		HitBounce(this(),2, xdir, ydir);
 	}
 }
 
@@ -309,7 +309,7 @@ func Hit3( int xdir, int ydir){
 		AddEffect("Sticky", this(), 50, 1, this()); 
 		Sound("ArrowHit");
 	}else if(WildcardMatch(Effect, "*Bouncy*")){
-		HitBounce(2, xdir, ydir);
+		HitBounce(this(),2, xdir, ydir);
 	}
 }
 
@@ -340,7 +340,7 @@ func FxRepairStop(pTarget){
 }
 
 //Inspecting
-func CanBeInspected(){ return(ObjectCount(FALW) && !ObjectCount(NOIS)); }
+func CanBeInspected(){ return(ObjectCount(FALW) && !ObjectCount(NOIS) && MatId != 0); }
 
 public func ContextInspect(pCaller){
 	[$Inspect$|Image=INSP|Condition=CanBeInspected]
