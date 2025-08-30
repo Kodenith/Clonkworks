@@ -1,0 +1,11 @@
+[Particle]
+Name=HopperPipe
+MaxCount=5000
+InitFn=StdInit
+ExecFn=StdExec
+DrawFn=Std
+Face=0,0,2,2,-1,-1
+Delay=4
+GravityAcc=0
+FadeOutLen=5
+Repeats=1

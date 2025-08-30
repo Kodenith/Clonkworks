@@ -1,0 +1,1 @@
+Deposits all items thrown in it to a building or vehicle it's attached to. Will disconnect if too far away or if the pipe is touching a wall. 

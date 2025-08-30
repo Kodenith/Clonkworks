@@ -1,6 +1,6 @@
 /*-- Neues Script --*/
 
-#strict 2
+#strict 3
 
 //Returns a random color
 //Include Alpha - Alpha is also random
@@ -112,4 +112,21 @@ global func CreateForgedObjectCustom(id Id, int XOffset, int YOffset, int Owner,
 	ForgedObj->AssignEffects();
 	
 	return(ForgedObj);
+}
+
+//This function draws a particle line similiar to a line kit. it will bend on walls.
+//requires strict 3
+global func DrawParticleWire(string ParticleType,int gX,int gY,object cnt, int Color1, int Color2){
+var path = GetPath(GetX(), GetY(), GetX(cnt), GetY(cnt));
+if(!path) return(0);
+for(var xymap in path.Waypoints){
+	if(xymap["TransferTarget"]){
+		//nothing
+	}else{
+	global->DrawParticleLine(ParticleType, gX, gY, xymap["X"], xymap["Y"], 2, 10, Color1, Color2, 0);
+	gX = xymap.X;
+	gY = xymap.Y;
+	}
+}
+return(1);
 }

@@ -1,0 +1,5 @@
+HopperDisconnect=Hopper Disconnected.
+HopperConnect=Hopper Connected to %s.
+HopperDisconnectDistance=Connected Object too far away,|Hopper Disconnected.
+ConnectH=Connect/Disconnect Hopper
+ConnectFail=No Connectable Objects Nearby.
