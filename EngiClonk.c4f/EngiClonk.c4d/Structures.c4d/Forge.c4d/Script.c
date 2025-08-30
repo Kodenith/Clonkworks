@@ -1,5 +1,6 @@
 /*-- Forge --*/
-//please do not make fun of my awful code, i get it - its bad.
+// the forge's way of crafting is different from a typical crafting building like the workshop.
+// if youre making any mods in the future, dont take this building as inspiration, the code here is old and ass :(
 
 #strict
 
@@ -40,6 +41,14 @@ else{
 	return(0);
 }
 }
+
+func CanInspect(){ return(ObjectCount(FALW) && !ObjectCount(NOIS)); }
+
+public func ContextInspect(pCaller){
+	[$Inspect$|Image=INSP|Condition=CanInspect]
+	FindObject(FALW)->Activate(GetOwner(pCaller));
+}
+
 
 func ContextForge(object pByObject){
 	[$CtxForge$|Image=CXCN|Condition=CanProduce]
@@ -233,6 +242,7 @@ func FinishWork(){
 	LocalN("Speed", NewItem) = Speed;
 	LocalN("Power", NewItem) = Power;
 	LocalN("Effect", NewItem) = Efx;
+	LocalN("MatId", NewItem) = Mat;
 	
 	SetOwner(GetOwner(), NewItem);
 	NewItem->FRGUpdate();

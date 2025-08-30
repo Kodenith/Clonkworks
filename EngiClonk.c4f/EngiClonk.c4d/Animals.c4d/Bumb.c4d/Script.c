@@ -6,6 +6,8 @@ local gX;
 local gY;
 local Walkdir;
 
+local MovingHome;
+
 local Beenergy;
 local MaxBeenergy;
 
@@ -33,7 +35,12 @@ local BeeState;
 // 7 - Deposit Pollen
 // 8 - Escape to Water
 
-public func CanRoamFine(){ return(PathFree(GetX(), GetY(), gX, gY)); }
+public func CanRoamFine(){
+	//if its top or bottom verticies are touching the landscape, repath if cant see target
+	if(GetContact(this(), -1) & CNAT_Bottom) return(PathFree(GetX(), GetY(), gX, gY));
+	if(GetContact(this(), -1) & CNAT_Top) return(PathFree(GetX(), GetY(), gX, gY));
+	return(1);
+}
 public func IsPossessible() { return(1); }
 
 private func SpecialRepr()
@@ -56,6 +63,7 @@ func DayCheck(){
 }
 
 func Initialize() {
+	MovingHome = false;
 	Pollen = 0;
 	HomeX = 0;
 	BeeState = 0;
@@ -144,7 +152,7 @@ func Activity(){
   if(BeeState == 0){
 	if(GetAction() == "Idle") SetAction("Fly");
 	if(GetAction() == "Walk") SetAction("Fly");
-	if(!Random(10)|| Distance(GetX(),GetY(),gX,gY) <= 5 || GBackSolid(gX-GetY(),gY-GetY()) || GBackLiquid(gX-GetY(),gY-GetY()) || !CanRoamFine()){
+	if(!Random(20)|| Distance(GetX(),GetY(),gX,gY) <= 5 || GBackSolid(gX-GetY(),gY-GetY()) || GBackLiquid(gX-GetY(),gY-GetY()) || !CanRoamFine()){
 		gX = GetX() + RandomX(-500,500);
 		gY = GetY() + RandomX(-500,5000);
 	}
@@ -161,7 +169,7 @@ func Activity(){
 	
 	if(Beenergy <= 200) BeeState = 1;
 	
-	Beenergy -= RandomX(1,3);
+	Beenergy -= RandomX(1,10);
 	SetCommand(this(), "MoveTo", ,gX,gY);
 	
 	if(GrudgeTarget && ObjectDistance(this(),GrudgeTarget) < 100 && !Contained(GrudgeTarget)){
@@ -286,7 +294,7 @@ func Activity(){
 	  }
 	  
 	  	//Eat Honey
-		if(!Random(10) && FindObject2(Find_ID(HONY), Find_Distance(10))){
+		if(!Random(6) && FindObject2(Find_ID(HONY), Find_Distance(10))){
 			var Food = FindObject2(Find_ID(HONY), Find_Distance(10));
 			DoCon(RandomX(-30,-5), Food);
 			DoEnergy(5);
@@ -294,7 +302,7 @@ func Activity(){
 			Sound("Corrode");
 		}
 	  
-	  Beenergy += RandomX(1,7);
+	  Beenergy += RandomX(1,20);
 	  if(Beenergy >= MaxBeenergy) BeeState = 0;
 	  
 	  if(GrudgeTarget && ObjectDistance(this(),GrudgeTarget) < 100 && !Contained(GrudgeTarget)){
@@ -314,7 +322,7 @@ func Activity(){
 			 
 	    if(!Random(6))
 	    CreateParticle("Zzz",0,0, RandomX(-5,5), -3, RandomX(25,50), RGBa(255,255,255), ,true);
-		Beenergy += RandomX(1,7);
+		Beenergy += RandomX(1,25);
 	  }
 	  
 	  if(Beenergy >= MaxBeenergy){
@@ -362,19 +370,20 @@ func Activity(){
 	  
 	  
 	  //check if near colony
-	  if(Distance(GetX(),GetY(),HomeX, HomeY) > 650){
+	  if(Distance(GetX(),GetY(),HomeX, HomeY) > 650 || MovingHome){
 		  SetCommand(this(), "MoveTo", ,HomeX,HomeY);
+		  MovingHome = true;
 	  }else{
 		  
 		  //Avoid liquids
 	  if(GBackLiquid(0, 30)){
-		gX = GetX() + RandomX(-1000,1000);
+		gX = GetX() + RandomX(-250,250);
 		gY = GetY()-30;
 		}
 		  
-		if(!Random(10)|| Distance(GetX(),GetY(),gX,gY) <= 5 || GBackSolid(gX-GetY(),gY-GetY()) || GBackLiquid(gX-GetY(),gY-GetY()) || !CanRoamFine()){
-		gX = GetX() + RandomX(-1000,1000);
-		gY = GetY() + RandomX(-1000,1000);
+		if(!Random(20)|| Distance(GetX(),GetY(),gX,gY) <= 5 || GBackSolid(gX-GetY(),gY-GetY()) || GBackLiquid(gX-GetY(),gY-GetY()) || !CanRoamFine()){
+		gX = GetX() + RandomX(-250,250);
+		gY = GetY() + RandomX(-250,250);
 		}
 		
 		if(gY < 50) gY = GetY() + RandomX(100,2000);
@@ -396,12 +405,15 @@ func Activity(){
 		
 		if(Beenergy <= 200) BeeState = 1;
 	
-		Beenergy -= RandomX(1,3);
+		Beenergy -= RandomX(1,10);
 		
 		SetCommand(this(), "MoveTo", ,gX,gY);
 	  }
 	  
-	  	  if(DayCheck()) BeeState = 0;
+	  	 if(Distance(GetX(),GetY(),HomeX, HomeY) < 100)
+		  MovingHome = false;
+	  
+	  if(DayCheck()) BeeState = 0;
 	  
 	  if(GrudgeTarget && ObjectDistance(this(),GrudgeTarget) < 100 && !Contained(GrudgeTarget)){
 		BeeState = 4;
@@ -419,7 +431,7 @@ func Activity(){
 	  
 	  if(RandomPlant == 0 || ObjectCall(RandomPlant, "IsDeadTree")) BeeState = 0;
 	  
-	  if(ObjectDistance(this(), RandomPlant) < 23 && !Random(5)){
+	  if(ObjectDistance(this(), RandomPlant) < 23 && !Random(3)){
 		  Pollen += RandomX(1,2);
 		  for(var i = 0; i < RandomX(1,3); i++){
 			CreateParticle("PxSpark", 0, 0, RandomX(-20,20), RandomX(-5,20), 25, RGBa(255,255,0));
@@ -436,7 +448,7 @@ func Activity(){
 	  
 	  if(Beenergy <= 200) BeeState = 1;
 	
-	  Beenergy -= RandomX(1,3);
+	  Beenergy -= RandomX(1,8);
 	  
 	  if(GrudgeTarget && ObjectDistance(this(),GrudgeTarget) < 100 && !Contained(GrudgeTarget)){
 		BeeState = 4;
@@ -464,7 +476,7 @@ func Activity(){
 	  
 	  if(Beenergy <= 200) BeeState = 1;
 	
-	  Beenergy -= RandomX(1,3);
+	  Beenergy -= RandomX(1,8);
 	  
 	  if(GrudgeTarget && ObjectDistance(this(),GrudgeTarget) < 100 && !Contained(GrudgeTarget)){
 		BeeState = 4;
@@ -516,7 +528,7 @@ protected func RejectCollect(c4ID, pObject)
 }
 
 func RejectEntrance(pIntoObject){
-	if(GetAction() == "Rest" && FindObject2(Find_ID(COAM))) return(0);
+	if(GetAction() == "Rest" && FindObject2(Find_ID(COAN))) return(0);
 	return(1);
 }
 

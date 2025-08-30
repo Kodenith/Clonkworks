@@ -1,0 +1,14 @@
+This rule enables forging, and stores important information for the forge to use!
+if you wanna add a material to be used in the forge, paste this into a scenario script's initialize function, or anywhere if you wanna make an unlockable or something else:
+
+  FindObject2(Find_ID(FALW))->AddForgeable(METL, RGBa(177, 171, 170, 0), 3, 34, 2, "Meltable HTM")
+					  1     2                       3  4   5    6
+
+1. Id of the object
+2. Color of things made with object
+3. Mass Multiplier
+4. Speed Ticks (38 - Speed)
+5. Power (Not related Electricity/Health by default)
+6. Forge Effect
+
+you can find info about forge effects in Forging > EffectRepairHelper

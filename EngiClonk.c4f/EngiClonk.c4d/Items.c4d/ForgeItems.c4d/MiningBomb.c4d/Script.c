@@ -1,6 +1,7 @@
 /*-- Neues Objekt --*/
 
 #strict
+#include DUMM
 
 local Color;
 local Mass;
@@ -49,4 +50,16 @@ func FxLightTimer(object pTarget, int EffectNumber){
 
 func AssignEffects(){
 	DebugLog("Mining Bomb is not affected by Effects!");
+}
+public func Activate()
+{
+ [$TxtFuse$]
+	if(!Hitten){
+   SetGraphics("Lit", this(),MBMB,1,1);
+   SetGraphics("Lit", this(),MBMB,2,3);
+   Hitten = true;
+   Sound("Fuse");
+   Sound("Fusing", , , , , +1);
+   AddEffect("Light", this(), 51, 1, this());
+	}
 }

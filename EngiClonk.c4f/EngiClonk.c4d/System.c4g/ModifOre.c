@@ -1,12 +1,13 @@
 /*--- Eisenerz ---*/
 
 #strict
+#appendto ORE1
 
 func Hit () {
   Sound("RockHit*");
 }
 
-/* Für Erzmine */
+/* FÃ¼r Erzmine */
 
 public func Sale(int plr) {
   var obj;

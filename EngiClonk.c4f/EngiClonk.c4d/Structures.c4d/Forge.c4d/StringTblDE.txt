@@ -15,3 +15,4 @@ Gather=Sammeln von %s x%d für die Schmiede.
 Move=Bewegen von %s x%d zur Schmiede.
 GatherFail=Sammeln fehlgeschlagen!
 MissingItems=Kann nicht mit dem Schmieden beginnen, gesammelte Gegenstände fehlen!
+Inspect=Verfügbare Legierungen prüfen

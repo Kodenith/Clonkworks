@@ -1,0 +1,2 @@
+DE:Schmieden erlaubt
+US:Forge allowed

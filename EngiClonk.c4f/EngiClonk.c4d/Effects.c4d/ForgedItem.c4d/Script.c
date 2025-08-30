@@ -3,6 +3,7 @@
 
 #strict
 
+local MatId;
 local Color;
 local Mass;
 local Speed;
@@ -336,4 +337,13 @@ func FxRepairTimer(pTarget){
 func FxRepairStop(pTarget){
 	if(GetAction(pTarget) eq "Process")
 		pTarget->SetAction("Walk");
+}
+
+//Inspecting
+func CanBeInspected(){ return(ObjectCount(FALW) && !ObjectCount(NOIS)); }
+
+public func ContextInspect(pCaller){
+	[$Inspect$|Image=INSP|Condition=CanBeInspected]
+	if(MatId)
+	FindObject(FALW)->Inspect(MatId, pCaller);
 }
