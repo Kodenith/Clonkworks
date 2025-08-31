@@ -1,6 +1,7 @@
 [Action]
 Name=Connect
-Delay=3
+Procedure=CONNECT
+Delay=5
 FacetBase=1
 NextAction=Connect
 StartCall=Transfer

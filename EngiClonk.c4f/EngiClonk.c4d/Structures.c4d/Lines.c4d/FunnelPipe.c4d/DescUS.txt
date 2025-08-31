@@ -1,1 +1,1 @@
-Moves objects from one container to another.
+Moves items from one container to the other.

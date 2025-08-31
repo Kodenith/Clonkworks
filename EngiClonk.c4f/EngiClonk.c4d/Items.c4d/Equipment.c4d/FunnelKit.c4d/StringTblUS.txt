@@ -1,5 +1,6 @@
-TxtConnectline=Attach Funnel Pipe
-TxtNoNewLine=Cannot create a new funnel pipe here.
-TxtLineRemoval=Funnel pipe disconnected.
-TxtConnect=Funnel pipe inserted|into %s
-TxtNoDuplicates=Connect/Hold the other end of the pipe|to detach.
+TxtConnectline=Connect line
+TxtNoNewLine=Cannot create a new line here.
+TxtLineRemoval=%s disconnected.
+TxtNewLine=New|%s
+TxtNoConnectType=%s cannot be connected|to %s.
+TxtConnect=%s connected|to %s

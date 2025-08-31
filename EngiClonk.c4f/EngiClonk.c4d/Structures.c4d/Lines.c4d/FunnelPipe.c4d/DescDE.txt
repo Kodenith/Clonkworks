@@ -1,1 +1,1 @@
-Verschiebt Objekte von einem Container in einen anderen.
+Verschiebt Gegenstände von einem Behälter in einen anderen.
