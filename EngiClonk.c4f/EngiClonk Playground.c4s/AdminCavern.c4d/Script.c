@@ -207,7 +207,7 @@ func Update(){
 		}
 		
 	//endless content in house
-	var items = [GOLD, ABRL, BARL, LBRL, OBRL, WBRL, CNKT, LNKT, ASHS, COAL, CNCR, CRYS, ERTH,LIQG, LOAM, METL, CPIG, TTIG, ROCK, WOOD, ARWP, XARP, FARP, FBMP, FLNT, GUNP, SFLN, STFN, TFLN, EFLN, TRP1, BALN, BLMP, CANN, CATA, XBOW, LORY, SLBT, STMG, SUB1, WAGN, HONY, MDRL, CBAT, SPHR, ALC_];
+	var items = [GOLD, ABRL, BARL, LBRL, OBRL, WBRL, CNKT, LNKT, FNKT, ASHS, COAL, CNCR, CRYS, ERTH,LIQG, LOAM, METL, CPIG, TTIG, ROCK, WOOD, ARWP, XARP, FARP, FBMP, FLNT, GUNP, SFLN, STFN, TFLN, EFLN, TRP1, BALN, BLMP, CANN, CATA, XBOW, LORY, SLBT, STMG, SUB1, WAGN, HONY, MDRL, CBAT, SPHR, ALC_];
 	for(var item in items){
 		if(!ContentsCount(item, house) && GetName(,item)) CreateContents(item, house, 1);
 	}

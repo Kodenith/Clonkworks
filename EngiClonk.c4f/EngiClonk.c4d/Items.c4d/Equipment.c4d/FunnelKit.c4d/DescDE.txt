@@ -1,0 +1,1 @@
+Wird verwendet, um Trichterrohre zu erstellen, die Objekte von einem Container in einen anderen befördern. Anleitung: Wählen Sie „Trichterleitung anbringen“ vor einem Containergebäude oder Fahrzeug, gehen Sie dann zu einem anderen Container und wählen Sie erneut „Trichterleitung anbringen“. Die Gegenstände im ersten Container werden in den zweiten Container befördert.

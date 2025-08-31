@@ -1,0 +1,7 @@
+[Action]
+Name=Connect
+Delay=3
+FacetBase=1
+NextAction=Connect
+StartCall=Transfer
+ 

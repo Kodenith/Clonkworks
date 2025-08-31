@@ -1,0 +1,5 @@
+TxtConnectline=Trichterrohr verbinden
+TxtNoNewLine=Hier kann kein neues Trichterrohr erstellt werden.
+TxtLineRemoval=Trichterrohr getrennt.
+TxtConnect=Trichterrohr eingeführt|in %s
+TxtNoDuplicates=Verbinden/Halten Sie das andere Ende des Rohrs fest| um es zu lösen.

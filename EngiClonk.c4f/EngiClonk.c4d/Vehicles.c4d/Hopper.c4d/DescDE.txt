@@ -1,1 +1,0 @@
-Lagert alle darin geworfenen Gegenstände in einem Gebäude, an das es angeschlossen ist. Trennt die Verbindung, wenn es zu weit entfernt ist.

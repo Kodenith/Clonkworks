@@ -1,5 +1,0 @@
-HopperDisconnect=Hopper getrennt.
-HopperConnect=Hopper mit %s verbunden.
-HopperDisconnectDistance=Verbundener Gegenstand zu weit entfernt,|Hopper getrennt.
-ConnectH=Hopper verbinden/trennen
-ConnectFail=Keine verbindbaren Objekte in der Nähe.
