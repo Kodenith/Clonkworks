@@ -11,22 +11,33 @@ func Initialize() {
   return(1);
 }
 
+public func CanBeHarvested(){ return(GetPhase() >= 4); }
+
+public func ControlDig(){
+	[$Harvest$|Image=HONY]
+	if(!CanBeHarvested()){
+		Message("$CantHarvest$",this());
+		Sound("CommandFailure1");
+		return(0);
+	}
+			PollenAmount = 0;
+			for(var i = 0; i < RandomX(1,GetPhase()); i++){
+			var hon = CreateObject(HONY, RandomX(-5,5), RandomX(-5,5));
+			}
+			Sound("Rip");
+}
+
+public func ContextHarvest(){
+	[$Harvest$|Image=HONY|Condition=CanBeHarvested]
+	ControlDig();
+}
+
 func Update(){
 	if(GetCon() < 100) return(0);
 	if(PollenAmount >= 30) PollenAmount = 30;
 	SetPhase((PollenAmount / 3) - 1);
-	if((PollenAmount / 3) - 1 > RandomX(1,10))
-	CreateParticle("HoneyDrip", RandomX(-3,3),RandomX(-3,3), RandomX(-2,2), 0, RandomX(10,25), RGBa(255,255,255));
-	
-	if(PollenAmount == 30 && !Random(30)){
-			PollenAmount = 0;
-			for(var i = 0; i < RandomX(1,10); i++){
-			var hon = CreateObject(HONY, RandomX(-5,5), RandomX(-5,5));
-			SetXDir(RandomX(-10,10), hon);
-			SetYDir(RandomX(-10,10), hon);
-			}
-			Sound("splat*");
-		}
+	if((PollenAmount / 3) - 1 > RandomX(1,50))
+	CreateParticle("HoneyDrip", RandomX(-1,4),RandomX(-2,2), RandomX(-2,2), 0, RandomX(10,25), RGBa(255,255,255));
 		
 	if(DesignatedBumb)
 	DesignatedBumb.Comb = this();

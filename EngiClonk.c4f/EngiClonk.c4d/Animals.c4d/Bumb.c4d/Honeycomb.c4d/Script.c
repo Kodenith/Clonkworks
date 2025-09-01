@@ -14,7 +14,7 @@ func Initialize() {
 func Update(){
 	if(PollenAmount >= 30) PollenAmount = 30;
 	SetPhase((PollenAmount / 3) - 1);
-	if((PollenAmount / 3) - 1 > RandomX(1,10))
+	if((PollenAmount / 3) - 1 > RandomX(1,50))
 	CreateParticle("HoneyDrip", RandomX(-10,10),RandomX(-10,10), RandomX(-2,2), 0, RandomX(10,25), RGBa(255,255,255));
 	if(!DesignatedBumb){
 		DoCon(-1);

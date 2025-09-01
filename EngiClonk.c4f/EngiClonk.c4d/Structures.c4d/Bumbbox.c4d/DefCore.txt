@@ -23,6 +23,7 @@ BurnTo=BBMX
 Grab=1
 Rotate=1
 Construction=1
+Timer=5
 TimerCall=Update
 
 [Physical]

@@ -1,0 +1,2 @@
+Harvest=Erntehonig
+CantHarvest=Noch nicht erntebereit!
