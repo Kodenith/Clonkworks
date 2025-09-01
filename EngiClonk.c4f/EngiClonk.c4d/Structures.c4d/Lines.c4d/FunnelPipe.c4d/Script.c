@@ -19,7 +19,8 @@ protected func Transfer()
   var to = GetActionTarget(1);
   
   if(from && to){
-	  var MoveItem = FindObject2(Find_Container(from), Find_OCF(OCF_Collectible));
+	  if(GetAction(to) eq "DoorOpen") return(0); //im doing this so it doesnt get stuck on the open animation.
+	  var MoveItem = FindObject2(Find_Container(from), Find_OCF(OCF_Collectible), Sort_Random());
 	  if(GetOCF(to) & OCF_Container){
 		  if(ContentsCount(,to) < GetDefCoreVal("CollectionLimit", "DefCore", GetID(to)) || GetDefCoreVal("CollectionLimit", "DefCore", GetID(to)) == 0){
 			  Enter(to, MoveItem);
@@ -31,7 +32,7 @@ protected func Transfer()
 		  if(GetOCF(cont) & OCF_Alive) return(0);
 		  if(cont){
 			 if(ContentsCount(,cont) < GetDefCoreVal("CollectionLimit", "DefCore", GetID(cont)) || GetDefCoreVal("CollectionLimit", "DefCore", GetID(cont)) == 0){
-			  Enter(cont, MoveItem);
+			  Collect(cont, MoveItem);
 			 }
 		  }
 		  else{
@@ -56,3 +57,5 @@ private func BreakMessage()
     pPumpTarget = GetActionTarget(1);
   Message("$TxtLinebroke$", pPumpTarget);
 }
+
+public func KitType(){ return(FNKT); }

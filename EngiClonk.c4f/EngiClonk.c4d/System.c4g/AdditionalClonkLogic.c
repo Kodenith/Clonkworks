@@ -8,39 +8,43 @@ public func GetMaxSpecialCount(iIndex, fAmount)
   if(iIndex == 0) { if(fAmount) return(15); return("IsHoney"); }
 }
 
-func Activate(){
-	//Detaching custom line kits
+func ControlDigDouble(){
+	// disconnecting custom lines and getting their proper kits.
+	var ovrlp = FindObject(0, 1,0,0,0, OCF_LineConstruct, 0,0,0, ovrlp);
+	if(!ovrlp) return(_inherited());
+	SetComDir(COMD_Stop);
 	
-	//no holding stuff
-	if(FindObject2(Find_Container(this()))) return(_inherited(Par()));
-	
-	// -Hopper Pipes-
-	//find all pipes and check if youre near a thing with one attached
-	for(var ln in FindObjects(Find_ID(DEPP))){
-		//check from
-		if(ObjectDistance(this(), LocalN("from", ln)) < 20){
-			if(GetID(LocalN("to", ln)) == FNKT){
+	var Lines = FindObjects(Find_Action("Connect"), Find_Func("isLine"));
+	for(var Line in Lines){
+		var from = GetActionTarget(0, Line);
+		var to = GetActionTarget(1, Line);
+		
+		if(from == ovrlp){
+			if(ContentsCount()) return(0);
+			if(GetID(to) == Line->KitType()){
+				Message("$IDS_OBJ_NODOUBLEKIT$", this(), GetName(Line));
 				Sound("Error");
-				return(0);
+				return(1);
 			}
-			var from = LocalN("from", ln);
-			var NewKit = CreateObject(FNKT);
-			LocalN("from", ln) = NewKit;
 			Sound("Connect");
-			return(0);
-		}else if(ObjectDistance(this(), LocalN("to", ln)) < 20){
-			//check to
-			if(GetID(LocalN("from", ln)) == FNKT){
+			var Kit = CreateObject(Line->KitType());
+			SetActionTargets(Kit, to, Line);
+			return(1);
+		}
+		
+		if(to == ovrlp){
+			if(ContentsCount()) return(0);
+			if(GetID(from) == Line->KitType()){
+				Message("$IDS_OBJ_NODOUBLEKIT$", this(), GetName(Line));
 				Sound("Error");
-				return(0);
+				return(1);
 			}
-			var to = LocalN("to", ln);
-			var NewKit = CreateObject(FNKT);
-			LocalN("to", ln) = NewKit;
 			Sound("Connect");
-			return(0);
+			var Kit = CreateObject(Line->KitType());
+			SetActionTargets(from, Kit, Line);
+			return(1);
 		}
 	}
 	
-	return(_inherited(Par()));
+	return(_inherited());
 }
