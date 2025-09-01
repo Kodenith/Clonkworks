@@ -6,6 +6,7 @@ local PollenAmount;
 local DesignatedBumb;
 
 func Initialize() {
+  PollenAmount = 0;
   SetAction("Fill");
   return(1);
 }
@@ -31,4 +32,9 @@ func Update(){
 			}
 			Sound("splat*");
 		}
+		
+		
+	if(InLiquid()){
+		PollenAmount -= 1;
+	}
 }

@@ -98,20 +98,8 @@ func Activity(){
 	 }
 	 
 	
-	if(ColoniesEnabled()){
-		if(Pollen > 15) Pollen = 15;
-		if(Pollen >= RandomX(1,15)) CreateParticle("PSpark", 0, 0, RandomX(-10,10), -3, 25, RGBa(255,255,0));
-	}else{
-		if(Pollen > 30) Pollen = 30;
-		if(Pollen >= RandomX(1,30)) CreateParticle("PSpark", 0, 0, RandomX(-10,10), -3, 25, RGBa(255,255,0));
-		if(Pollen == 30 && !Random(30)){
-			Pollen = 0;
-			for(var i = 0; i < RandomX(1,2); i++){
-			var hon = CreateObject(HONY, RandomX(-5,5), RandomX(-5,5));
-			LocalN("OwnedBy",hon) = this();
-			}
-		}
-	}
+	if(Pollen > 15) Pollen = 15;
+	if(Pollen >= RandomX(1,15)) CreateParticle("PSpark", 0, 0, RandomX(-10,10), -3, 25, RGBa(255,255,0));
 	
 	if(InLiquid() && Pollen > 0){
 		for(var i = 0; i < Pollen; i++){
@@ -178,7 +166,6 @@ func Activity(){
 	}
 	
 	
-	
 	//Colony Starting
 	if(ColoniesEnabled()){
 	if(GetMaterial(0,0) == Material("Tunnel") && !InColony() && !Random(100) && CheckCombSpace(false)){
@@ -199,8 +186,14 @@ func Activity(){
 		JoinColony(100);
 	}
 	
+	//is day over? go to colony and chill
+	if(InColony() && !DayCheck()){
+		BeeState = 5;
+	}
+	}
+	
 	//Collect Pollen, Only the most active bees do it
-	if(InColony() && Comb && MaxBeenergy > 1800){
+	if(Comb && MaxBeenergy > 1800){
 		if(!Random(10)){
 			BeeState = 6;
 			var PlantList;
@@ -218,22 +211,6 @@ func Activity(){
 		if(!Random(10) && Comb && Pollen > 0){
 			BeeState = 7;
 			return(0);
-		}
-	}
-	
-	//is day over? go to colony and chill
-	if(InColony() && !DayCheck()){
-		BeeState = 5;
-	}
-	}else{
-		//honey production without colony
-		if(MaxBeenergy > 1800){
-			if(!Random(20)){
-			BeeState = 6;
-			var PlantList = FindObjects(Find_Func("IsTree"));
-			RandomPlant = PlantList[RandomX(0,GetLength(PlantList))];
-			return(0);
-			}	
 		}
 	}
   }
@@ -438,7 +415,7 @@ func Activity(){
 		  }
 		  SetAction("Attack");
 		  Sound("Sting");
-		  if(Pollen > 13 && ColoniesEnabled())
+		  if(Pollen > 13 && Comb)
 			  BeeState = 7;
 		  else
 		  BeeState = 0;

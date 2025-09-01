@@ -268,27 +268,19 @@ public func FxStickyStop(object pTarget, int EffectNumber){
 	
 	
 //non effect effects
-
-func Hit(int xdir, int ydir){
-	if(WildcardMatch(Effect, "*Sticky*")){
-		AddEffect("Sticky", this(), 50, 1, this()); 
-		Sound("ArrowHit");
-	}else if(WildcardMatch(Effect, "*Bouncy*")){
-		HitBounce(this(),2, xdir, ydir);
-	}
-}
-
-//Apparently without Hit 2 and Hi t3 it wont bounce as much on some objects
 func Hit2(int xdir, int ydir){
+	var BounceVelo = Min(xdir+ydir, 500)/Mass;
+	
 	if(WildcardMatch(Effect, "*Sticky*")){
-		AddEffect("Sticky", this(), 50, 1, this()); 
+		AddEffect("Sticky", this(), 500, 1, this()); 
 		Sound("ArrowHit");
 	}else if(WildcardMatch(Effect, "*Bouncy*")){
-		HitBounce(this(),2, xdir, ydir);
+		Bounce(RandomX(BounceVelo/2,BounceVelo));
 	}
 }
 
 func Hit3( int xdir, int ydir){
+	var BounceVelo = Min(xdir+ydir, 500)/Mass;
 	if(WildcardMatch(Effect, "*Fragile*")){
 		for(var i = 0; i < RandomX(2,10); i++){
 			Smoke(RandomX(-10,10), RandomX(-10,10), RandomX(1,20));
@@ -309,7 +301,7 @@ func Hit3( int xdir, int ydir){
 		AddEffect("Sticky", this(), 50, 1, this()); 
 		Sound("ArrowHit");
 	}else if(WildcardMatch(Effect, "*Bouncy*")){
-		HitBounce(this(),2, xdir, ydir);
+		Bounce(RandomX(BounceVelo/2,BounceVelo));
 	}
 }
 

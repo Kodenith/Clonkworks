@@ -52,7 +52,7 @@ public func LineBreak(bool fNoMsg)
 private func BreakMessage()
 {
   var pPumpTarget = GetActionTarget(0);
-  if (GetID(pPumpTarget) != LNKT)
+  if (GetID(pPumpTarget) != FNKT)
     pPumpTarget = GetActionTarget(1);
   Message("$TxtLinebroke$", pPumpTarget);
 }

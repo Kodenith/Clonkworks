@@ -9,58 +9,6 @@ global func RandomRGBa(bool IncludeAlpha){
 	return(RGBa( RandomX(0,255) , RandomX(0,255) , RandomX(0,255)));
 }
 
-//Calculates and bounces an object based on current velocity, and if its touching a wall. can be used to make bouncy objects
-//pObject - The object being bounced, can be 0 in local calls
-//Power - how powerful is the bounce? numbers past 10 make the object bounce without end and eventually reach extreme speeds!
-//xdir - current x velocity, Pass in xdir from Hit, Hit2, or Hit3
-//ydir - current y velocity, Pass in ydir from Hit, Hit2, or Hit3
-// you can pass in anything to xdir and ydir, but you might need to make the numbers big
-global func HitBounce(object pObject,int Power, int xdir, int ydir){
-	    var Devide = 20;
-		Devide -= Power;
-		var wdt = GetDefCoreVal("Width", "DefCore", GetID(pObject));
-		if(GetXDir(pObject) == 0 && GetYDir() == 0) return(0);
-		if(Stuck(pObject)) return(0);
-		//if on cooldown, dont bounce.
-		if(GetEffect("HBCooldown",pObject)) return(0);
-	
-		var HitWall;
-		//check if touching wall
-		HitWall = false;
-		if(xdir > 0){
-			if(pObject->GBackSolid(2+wdt,-2)) HitWall = true;
-		}else{
-			if(pObject->GBackSolid(-2-wdt,-2)) HitWall = true;
-		}
-		
-		if(xdir > 50) xdir = 50;
-		if(xdir < -50) xdir = -50;
-		
-		if(Abs(xdir) != 0){
-			//if wall is hit, swap x velocity. if not the continue but slow down
-			if(HitWall) SetXDir((xdir/Devide), pObject);
-				else SetXDir(-(xdir/Devide)*2, pObject);
-		}
-		
-		if(Abs(ydir) != 0){
-			if(!HitWall)
-				SetYDir(-(ydir/Devide), pObject);
-			else SetYDir((ydir/Devide), pObject);
-			if(Abs(xdir) > 0 && !HitWall) SetXDir(GetXDir()+xdir/2, pObject);
-			
-			if(HitWall && xdir < 0) SetXDir(xdir, pObject);
-			if(HitWall && xdir > 0) SetXDir(-xdir, pObject);
-		}
-		
-		AddEffect("HBCooldown", pObject, 50, 5, , );
-		
-		return(1);
-}
-
-global func FxHBCooldownStop(object pTarget, int iEffectNumber, int iReason, bool fTemp){
-	//once this effect is finished the object can bounce again.
-}
-
 //this function allows the creation of forged objects without the forge itself, useful for minigames or spawning a preforged item
 //if an material is not on the forge list or the Forging Allowed rule is not in the scenario, this returns 0
 //also, if the object you wanna spawn isnt forgeable, this will also return 0.
@@ -112,20 +60,4 @@ global func CreateForgedObjectCustom(id Id, int XOffset, int YOffset, int Owner,
 	ForgedObj->AssignEffects();
 	
 	return(ForgedObj);
-}
-
-//This function draws a particle line similiar to a line kit. it will bend on walls.
-//requires strict 3
-global func DrawParticleWire(string ParticleType,int fX,int fY,int tX, int tY,int Distance,int Size,int Color1, int Color2){
-var path = GetPath(fX, fY, tX, tY);
-if(!path) return(-1); //returns -1 if cant find path, can be used for breaking lines
-for(var xymap in path.Waypoints){
-	if(DrawParticleLine(ParticleType, fX-GetX(), fY-GetY(), xymap["X"]-GetX(), xymap["Y"]-GetY(),Distance, Size, Color1, Color2, 0)){
-	fX = xymap.X;
-	fY = xymap.Y;
-	}else{
-		return(-1);
-	}
-}
-return(1);
 }
