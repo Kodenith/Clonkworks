@@ -9,11 +9,12 @@ public func LightningStrike()
   if (GetCon() < 100) return(0);
     Sound("Electric");
 	SetBatteryEnergy(100);
+	previous = 100;
 	CastParticles("PxSpark", 10,100, 0,-30, 25, 80, RGBa(255,255,0,0), RGBa(255,149,0,127));
 }
 
 func UpdateLook(){
-	if(Timer < 20) Timer++;
+	if(Timer < 9999) Timer++;
 	var chng;
 	var pLine = FindObject(0, 0,0,0,0, 0, "Connect", this());
 	if(previous != GetEnergy()){
@@ -27,12 +28,13 @@ func UpdateLook(){
 		}
 		
 		DoEnergy(-GetEnergy());
-		if(Timer >= 20){
-			Timer = 0;
+		if(Timer <= 13){
 			DoEnergy(previous);
 			CanExit = false;
 		}
 		else{ DoEnergy(previous+chng); }
+		
+		if(Timer >= 99) Timer = 0;
 	}
 	
 	if(GetAction() != "Charge") SetAction("Charge");

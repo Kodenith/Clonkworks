@@ -13,7 +13,7 @@ func Construction(){
 }
 
 func UpdateLook(){
-	if(Timer < 13) Timer++;
+	if(Timer < 9999) Timer++;
 	var chng;
 	var pLine = FindObject(0, 0,0,0,0, 0, "Connect", this());
 	if(previous != GetEnergy()){
@@ -27,12 +27,13 @@ func UpdateLook(){
 		}
 		
 		DoEnergy(-GetEnergy());
-		if(Timer >= 13){
-			Timer = 0;
+		if(Timer <= 13){
 			DoEnergy(previous);
 			CanExit = false;
 		}
 		else{ DoEnergy(previous+chng); }
+		
+		if(Timer >= 13) Timer = 0;
 	}
 	
 	if(GetAction() ne "Charge") SetAction("Charge");
