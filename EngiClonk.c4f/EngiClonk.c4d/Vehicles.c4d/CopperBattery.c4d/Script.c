@@ -13,13 +13,15 @@ func Construction(){
 }
 
 func UpdateLook(){
-	Timer++;
+	if(Timer < 13) Timer++;
 	var chng;
+	var pLine = FindObject(0, 0,0,0,0, 0, "Connect", this());
 	if(previous != GetEnergy()){
 		if(previous < GetEnergy()){
 			previous += 1;
 			chng = -1;
 		}else{ 
+			if(!pLine) return(0);
 			previous -= 1;
 			chng = 1;
 		}

@@ -35,6 +35,7 @@ TimerCall=Activity
 Float=1
 StretchGrowth=1
 NoTransferZones=1
+Placement=2
 
 [Physical]
 Energy=50000
