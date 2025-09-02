@@ -9,7 +9,6 @@ Planned Features:
 * Ropes
 * New Tools (Mining drill, launchpads, etc.)
 * New Magic Spells
-* New Gamemodes
 * New Environment Effects
 * Better Mining and Cave Exploration
 * 3 new clonk types
