@@ -3,41 +3,52 @@
 #strict
 
 local CanExit;
-local previous;
+local oldeng;
 local Timer;
 
 func Construction(){
 	Timer = 0;
-	previous = 1;
 	CanExit = true;
 }
 
+public func GetChargeHold(){ return(3); }
+
 func UpdateLook(){
-	if(Timer < 9999) Timer++;
-	var chng;
-	var pLine = FindObject(0, 0,0,0,0, 0, "Connect", this());
-	if(previous != GetEnergy()){
-		if(previous < GetEnergy()){
-			previous += 1;
-			chng = -1;
-		}else{ 
-			if(!pLine) return(0);
-			previous -= 1;
-			chng = 1;
+	var Fixed = false;
+	
+	var eng = GetEnergy();
+	
+	if(oldeng < eng-1){
+		eng = oldeng+1;
+		Fixed = true;
 		}
-		
-		DoEnergy(-GetEnergy());
-		if(Timer <= 13){
-			DoEnergy(previous);
-			CanExit = false;
-		}
-		else{ DoEnergy(previous+chng); }
-		
-		if(Timer >= 13) Timer = 0;
+	else if(oldeng > eng+1){
+		Fixed = true;
+		eng = oldeng-1;
 	}
 	
+	if(oldeng <= eng && oldeng <= 2 && oldeng > 0) oldeng -= 1;
+	if(oldeng < 0) oldeng = 0;
+	
+	if(!Random(GetChargeHold())){
+	if(oldeng < eng){
+		DoEnergy(-eng+(eng-1));
+	}else if(oldeng > eng){
+		DoEnergy(-eng-(eng+50));
+	}
+	
+	oldeng = eng;
+	}else{
+		DoEnergy(-eng);
+		DoEnergy(oldeng);
+	}
+
+	if(CanExit && GetActTime() > 120) CanExit = false;
+	
 	if(GetAction() ne "Charge") SetAction("Charge");
-	SetPhase(GetEnergy()-1);
+	if(!Fixed)
+	SetPhase(eng-1);
+	else SetPhase(oldeng-1);
 }
 
 func ExitWorkshop(){
@@ -56,7 +67,7 @@ func IsBattery(){ return(1); }
 func DoBatteryEnergy(int Amount){
 	if(Abs(Amount) > 100) return(0);
 	DoEnergy(Amount);
-	previous = GetEnergy();
+	oldeng = GetEnergy();
 	return(1);
 }
 
@@ -64,6 +75,6 @@ func SetBatteryEnergy(int Amount){
 	if(Amount < 0) return(0);
 	DoEnergy(-GetEnergy());
 	DoEnergy(Amount);
-	previous = GetEnergy();
+	oldeng = Amount;
 	return(1);
 }
