@@ -9,7 +9,6 @@ public func LightningStrike()
   if (GetCon() < 100) return(0);
     Sound("Electric");
 	SetBatteryEnergy(100);
-	previous = 100;
 	CastParticles("PxSpark", 10,100, 0,-30, 25, 80, RGBa(255,255,0,0), RGBa(255,149,0,127));
 }
 

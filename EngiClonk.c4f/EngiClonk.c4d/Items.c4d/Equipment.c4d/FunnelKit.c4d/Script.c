@@ -12,6 +12,7 @@ protected func Activate(clonk)
   [$TxtConnectline$]
   var obj = FindObject(0, 1,0,0,0, OCF_LineConstruct(), 0,0,0, obj);
   if(!obj) return(Message("$TxtNoNewLine$", this()) );
+  if(!GetOCF(obj) & OCF_Container)  return(Message("$TxtNoNewLine$", this()) );
   var pLine = FindObject(0, 0,0,0,0, 0, "Connect", this() );
   SetComDir(COMD_Stop(), clonk);
 

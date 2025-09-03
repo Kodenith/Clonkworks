@@ -22,7 +22,6 @@ func ControlDigDouble(){
 		if(from == ovrlp){
 			if(ContentsCount()) return(0);
 			if(GetID(to) == Line->KitType()){
-				Message("$IDS_OBJ_NODOUBLEKIT$", this(), GetName(Line));
 				Sound("Error");
 				return(1);
 			}
@@ -35,7 +34,6 @@ func ControlDigDouble(){
 		if(to == ovrlp){
 			if(ContentsCount()) return(0);
 			if(GetID(from) == Line->KitType()){
-				Message("$IDS_OBJ_NODOUBLEKIT$", this(), GetName(Line));
 				Sound("Error");
 				return(1);
 			}

@@ -60,7 +60,7 @@ func ExitWorkshop(){
 	}
 }
 
-//useful functions that make working witb batteries and their energy a bit easier (i blame myself for my horrid code)
+//useful functions that make working with batteries and their energy a bit easier (i blame myself for my horrid code)
 
 func IsBattery(){ return(1); }
 
