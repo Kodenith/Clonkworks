@@ -12,4 +12,4 @@ public func LightningStrike()
 	CastParticles("PxSpark", 10,100, 0,-30, 25, 80, RGBa(255,255,0,0), RGBa(255,149,0,127));
 }
 
-public func GetChargeHold(){ return(10); }
+public func GetChargeHold(){ return(30); }
