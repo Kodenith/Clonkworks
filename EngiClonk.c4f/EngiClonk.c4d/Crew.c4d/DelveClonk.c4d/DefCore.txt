@@ -27,6 +27,8 @@ StretchGrowth=1
 NoBurnDecay=1
 IncompleteActivity=1
 Oversize=1
+Timer=5
+TimerCall=DoFallControl
 
 [Physical]
 Energy=50000
