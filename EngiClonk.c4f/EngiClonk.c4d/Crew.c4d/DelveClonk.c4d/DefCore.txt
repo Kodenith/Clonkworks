@@ -27,7 +27,7 @@ StretchGrowth=1
 NoBurnDecay=1
 IncompleteActivity=1
 Oversize=1
-Timer=5
+Timer=2
 TimerCall=DoFallControl
 ContactCalls=1
 
