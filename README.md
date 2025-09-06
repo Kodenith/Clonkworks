@@ -33,6 +33,7 @@ The mod is fully translated in English & German, english being the primary langu
 # Credits
 
 * Thanks to [Danghor](https://github.com/Danghorx) for help with some translations
+* Thanks to [Ryou](https://github.com/RoboClonk) for help with 3d modeling
 * This Content pack includes music from **Clonk Endeavor**, composed by Hans-Christian Kühl and Sebastian Burkhart.
 
 Clonk Game Content and Trademark License is contained in license.txt
