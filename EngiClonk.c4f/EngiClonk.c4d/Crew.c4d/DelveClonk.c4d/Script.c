@@ -6,6 +6,11 @@ local ControlDirection;
 local NoMoveJump;
 local xdr;
 
+func Initialize(){
+	SetPlrViewRange(800, this());
+	return(_inherited());
+}
+
 /* Air Control + WallJumps */
 func ControlLeft(){
 	//must be climbing to wall jump
@@ -52,11 +57,11 @@ func DoFallControl(){
 	//fall control logic
 	if(GetAction() == "Jump"){
 		if(GetDir() == DIR_Right && ControlDirection == 1){
-			SetXDir(GetXDir()+ControlDirection*Random(2));
+			SetXDir(GetXDir()+ControlDirection*Random(3));
 			return(0);
 		}
 		if(GetDir() == DIR_Left && ControlDirection == -1){
-			SetXDir(GetXDir()+ControlDirection*Random(2));
+			SetXDir(GetXDir()+ControlDirection*Random(3));
 			return(0);
 		}
 		SetXDir(GetXDir()+ControlDirection*3);
