@@ -103,6 +103,7 @@ Facet=0,120,16,20
 NextAction=Hold
 InLiquidAction=Swim
 PhaseCall=CheckStuck
+StartCall=DelveJump
 
 [Action]
 Name=KneelDown

@@ -29,6 +29,7 @@ IncompleteActivity=1
 Oversize=1
 Timer=5
 TimerCall=DoFallControl
+ContactCalls=1
 
 [Physical]
 Energy=50000

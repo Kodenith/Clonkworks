@@ -3,6 +3,8 @@
 #include CLNK
 
 local ControlDirection;
+local NoMoveJump;
+local xdr;
 
 /* Air Control + WallJumps */
 func ControlLeft(){
@@ -14,6 +16,7 @@ func ControlLeft(){
 			Fling(this(), -(100000/(110000-GetPhysical("Jump", 0, 0)))-2,-3);
 			SetDir(0);
 			SetAction("Jump");
+			OnActionJump(GetXDir(0,100), GetYDir(0,100), false);
 		}
 	}
 	
@@ -29,6 +32,7 @@ func ControlRight(){
 			Fling(this(), (100000/(110000-GetPhysical("Jump", 0, 0)))+2,-3);
 			SetDir(1);
 			SetAction("Jump");
+			OnActionJump(GetXDir(0,100), GetYDir(0,100), false);
 		}
 	}
 	
@@ -44,14 +48,15 @@ protected func ControlUpdate(object self, int comdir, bool dig, bool throw)
 }
 
 func DoFallControl(){
+	xdr = GetXDir();
 	//fall control logic
 	if(GetAction() == "Jump"){
 		if(GetDir() == DIR_Right && ControlDirection == 1){
-			SetXDir(GetXDir()+ControlDirection*2);
+			SetXDir(GetXDir()+ControlDirection*Random(2));
 			return(0);
 		}
 		if(GetDir() == DIR_Left && ControlDirection == -1){
-			SetXDir(GetXDir()+ControlDirection*2);
+			SetXDir(GetXDir()+ControlDirection*Random(2));
 			return(0);
 		}
 		SetXDir(GetXDir()+ControlDirection*3);
@@ -59,5 +64,42 @@ func DoFallControl(){
 	
 	if(GetAction() == "Tumble"){
 		SetXDir(GetXDir()+ControlDirection*Random(3));
+	}
+}
+
+func OnActionJump(int iXDir100, int iYDir100, bool fByCom){
+	if(fByCom){
+		NoMoveJump = true;
+	}else{
+		NoMoveJump = false;
+	}
+	return(0);
+}
+
+func DelveJump(){
+	if(NoMoveJump){
+		NoMoveJump = false;
+		AddEffect("Stopper", this(), 100,1, this());
+	}
+}
+
+func FxStopperTimer(pTarget, iEffectNumber){
+	SetXDir(xdr);
+	if(GetPhase() > 0) return(-1);
+}
+
+//making the clonk not tumble when hitting a wall
+
+func ContactLeft(){
+	if(GetAction() == "Tumble"){
+		SetDir(0);
+		SetAction("Scale");
+	}
+}
+
+func ContactRight(){
+	if(GetAction() == "Tumble"){
+		SetDir(1);
+		SetAction("Scale");
 	}
 }
