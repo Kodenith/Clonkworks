@@ -13,6 +13,7 @@ func Initialize(){
 
 /* Air Control + WallJumps */
 func ControlLeft(){
+	if(!GetPlrJumpAndRunControl(GetOwner(this()))) ControlDirection = -1;
 	//must be climbing to wall jump
 	if(GetAction() == "Scale" || GetAction() == "ScaleDown"){
 		//is facing right?
@@ -28,7 +29,12 @@ func ControlLeft(){
 	return(_inherited());
 }
 
+func ControlDown(){
+	if(!GetPlrJumpAndRunControl(GetOwner(this()))) ControlDirection = 0;
+}
+
 func ControlRight(){
+	if(!GetPlrJumpAndRunControl(GetOwner(this()))) ControlDirection = 1;
 	//must be climbing to wall jump
 	if(GetAction() == "Scale" || GetAction() == "ScaleDown"){
 		//is facing left?
@@ -56,19 +62,19 @@ func DoFallControl(){
 	xdr = GetXDir();
 	//fall control logic
 	if(GetAction() == "Jump"){
-		if(GetDir() == DIR_Right && ControlDirection == 1){
-			SetXDir(GetXDir()+ControlDirection*Random(3));
+		if(GetDir() == DIR_Right && ControlDirection == 1 && GetXDir() > 25){
+			SetXDir(GetXDir()+ControlDirection*Random(1));
 			return(0);
 		}
-		if(GetDir() == DIR_Left && ControlDirection == -1){
-			SetXDir(GetXDir()+ControlDirection*Random(3));
+		if(GetDir() == DIR_Left && ControlDirection == -1 && GetXDir() < -25){
+			SetXDir(GetXDir()+ControlDirection*Random(1));
 			return(0);
 		}
-		SetXDir(GetXDir()+ControlDirection*3);
+		SetXDir(GetXDir()+ControlDirection*RandomX(1,2));
 	}
 	
 	if(GetAction() == "Tumble"){
-		SetXDir(GetXDir()+ControlDirection*Random(3));
+		SetXDir(GetXDir()+ControlDirection*Random(2));
 	}
 }
 
@@ -83,6 +89,7 @@ func OnActionJump(int iXDir100, int iYDir100, bool fByCom){
 
 func DelveJump(){
 	if(NoMoveJump){
+		if(!GetPlrJumpAndRunControl(GetOwner(this()))) ControlDirection = 0;
 		NoMoveJump = false;
 		AddEffect("Stopper", this(), 100,1, this());
 	}
