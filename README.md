@@ -1,4 +1,5 @@
-# <img width="25" height="25" alt="Untitled" src="https://github.com/user-attachments/assets/2c381d22-f0d9-41dd-b778-29a4f07efb63" />  EngiClonk
+# <img width="2048" height="1024" alt="Promo" src="https://github.com/user-attachments/assets/c1d54eef-0d47-4689-ace5-3de23d0c69b7" />
+
 
 EngiClonk is a mod for [LegacyClonk](https://github.com/legacyclonk/LegacyClonk), that plans on expanding cave exploration and mining, by adding new things to find and use in caves alongside adding some new tools, utilities, and more..! 
 currently, the mod has a new crafting system - "Forging", which lets you choose a metal and craft anything out of it. And also Bumbs, which are plump bees that make huge hives in caves.
