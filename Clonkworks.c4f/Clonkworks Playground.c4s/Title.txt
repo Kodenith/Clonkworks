@@ -1,2 +1,2 @@
-DE:EngiClonk-Spielplatz
-US:EngiClonk Playground
+DE:Clonkworks-Spielplatz
+US:Clonkworks Playground
