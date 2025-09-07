@@ -62,11 +62,11 @@ func DoFallControl(){
 	xdr = GetXDir();
 	//fall control logic
 	if(GetAction() == "Jump"){
-		if(GetDir() == DIR_Right && ControlDirection == 1 && GetXDir() > 25){
+		if(GetDir() == DIR_Right && ControlDirection == 1 && GetXDir() > 20){
 			SetXDir(GetXDir()+ControlDirection*Random(1));
 			return(0);
 		}
-		if(GetDir() == DIR_Left && ControlDirection == -1 && GetXDir() < -25){
+		if(GetDir() == DIR_Left && ControlDirection == -1 && GetXDir() < -20){
 			SetXDir(GetXDir()+ControlDirection*Random(1));
 			return(0);
 		}
