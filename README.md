@@ -1,5 +1,5 @@
 # <img width="2048" height="1024" alt="Promo1" src="https://github.com/user-attachments/assets/b7a8734b-2ae7-4c20-80de-bb765cb6ff67" />
-EngiClonk is a mod for [LegacyClonk](https://github.com/legacyclonk/LegacyClonk), that plans on expanding cave exploration and mining, by adding new things to find and use in caves alongside adding some new tools, utilities, and more..! 
+Clonkworks is a mod for [LegacyClonk](https://github.com/legacyclonk/LegacyClonk), that plans on expanding cave exploration and mining, by adding new things to find and use in caves alongside adding some new tools, utilities, and more..! 
 currently, the mod has a new crafting system - "Forging", which lets you choose a metal and craft anything out of it. And also Bumbs, which are plump bees that make huge hives in caves.
 
 Planned Features:
