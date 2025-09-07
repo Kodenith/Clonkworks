@@ -8,6 +8,7 @@ local StickY;
 local VelX, VelY;
 
 public func IsHoney(){ return(true); }
+func Bendable(){ return(true); }
 
 public func IsNotWeapon(){
 	return(true);
@@ -25,6 +26,7 @@ func HoneyUpdate(){
 	var ycalc;
 	if(yv == 0) ycalc = 1;
 	else ycalc = yv;
+	if(Bendable())
 	SetObjDrawTransform(1000, 30 * xv, 0,0,1000+(20*ycalc),0,this());
 	
 	if(!StickX){
