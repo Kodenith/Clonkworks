@@ -1,4 +1,0 @@
-TxtMovement=Move
-TxtSting=Sting
-TxtLead=Lead to Hive
-TxtLeave=Retransform

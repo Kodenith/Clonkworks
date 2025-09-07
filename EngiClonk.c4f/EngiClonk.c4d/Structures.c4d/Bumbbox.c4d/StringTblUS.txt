@@ -1,2 +1,0 @@
-Harvest=Harvest Honey
-CantHarvest=Can't Harvest Yet!

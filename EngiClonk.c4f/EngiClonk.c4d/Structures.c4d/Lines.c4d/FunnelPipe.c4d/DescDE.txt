@@ -1,1 +1,0 @@
-Verschiebt Gegenstände von einem Behälter in einen anderen.

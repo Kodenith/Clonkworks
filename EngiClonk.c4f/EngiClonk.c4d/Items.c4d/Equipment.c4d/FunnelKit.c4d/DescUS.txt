@@ -1,1 +1,0 @@
-Used to create funnel pipes, which will move objects from one container to another. Instructions: Select "Attach Funnel Line" in front of a container building or vehicle, then walk up to another container and select "Attach Funnel Line" again. Things inside the first container will go into the second.
