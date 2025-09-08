@@ -27,8 +27,17 @@ public func ControlDig(){
 			Sound("Rip");
 }
 
-public func ContextHarvest(){
+public func ContextHarvest(object pCaller, bool DontAttemptPath){
 	[$Harvest$|Image=HONY|Condition=CanBeHarvested]
+	if(ObjectDistance(this(), pCaller) > 15 && !DontAttemptPath){
+		SetCommand(pCaller, "MoveTo", this());
+		AppendCommand(pCaller, "Call", this(),pCaller,true,,,"ContextHarvest");
+		return(0);
+	}
+	
+	if(DontAttemptPath && ObjectDistance(this(), pCaller) > 15)
+		return(0);
+	
 	ControlDig();
 }
 
@@ -39,16 +48,19 @@ func Update(){
 	if((PollenAmount / 3) - 1 > RandomX(1,50))
 	CreateParticle("HoneyDrip", RandomX(-1,4),RandomX(-2,2), RandomX(-2,2), 0, RandomX(10,25), RGBa(255,255,255));
 		
-	if(DesignatedBumb)
+	if(DesignatedBumb){
+	if(DesignatedBumb.Comb && GetID(DesignatedBumb.Comb) == HNCB) {
+		DesignatedBumb.Comb.DesignatedBumb = 0;
+	}
 	DesignatedBumb.Comb = this();
-	if(DesignatedBumb2)
+	}
+	
+	if(DesignatedBumb2){
+	if(DesignatedBumb2.Comb && GetID(DesignatedBumb2.Comb) == HNCB) {
+		DesignatedBumb2.Comb.DesignatedBumb = 0;
+	}
 	DesignatedBumb2.Comb = this();
-	var FoundBumb;
-	if(!Random(5))
-	if(FoundBumb = FindObject2(Find_ID(BUMB), Find_Distance(400), Find_Exclude(DesignatedBumb), Find_Exclude(DesignatedBumb2), Sort_Random())){
-		if(!DesignatedBumb) DesignatedBumb = FoundBumb;
-		else if(!DesignatedBumb2) DesignatedBumb2 = FoundBumb;
-	};
+	}
 	
 	if(DesignatedBumb)
 	if(!GetAlive(DesignatedBumb)) DesignatedBumb = 0;;
@@ -58,4 +70,12 @@ func Update(){
 	if(InLiquid()){
 		PollenAmount -= 1;
 	}
+	
+	var FoundBumb;
+	if(!Random(5))
+	if(FoundBumb = FindObject2(Find_ID(BUMB), Find_Distance(400), Find_Exclude(DesignatedBumb), Find_Exclude(DesignatedBumb2), Sort_Random())){
+		if(GetID(FoundBumb.Comb) == BMBX) return(0);
+		if(!DesignatedBumb) DesignatedBumb = FoundBumb;
+		else if(!DesignatedBumb2) DesignatedBumb2 = FoundBumb;
+	};
 }
