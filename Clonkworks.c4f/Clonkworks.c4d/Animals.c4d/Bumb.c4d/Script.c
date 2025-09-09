@@ -35,6 +35,16 @@ local BeeState;
 // 7 - Deposit Pollen
 // 8 - Escape to Water
 
+//function for bumbboxes, to see if bumb is in a wild hive
+public func IsWild(){
+	if(Comb && GetID(Comb) != BUMB){
+		if(GetID(Comb) == BMBX) return(0);
+		else return(1);
+	}else{
+		return(1);
+	}
+}
+
 public func CanRoamFine(){
 	//if its top or bottom verticies are touching the landscape, repath if cant see target
 	if(GetContact(this(), -1) & CNAT_Bottom) return(PathFree(GetX(), GetY(), gX, gY));

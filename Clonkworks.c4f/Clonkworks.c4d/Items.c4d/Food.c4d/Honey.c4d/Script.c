@@ -2,7 +2,7 @@
 
 #strict 2
 
-local OwnedBy;
+local Wild;
 local StickX;
 local StickY;
 local VelX, VelY;
@@ -61,12 +61,17 @@ func HoneyUpdate(){
 
 func Entrance(object pContainer){
 	StickX = 0;
-	if(GetID(OwnedBy) == BUMB)
 	if(GetOCF(pContainer) & OCF_Alive){
-		//When the bumb is sleeping, or is far away, ignore it
-		if(ObjectDistance(this(), OwnedBy) < 300 && GetAction(OwnedBy) != "Rest")
-		LocalN("GrudgeTarget", OwnedBy) = pContainer;
-	};
+		//find nearby bumbs and alert them if this honey isnt from the bumbhouse.
+		if(Wild){
+			
+			for(var found in FindObjects(Find_ID(BUMB), Find_Distance(300))){
+			if(found)
+			if(ObjectDistance(this(), found) < 300 && GetAction(found) != "Rest")
+			LocalN("GrudgeTarget", found) = pContainer;;
+			}
+		}
+	}
 }
 
 public func Activate(object pClonk)

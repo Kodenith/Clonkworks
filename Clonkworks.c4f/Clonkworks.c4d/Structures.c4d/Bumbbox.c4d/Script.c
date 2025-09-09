@@ -74,7 +74,9 @@ func Update(){
 	var FoundBumb;
 	if(!Random(5))
 	if(FoundBumb = FindObject2(Find_ID(BUMB), Find_Distance(400), Find_Exclude(DesignatedBumb), Find_Exclude(DesignatedBumb2), Sort_Random())){
-		if(GetID(FoundBumb.Comb) == BMBX) return(0);
+		if(!FoundBumb->IsWild()){
+			return(0);
+		}
 		if(!DesignatedBumb) DesignatedBumb = FoundBumb;
 		else if(!DesignatedBumb2) DesignatedBumb2 = FoundBumb;
 	};

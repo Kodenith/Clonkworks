@@ -26,7 +26,7 @@ func Update(){
 			PollenAmount = 0;
 			for(var i = 0; i < RandomX(1,10); i++){
 			var hon = CreateObject(HONY, RandomX(-5,5), RandomX(-5,5));
-			LocalN("OwnedBy",hon) = DesignatedBumb;
+			LocalN("Wild",hon) = true;
 			SetXDir(RandomX(-10,10), hon);
 			SetYDir(RandomX(-10,10), hon);
 			}
