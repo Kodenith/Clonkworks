@@ -5,15 +5,13 @@
 
 
 func Initialize() {
-   CreateObject(ECAC, 374, 1075);
-   CreateObject(ADSG, 374, 1075-15);
-   var torch;
-   torch = CreateObject(TOR2, 374-15, 1090);
-   torch->SetAction("Burning");
-   torch = CreateObject(TOR2, 374+15, 1090);
-   torch->SetAction("Burning");
-   torch->SetDir(1);
-   
+   //Fixing Elevator
+   var elev = FindObject2(Find_ID(ELEV));
+   CreateObject(ELEV,GetX(elev),GetY(elev)+30);
+   RemoveObject(elev);
+   FindObject2(Find_ID(ELEC))->ControlDown();
+   SetPhysical("Float",500,0, FindObject2(Find_ID(ELEC)));
+	
    //Forge Setup
   FindObject2(Find_ID(FALW))->AddForgeable(METL, RGBa(177, 171, 170, 0), 3, 34, 2, "Meltable HTM");
   FindObject2(Find_ID(FALW))->AddForgeable(CPIG, RGBa(170, 79, 66, 0), 4, 30, 3, "Meltable Lightning");
@@ -29,12 +27,10 @@ func Initialize() {
 }
 
 func InitializePlayer(int iPlr){
-	SetPosition(102, 589, GetCrew(iPlr,0));
+	SetPosition(GetX(FindObject(HUT3)), GetY(FindObject(HUT3)), GetCrew(iPlr,0));
 	var flag = CreateObject(FLAG, 130+(5*iPlr),509, 0);
+	Enter(FindObject(HUT3),flag);
 	SetOwner(iPlr, flag);
 	SetFoW (0, iPlr);
 	var i, id; while (id = GetDefinition(i++)) SetPlrKnowledge(iPlr, id);
-	if(MAGE){
-		DoHomebaseMaterial(iPlr, MAGE, 3);
-	}
 }

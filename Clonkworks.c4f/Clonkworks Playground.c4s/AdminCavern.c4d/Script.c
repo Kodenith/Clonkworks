@@ -58,12 +58,6 @@ public func ContextCreateRule(pCaller){
 	AddMenuItem("$Add$","AddRuleMenu",, pCaller,0,pCaller);
 }
 
-public func ContextTeleToBase(pCaller){
-	[$res$|Image=HUT3]
-	Exit(pCaller);
-	SetPosition(102, 589, pCaller);
-}
-
 public func ContextCreateEnv(pCaller){
 	[$OP3$|Image=EGLN]
 	CreateMenu(EGLN, pCaller, this(),0,"$OP3$",,1);
@@ -109,7 +103,7 @@ public func Flood(idType, int type){
 	if(type == 1) mat = "Lava";
 	if(type == 2) mat = "Acid";
 	
-	CastPXS(mat, 15000, 100);
+	CastPXS(mat, 15000, 100, 1725-GetX(), 2505-GetY());
 }
 
 public func Strike(){
@@ -152,7 +146,6 @@ public func EnableBees(){
 		PlaceVegetation(GRAS, 0, 0, LandscapeWidth(), LandscapeHeight(), 100000);
 	}
 	Sound("Ding");
-	DrawMaterialQuad("Tunnel-Rough", 555, 668, 2967, 668, 2967, 1045, 555, 1045, true);
 }
 
 public func Nope(){

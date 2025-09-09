@@ -48,14 +48,14 @@ func Update(){
 	if((PollenAmount / 3) - 1 > RandomX(1,50))
 	CreateParticle("HoneyDrip", RandomX(-1,4),RandomX(-2,2), RandomX(-2,2), 0, RandomX(10,25), RGBa(255,255,255));
 		
-	if(DesignatedBumb){
+	if(DesignatedBumb && GetAlive(DesignatedBumb)){
 	if(DesignatedBumb.Comb && GetID(DesignatedBumb.Comb) == HNCB) {
 		DesignatedBumb.Comb.DesignatedBumb = 0;
 	}
 	DesignatedBumb.Comb = this();
 	}
 	
-	if(DesignatedBumb2){
+	if(DesignatedBumb2 && GetAlive(DesignatedBumb2)){
 	if(DesignatedBumb2.Comb && GetID(DesignatedBumb2.Comb) == HNCB) {
 		DesignatedBumb2.Comb.DesignatedBumb = 0;
 	}
@@ -63,9 +63,9 @@ func Update(){
 	}
 	
 	if(DesignatedBumb)
-	if(!GetAlive(DesignatedBumb)) DesignatedBumb = 0;;
+	if(!GetAlive(DesignatedBumb)) DesignatedBumb = nil;;
 	if(DesignatedBumb2)
-	if(!GetAlive(DesignatedBumb2)) DesignatedBumb2 = 0;;
+	if(!GetAlive(DesignatedBumb2)) DesignatedBumb2 = nil;;
 	
 	if(InLiquid()){
 		PollenAmount -= 1;
