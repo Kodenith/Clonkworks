@@ -20,6 +20,7 @@ protected func Transfer()
   
   if(from && to){
 	  if(GetAction(to) eq "DoorOpen") return(0); //im doing this so it doesnt get stuck on the open animation.
+	  if(GetAction(from) eq "DoorOpen") return(0); // this too, apparently i forgot to do this previosuly
 	  var MoveItem = FindObject2(Find_Container(from), Find_OCF(OCF_Collectible), Sort_Random());
 	  if(GetOCF(to) & OCF_Container){
 		  if(ContentsCount(,to) < GetDefCoreVal("CollectionLimit", "DefCore", GetID(to)) || GetDefCoreVal("CollectionLimit", "DefCore", GetID(to)) == 0){
