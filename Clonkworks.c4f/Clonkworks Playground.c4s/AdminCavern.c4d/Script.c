@@ -69,9 +69,6 @@ public func ContextCreateEnv(pCaller){
 	
 	AddMenuItem("$inr2$",,, pCaller,0,pCaller);
 	if(GetOwner(pCaller) == 0 || !adSafemode){
-	AddMenuItem("$flood1$","Flood",WBRL,pCaller,0,0);
-	AddMenuItem("$flood2$","Flood",LBRL,pCaller,0,1);
-	AddMenuItem("$flood3$","Flood",ABRL,pCaller,0,2);
 	AddMenuItem("$wave$","Unleash",MONS,pCaller,0);
 	}
 	if(ObjectCount(BUMB))
@@ -95,16 +92,6 @@ public func TimeSkip(){
 	else time->SetTime(0);
 }
 public func Heat(idType, int temp){ SetTemperature(temp); }
-
-public func Flood(idType, int type){
-	Sound("Click");
-	var mat;
-	mat = "Water";
-	if(type == 1) mat = "Lava";
-	if(type == 2) mat = "Acid";
-	
-	CastPXS(mat, 15000, 100, 1725-GetX(), 2505-GetY());
-}
 
 public func Strike(){
 	LaunchLightning(Random(LandscapeWidth()), 0, -20, 41, +5, 15);

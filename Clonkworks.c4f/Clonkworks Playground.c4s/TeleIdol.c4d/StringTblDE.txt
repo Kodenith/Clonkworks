@@ -1,0 +1,3 @@
+Instructions=Graben: Ziel ändern|Werfen: Objekte in der Nähe teleportieren
+Change=Änderungsziel
+Tele=Teleportieren

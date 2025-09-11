@@ -15,6 +15,7 @@ protected func Initialize()
 
 protected func Transfer()
 {
+  if(Contained()) Exit();
   var from = GetActionTarget(0);
   var to = GetActionTarget(1);
   
@@ -24,6 +25,7 @@ protected func Transfer()
 	  var MoveItem = FindObject2(Find_Container(from), Find_OCF(OCF_Collectible), Sort_Random());
 	  if(GetOCF(to) & OCF_Container){
 		  if(ContentsCount(,to) < GetDefCoreVal("CollectionLimit", "DefCore", GetID(to)) || GetDefCoreVal("CollectionLimit", "DefCore", GetID(to)) == 0){
+			  if(MoveItem != this())
 			  Enter(to, MoveItem);
 		  }
 	  }
@@ -33,6 +35,7 @@ protected func Transfer()
 		  if(GetOCF(cont) & OCF_Alive) return(0);
 		  if(cont){
 			 if(ContentsCount(,cont) < GetDefCoreVal("CollectionLimit", "DefCore", GetID(cont)) || GetDefCoreVal("CollectionLimit", "DefCore", GetID(cont)) == 0){
+			  if(MoveItem != this())
 			  Collect(cont, MoveItem);
 			 }
 		  }

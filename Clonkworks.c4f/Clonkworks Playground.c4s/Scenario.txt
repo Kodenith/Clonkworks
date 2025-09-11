@@ -2,8 +2,7 @@
 Icon=19
 Title=Clonkworks Playground
 Version=4,9,11
-FairCrewStrength=8
-ForcedFairCrew=1
+NoInitialize=1
 ForcedGfxMode=1
 
 [Game]
