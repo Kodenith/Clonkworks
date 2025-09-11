@@ -1,5 +1,6 @@
 # <img width="2048" height="1024" alt="Promo1" src="https://github.com/user-attachments/assets/b7a8734b-2ae7-4c20-80de-bb765cb6ff67" />
-Clonkworks is a mod for [LegacyClonk](https://github.com/legacyclonk/LegacyClonk), that plans on expanding cave exploration and mining, by adding new things to find and use in caves alongside adding some new tools, utilities, and more..! 
+
+Clonkworks is a mod for [LegacyClonk](https://github.com/legacyclonk/LegacyClonk), that plans on expanding cave exploration and mining, by adding new things to find and use in caves alongside adding some new tools, utilities, and more..!
 currently, the mod has a new crafting system - "Forging", which lets you choose a metal and craft anything out of it. And also Bumbs, which are plump bees that make huge hives in caves.
 
 Planned Features:
@@ -34,5 +35,10 @@ The mod is fully translated in English & German, english being the primary langu
 * Thanks to [Danghor](https://github.com/Danghorx) for help with some translations
 * Thanks to [Ryou](https://github.com/RoboClonk) for help with 3d modeling
 * This Content pack includes music from **Clonk Endeavor**, composed by Hans-Christian Kühl and Sebastian Burkhart.
+
+
+
+  **This Content Pack uses and modifies the following content packs:**
+* [Ropepack Remake](https://ccan.de/cgi-bin/ccan/ccan-user.pl?a=info&i=6679&3f=1) (Supaplex, Pluto, RedWolf Design, Nachtfalter, Randrian, Guenther)
 
 Clonk Game Content and Trademark License is contained in license.txt

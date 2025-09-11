@@ -4,6 +4,8 @@ Title=Clonkworks Playground
 Version=4,9,11
 NoInitialize=1
 ForcedGfxMode=1
+ForcedFairCrew=1
+
 
 [Game]
 StructNeedEnergy=false

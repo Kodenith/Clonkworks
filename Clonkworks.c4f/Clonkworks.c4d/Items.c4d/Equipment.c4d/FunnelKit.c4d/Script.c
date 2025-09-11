@@ -88,5 +88,4 @@ private func ConnectLine(line, to)
 }
 
 /* Produkteigenschaften */
-
 public func IsAnvilProduct() { return(1); }
