@@ -177,16 +177,15 @@ private func IsWorking() {
 }
 
 private func Smoking() {  
-  if(GetPhase() == 3 || GetPhase() == 11 || GetPhase() == 19 || GetPhase() == 26) Sound("Build*", false, this(), 100,,0,1);
   if (GetPhase()%3) return(1);
-  if (Random(6)) Smoke(+45,-20,8);
-  if (Random(8)) Smoke(40,-24,5+Random(3));
+  if (Random(6)) Smoke(+48,-25,8);
+  if (Random(8)) Smoke(43,-28,5+Random(3));
   
-  if (Random(6)) Smoke(+16,-20,8);
-  if (Random(8)) Smoke(10,-24,5+Random(3));
+  if (Random(6)) Smoke(+19,-25,8);
+  if (Random(8)) Smoke(13,-28,5+Random(3));
   
-  if (Random(6)) Smoke(+25,-15,8);
-  if (Random(8)) Smoke(20,-18,5+Random(3));
+  if (Random(6)) Smoke(+28,-23,8);
+  if (Random(8)) Smoke(22,-20,5+Random(3));
   return(1);
 }
 

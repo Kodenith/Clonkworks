@@ -8,7 +8,7 @@ Value=550
 Mass=6000
 Width=135
 Height=67
-Offset=-67,-20
+Offset=-67,-33
 Picture=0,0,135,67
 Timer=20
 TimerCall=CheckBuild
@@ -18,11 +18,11 @@ Construction=1
 AutoContextMenu=1
 LineConnect=C4D_PowerInput|C4D_PowerOutput|C4D_PowerConsumer
 Vertices=5
-VertexX=-32,90,28,28,28
-VertexY=26,26,46,-2,22
+VertexX=2,2,-66,63,2
+VertexY=46,0,24,24,24
 VertexFriction=20,20,20,20,20
-VertexCNAT=1,2,8,4,16
-Entrance=-47,13,47,34
+VertexCNAT=8,4,1,2,16
+Entrance=-50,3,48,31
 
 [Physical]
 Energy=100000
