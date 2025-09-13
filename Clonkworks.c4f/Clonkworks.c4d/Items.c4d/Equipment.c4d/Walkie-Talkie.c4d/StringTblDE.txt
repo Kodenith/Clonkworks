@@ -1,0 +1,3 @@
+Message=Nachricht
+SendFail=Senden fehlgeschlagen!
+NoSignal=Kein Signal!
