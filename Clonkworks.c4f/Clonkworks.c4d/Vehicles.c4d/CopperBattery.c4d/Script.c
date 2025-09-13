@@ -2,12 +2,14 @@
 
 #strict
 
-local CanExit;
 local Charge;
+
+func Initialize(){
+		SetCommand(this(), "Exit");
+}
 
 func Construction(){
 	Charge = 0;
-	CanExit = true;
 }
 
 public func GetChargeHold(){ return(20); }
@@ -28,19 +30,8 @@ func UpdateLook(){
 		SetBatteryEnergy(Charge-1);
 	}
 	
-	if(CanExit && GetActTime() > 120) CanExit = false;
-	
 	if(GetAction() ne "Charge") SetAction("Charge");
 	SetPhase(Charge-1);
-}
-
-func ExitWorkshop(){
-	if(CanExit && GetCon() == 100){
-		CanExit = false;
-		return(1); 
-	}else{
-		return(0);
-	}
 }
 
 //useful functions that make working with batteries and their energy a bit easier (i blame myself for my horrid code)

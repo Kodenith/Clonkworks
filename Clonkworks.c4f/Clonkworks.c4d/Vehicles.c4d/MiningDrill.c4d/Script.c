@@ -4,10 +4,11 @@
 #include STMG
 #include CXEC
 
-local CanExit;
+func Initialize(){
+	SetCommand(this(),"Exit");
+}
 
 func Construction(){
-	CanExit = true;
 	return(_inherited());
 }
 
@@ -41,8 +42,6 @@ protected func SignalDelay()
 	}
   }
   
-  if(CanExit && GetCon() > 99) CanExit = false;
-  
   // Keine Wartezeit
   if (!iWait) return(0);
   // Wartezeit aufzählen
@@ -74,13 +73,5 @@ protected func Puff()
   }
 }
 
-func ExitWorkshop(){
-	if(CanExit && GetCon() == 100){
-		CanExit = false;
-		return(1); 
-	}else{
-		return(0);
-	}
-}
-
 func RejectContents(){ return(true); }
+func IsAdvancedProduct(){ return(1); }

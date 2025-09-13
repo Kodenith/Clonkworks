@@ -13,7 +13,7 @@ VertexY=3,-3
 VertexFriction=50,50,50
 Value=8
 Mass=15
-Components=ORE2=1
+Components=ORE3=1
 Picture=8,0,64,64
 Rebuy=1
 Collectible=1

@@ -16,3 +16,5 @@ Move=Moving %s x%d to Forge.
 GatherFail=Gathering Failed!
 MissingItems=Can't Start Forging, Gathered Items Missing!
 Inspect=Inspect Available Alloys
+Link=Forge linked to Advanced Workshop!
+Unlink=Forge Unlinked to Advanced Workshop.

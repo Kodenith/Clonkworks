@@ -6,5 +6,5 @@
 
 #include BAS7
 
-private func BasementID() { return(BAS3); }
+private func BasementID() { return(BS35); }
 private func BasementWidth() { return(135); }

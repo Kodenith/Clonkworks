@@ -27,6 +27,8 @@ local y;
 
 local ForgeTimer;
 
+local LinkedToAdv;
+
 func Initialize() {
 ForgeTimer = 0;
 Producing = false;
@@ -265,6 +267,7 @@ private func MenuProduction(pCaller) {
   {
 	if(GetComponent(DUMM, , , idKnowledge) == 0)
 		continue;
+	if(idKnowledge->~IsAdvancedProduct() && !LinkedToAdv) continue;
     AddMenuItem("$Construction$: %s", "Gather", idKnowledge, pCaller, 0, pCaller);
   }
   return(1);
@@ -357,6 +360,21 @@ protected func ContainedUp(pCaller)
 }
 
 func Forgefx(){
+	
+	if(!LinkedToAdv && FindObject2(Find_ID(ADVW), Find_Distance(300), Find_Owner(GetOwner()))){
+		if(GetCon(FindObject2(Find_ID(ADVW), Find_Distance(800), Find_Owner(GetOwner()))) >= 100){
+		LinkedToAdv = true;
+		Message("$Link$",this());
+		Sound("Ding");
+		}
+	}
+	
+	if(LinkedToAdv && !FindObject2(Find_ID(ADVW), Find_Distance(300), Find_Owner(GetOwner()))){
+		LinkedToAdv = false;
+		Message("$Unlink$",this());
+		Sound("Error");
+	}
+	
 	if(Forging){
 	if (Random(6 * 7)){
 		Smoke(+16,-20,8);

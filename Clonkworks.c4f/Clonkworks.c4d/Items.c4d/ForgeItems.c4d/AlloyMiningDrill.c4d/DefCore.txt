@@ -21,7 +21,7 @@ Timer=15
 TimerCall=SignalDelay
 GrabPutGet=C4D_GrabGet|C4D_GrabPut
 LineConnect=C4D_PowerInput|C4D_PowerConsumer
-Components=DUMM=6;MDRL=1;
+Components=DUMM=5;METL=2;ENGN=1;
 BorderBound=1
 
 [Physical]

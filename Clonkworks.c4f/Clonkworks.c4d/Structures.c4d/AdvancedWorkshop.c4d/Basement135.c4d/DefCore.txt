@@ -1,5 +1,5 @@
 [DefCore]
-id=BAS3
+id=BS35
 Version=4,9,8
 Name=Basement
 Category=C4D_Structure

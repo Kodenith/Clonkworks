@@ -59,3 +59,5 @@ private func AdjustTrainSpeed()
 {
    SetPhysical("Walk",(Speed*(Speed-Power))*15, 2);
 }
+
+public func IsAdvancedProduct(){ return(1); }

@@ -5,7 +5,7 @@
 #include CXEC
 #include DOOR
 #include WRKS
-#include BAS3
+#include BS35
 
 func Initialize() {
 
@@ -31,7 +31,9 @@ func ProductCondition() { return(); }
 
 public func IsProducerOf(caller, def) 
 {
-  if (!(GetCategory (0, def) & ProductType()) || GetComponent(DUMM, , , def) > 0) return (0);
+  if(!def->~IsAdvancedProduct()) return(0);
+  if(!def->~IsAnvilProduct() && !(GetCategory(,def) & C4D_Vehicle())) return(0);
+  if (GetComponent(DUMM, , , def) > 0) return (0);
   if (!IsBuilt ()) return (0);
   if (!GetPlrKnowledge (GetOwner (caller), def)) return (0);
   if (ProductCondition ())
@@ -66,8 +68,17 @@ public func HowToProduce (clonk, def) {
   return(1);
 }
 
-private func MenuProduction(pCaller) {
-  // Menü erzeugen und mit Bauplänen des Spielers füllen
+public func MenuProductionUtility(Foo, pWorker) {
+  if (!ActIdle()) return(0);
+  CreateMenu(CXCN, pWorker, this(), 1, "$NoPlrKnowledge$");
+  var i = 0, def; SetVar(0,-1);
+  while (def = GetPlrKnowledge(GetOwner(pWorker), 0, i++, C4D_Object()))
+    if (def->~IsAnvilProduct() && def->~IsAdvancedProduct())
+      AddMenuItem("$Construction$: %s","SelectProduction",def,pWorker,0,pWorker);
+  return(1);
+}
+
+private func MenuProductionVehicle(Foo, pCaller) {
   CreateMenu(CXCN,pCaller,this(),1,"$NoPlrKnowledge$");
   for(var i=0,idKnowledge; idKnowledge=GetPlrKnowledge(GetOwner(pCaller),0,i,ProductType ()); ++i)
   {
@@ -76,58 +87,49 @@ private func MenuProduction(pCaller) {
         continue;
 	if(GetComponent(DUMM, , , idKnowledge) > 0)
 		continue;
+	if(!idKnowledge->~IsAdvancedProduct()) continue;
     AddMenuItem("$Construction$: %s", "SelectProduction", idKnowledge, pCaller, 0, pCaller);
   }
   return(1);
 }
 
 public func SelectProduction(idType,pWorker,bSpecial2) {
-  // Mit der Arbeit beginnen
   AddCommand(pWorker,"Call",this(),idType,bSpecial2,0,0,"StartProduction", 0, 1);
-  // vorher die Werkstatt betreten
   AddCommand(pWorker,"Enter",this());
   return(1);
 }
   
 public func StartProduction(pWorker,idType,bSpecial2) {
   var pToBuild;
-  // Nach unfertigem Objekt zum Weiterbauen suchen
   pToBuild=FindIncompleteContents(idType);
-  // Sonst neues Objekt erzeugen
   if(!pToBuild)
     if(!(pToBuild=CreateConstruction(idType,0,0,GetOwner(),1))) return(0);
-  // Erzeugtes Objekt in die Werkstatt versetzen
   if (Contained(pToBuild)!=this()) 
     Enter(this(),pToBuild);
-  // Produkt benachrichtigen
   pToBuild->~OnStartProduction(this);
-  // Baubefehl
   AddCommand(pWorker,"Build",pToBuild, 0,0,0,0,0,0, 3);
-  //melden wenn er fertig ist (damit er ggf. Neues beginnen kann)
   if(bSpecial2)
     AppendCommand(pWorker,"Call",this(),idType,bSpecial2,0,0,"ProductionComplete", 0, 1);
   return(1);
 }
 
 public func ProductionCompleteFailed(pWorker,idType,bSpecial2) {
-  //Aktion "Build" nicht ausführbar (Rohstoffe fehlen)
-  //Um an die "x braucht y"-Meldung zu kommen, noch einmal das Kommando "Build" ausführen
-  //damit dieses fehlschlägt und die Meldung schließlich ausgegeben wird. Die Meldung kommt
-  //bei Dauerproduktion also etwa 2sec später da der Clonk das Bauen "doppelt" versucht
   AddCommand(pWorker,"Build",FindIncompleteContents(idType)); 
   return(1);
 }
 
 public func ProductionComplete(pWorker,idType,bSpecial2) {
-  //Dauerproduktion nicht an: beenden.
   if(!bSpecial2) return(0);
-  //sonst weiter... (noch ne sec warten)
   AppendCommand(pWorker,"Wait",0,0,0,0,35);
   AppendCommand(pWorker,"Call",this(),idType,bSpecial2,0,0,"StartProduction");
   return(1);
 }
 
-/* Kontext */
+private func MenuProduction(pCaller){
+	CreateMenu(CXCN,pCaller,this(),1,"");
+	AddMenuItem("$Category$: %s", "MenuProductionUtility", A_S1, pCaller, 0, pCaller);
+	AddMenuItem("$Category$: %s", "MenuProductionVehicle", A_S2, pCaller, 0, pCaller);
+}
 
 public func ContextConstruction(pCaller) {
   [$Production$|Image=CXCN|Condition=IsBuilt]
@@ -138,7 +140,6 @@ protected func IsBuilt() {
   return(GetCon() >= 100);
 }
 
-/* Steuerung */
 
 protected func ContainedUp(pCaller) 
 {
@@ -146,7 +147,6 @@ protected func ContainedUp(pCaller)
   return(MenuProduction(pCaller));
 }
 
-/* Aktivität */
 
 private func CheckBuild() {
 	
@@ -156,10 +156,6 @@ private func CheckBuild() {
 		}
 	}
 	
-	
-  // TimerCall: die Werkstatt startet ihre eigene Build-Aktion, sobald
-  // jemand in der Werkstatt arbeitet. Die Arbeit in einem Gebäude schreitet
-  // nur voran, wenn das Gebäude dies durch eine eigene Build-Aktion unterstützt.
   var bWorkingClonk=IsWorking();
   var bBuildingAction=(GetAction()S="Build");
   if(bWorkingClonk  && !bBuildingAction) if (ActIdle()) SetAction("Build");
@@ -171,7 +167,6 @@ private func CheckBuild() {
 }
 
 private func IsWorking() {
-  // Arbeitet jemand in der Werkstatt?
   if (!Contents()) return(0);
   return(FindObject(0,0,0,0,0,0,"Build",0,this()));
 }
@@ -190,7 +185,6 @@ private func Smoking() {
 }
 
 
-/* Hilfsfunktionen */
 
 private func FindIncompleteContents(idSearched) {
   for(var i=0,pContent; pContent=Contents(i); ++i)

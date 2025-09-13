@@ -1,2 +1,2 @@
-DE:Legierungsbeschichteter Bergbaubohrer
-US:Alloy Plated Mining Drill
+DE:Legierungs-Bergbaubohrer
+US:Alloy Mining Drill

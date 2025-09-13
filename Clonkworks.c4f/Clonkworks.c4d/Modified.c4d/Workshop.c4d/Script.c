@@ -18,6 +18,7 @@ func ProductCondition() { return(); }
 public func IsProducerOf(caller, def) 
 {
   if (!(GetCategory (0, def) & ProductType()) || GetComponent(DUMM, , , def) > 0) return (0);
+  if (def->~IsAdvancedProduct()) return(0);
   if (!IsBuilt ()) return (0);
   if (!GetPlrKnowledge (GetOwner (caller), def)) return (0);
   if (ProductCondition ())
@@ -62,6 +63,7 @@ private func MenuProduction(pCaller) {
         continue;
 	if(GetComponent(DUMM, , , idKnowledge) > 0)
 		continue;
+	if(idKnowledge ->~ IsAdvancedProduct()) continue;
     AddMenuItem("$Construction$: %s", "SelectProduction", idKnowledge, pCaller, 0, pCaller);
   }
   return(1);
