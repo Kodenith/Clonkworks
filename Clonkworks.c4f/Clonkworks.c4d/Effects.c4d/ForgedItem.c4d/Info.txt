@@ -7,8 +7,6 @@ Dummy Material is used for:
 List of effects:
 * Burnable - The object can be burnt when near flames or in lava.
  ` Fuming - While burning, nearby living beings get slightly damaged
-* Meltable - The object will overheat and start melting when in lava
- ` HTM - This object will overheat and melt in high temperatures
 * Windy - the object will move along the wind, if its too heavy this does nothing
 * Float - the object will float on water
 * (Liquid)LQM - Object will melt in liquid without the need to overheat like in Meltable.
@@ -27,6 +25,7 @@ List of effects:
 * Lightning - Lighting strikes will appear near the object, depends on the amount of lightning strikes in scenario.txt (suggested by danghor)
 * Sticky - The object will stick to whatever it hits for a short time.
 * Bouncy - Makes the object bounce off the ground and walls.
+* Attractive - Makes the object affected by magnets.
 
 
 you are free to add your own, just dont edit this one! overload it then edit or edit it with system.c4g. unless you wanna edit effects for every scenario and (kinda) ruin it.

@@ -122,8 +122,6 @@ public func Inspect(iItemId, pCaller){
 	
 	if(WildcardMatch(efft, "*Burnable*")) AddMenuItem("$Burnable$",,XPNT, pCaller);
 	if(WildcardMatch(efft, "*Fuming*")) AddMenuItem("$Fuming$",,, pCaller);
-	if(WildcardMatch(efft, "*Meltable*")) AddMenuItem("$Meltable$",,XPNT, pCaller);
-	if(WildcardMatch(efft, "*HTM*")) AddMenuItem("$HTM$",,, pCaller);
 	if(WildcardMatch(efft, "*Windy*")) AddMenuItem("$Windy$",,XPNT, pCaller);
 	if(WildcardMatch(efft, "*Float*")) AddMenuItem("$Float$",,XPNT, pCaller);
 	if(WildcardMatch(efft, "*LQM*")) AddMenuItem("$LQM$",,XPNT, pCaller);
@@ -141,5 +139,7 @@ public func Inspect(iItemId, pCaller){
 	if(WildcardMatch(efft, "*Lightning*")) AddMenuItem("$Lightning$",,XPNT, pCaller);
 	if(WildcardMatch(efft, "*Sticky*")) AddMenuItem("$Sticky$",,XPNT, pCaller);
 	if(WildcardMatch(efft, "*Bouncy*")) AddMenuItem("$Bouncy$",,XPNT, pCaller);
+	if(WildcardMatch(efft, "*Attractive*")) AddMenuItem("$Attractive$",,XPNT, pCaller);
+	if(WildcardMatch(efft, "*Magnet*")) AddMenuItem("$Magnet$",,XPNT, pCaller);
 }
 

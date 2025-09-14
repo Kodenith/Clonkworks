@@ -10,18 +10,19 @@ local Speed;
 local Power;
 local Effect;
 
+public func IsMetal(){
+	if(WildcardMatch(Effect, "*Attractive*")){
+		return(1);
+	}
+	return(0);
+}
+
 func AssignEffects(){
 	var fxFound = false;
 	//Burnable
 	if(WildcardMatch(Effect, "*Burnable*")){
 		fxFound = true;
 		AddEffect("Burnable", this(), 50, 35, this()); 
-	}
-	
-	//Meltable
-	if(WildcardMatch(Effect, "*Meltable*")){
-		fxFound = true;
-		AddEffect("Meltable", this(), 50, 15, this()); 
 	}
 	
 	//Windy
@@ -79,9 +80,16 @@ func AssignEffects(){
 	   SetPlrViewRange(wdt, this());
 	}
 	
+	//Lightning
 	if(WildcardMatch(Effect, "*Lightning*")){
 	   fxFound = true;
 	   AddEffect("Lightning", this(), 50, 500, this()); 
+	}
+	
+	//Magnet
+	if(WildcardMatch(Effect, "*Magnet*")){
+	   fxFound = true;
+	   AddEffect("Magnet", this(), 50, 5, this()); 
 	}
 	
 	if(fxFound) return(1);
@@ -113,79 +121,6 @@ public func FxBurnableTimer(object pTarget, int EffectNumber){
 					DoEnergy(-1, element);
 				}
 			}
-	}
-}
-
-public func FxMeltableTimer(object pTarget, int EffectNumber){
-	
-	var HighTemp;
-	HighTemp = WildcardMatch(Effect, "*HTM*") && GetTemperature() > 75;
-	
-	if(GetMaterial() == Material("Lava") || GetMaterial() == Material("DuroLava") || HighTemp){
-		
-		
-		//Making the thing look boiling red
-		var ReddishHue;
-		ReddishHue = Color;
-		if(GetRGBaValue(Color, 2) > 25){
-			ReddishHue = DoRGBaValue(ReddishHue, -25, 2);
-		}else {
-			ReddishHue = SetRGBaValue(ReddishHue, 0, 2);
-		}
-		
-		if(GetRGBaValue(Color, 3) > 25){
-			ReddishHue = DoRGBaValue(ReddishHue, -25, 3);
-		}else {
-			ReddishHue = SetRGBaValue(ReddishHue, 0, 3);
-		}
-		
-		if(GetRGBaValue(Color, 1) < 230){
-			ReddishHue = DoRGBaValue(ReddishHue, 25, 1);
-		}else {
-			ReddishHue = SetRGBaValue(ReddishHue, 255, 1);
-		}
-		
-		
-		if(GetRGBaValue(GetClrModulation(), 1) != GetRGBaValue(ReddishHue, 1)){
-			
-			var r = GetRGBaValue(ReddishHue, 1);
-			var g = GetRGBaValue(ReddishHue, 2);
-			var b = GetRGBaValue(ReddishHue, 3);
-			var mod = GetClrModulation();
-			
-			if(GetRGBaValue(mod, 1) < r) mod = DoRGBaValue(mod, 1, 1);
-			if(GetRGBaValue(mod, 1) > r) mod = DoRGBaValue(mod, -1, 1);
-			
-			if(GetRGBaValue(mod, 2) < g) mod = DoRGBaValue(mod, 1, 2);
-			if(GetRGBaValue(mod, 2) > g) mod = DoRGBaValue(mod, -1, 2);
-			
-			if(GetRGBaValue(mod, 3) < g) mod = DoRGBaValue(mod, 1, 3);
-			if(GetRGBaValue(mod, 3) > g) mod = DoRGBaValue(mod, -1, 3);
-			
-			SetClrModulation(mod);
-		}else{
-			DoCon(-1, pTarget);
-		}
-		
-	}else{
-		
-		//Normalizing color
-			var r = GetRGBaValue(Color, 1);
-			var g = GetRGBaValue(Color, 2);
-			var b = GetRGBaValue(Color, 3);
-			var mod = GetClrModulation();
-			
-			if(GetRGBaValue(mod, 1) < r) mod = DoRGBaValue(mod, 1, 1);
-			if(GetRGBaValue(mod, 1) > r) mod = DoRGBaValue(mod, -1, 1);
-			
-			if(GetRGBaValue(mod, 2) < g) mod = DoRGBaValue(mod, 1, 2);
-			if(GetRGBaValue(mod, 2) > g) mod = DoRGBaValue(mod, -1, 2);
-			
-			if(GetRGBaValue(mod, 3) < g) mod = DoRGBaValue(mod, 1, 3);
-			if(GetRGBaValue(mod, 3) > g) mod = DoRGBaValue(mod, -1, 3);
-			
-			SetClrModulation(mod);
-			
 	}
 }
 
@@ -266,6 +201,17 @@ public func FxStickyStop(object pTarget, int EffectNumber){
 	Sound("ArrowHit");
 }
 	
+public func FxMagnetTimer(object pTarget, int EffectNumber){
+	var atrc = FindObjects(Find_Func("IsMetal"), Find_Distance(50), Find_Exclude(this()));
+	var MaxAtr = 10;
+	for(var metl in atrc){
+		if(ObjectDistance(metl, this()) <= 10) continue;
+		if(GetX(metl) > GetX(this())) SetXDir(GetXDir(metl)-RandomX(3,MaxAtr), metl);
+		if(GetX(metl) < GetX(this())) SetXDir(GetXDir(metl)+RandomX(3,MaxAtr), metl);
+		if(GetY(metl) > GetY(this())) SetYDir(GetYDir()-MaxAtr, metl);
+		if(GetY(metl) < GetY(this())) SetYDir(GetYDir()+MaxAtr, metl);
+	}
+}
 	
 //non effect effects
 func Hit2(int xdir, int ydir){
