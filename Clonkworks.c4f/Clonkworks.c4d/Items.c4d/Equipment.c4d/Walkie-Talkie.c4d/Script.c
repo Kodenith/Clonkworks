@@ -65,7 +65,9 @@ func InputCallback(szInput){
 
 public func Read(szMsg){
 	Msg = szMsg;
-	CustomMessage(Msg, this(), GetOwner(this()), 0, 0, RGB(0,255,255),,,,2);
+	if(Contained())
+	CustomMessage(Msg, this(), GetOwner(Contained()), 0, 0, RGB(0,255,255),,,,2);
+	else CustomMessage(Msg, this(), NO_OWNER, 0, 0, RGB(0,255,255),,,,2);
 	SetAction("Read");
 	SetPicture(70, 0, 64, 64);
 	Sound("Ding");

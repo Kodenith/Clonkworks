@@ -90,3 +90,4 @@ private func ConnectLine(line, to)
 /* Produkteigenschaften */
 public func IsAnvilProduct() { return(1); }
 public func IsAdvancedProduct() { return(1); }
+public func IsKit() { return(1); }
