@@ -117,3 +117,5 @@ protected func Hit3(){
 	  Sound("AnvilWork*");
 	  RemoveObject(this());
 }
+
+func IsMetal(){ return(true); }

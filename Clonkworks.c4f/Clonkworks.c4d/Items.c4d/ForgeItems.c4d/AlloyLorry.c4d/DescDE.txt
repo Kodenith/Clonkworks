@@ -1,1 +1,1 @@
-Erleichtert den Transport größerer Materialmengen. Fasst bis zu 100 Objekte. Das Gewicht hängt von der verwendeten Legierung ab.
+Nützlich für den Transport größerer Materialmengen. Sein Gewicht und die Menge der Gegenstände, die es aufnehmen kann, hängen vom verwendeten Material ab.

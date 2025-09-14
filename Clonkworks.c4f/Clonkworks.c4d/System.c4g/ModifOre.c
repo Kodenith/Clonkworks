@@ -25,3 +25,4 @@ public func Purchase(int plr, object buyobj) {
 func IsAlchemContainer() { return(true); }
 func AlchemProcessTime() { return(200); }
 func SmeltResult(){ return(METL);} 
+func IsMetal(){ return(true); }

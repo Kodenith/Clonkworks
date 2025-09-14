@@ -107,3 +107,4 @@ func ContactBottom() { if(GetAction() != "PickUp" && pRope) return SetAction("At
 func ContactTop() { if(GetAction() != "PickUp" && pRope) return SetAction("AttachUp"); }
 public func IsHook() { return 1; }
 public func IsAnvilProduct() { return 1; }
+func IsMetal(){ return(true); }

@@ -13,3 +13,5 @@ func FRGUpdate(){
 	SetMass(25*Mass, this());
 	SetClrModulation(Color, this());
 }
+
+private func MaxContents() { return(30*Power); }
