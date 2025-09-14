@@ -90,6 +90,8 @@ public func Birth(){
 }
 
 func Activity(){
+	if(Beenergy < 0) Beenergy = 0;
+	
 	if(GetXDir() > 0 && GetDir() == DIR_Left)  return(TurnRight());
 	if(GetXDir() < 0 && GetDir() == DIR_Right) return(TurnLeft());
 	
