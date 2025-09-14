@@ -9,8 +9,20 @@ public func GetMaxSpecialCount(iIndex, fAmount)
 }
 
 func ControlDigDouble(){
+	//disconnecting the tag from objects.
+	var ovrlp = FindObject2( Find_Exclude(this()), Find_AtPoint(0,5), Find_Or( Find_Category(C4D_Structure), Find_Category(C4D_Vehicle), Find_Category(C4D_Living)), Find_Not(Find_OCF(OCF_CrewMember)), Find_NoContainer());
+	if(GetOCF(ovrlp) & OCF_Container){ //foo
+	}
+	else{
+	if(!ContentsCount() && FindObject2(Find_ID(TAG_),Find_Container(ovrlp))){
+		Enter(this(), FindObject2(Find_ID(TAG_),Find_Container(ovrlp)));
+		Sound("Click");
+		return(1);
+	}
+	}
+	
 	// disconnecting custom lines and getting their proper kits.
-	var ovrlp = FindObject(0, 1,0,0,0, OCF_LineConstruct, 0,0,0, ovrlp);
+	ovrlp = FindObject(0, 1,0,0,0, OCF_LineConstruct, 0,0,0, ovrlp);
 	if(!ovrlp) return(_inherited());
 	SetComDir(COMD_Stop);
 	
