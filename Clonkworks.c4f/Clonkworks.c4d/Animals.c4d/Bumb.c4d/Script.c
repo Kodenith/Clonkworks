@@ -77,7 +77,7 @@ func Initialize() {
 	Pollen = 0;
 	HomeX = 0;
 	BeeState = 0;
-	MaxBeenergy = RandomX(1000,3500);
+	MaxBeenergy = 2000;
 	Beenergy = MaxBeenergy;
   SetAction("Fly");
   gX=0;
@@ -180,7 +180,7 @@ func Activity(){
 	
 	//Colony Starting
 	if(ColoniesEnabled()){
-	if(GetMaterial(0,0) == Material("Tunnel") && !InColony() && !Random(100) && CheckCombSpace(false)){
+	if(GetMaterial(0,0) == Material("Tunnel") && !InColony() && !Random(80) && CheckCombSpace(false)){
 		DebugLog("A Bumb Set up a Colony!");
 		HomeX = GetX();
 		HomeY = GetY();
@@ -204,9 +204,9 @@ func Activity(){
 	}
 	}
 	
-	//Collect Pollen, Only the most active bees do it
-	if(Comb && MaxBeenergy > 1800){
-		if(!Random(10)){
+	//Collect Pollen
+	if(Comb){
+		if(!Random(8)){
 			BeeState = 6;
 			var PlantList;
 			//if flowers are available, use them instead
@@ -220,7 +220,7 @@ func Activity(){
 		}
 		
 		//or.. deposit it
-		if(!Random(10) && Comb && Pollen > 0){
+		if(!Random(8) && Comb && Pollen > 0){
 			BeeState = 7;
 			return(0);
 		}
@@ -283,11 +283,10 @@ func Activity(){
 	  }
 	  
 	  	//Eat Honey
-		if(!Random(6) && FindObject2(Find_ID(HONY), Find_Distance(10))){
+		if(!Random(6) && FindObject2(Find_ID(HONY), Find_Distance(20))){
 			var Food = FindObject2(Find_ID(HONY), Find_Distance(10));
 			DoCon(RandomX(-30,-5), Food);
 			DoEnergy(5);
-			MaxBeenergy += 10;
 			Sound("Corrode");
 		}
 	  
@@ -420,7 +419,7 @@ func Activity(){
 	  
 	  if(RandomPlant == 0 || ObjectCall(RandomPlant, "IsDeadTree")) BeeState = 0;
 	  
-	  if(ObjectDistance(this(), RandomPlant) < 23 && !Random(3)){
+	  if(ObjectDistance(this(), RandomPlant) < 23){
 		  Pollen += RandomX(1,2);
 		  for(var i = 0; i < RandomX(1,3); i++){
 			CreateParticle("PxSpark", 0, 0, RandomX(-20,20), RandomX(-5,20), 25, RGBa(255,255,0));
@@ -443,8 +442,6 @@ func Activity(){
 		BeeState = 4;
 		return(0);
 	 }
-	
-	 
   }
   
   //Bring Honey to Combs
@@ -561,6 +558,8 @@ public func JoinColony(int Distance){
 }
 
 public func CheckCombSpace(bool ColonyMode){
+	//in caves only.
+	if(GetMaterial(0,0) != Material("Tunnel")) return(0);
 	//no combs on the edges of walls :P
 	if(GBackSky(-20,0) || GBackSky(20,0) || GBackSky(0,20) || GBackSky(0,-20)) return(0);
 	
@@ -577,9 +576,6 @@ public func CheckCombSpace(bool ColonyMode){
 	if(ColonyMode){
 		if(!FindObject2(Find_ID(HNCB), Find_Distance(35))) return(0);
 	}
-	
-	//last but not least, if you can deliver honey you are worthy of a comb
-	if(MaxBeenergy <= 1800) return(0);
 	
 	//all fine? go ahead, place it :D
 	return(1);

@@ -16,6 +16,12 @@ func Update(){
 	SetPhase((PollenAmount / 3) - 1);
 	if((PollenAmount / 3) - 1 > RandomX(1,50))
 	CreateParticle("HoneyDrip", RandomX(-10,10),RandomX(-10,10), RandomX(-2,2), 0, RandomX(10,25), RGBa(255,255,255));
+
+	if(GetMaterial(0,0) != Material("Tunnel")){
+		Sound("Dig");
+		RemoveObject();
+	}
+
 	if(!DesignatedBumb){
 		DoCon(-1);
 	}else{
