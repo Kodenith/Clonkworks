@@ -122,6 +122,11 @@ func Activity(){
 	
 	if(!Random(15)) Sound("Bsss");
 	
+	//if enemy is too far or in building, forget
+	  if(ObjectDistance(this(), GrudgeTarget) >= 200 || Contained(GrudgeTarget)){
+		  GrudgeTarget = 0;
+	  }
+	
 	//retreat to remembered water location
 	if(BeeState == 8){
 		if(GetAction() == "Idle") SetAction("Fly");
@@ -326,7 +331,6 @@ func Activity(){
 	  if(GrudgeTarget == 0) BeeState = 0;
 	  if(BeeState == 0) return(0);
 	  
-
 	  if(GetAction() == "Idle") SetAction("Fly");
 	  if(GetAction() == "Walk") SetAction("Fly");
 	  
@@ -342,8 +346,7 @@ func Activity(){
 		  InformBumbs();
 	  }
 	  
-	  //if too far or in building, go away
-	  if(ObjectDistance(this(), GrudgeTarget) >= 200 || Contained(GrudgeTarget)) BeeState = 0;
+	  //fight cancellation logic moved to another part of the script.
 	  
 	  Beenergy = RandomX(-10,20);
 	  
