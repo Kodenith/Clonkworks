@@ -35,5 +35,5 @@ func InitializePlayer(int iPlr){
 	Enter(FindObject(HUT3),flag);
 	SetOwner(iPlr, flag);
 	SetFoW (0, iPlr);
-	var i, id; while (id = GetDefinition(i++)) SetPlrKnowledge(iPlr, id);
+	//var i, id; while (id = GetDefinition(i++)) SetPlrKnowledge(iPlr, id);
 }
