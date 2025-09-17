@@ -26,11 +26,6 @@ func Initialize() {
   return(1);
 }
 
-func Entrance(object pContainer){
-	StickX = 0;
-}
-
-
 public func RejectEntrance()
 {
   if(GetAction() == "Activated" || GetSpeed(this()) > 10) return true;
@@ -50,20 +45,6 @@ func HoneyUpdate(){
 		SetYDir(GetYDir(StuckToObject)-2);
 		//SetPosition(GetX(StuckToObject)-StickX,GetY(StuckToObject)-StickY);
 	}else{
-		if(!StickX && GetAction() != "Activated"){
-			//finding it something is behind it
-			if(Contained() || GetSpeed(this()) <= 10) return(0);
-			var stickTo = FindObject2(Find_Category(C4D_Living), Find_AtPoint());
-			if(stickTo){
-				Sound("ArrowHit");
-				StuckToObject = stickTo;
-				RemoveVertex(0);
-				Sound("Fuse");
-				SetAction("Activated");
-				SetPicture(0, 12 + 64, 64, 64);
-			}
-		}
-		//original sticking logic
 		return(_inherited());
 	}
 }

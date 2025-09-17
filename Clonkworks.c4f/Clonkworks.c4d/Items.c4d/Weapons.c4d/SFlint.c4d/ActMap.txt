@@ -4,6 +4,7 @@ Delay=130
 Facet=0,6,6,6
 NextAction=TimeOver
 Sound=Fusing
+Attach=15
 
 [Action]
 Name=TimeOver

@@ -19,5 +19,6 @@ Collectible=1
 Fragile=1
 Explosive=1
 Projectile=1
-Timer=1
+Timer=5
 TimerCall=HoneyUpdate
+ContactCalls=1
