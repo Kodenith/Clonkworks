@@ -8,7 +8,7 @@ Directions=2
 FlipDir=1
 NextAction=Fly
 Procedure=FLIGHT
-PhaseCall=Flight
+PhaseCall=FlightLogic
 TurnAction=FlyTurn
 
 [Action]
@@ -21,7 +21,7 @@ Directions=2
 FlipDir=1
 NextAction=Fly
 Procedure=FLIGHT
-PhaseCall=Flight
+PhaseCall=FlightLogic
 Reverse=1
 
 [Action]

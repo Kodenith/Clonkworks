@@ -18,3 +18,7 @@ VertexX=-1,-10,10,1,-1
 VertexY=6,7,7,-7,7
 VertexFriction=60,60,60,60,60
 VertexCNAT=16,1,2,4,8
+Float=1
+ContactIncinerate=5
+BlastIncinerate=35
+BurnTo=BHGL

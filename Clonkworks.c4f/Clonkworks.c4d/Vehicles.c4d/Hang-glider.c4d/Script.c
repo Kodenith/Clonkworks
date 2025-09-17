@@ -16,7 +16,7 @@ func CheckGround(){
 	return(1);
 }
 
-func Flight(){
+func FlightLogic(){
 	//flying logic
 	if(!CanGlide()){
 		SetAction("OnGround");
@@ -47,6 +47,7 @@ func ContactBottom(){
 }
 
 protected func CanGlide(){
+	if(GetContact(this(), -1) & CNAT_Bottom) return(0); // no touching the ground
 		if(GBackSky(0,0)) //is in the sky?
 			if(Abs(GetWind(0,0)) > 25) //is wind good?
 				if(!Contained()) // not contained
