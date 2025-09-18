@@ -36,3 +36,13 @@ NextAction=OnGround
 Procedure=NONE
 PhaseCall=CheckGround
 
+[Action]
+Name=Hit
+Length=1
+Delay=288
+Facet=0,0,65,18,0,0
+FacetBase=0
+Directions=2
+FlipDir=1
+NextAction=OnGround
+Procedure=NONE

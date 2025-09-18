@@ -2,6 +2,8 @@
 
 #strict
 
+local WindHeld;
+
 func Initialize() {
   SetAction("OnGround");
   return(1);
@@ -10,6 +12,7 @@ func Initialize() {
 func CheckGround(){
 	//check if its on the ground, if not - liftoff!
 	if(CanGlide() && GetYDir()>10){
+		WindHeld = GetWind(0,0);
 		SetAction("Fly");
 		return(1);
 	}
@@ -18,31 +21,59 @@ func CheckGround(){
 
 func FlightLogic(){
 	//flying logic
-	if(!CanGlide()){
+/* 	if(!CanGlide()){
 		SetAction("OnGround");
 		return(0);
-	}
+	} */
 	
-	if(Abs(GetWind(0,0)) > 95) SetYDir(RandomX(2,6));
-	else if(Abs(GetWind(0,0)) > 75) SetYDir(RandomX(4,6));
-	else if(Abs(GetWind(0,0)) > 25) SetYDir(RandomX(6,12));
-	else SetYDir(RandomX(8,16));
+	if(GetWind(0,0) > WindHeld) WindHeld++;
+	if(GetWind(0,0) < WindHeld) WindHeld--;
 	
-	if(Abs(GetXDir()) < Abs(GetWind(0,0)/3))
+	var downwardsLimit;
+	if(Abs(WindHeld) > 90) downwardsLimit = 4;
+	else if(Abs(WindHeld) > 60) downwardsLimit = 6;
+	else if(Abs(WindHeld) > 30) downwardsLimit = 8;
+	else if(Abs(WindHeld) > 5) downwardsLimit = 12;
+	else downwardsLimit = 9999;
+	
+	if(GetYDir() > downwardsLimit) SetYDir(downwardsLimit);
+	
+	if(Abs(GetXDir()) < Abs(WindHeld/3))
 	if(GetWind(0,0) < 0){
 		SetXDir(GetXDir()-1);
 	}else{
 		SetXDir(GetXDir()+1);
 	};
 	
-	if(GetWind(0,0) < 0 && GetXDir() > 0) SetXDir(GetXDir()-2);
-	if(GetWind(0,0) > 0 && GetXDir() < 0) SetXDir(GetXDir()+2);
+	if(!Random(2))
+	if(WindHeld < 0 && GetXDir() > 0) SetXDir(GetXDir()-1);;
+	if(!Random(2))
+	if(WindHeld > 0 && GetXDir() < 0) SetXDir(GetXDir()+1);;
 	
 	if(GetXDir() < 0) SetDir(0);
 	if(GetXDir() > 0) SetDir(1);
 }
 
+func ContactLeft(){
+	if(GetAction() S= "Fly" || GetAction() S= "FlyTurn"){
+	SetXDir(WindHeld/2);
+	SetYDir(-15);
+	SetAction("Hit");
+	Sound("ArrowHit");
+	}
+}
+
+func ContactRight(){
+	if(GetAction() S= "Fly" || GetAction() S= "FlyTurn"){
+	SetXDir(-(WindHeld/2));
+	SetYDir(-15);
+	SetAction("Hit");
+	Sound("ArrowHit");
+	}
+}
+
 func ContactBottom(){
+	if(GetAction() S= "Hit") return(0);
 	SetAction("OnGround");
 }
 
