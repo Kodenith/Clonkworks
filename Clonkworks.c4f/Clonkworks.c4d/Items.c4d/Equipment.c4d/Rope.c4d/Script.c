@@ -6,7 +6,8 @@ local iLength, iCalcedLength, iOCF, iVtx1, iVtx2;
 local aPointsX, aPointsY;
 local pPulley;
 local fNoPickUp_0, fNoPickUp_1;
-local MaxLength;
+local MaxLength; //new variable, set custom length of rope :)
+local Connect1, Connect2; // new variables, two objects being tied.
 
 protected func Initialize()
 {
@@ -146,6 +147,8 @@ global func ResetTiedClonk(pClonk, iIndex)
 
 public func ConnectObjects(pObj1, pObj2)
 {
+	Connect1 = pObj1;
+	Connect2 = pObj2;
   iVtx1 = GetMiddlestVertex(pObj1);
   iVtx2 = GetMiddlestVertex(pObj2);
   SetPoint(0, GetX(pObj1) + GetVertex (iVtx1, 0, pObj1), GetY(pObj1) + GetVertex(iVtx1, 1, pObj1));
@@ -228,8 +231,8 @@ private func VerticeLength(i, pTarget1, pTarget2)
 private func Timer()
 {
   if(MaxLength){
-	  if(GetRopeLength() > MaxLength){
-		  SetRopeLength(MaxLength);
+	  if(GetRopeLength() > Abs(MaxLength)){
+		  SetRopeLength(Abs(MaxLength));
 	  }
   }
 	
@@ -543,4 +546,28 @@ global func GetRealContainer(pObj)
   var pRet = pObj;
   while(Contained(pRet)) pRet = Contained(pRet);
   return pRet;
+}
+
+public func GetConnectedByRope(index){
+	if(index <= 0) return Connect1;
+	return Connect2;
+}
+
+global func FindRope(pObject, IndexType){
+	//index type:
+	//1 - Connect1
+	//2 - Connect2
+	//Else - Any
+	
+	var AllRopes = FindObjects(Find_ID(CK5P));
+	for(rope in AllRopes){
+		if(IndexType == 1 && LocalN("Connect1", rope) == pObject) return(rope);
+		else if(IndexType == 2 && LocalN("Connect2", rope) == pObject) return(rope);
+		else{
+			if(LocalN("Connect1", rope) == pObject) return(rope);
+			if(LocalN("Connect2", rope) == pObject) return(rope);
+		}
+	}
+	
+	return(0);
 }

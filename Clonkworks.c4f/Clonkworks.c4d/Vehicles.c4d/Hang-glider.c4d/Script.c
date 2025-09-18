@@ -56,7 +56,8 @@ func FlightLogic(){
 
 func ContactLeft(){
 	if(GetAction() S= "Fly" || GetAction() S= "FlyTurn"){
-	SetXDir(WindHeld/2);
+	ShakeOffRopes();
+	SetXDir(-(WindHeld/2));
 	SetYDir(-15);
 	SetAction("Hit");
 	Sound("ArrowHit");
@@ -65,7 +66,8 @@ func ContactLeft(){
 
 func ContactRight(){
 	if(GetAction() S= "Fly" || GetAction() S= "FlyTurn"){
-	SetXDir(-(WindHeld/2));
+	ShakeOffRopes();
+	SetXDir(WindHeld/2);
 	SetYDir(-15);
 	SetAction("Hit");
 	Sound("ArrowHit");
@@ -73,8 +75,24 @@ func ContactRight(){
 }
 
 func ContactBottom(){
+	if(GetAction() S= "Fly" || GetAction() S= "FlyTurn"){
+		ShakeOffRopes();
+	}
 	if(GetAction() S= "Hit") return(0);
 	SetAction("OnGround");
+}
+
+func ShakeOffRopes(){
+	while(FindRope(this(), 0) != 0){
+		RemoveObject(FindRope(this(), 0));
+		CreateObject(CK5P);
+	}
+}
+
+public func Poke()
+{
+  Sound("Rip");
+  SetAction("Hit");
 }
 
 protected func CanGlide(){
