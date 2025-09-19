@@ -1,0 +1,17 @@
+[Action]
+Name=Charging
+Length=1
+Delay=1
+Facet=0,0,10,10,0,0
+FacetBase=0
+NextAction=Charging
+StartCall=ChargeAir
+
+[Action]
+Name=Charged
+Length=1
+Delay=1
+Facet=10,0,10,10,0,0
+FacetBase=0
+NextAction=Charged
+
