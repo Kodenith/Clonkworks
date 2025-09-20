@@ -1,0 +1,14 @@
+[Particle]
+Name=Steam
+MaxCount=150
+MinLifetime=10
+MaxLifetime=30
+InitFn=StdInit
+ExecFn=StdExec
+CollisionFn=Stop
+DrawFn=Std
+Face=0,0,64,64,-32,-32
+GravityAcc=0
+AlphaFade=3
+FadeOutLen=2
+VertexCount=1

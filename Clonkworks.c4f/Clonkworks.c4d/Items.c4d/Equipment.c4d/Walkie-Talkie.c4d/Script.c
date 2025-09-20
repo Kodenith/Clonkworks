@@ -119,3 +119,4 @@ protected func Hit3(){
 }
 
 func IsMetal(){ return(true); }
+func IsExtraItem(){ return(true); }

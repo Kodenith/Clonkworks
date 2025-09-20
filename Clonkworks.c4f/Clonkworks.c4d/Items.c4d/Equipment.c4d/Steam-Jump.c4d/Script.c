@@ -75,3 +75,5 @@ public func Activate(){
 
 public func IsAnvilProduct(){ return(true); }
 public func IsAdvancedProduct(){ return(true); }
+public func IsExtraItem(){ return(true); }
+public func IsMetal(){ return(true); }
