@@ -9,7 +9,7 @@
 protected func Initialize() 
 {
   SetAction("Ready");
-  // Nach rechts ausgerichtet, wenn in der linken Landschaftshï¿½lfte
+  // Nach rechts ausgerichtet, wenn in der linken Landschaftshälfte
   if (GetX() < LandscapeWidth()/2) 
     SetDir(DIR_Right());
   return(1);
@@ -18,12 +18,12 @@ protected func Initialize()
 // Beim Einsammeln von Objekten
 protected func Collection2() 
 {
-  // Inhalt prï¿½fen
+  // Inhalt prüfen
   ContentsCheck();
   return(1);
 }
 
-// Inhalt prï¿½fen: Kristalle verarbeiten
+// Inhalt prüfen: Kristalle verarbeiten
 protected func ContentsCheck() 
 {
   if (FindContents(CRYS)) 
@@ -152,9 +152,9 @@ protected func DoMagic(id spell_id, object caster, int direction)
 public func SpellFailed(id idSpell, object pByClonk)
 {
   // Zauber abgebrochen:
-  // Magieenergie zurï¿½ckgeben
+  // Magieenergie zurückgeben
   DoMagicEnergy(Value(idSpell));
-  // Alchemische Zutaten kï¿½nnten aus dem Clonk oder dem Turm stammen: Dem Turm geben, wenn mï¿½glich
+  // Alchemische Zutaten könnten aus dem Clonk oder dem Turm stammen: Dem Turm geben, wenn möglich
   if(ObjectCount(ALCO))
     if (GetAlchemBag()) IncreaseAlchem(idSpell); else IncreaseAlchem(idSpell, pByClonk);
   // k
@@ -167,8 +167,8 @@ public func SelectSpell(object caller, int direction)
 {
   // Forschung abbrechen
   CancelResearch();
-  // Menï¿½ erzeugen und mit den Zaubersprï¿½chen des Turmbesitzers fï¿½llen
-  // Gehï¿½rt der Turm keinem gï¿½lï¿½tigen Besitzer, stattdessen Zauber des Clonks nehmen
+  // Menü erzeugen und mit den Zaubersprüchen des Turmbesitzers füllen
+  // Gehört der Turm keinem gülötigen Besitzer, stattdessen Zauber des Clonks nehmen
   OpenEmptySpellMenu(MCMS, caller, this, this, "$TxtNoSpells$");
   var spell_num;
   var spell_id;
@@ -207,7 +207,7 @@ public func AimRight()
   return(1);
 }
 
-/* Tï¿½rsteuerung */
+/* Türsteuerung */
 
 protected func ActivateEntrance() 
 {
@@ -258,30 +258,30 @@ public func IsConvertReady() { return(GetAction()S="Ready"); }
 local target;
 local progress;
 
-local restime; // Benï¿½tigte Gesamtzeit zum Forschen
+local restime; // Benötigte Gesamtzeit zum Forschen
 
 protected func ResearchMenu(idImage, pClonk) 
 {
-  // Auswahlmenï¿½ erzeugen
+  // Auswahlmenü erzeugen
   CreateMenu(idImage, pClonk, this(), 0, "$TxtNothingLeft$");
-  // Alle geladenen Sprï¿½che ï¿½berprï¿½fen
+  // Alle geladenen Sprüche überprüfen
   var i,idDef,iPlr=GetOwner(pClonk);
   while (idDef = GetDefinition(i++, C4D_Magic()))
     // Dem Spieler noch nicht bekannt
     if (!(GetPlrMagic(iPlr,idDef))) {
-      // Keine Forschungsgrundlage nï¿½tig oder Forschungsgrundlage vorhanden
+      // Keine Forschungsgrundlage nötig oder Forschungsgrundlage vorhanden
       var idBase = DefinitionCall(idDef,"GetResearchBase"), fHasBase, j;
       fHasBase = !idBase || GetPlrMagic(iPlr,idBase); j=1;
       // Erweiterte Forschungsgrundlagen
       while (idBase = DefinitionCall(idDef, Format("GetResearchBase%d", ++j)))
         if (!GetPlrMagic(iPlr,idBase)) fHasBase=0;
-      // Ist schon durch etwas anderes erforschbar? (Zugbrï¿½cke rechts -> Zugbrï¿½cke links etc.)
+      // Ist schon durch etwas anderes erforschbar? (Zugbrücke rechts -> Zugbrücke links etc.)
       var link;
       if (link = DefinitionCall(idDef, "GetResearchLink"))
-        if (GetName(0, link)) // Linkdefinition auch tatsï¿½chlich geladen?
+        if (GetName(0, link)) // Linkdefinition auch tatsächlich geladen?
           if(!GetPlrKnowledge(iPlr, link) ) // Linkdefinition noch nicht erforscht? (passiert durch SetPlrKnowledge-Aufrufe oder Szenariovorgaben)
             continue;
-      // Menï¿½eintrag hinzufï¿½gen
+      // Menüeintrag hinzufügen
       if (fHasBase) AddMenuItem("$TxtResearchs$", "SelectResearch", idDef, pClonk, 0, pClonk);
     }
   return(1);  
@@ -319,9 +319,9 @@ protected func StartResearch(clonk, def)
   CancelResearch();
   // nur, wenn ansonsten inaktiv oder schon am Forschen
   if (GetAction() ne "Ready") return(0);
-  // Besitzer anpassen (der Besitzer des forschenden Clonks erhï¿½lt den Bauplan)
+  // Besitzer anpassen (der Besitzer des forschenden Clonks erhält den Bauplan)
   SetOwner(GetOwner(clonk));
-  // Neues Forschungsziel: Fortschritt zurï¿½cksetzen
+  // Neues Forschungsziel: Fortschritt zurücksetzen
   if (def != target) progress = 0;
   // Forschungsziel und Gesamtzeit setzen
   restime = DefinitionCall(target=def, "GetResearchTime", this(), clonk);
@@ -334,13 +334,13 @@ private func Researching()
 {
   // Kein Ziel
   if (!target) return(0);
-  // Effekte
+  // Effekte TODO: Sparks
   //if (Random(3)) Smoke(5+8*Random(2),-23,3+Random(8));
   // Fortschritt
   var Process = Min(++progress*4 / restime, 3);
   Process = Format("Research%d", Process);
   if (Process ne GetAction()) SetAction(Process);
-  // Forschung abbrechen, wenn irgendein Clonk im Inneren das Gebï¿½ude verlassen mï¿½chte
+  // Forschung abbrechen, wenn irgendein Clonk im Inneren das Gebäude verlassen möchte
   var pObj;
   while (pObj = FindObject(0, 0,0,0,0, OCF_CrewMember, 0,0, this(), pObj))
     if (pObj->GetCommand() eq "Exit")
@@ -352,14 +352,14 @@ private func Researching()
   Sound("ResearchDone");
   // Dem Spieler den neuen Bauplan verpassen
   SetPlrMagic(GetOwner(), target);  
-  // Alle Clonks suchen, die ein Menï¿½ fï¿½r dieses Labor geï¿½ffnet haben - noch nicht implementierbar, da kein GetMenuTarget()...
+  // Alle Clonks suchen, die ein Menü für dieses Labor geöffnet haben - noch nicht implementierbar, da kein GetMenuTarget()...
   /*var pClonk;
   while (pClonk = FindObject(0, 0,0,0,0, OCF_CrewMember(), 0,0, 0, pClonk))
     if ((pClonk->GetMenu() == RSR1) && (pClonk->GetMenuTarget() == this())
-      // Menï¿½ neu ï¿½ffnen, damit Forschung-Fortsetzen-Eintrï¿½ge aktualisiert werden
+      // Menü neu öffnen, damit Forschung-Fortsetzen-Einträge aktualisiert werden
       ResearchMenu(pClonk);*/  
   // Gelinkte Forschungsziele sind automatisch auch erforscht
-  // (Linke Zugbrï¿½cke -> Rechte Zugbrï¿½cke etc.)
+  // (Linke Zugbrücke -> Rechte Zugbrücke etc.)
   var def_num, def;
   while (def = GetDefinition(def_num++)) 
   {

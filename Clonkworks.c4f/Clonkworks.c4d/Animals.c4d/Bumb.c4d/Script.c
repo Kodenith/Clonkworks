@@ -339,7 +339,7 @@ func Activity(){
 		return(0);
 	  }
 	  
-	  if(ObjectDistance(this(), GrudgeTarget) <= 8 && GetCon() >= 80 && GetAction() == "Fly" && !Contained(GrudgeTarget)){
+	  if(ObjectDistance(this(), GrudgeTarget) <= 12 && (GetAction() == "Fly" || GetAction()) == "FlyTurn" && !Contained(GrudgeTarget)){
 		  SetAction("Attack");
 		  Sound("Sting");
 		  Punch(GrudgeTarget, RandomX(1,5));
