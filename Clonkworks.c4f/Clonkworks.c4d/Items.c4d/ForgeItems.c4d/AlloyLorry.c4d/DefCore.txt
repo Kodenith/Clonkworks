@@ -23,3 +23,4 @@ GrabPutGet=C4D_GrabGet|C4D_GrabPut
 Rotate=30
 UprightAttach=8
 NoComponentMass=1
+LineConnect=128

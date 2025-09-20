@@ -24,3 +24,4 @@ BurnTo=FNDB
 Construction=1
 ContainBlast=1
 AutoContextMenu=1
+LineConnect=128

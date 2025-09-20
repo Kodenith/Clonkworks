@@ -1,0 +1,2 @@
+Used to create special lines and pipes, can be used in the same way as a normal line kit.
+The lines creatable by this kit can be unusual, and have very specific purposes. Use this kit if such purpose is needed.
