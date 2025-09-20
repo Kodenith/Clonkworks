@@ -12,7 +12,7 @@ protected func Hit()
 protected func Activate(clonk)
 {
   [$TxtConnectline$]
-  var obj = FindObject(0, 1,0,0,0, OCF_LineConstruct(), 0,0,0, obj);
+  var obj = FindObject(0, 1,0,0,0, OCF_LineConstruct(), 0,0,NoContainer(), obj);
   if(!obj) return(Message("$TxtNoNewLine$", this()) );
   var pLine = FindObject(0, 0,0,0,0, 0, "Connect", this() );
   SetComDir(COMD_Stop(), clonk);
