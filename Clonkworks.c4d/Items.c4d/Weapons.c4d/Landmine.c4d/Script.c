@@ -16,6 +16,7 @@ public func Attachment(){
    SetPicture(0, 7 + 64, 64, 64);
    Sound("Click");
    SetAction("Active");
+   SetVisibility(VIS_Owner | VIS_Allies);
 }
 
 public func Activate(pClonk)
@@ -64,6 +65,7 @@ public func CheckNearby(){
 		SetAction("Idle");
 		AboutToExplode = false;
 		SetColorDw(GetPlrColorDw(GetOwner()));
+		SetVisibility(VIS_All);
 	}
 	
 	if(GetActTime() < 36){
@@ -80,6 +82,7 @@ public func CheckNearby(){
 		SetColorDw(RGBa(255,0,0));
 		Sound("Minebeep");
 		Schedule("DoMineExplosion()",36/2,0);
+		SetVisibility(VIS_All);
 		AboutToExplode = true;
 	}
 }

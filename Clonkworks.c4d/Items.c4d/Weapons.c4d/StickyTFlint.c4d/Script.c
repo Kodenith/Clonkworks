@@ -10,6 +10,13 @@ protected func Hit() {
   if(!ActIdle()) return true;
   Sound("Fuse");
   SetAction("Activated");
+  //Make sure it doesnt unstick, move by 1 pixel into the ground.
+  var iX, iY;
+  if(GetXDir() < 0) iX = -1;
+  if(GetXDir() > 0) iX = 1;
+  if(GetYDir() < 0) iY = -1;
+  if(GetYDir() > 0) iY = 1;
+  SetPosition(GetX()+iX,GetY()+iY);
   // Picture anpassen
   SetPicture(0, 12 + 64, 64, 64);
   return true;
