@@ -62,3 +62,4 @@ public func Stickiness(){
 	if((GetContact(this(),-1) & 8)&& GetAction() == "Activated") SetActionKeepPhase("ActivatedStick");
 	if(!(GetContact(this(),-1) & 8) && GetAction() == "ActivatedStick") SetActionKeepPhase("Activated");
 }
+

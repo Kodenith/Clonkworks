@@ -20,3 +20,4 @@ Fragile=1
 Components=METL=1;STFS=1
 ColorByOwner=1
 Explosive=1
+Rebuy=1

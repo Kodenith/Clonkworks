@@ -1,0 +1,2 @@
+Once its stuck to a wall or ceiling, it will look at it's thrower.
+After some time, it will explode in a line/chain. Creating quite a nice tunnel.

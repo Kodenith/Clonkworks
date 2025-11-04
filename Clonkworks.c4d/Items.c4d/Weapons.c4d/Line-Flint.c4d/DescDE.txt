@@ -1,0 +1,2 @@
+Sobald es an einer Wand oder Decke klebt, richtet es sich auf seinen Werfer aus.
+Nach einiger Zeit explodiert es in einer Linie/Kette. Dadurch entsteht ein recht schöner Tunnel.
