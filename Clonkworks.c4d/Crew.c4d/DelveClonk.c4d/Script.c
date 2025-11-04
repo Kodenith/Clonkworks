@@ -19,7 +19,7 @@ func ControlLeft(){
 		//is facing right?
 		if(GetDir() == 1){
 			//Do The Jump
-			Fling(this(), -(100000/(110000-GetPhysical("Jump", 0, 0)))-2,-3);
+			Fling(this(), -(100000/(110000-GetPhysical("Jump")))-2,-3);
 			SetDir(0);
 			SetAction("Jump");
 			OnActionJump(GetXDir(0,100), GetYDir(0,100), false);
@@ -40,7 +40,7 @@ func ControlRight(){
 		//is facing left?
 		if(GetDir() == 0){
 			//Do The Jump
-			Fling(this(), (100000/(110000-GetPhysical("Jump", 0, 0)))+2,-3);
+			Fling(this(), (100000/(110000-GetPhysical("Jump")))+2,-3);
 			SetDir(1);
 			SetAction("Jump");
 			OnActionJump(GetXDir(0,100), GetYDir(0,100), false);
@@ -48,6 +48,20 @@ func ControlRight(){
 	}
 	
 	return(_inherited());
+}
+
+func ControlDig(){
+	if(GetProcedure() == "SCALE"){
+		SetAction("Jump");
+		if(GetDir2() == -1) SetXDir(GetXDir()+8);
+		if(GetDir2() == 1) SetXDir(GetXDir()-8);
+		return(1);
+	}
+	
+	if(GetProcedure() == "HANGLE"){
+		SetAction("Jump");
+		SetY(GetY()+1);
+	}
 }
 
 protected func ControlUpdate(object self, int comdir, bool dig, bool throw)
