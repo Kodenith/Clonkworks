@@ -180,5 +180,10 @@ public func ALKConnectType(){
 }
 
 public func TripActivate(){
+  if (GetAction() ne "Ready") return(1);
+  // Nicht gespannt: Clonk kann nur laden/entladen
+  if (!GetPhase()) return(0);
+  // Gespannt, aber kein Inhalt: kann nicht feuern (Clonk darf reingucken)
+  if (!ContentsCount()) return(0);
 	return(Fire(true));
 }
