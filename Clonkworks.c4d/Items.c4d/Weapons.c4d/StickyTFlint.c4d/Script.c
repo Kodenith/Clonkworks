@@ -5,7 +5,7 @@
 
 local iLastController; // Fuer Killverfolgung: Letzter Controller vor dem Einsammeln
 
-protected func Hit() {
+protected func Hit(int xdir, int ydir) {
   Sound("ArrowHit");
   if(!ActIdle()) return true;
   Sound("Fuse");
@@ -14,8 +14,7 @@ protected func Hit() {
   var iX, iY;
   if(GetXDir() < 0) iX = -1;
   if(GetXDir() > 0) iX = 1;
-  if(GetYDir() < 0) iY = -1;
-  if(GetYDir() > 0) iY = 1;
+  if(ydir < 0) iY = -2;
   SetPosition(GetX()+iX,GetY()+iY);
   // Picture anpassen
   SetPicture(0, 12 + 64, 64, 64);
