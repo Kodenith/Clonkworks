@@ -53,7 +53,7 @@ public func Stickiness(){
 		   
 		if(GetActTime() == 120-18) Sound("Minebeep");
 		var vert = RandomX(1,8);
-		if(!Random(3)) CreateParticle("PSpark",GetVertex(vert,0),GetVertex(vert,1),0,0,25,RGBa(255,0,0),this());
+		if(!Random(3)) CreateParticle("PSpark",GetVertex(vert,0),GetVertex(vert,1),0,0,25,RGBa(0,255,255),this());
 	}
 }
 
