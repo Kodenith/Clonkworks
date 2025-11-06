@@ -1,7 +1,7 @@
 [DefCore]
-id=TARP
+id=ATRP
 Version=4,9,8
-Name=TrackingArrowPack
+Name=AdvancedTrackingArrowPack
 Category=C4D_Object|C4D_SelectMaterial|C4D_SelectKnowledge|C4D_SelectHomebase
 MaxUserSelect=2
 Width=8
@@ -10,9 +10,9 @@ Offset=-4,-3
 Vertices=2
 VertexY=-3,3
 VertexFriction=100,100
-Value=40
+Value=50
 Mass=30
-Components=METL=4;MGNT=1
+Components=METL=3;CPIG=2;CRYS=2;ADM3=1;MGNT=1;
 Picture=0,8,64,64
 Rebuy=1
 Collectible=1

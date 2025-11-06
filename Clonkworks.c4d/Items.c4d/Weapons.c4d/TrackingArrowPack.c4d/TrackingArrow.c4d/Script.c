@@ -49,7 +49,7 @@ private func InFlight(){
 		else if(Rotation > GetR()) SetRDir(45);
 		else SetRDir(0);
 		
-		DebugLog("Target Rotation: %d, Current: %d",Rotation,GetR());
+		//DebugLog("Target Rotation: %d, Current: %d",Rotation,GetR());
 		
 	    var iXDir = Sin(GetR(), 5);
 		var iYDir = -Cos(GetR(), 5);
@@ -57,7 +57,7 @@ private func InFlight(){
 		SetYDir(GetYDir()+iYDir);
 		
 		//if(!Random(10)) Smoke(0,0,Random(10));
-		if(!Random(5)) CreateParticle("PSpark",0,0,-iXDir,-iYDir,Random(30),RGBa(255,145,0));
+		if(!Random(5)) CreateParticle("PSpark",0,0,-iXDir,-iYDir,Random(30),RGBa(0,255,255));
 		
 		//the homing arrow can home for 5 seconds.
 		if(!CanTrack()) Target = 0;
@@ -91,7 +91,7 @@ func StartTracking(pObj){
 		SetAction("Shot");
 		var Rotation = Angle(GetX(),GetY(),GetX(Target),GetY(Target));
 		Rotation = (Rotation + 180) % 360 - 180;
-		DebugLog("Tracking %v! Starting rotation: %d",pObj,Rotation);
+		//DebugLog("Tracking %v! Starting rotation: %d",pObj,Rotation);
 		SetR(Rotation);
 		SetXDir(GetXDir()/2);
 		SetYDir(GetYDir()/2);

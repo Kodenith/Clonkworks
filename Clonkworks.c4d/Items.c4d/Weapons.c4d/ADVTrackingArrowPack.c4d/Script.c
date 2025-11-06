@@ -6,7 +6,7 @@
 
 /* Paketeigenschaften */
 
-public func UnpackTo() { return(TARW); }
+public func UnpackTo() { return(ATRW); }
 
-public func GetResearchBase() { return(ARWP); }
+public func GetResearchBase() { return(TARP); }
 public func IsAdvancedProduct(){ return(1); }
