@@ -236,3 +236,14 @@ public func ALKConnectType(){
 public func TripActivate(){
 	return(Fire(true));
 }
+
+public func CanNotBeDispensedInto(MoveItem){
+	if(!MoveItem) return(1);
+	if(MoveItem->~IsArrowPack()){
+		MoveItem->Unpack();
+		return(1);
+	}
+	
+	if(MoveItem->~IsArrow()) return(0);
+	return(1);
+}
