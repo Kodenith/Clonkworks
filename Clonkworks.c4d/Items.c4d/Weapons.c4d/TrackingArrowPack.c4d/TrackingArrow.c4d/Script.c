@@ -101,3 +101,8 @@ public func CanTrack(){
 	if(GetAction() == "Shot" && GetActTime() > 180 && TrackModeOn) return(0);
 	return(1);
 }
+
+func Entrance(pContainer){
+	SetOwner(GetOwner(pContainer));
+	return(_inherited(pContainer));
+}

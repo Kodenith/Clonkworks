@@ -137,3 +137,8 @@ public func RejectEntrance(pInto)
  if(GetEffect("CannotBeCollected",this()))return(true);
  return(false);
 }
+
+func Entrance(pContainer){
+	SetOwner(GetOwner(pContainer));
+	return(_inherited(pContainer));
+}
