@@ -299,6 +299,14 @@ public func UnstuckLegs(){
 protected func MoveLegs(){
 	UnstuckLegs();
 	
+	//no captain? captain dead? detach.
+	if(!FindObject2(Find_OCF(OCF_CrewMember), Find_Container(this()))){
+		ContainedDownDouble();
+		SetClrModulation(RGBa(255,255,255),this(),1);
+		SetGraphics(0,this());
+		return(1);
+	}
+	
 		//rotation
 		for(var leg in LegList){
 			leg->SetR(Angle(GetX(leg),GetY(leg),GetX(), GetY())-90);
@@ -515,6 +523,12 @@ public func IsAdvancedProduct(){ return(1); }
 func EjectMultipleCaptains(){
 	if(GetLength(FindObjects(Find_Container(this()), Find_OCF(OCF_CrewMember))) > 1){
 		Exit(FindObject2(Find_Container(this()), Find_OCF(OCF_CrewMember)));
+	}
+	
+	var corpse;
+	if(corpse = FindObject2(Find_Not(Find_OCF(OCF_Alive)), Find_Category(C4D_Living), Find_Container(this()))){
+		Exit(corpse);
+		Ejection(corpse);
 	}
 	
 	if(Contained()) return(0);
