@@ -1,1 +1,9 @@
 TxtLinebroke=Line broke
+
+# Tweak Menu
+TxtMenuTitle=Set Tripwire Detection
+TxtObj=Detect Objects
+TxtVehicle=Detect Vehicles
+TxtLiving=Detect Living
+TxtPlayer=Detect %s
+TxtDevider=Players:
