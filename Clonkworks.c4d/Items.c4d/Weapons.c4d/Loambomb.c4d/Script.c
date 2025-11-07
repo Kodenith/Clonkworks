@@ -33,22 +33,43 @@ return true;
 
 public func LoamCircle(int strength, int iX, int iY)
 {
-  var NormalSize = 1009;
-  var PlacedPixels = 0;
-
+  var spray = [];
+  var ObjInArea = [];
+  //drawing circle, not overriding any other material besides walls and liquid
   for(var y = iY-strength; y <= iY+strength; y++)
     for(var x = iX-strength; x <= iX+strength; x++)
       if(AbsX(x)**2 + AbsY(y)**2 <= strength**2)
       {
-		PlacedPixels++;
 		if(GBackSolid(x-GetX(),y-GetY())) continue;
-		PlacedPixels--;
-		if(GBackLiquid(x-GetX(),y-GetY())) continue;
-		DrawMaterialQuad("Earth",x,y,x,y+1,x,y,x,y,1); 	
-		PlacedPixels++;
+		if(GBackLiquid(x-GetX(),y-GetY())){
+			ArrayAdd(spray,MaterialName(GetMaterial(x-GetX(),y-GetY())),false);
+		}
+		DrawMaterialQuad("Earth",x,y,x,y+1,x,y,x,y,1);
+		
+		for(var obj in FindObjects(Find_Exclude(this()),Find_NoContainer(),Find_Category(C4D_Object),Find_AtPoint(x-GetX(),y-GetY()))){
+			ArrayAdd(ObjInArea,obj,true);
+		}
       }
+	  
+  //replacing all lost liquid	  
+  for(var i in spray){
+	  //DebugLog(i);
+	  CastPXS(i,1,10,0,-(ExplodeSize()+1));
+  }
+  
+  //pushing away objects
+  for(var j in ObjInArea){
+	  while(GBackSolid(AbsX(GetX(j)),AbsY(GetY(j))) || ObjectDistance(j,this()) <= ExplodeSize()){
+		  if(ObjectDistance(j,this()) > ExplodeSize()) break;
+		  var RotRef = Angle(GetX(j),GetY(j),GetX(),GetY());
+		  RotRef= (RotRef + 180) % 360 - 180;
+		  var iXDir = Sin(RotRef, 1);
+		  var iYDir = -Cos(RotRef, 1);
+		  SetX(GetX(j)-iXDir,j);
+		  SetY(GetY(j)-iYDir,j);
+	  }
+  }
 	
-  CastPXS("Earth",NormalSize-PlacedPixels,10);
   return true;
 }
 
