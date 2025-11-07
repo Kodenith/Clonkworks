@@ -1,1 +1,5 @@
-Ein kleines und handliches Werkzeug zum Lösen von Brücken und ähnlichen Elementen.
+Ein kleines und praktisches Werkzeug zum Lösen und/oder Anpassen des Verhaltens einiger erweiterter Linien.
+
+Anleitung:
+Um etwas zu lösen, gehe in die Nähe eines lösbaren Objekts (z. B. eines Brückensegments) oder stelle dich darauf und drücke zweimal auf „Graben”.
+Um Linien anzupassen, gehe zu einem Objekt, mit dem eine erweiterte Linie verbunden ist, und drücke zweimal auf „Graben”. Es erscheint eine Liste der anpassbaren Linien, und du kannst dort deren Verhalten ändern.

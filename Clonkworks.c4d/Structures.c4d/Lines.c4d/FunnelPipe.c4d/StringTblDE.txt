@@ -1,1 +1,8 @@
 TxtLinebroke=Leitung gerissen
+
+# Tweak-Menü
+TxtMenuTitle=Trichter bearbeiten
+TxtFilterSet=Filter einstellen
+TxtFilterCurrent=Aktueller Filter: Nur %s.
+TxtSwapConf=Trichter vertauscht! %s -> %s
+TxtSwap=Trichterrichtung umkehren

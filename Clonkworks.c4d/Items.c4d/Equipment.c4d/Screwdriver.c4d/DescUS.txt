@@ -1,1 +1,5 @@
-A small and handy tool for detaching things like bridges.
+A small and handy tool used for detachment and/or tweaking the behaviour of some advanced lines.
+
+Instructions:
+To unscrew, go near or stand on top of an unscrewable object (like a bridge segment), and press dig twice.
+To tweak lines, go to an object that has an advanced line connected to it, and press dig twice. a list of tweakable lines will appear and you can modify how they act there.

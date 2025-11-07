@@ -8,37 +8,50 @@ func Hit(){
 
 public func Activate(pClonk){
 	[$TxtUnscrew$]
-	var Unscrewable = FindObjects(Find_Distance(30), Find_Func("Unscrewable"), Find_NoContainer(), Find_Exclude(this()));
-	DebugLog("Found objects: %v",Unscrewable);
-	if(Unscrewable == 0 || GetLength(Unscrewable) < 1){
-		Message("$ErrNoObjects$",pClonk);
-		pClonk->Sound("CommandFailure*");
-		return(1);
-	}
-	DebugLog("OK!");
 	
-	if(GetLength(Unscrewable) == 1){
-		Unscrew(,Unscrewable[0]);
+	//unscrewing
+	var Unscrewable = FindObject2(Find_OnLine(0,0,0,10), Find_Func("Unscrewable"), Find_NoContainer(), Find_Exclude(this()));
+	if(Unscrewable != 0){
+		Unscrew(Unscrewable);
 		return(1);
 	}
 	
-	CreateMenu(SCWD,pClonk,this(),0);
-	for(var i in Unscrewable){
-		AddMenuItem("$TxtUnscrew$: %s","Unscrew",GetID(i),pClonk,0,i);
+	//line tweaking
+	var LineObj = FindObject2(Find_NoContainer(),Find_OCF(OCF_LineConstruct),Find_AtPoint());
+	if(!LineObj) return(0);
+	var Lines = [];
+	//finding all lines conencted to LineObj
+	for(var i in FindObjects(Find_Func("isLine"))){
+		if(GetActionTarget(0,i) == LineObj || GetActionTarget(1,i) == LineObj){
+			ArrayAdd(Lines,i);
+		}
+	}
+	
+	//DebugLog("%v",Lines);
+	
+	//Line menu, all lines that return 1 to LineTweakable get added to it.
+	CreateMenu(SCWD,pClonk,this(),0,"$TxtNoTweakable$");
+	PlayerMessage(GetOwner(pClonk),Format("$TxtTweakInfo$",GetName(LineObj)),pClonk);
+	for(var line in Lines){
+		if(line->~LineTweakable()){
+			AddMenuItem("$TxtTweak$","StartLineTweak",GetID(line),pClonk,GetIndexOf(line,Lines)+1,line);
+		}
 	}
 	
 	return(1);
 }
 
-public func Unscrew(foo,pObj){
+public func StartLineTweak(foo,pLine){
+	if(!pLine) return(0);
+		
+	var pClonk = Contained();
+	pLine->~TweakMenu(pClonk);
+	Sound("screw*");
+}
+
+public func Unscrew(pObj){
 	if(!pObj) return(0);
-	if(ObjectDistance(this(),pObj) > 30){
-		var pClonk = ContainedTop(this());
-		Message("$ErrObjectFar$",pClonk,GetName(pObj));
-		pClonk->Sound("CommandFailure*");
-		return(0);
-	}
-	
+
 	pObj->~Unscrew();
 	Sound("screw*");
 	return(1);

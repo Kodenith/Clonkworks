@@ -1,3 +1,4 @@
-TxtUnscrew=Unscrew
-ErrNoObjects=There's no objects that can be unscrewed!
-ErrObjectFar=Can't Unscrew %s, too far away!
+TxtUnscrew=Unscrew/Tweak Lines
+TxtTweakInfo=Tweaking lines of %s.
+TxtTweak=Tweak %s Behaviour
+TxtNoTweakable=No Tweakable Lines! :(

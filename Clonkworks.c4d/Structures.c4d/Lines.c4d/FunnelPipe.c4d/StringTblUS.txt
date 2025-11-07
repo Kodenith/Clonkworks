@@ -1,1 +1,8 @@
 TxtLinebroke=Line broke
+
+# Tweak Menu
+TxtMenuTitle=Edit Funnel
+TxtFilterSet=Set Filter
+TxtFilterCurrent=Current Filter: %s only.
+TxtSwapConf=Funnel Swapped!|%s <- %s
+TxtSwap=Swap Funnel Direction

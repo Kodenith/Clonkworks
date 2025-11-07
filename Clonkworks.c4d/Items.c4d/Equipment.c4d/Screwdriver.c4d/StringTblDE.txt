@@ -1,3 +1,4 @@
-TxtUnscrew=Lösen
-ErrNoObjects=Es gibt keine Objekte, die gelöst werden können!
-ErrObjectFar=%s kann nicht gelöst werden, zu weit entfernt!
+TxtUnscrew=Schrauben lösen/Linien optimieren
+TxtTweakInfo=Linien von %s optimieren.
+TxtTweak=Verhalten von %s optimieren
+TxtNoTweakable=Keine anpassbaren Zeilen! :(
