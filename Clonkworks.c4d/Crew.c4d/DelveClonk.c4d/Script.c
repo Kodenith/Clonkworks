@@ -19,7 +19,7 @@ func ControlLeft(){
 		//is facing right?
 		if(GetDir() == 1){
 			//Do The Jump
-			Fling(this(), -(100000/(110000-GetPhysical("Jump")))-2,-3);
+			Fling(this(), -(100000/(110000-GetPhysical("Jump",0)))-2,-3);
 			SetDir(0);
 			SetAction("Jump");
 			OnActionJump(GetXDir(0,100), GetYDir(0,100), false);
@@ -40,7 +40,7 @@ func ControlRight(){
 		//is facing left?
 		if(GetDir() == 0){
 			//Do The Jump
-			Fling(this(), (100000/(110000-GetPhysical("Jump")))+2,-3);
+			Fling(this(), (100000/(110000-GetPhysical("Jump",0)))+2,-3);
 			SetDir(1);
 			SetAction("Jump");
 			OnActionJump(GetXDir(0,100), GetYDir(0,100), false);
@@ -105,7 +105,7 @@ func DelveJump(){
 	if(NoMoveJump){
 		if(!GetPlrJumpAndRunControl(GetOwner(this()))) ControlDirection = 0;
 		NoMoveJump = false;
-		AddEffect("Stopper", this(), 100,1, this());
+		AddEffect("Stopper", this(), 300,1, this());
 	}
 }
 
