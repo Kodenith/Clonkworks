@@ -239,11 +239,12 @@ public func TripActivate(){
 
 public func CanNotBeDispensedInto(MoveItem){
 	if(!MoveItem) return(1);
-	if(MoveItem->~IsArrowPack()){
-		MoveItem->Unpack();
+	if(RejectCollect(GetID(MoveItem),MoveItem)) return(1);
+	if(MoveItem->~IsArrow()){
+		MoveItem->Pack();
 		return(1);
 	}
 	
-	if(MoveItem->~IsArrow()) return(0);
+	if(MoveItem->~IsArrowPack()) return(0);
 	return(1);
 }
