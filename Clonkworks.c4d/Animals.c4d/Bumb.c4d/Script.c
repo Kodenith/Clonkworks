@@ -270,9 +270,13 @@ func Activity(){
 		if(GetAction() == "Idle") SetAction("Walk");
 		if(GetAction() == "Fly") SetAction("Walk");
 	  }else{
+		  if(GetAction() == "Tumble") return(0);
 		 SetAction("Idle");
 		 return(0);
 	  }
+	  
+	  //stop any command so you dont go left and right constantly
+	  if(GetCommand()) FinishCommand();
 	  
 	  if(!Random(7)){
 	    var direction = Random(3);
@@ -348,7 +352,7 @@ func Activity(){
 	  
 	  //fight cancellation logic moved to another part of the script.
 	  
-	  Beenergy = RandomX(-10,20);
+	  Beenergy -= RandomX(1,10);
 	  
 	  SetCommand(this(), "MoveTo", GrudgeTarget);
   }

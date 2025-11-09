@@ -8,6 +8,7 @@ local DesignatedBumb2;
 func Initialize() {
 	PollenAmount = 0;
   SetAction("Fill");
+  SetCategory(C4D_Vehicle);
   return(1);
 }
 
