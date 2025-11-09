@@ -128,20 +128,6 @@ NextAction=Walk
 StartCall=None
 
 [Action]
-Name=Dive
-Procedure=FLIGHT
-Directions=2
-FlipDir=1
-Length=8
-Delay=4
-Facet=0,140,16,20
-NextAction=Hold
-StartCall=None
-ObjectDisabled=1
-InLiquidAction=Swim
-PhaseCall=CheckStuck
-
-[Action]
 Name=FlatUp
 Procedure=KNEEL
 Directions=2
