@@ -8,3 +8,7 @@ TxtRight=Drive right
 TxtLeftDouble=Drive left permanently
 TxtRightDouble=Drive right permanently
 TxtStop=Stop/Exit
+
+# info
+FxEmpty=It's empty.
+FxFilled=Contains: %d/%d pixels of %s.

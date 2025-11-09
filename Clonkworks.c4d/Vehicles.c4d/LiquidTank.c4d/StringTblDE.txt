@@ -8,3 +8,7 @@ TxtRight=Fahrt rechts
 TxtLeftDouble=Dauerfahrt links
 TxtRightDouble=Dauerfahrt rechts
 TxtStop=Anhalten/Aussteigen
+
+# info
+FxEmpty=Es ist leer.
+FxFilled=Enthält: %d/%d Pixel von %s.

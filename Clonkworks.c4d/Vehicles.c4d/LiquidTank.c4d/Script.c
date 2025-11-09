@@ -8,7 +8,17 @@ func Initialize() {
 	Amount = 0;
   SetAction("FillUp");
   SetPhase(0);
+  AddEffect("LQTKStats",this(),1,0,this());
   return(1);
+}
+
+//display effect
+func FxLQTKStatsInfo(object pTarget, int iEffectNumber){
+	if(!LiquidType || !Amount){
+		return("$FxEmpty$");
+	}
+	
+	return(Format("$FxFilled$",Amount,MaxAmount(),LiquidType));
 }
 
 func MaxAmount(){ return(3000); }
