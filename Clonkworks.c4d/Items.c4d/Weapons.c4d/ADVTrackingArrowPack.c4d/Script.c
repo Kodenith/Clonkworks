@@ -12,6 +12,6 @@ public func GetResearchBase() { return(TARP); }
 public func IsAdvancedProduct(){ return(1); }
 
 func Entrance(pContainer){
-	SetOwner(GetOwner(pContainer));
+	SetOwner(GetController(pContainer));
 	return(_inherited(pContainer));
 }

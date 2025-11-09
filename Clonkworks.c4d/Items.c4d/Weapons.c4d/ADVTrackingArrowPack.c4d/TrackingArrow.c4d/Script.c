@@ -139,6 +139,6 @@ public func RejectEntrance(pInto)
 }
 
 func Entrance(pContainer){
-	SetOwner(GetOwner(pContainer));
+	SetOwner(GetController(pContainer));
 	return(_inherited(pContainer));
 }

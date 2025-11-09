@@ -103,6 +103,6 @@ public func CanTrack(){
 }
 
 func Entrance(pContainer){
-	SetOwner(GetOwner(pContainer));
+	SetOwner(GetController(pContainer));
 	return(_inherited(pContainer));
 }
