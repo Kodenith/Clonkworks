@@ -8,6 +8,8 @@ func Construction(){
 	return(_inherited());
 }
 
+public func IsTrainLike(){ return(1); }
+
 func PoweredEnough(){
 	if(!FindObject2(Find_ID(ENRG)) || GetEnergy() > 0){
 		return(1);

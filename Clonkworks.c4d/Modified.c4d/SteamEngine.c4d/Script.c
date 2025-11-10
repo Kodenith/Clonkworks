@@ -7,6 +7,7 @@ local iWait; // Wartezeit (an einem Signal)
 /* Seil beim Ziehen? */
 
 private func DrawBeam() { return(0); }
+public func IsTrainLike(){ return(1); }
 
 /* Initialisierung */
 

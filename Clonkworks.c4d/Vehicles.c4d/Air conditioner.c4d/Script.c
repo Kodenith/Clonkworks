@@ -38,9 +38,19 @@ public func DoHeat(){
 	//finding a random pixel nearby and heating it up!
 	for(var i = 0; i < Random(200); i++){
 	var iX, iY, range;
+	range = 67;
 	if(Contained()) range/=2;
 	iX = GetX() + RandomX(-range,range);
 	iY = GetY() + RandomX(-range,range);
+	
+	//if connected to something similiar to a train, do heating there.
+	if(GetID(Contained()) == WAGN){
+		var Train = FindObject2(Find_Func("IsTrainLike"), Find_Action("Push"), Find_ActionTarget(Contained()));
+		if(Train){
+			iX += AbsX(GetX(Train));
+			iY += AbsY(GetY(Train));
+		}
+	}
 	
 	var mat = GetMaterial(iX-GetX(),iY-GetY());
 	var HeatedMat, MatTex;
@@ -72,6 +82,15 @@ public func DoCooling(){
 	range = 67;
 	iX = GetX() + RandomX(-range,range);
 	iY = GetY() + RandomX(-range,range);
+	
+	//if connected to something similiar to a train, do heating there.
+	if(GetID(Contained()) == WAGN){
+		var Train = FindObject2(Find_Func("IsTrainLike"), Find_Action("Push"), Find_ActionTarget(Contained()));
+		if(Train){
+			iX += AbsX(GetX(Train));
+			iY += AbsY(GetY(Train));
+		}
+	}
 	
 	var mat = GetMaterial(iX-GetX(),iY-GetY());
 	var HeatedMat, MatTex;
