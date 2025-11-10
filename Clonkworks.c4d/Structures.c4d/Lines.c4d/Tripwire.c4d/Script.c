@@ -196,3 +196,5 @@ public func TogglePlayer(ico,Packed){
 	pClonk->Sound("Click");
 	TweakMenu(pClonk);
 }
+
+public func KitType(){ return(FNKT); }
