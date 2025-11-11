@@ -114,6 +114,20 @@ public func ControlThrow(pByObj){
 			barrel = Contents(i,pByObj);
 			break;
 		}
+		
+		if(GetID(Contents(i,pByObj)) == CNCR){
+			InsertLiquidPx("Rock",100);
+			Sound("Splash1");
+			RemoveObject(Contents(i,pByObj));
+			return(1);
+		}
+		
+		if(GetID(Contents(i,pByObj)) == LIQG){
+			InsertLiquidPx("Granite",150);
+			Sound("Splash1");
+			RemoveObject(Contents(i,pByObj));
+			return(1);
+		}
 	}
 	
 	if(GetID(barrel) == BARL) {
