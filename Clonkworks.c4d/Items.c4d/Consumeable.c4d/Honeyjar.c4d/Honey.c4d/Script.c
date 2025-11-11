@@ -104,18 +104,6 @@ public func Entrance(pClonk)
    
   // Nicht im Pfeilpacket selber
   if(GetID(pClonk) == PackTo()) return(0);
-
-  // Nicht wenn unterdrückt
-  if(GetEffect("IntNoPacking", pClonk)) return(0);
-  if(GetEffect("IntNoPacking", this)) return(0);
-  if(GetEffect("IntArrowVanish", this())) return(0);
-
-  // Hat der Clonk einen Köcher bei sich?
-  var pObj;
-  if(pObj = FindContents(QUIV,pClonk)) if(pObj->~CanPack(pClonk)) if(pObj->~AddPack(this())) return(1);
-
-  // Zu einem Pack dazufügen
-  return(Pack(pClonk));
 }
 
 public func JoinPack(pClonk,fForce)
@@ -123,6 +111,7 @@ public func JoinPack(pClonk,fForce)
   // Nicht wenn unterdrückt
   if(GetEffect("IntNoPacking", pClonk)) return(0);
   if(GetEffect("IntArrowVanish", this())) return(0);
+  if(GetCommand(pClonk,0) == "Acquire" && GetCommand(pClonk,5) == GetID()) return(0);
   
   Alert(pClonk);
   

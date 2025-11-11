@@ -16,6 +16,6 @@ VertexY=199,199,199,199,199,199,199,-183,-185,-80,-30,71,85,-46,45,118,115,-140,
 VertexFriction=20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20
 VertexCNAT=8,8,8,8,8,8,8,1,4,2,2,2,8,1,1,1,2,4,4
 Construction=1
-Components=ROCK=99
+Components=ROCK=99;CNCR=99;LIQG=99
 Exclusive=1
 Basement=1
