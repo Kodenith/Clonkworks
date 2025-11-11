@@ -1,0 +1,6 @@
+TxtProduce=Mix
+TxtCancelproduction=Cancel mixing
+TxtNoPlans=No plans available.
+TxtProduceMenu=Mix to: %s
+TxtNeedMaterial=%s needs:
+TxtNeedMaterialComponent=%dx %s
