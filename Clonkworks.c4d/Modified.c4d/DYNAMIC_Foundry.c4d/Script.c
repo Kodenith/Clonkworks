@@ -8,7 +8,14 @@
 /* Produktion */
 
 public func IsProducerOf (object clonk, id def) {
-  return ((def == METL || def == CPIG || def == TTIG) && IsBuilt());
+  if(!IsBuilt()) return(0);
+  var i = 0;
+  var def2;
+  while(def2 = GetDefinition(i,C4D_Object)){
+	  if(DefinitionCall(def2,"SmeltResult") == def)
+		  return(1);
+	  i++;
+  }
 }
 
 public func HowToProduce (object clonk, id def) {
@@ -20,9 +27,12 @@ public func StartProduction(object clonk)
 {
   // Arbeitsbefehl setzen
   CreateMenu(METL, clonk, this(), 4, "Foo", , 0, false, 1);
-  AddMenuItem(GetName(, METL), "SelectedMat", METL,clonk, 0, clonk);
-  AddMenuItem(GetName(, CPIG), "SelectedMat", CPIG,clonk, 0, clonk);
-  AddMenuItem(GetName(, TTIG), "SelectedMat", TTIG,clonk, 0, clonk);
+  var def, i;
+  while(def = GetDefinition(i,C4D_Object)){
+	  if(DefinitionCall(def,"SmeltResult"))
+		    AddMenuItem(GetName(, DefinitionCall(def,"SmeltResult")), "SelectedMat", DefinitionCall(def,"SmeltResult"),clonk, 0, clonk);
+	  i++;
+  }
 }
 
 public func SelectedMat(id item, object clonk){
@@ -36,39 +46,26 @@ public func Production(object clonk, id idProduct)
     // Der Arbeiter soll welches beschaffen
     WorkerAcquireFuel(clonk);
 
-  // Kein Erz im Hochofen
-  if(idProduct == METL){
-  if (!FindContents(ORE1))
+    if (!FindContents(idProduct))
     {
     // Der Arbeiter soll welches beschaffen
     AddCommand(clonk,"Call",this(),0,0,0,0,"Acquisition", 0, 3);
-    AddCommand(clonk,"Put",this(),0,0,0,0,ORE1);
-    AddCommand(clonk,"Acquire",0,0,0,0,0,ORE1,3);  
+    AddCommand(clonk,"Put",this(),0,0,0,0,FindRawDef(idProduct));
+    AddCommand(clonk,"Acquire",0,0,0,0,0,FindRawDef(idProduct),3);  
     }
-  }
-  
-  if(idProduct == CPIG){
-  if (!FindContents(ORE2))
-    {
-    // Der Arbeiter soll welches beschaffen
-    AddCommand(clonk,"Call",this(),0,0,0,0,"Acquisition", 0, 3);
-    AddCommand(clonk,"Put",this(),0,0,0,0,ORE2);
-    AddCommand(clonk,"Acquire",0,0,0,0,0,ORE2,3);  
-    }
-  }
-  
-   if(idProduct == TTIG){
-  if (!FindContents(ORE3))
-    {
-    // Der Arbeiter soll welches beschaffen
-    AddCommand(clonk,"Call",this(),0,0,0,0,"Acquisition", 0, 3);
-    AddCommand(clonk,"Put",this(),0,0,0,0,ORE3);
-    AddCommand(clonk,"Acquire",0,0,0,0,0,ORE3,3);  
-    }
-  }
   
   // Fertig
   return(1);
+}
+
+global func FindRawDef(typ){
+	var def, i;
+	while(def = GetDefinition(i,C4D_Object)){
+		if(DefinitionCall(def,"SmeltResult") == typ) return(def);
+		i++;
+	}
+	
+	return(0);
 }
   
 func WorkerAcquireFuel (object clonk) {
@@ -141,7 +138,13 @@ public func Acquisition(object pWorker)
 public func AcquisitionFailed(object pWorker)
 {
   // Materialbeschaffung fehlgeschlagen: Meldung ausgeben
-  if (!FindContents(ORE1) && !FindContents(ORE2)) 
+  var noOre = true;
+  for(var i in FindObjects(Find_Category(C4D_Object),Find_Container(this()))){
+	  if(i->~SmeltResult()) noOre = false;
+  }
+  
+  
+  if (noOre) 
     return(Message("$TxtNooreavailable$", pWorker));
   Message("$TxtNeedsfueltoburn$", pWorker);
   return(1);
@@ -196,7 +199,13 @@ private func Burning()
   SetAction("Idle");
   // Erz suchen
   var pOre;
-  if (!(pOre=FindContents(ORE1)) ) if (!(pOre=FindContents(ORE2))) if (!(pOre=FindContents(ORE3))) return(1);
+  for(var i in FindObjects(Find_Category(C4D_Object),Find_Container(this()))){
+	  if(i->~SmeltResult()){
+		  pOre = i;
+		  break;
+	  }
+  }
+  if(!pOre) return(1);
     // Metall auswerfen
   Exit(CreateContents(DefinitionCall(GetID(pOre), "SmeltResult")), -27,+13,0, -1);
   // Erz verbrauchen
@@ -230,15 +239,19 @@ private func ContentsCheck()
             || id==COAL
             || id==OBRL
             || id==WOOD
-            || id==ORE1
-            || id==ORE2
-            || id==ORE3			) )
+            || DefinitionCall(id,"SmeltResult")) )
       if(GetDefFragile(id) || GetCategory(obj) & C4D_Vehicle)
         SetCommand(obj, "Exit");
       else
         Exit(obj,-27,+13,0,-1);
+	
+  var noOre = true;
+  for(var i in FindObjects(Find_Category(C4D_Object),Find_Container(this()))){
+	  if(i->~SmeltResult()) noOre = false;
+  }
+
   // Erz prüfen
-  if (!FindContents(ORE1) && !FindContents(ORE2) && !FindContents(ORE3)) return(1);
+  if (noOre) return(1);
   // Holz verbrennen
   if (ContentsCount(WOOD)>1) return(BurnWood());
   // Öl verbrennen
