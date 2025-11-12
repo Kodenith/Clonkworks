@@ -16,7 +16,7 @@ VertexY=5,-2
 VertexFriction=20,20
 VertexCNAT=8,4
 Collectible=1
-Components=TTIG=1;CRYS=1;
+Components=METL=1;CRYS=1;
 ColorByOwner=1
 Rotate=1
 NoSell=1
