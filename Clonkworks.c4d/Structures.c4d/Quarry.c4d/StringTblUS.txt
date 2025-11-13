@@ -1,0 +1,6 @@
+TxtMine=Mine
+TxtComplete=All Orders|Complete!
+TxtAddOrder=Added Order:| %dx %s.
+TxtManageOrder=Manage Orders
+TxtAddOrder2=Add New Order
+TxtAdd=Add:

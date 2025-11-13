@@ -1,0 +1,2 @@
+Allows mining different kinds of ore. Bring lorries, explosives or clonks to speed up mining.
+Despite its ease of use, its much slower than regular mining.

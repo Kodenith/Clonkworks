@@ -1,0 +1,6 @@
+TxtMine=Meine
+TxtComplete=Alle Bestellungen|Abgeschlossen!
+TxtAddOrder=Bestellung hinzugefügt:| %dx %s.
+TxtManageOrder=Bestellungen verwalten
+TxtAddOrder2=Neue Bestellung hinzufügen
+TxtAdd=Hinzufügen:
