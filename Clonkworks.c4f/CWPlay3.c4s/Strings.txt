@@ -1,0 +1,18 @@
+Fragile
+
+MCLK_PrefCombo
+MCLK_QS
+Water
+DuroLava
+Oil
+Scoreboard
+Acid
+LavaLQM
+LavaLQM Lightning
+Fragile Glow
+Fragile Windy Burnable
+Fragile Burnable Fuming
+Explode
+Sticky Burnable WaterLQM Skew
+Regen Glow Fragile
+LavaLQM Attractive Magnet

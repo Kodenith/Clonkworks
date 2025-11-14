@@ -24,3 +24,4 @@ Construction=1
 VehicleControl=1
 Collection=-9,-9,12,10
 Components=METL=3;CPIG=1;WOOD=2;
+LineConnect=128

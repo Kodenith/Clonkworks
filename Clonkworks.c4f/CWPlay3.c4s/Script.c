@@ -47,6 +47,8 @@ func Initialize() {
   for(var tank in Tanks){
 	  Enter(Cabin,tank);
   }
+  
+  FindObject(QUAR)->SetOrder(GOLD);
 }
 
 func InitializePlayer(int iPlr){

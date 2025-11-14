@@ -111,6 +111,11 @@ func Initialize() {
   return(1);
 }
 
+func UpdateTransferZone(){
+	if(Sign) RemoveObject(Sign);
+	SetSign(Order);
+}
+
 public func CanMine(pClonk){
 	if(GetEffectCount("QUARMining",pClonk)){
 		RemoveEffect("QUARMining",pClonk);

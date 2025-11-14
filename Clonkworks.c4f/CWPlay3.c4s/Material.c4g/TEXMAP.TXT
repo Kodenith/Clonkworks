@@ -1,8 +1,22 @@
+# Automatically generated texture map
+# Contains material-texture-combinations added at runtime
+# Import materials from global file as well
 OverloadMaterials
+# Import textures from global file as well
 OverloadTextures
 
+1=Ashes-Spots
+2=Brick-Brick
+3=FlyAshes-Spots
+4=Ice-Sponge
+5=Ore-Structure
+6=CopperOre-Structure
+7=TitaniumOre-Structure
+8=Tunnel-Smooth2
+9=Vehicle-Smooth
 10=Tunnel-Smooth
 11=Tunnel-Rough
+12=Wall-Smooth
 19=DuroLava-Smooth
 20=Water-Liquid
 21=Oil-Liquid
@@ -49,4 +63,3 @@ OverloadTextures
 72=Snow-Flare2
 80=FlySand-Smooth2
 81=FlySand-Smooth3
-
