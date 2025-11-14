@@ -1,18 +1,24 @@
 [Action]
-Name=IdleWalled
+Name=Walled
 Length=1
 Delay=1
 Facet=64,0,64,45,0,0
+NextAction=Hold
 
 [Action]
 Name=Crumble
 Length=37
 Delay=2
 Facet=0,45,64,45,0,0
+PhaseCall=Crumbling
+EndCall=Collapse
+Sound=Earthquake
 
 [Action]
 Name=CrumbleWalled
 Length=30
 Delay=2
 Facet=0,90,64,45,0,0
-
+PhaseCall=Crumbling
+EndCall=Collapse
+Sound=Earthquake

@@ -17,6 +17,5 @@ VertexFriction=100,100,100,100,100,100,100,100,100
 VertexCNAT=8,8,8,1,2,1,2,4,80
 Entrance=-9,0,18,23
 Construction=1
-Components=METL=2;ROCK=8;WOOD=3
-AutoContextMenu=1
+Components=METL=1;ROCK=8;WOOD=3
 ContainBlast=1

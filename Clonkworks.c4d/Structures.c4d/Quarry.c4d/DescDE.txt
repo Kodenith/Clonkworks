@@ -1,2 +1,3 @@
-Ermöglicht Ihnen den Abbau verschiedener Erzarten. Bringen Sie Lore, Sprengstoff oder Klonks mit, um den Abbauprozess zu beschleunigen.
-Trotz seiner Benutzerfreundlichkeit ist es viel langsamer als normales Mining.
+Ermöglicht den Abbau verschiedener Erze, allerdings ist der Prozess sehr langsam. Bis zu 5 Clonks können in einem Steinbruch abbauen.
+
+Jeder Lore, der hineingeschoben wird, wird befüllt und nach dem Befüllen wieder herausgeschoben.

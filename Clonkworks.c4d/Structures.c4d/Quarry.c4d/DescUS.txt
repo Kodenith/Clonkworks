@@ -1,2 +1,3 @@
-Allows mining different kinds of ore. Bring lorries, explosives or clonks to speed up mining.
-Despite its ease of use, its much slower than regular mining.
+Allows mining different kinds of ore, but the process is very slow. Up to 5 clonks can mine in 1 Quarry.
+
+Any lorry pushed inside will be filled and pushed out once filled.
