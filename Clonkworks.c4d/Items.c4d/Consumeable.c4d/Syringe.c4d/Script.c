@@ -15,9 +15,9 @@ func Initialize() {
 
 func Update(){
 	if(GetAction() != "Filled"){
-		SetPicture(17,22,33,41);
+		SetPicture(17,36,29,28);
 	}else{
-		SetPicture(11,85,40,57);
+		SetPicture(11,92,40,40);
 	}
 }
 
