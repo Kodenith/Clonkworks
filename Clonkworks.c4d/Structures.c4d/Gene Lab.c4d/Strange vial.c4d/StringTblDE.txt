@@ -1,0 +1,2 @@
+TxtDrink=Getränk
+TxtInfo=Enthält Essenzen von:| {{%v}} %s | {{%v}} %s | {{%v}} %s | {{%v}} %s

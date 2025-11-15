@@ -79,6 +79,17 @@ global func LoamAtEmpty(){
 }
 
 public func Spawn(Item, Spawner){
-	CreateObject(Item,GetX(Spawner),GetY(Spawner));
+	var thing = CreateObject(Item,GetX(Spawner),GetY(Spawner));
 	Spawner->Sound("Ding");
+	if(GetID(thing) == VIAL){
+		var animals = [];
+		var i, a;
+		while(a = GetDefinition(i++,C4D_Living)){
+			if(DefinitionCall(a,"HasEssence")){
+				ArrayAdd(animals,a);
+			}
+		}
+		
+		thing->SetData([animals[Random(GetLength(animals))],animals[Random(GetLength(animals))],animals[Random(GetLength(animals))],animals[Random(GetLength(animals))]]);
+	}
 }

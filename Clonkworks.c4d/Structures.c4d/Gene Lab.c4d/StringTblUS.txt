@@ -1,0 +1,5 @@
+TxtSplice=Splice
+TxtCannotWork=%s is currently working here.
+TxtCannotSplice=Atleast 4 filled syringes are required to splice.
+TxtAdd=Add %s Essence.
+TxtProgress=%d/4 selected.

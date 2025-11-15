@@ -1,2 +1,2 @@
-DE:Spritze
-US:Syringe
+DE:Probenehmer
+US:Sampler

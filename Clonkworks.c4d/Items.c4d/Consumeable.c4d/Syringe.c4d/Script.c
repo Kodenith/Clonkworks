@@ -41,19 +41,7 @@ public func Activate(pClonk){
 	}
 	
 	if(!NotFilled){
-		if(GetAction(pClonk) != "Walk") {
-			Message("$ErrBadPos$",Contained(),GetName(Contained()));
-			Contained()->Sound("CommandFailure1");
-			return(1);
-		}
-		
-		if(GetEffect("Injected",pClonk)){
-			Message("$ErrAlreadyUsed$",Contained());
-			Contained()->Sound("CommandFailure1");
-			return(1);
-		}
-		
-		AddEffect("Injection",pClonk,300,1,this());
+		return(1);
 	}
 	
 	return(1);
@@ -92,49 +80,25 @@ protected func Inject(){
 	var NotFilled = true;
 	if(GetAction() == "Filled") NotFilled = false;
 	
-	if(NotFilled) DoExtraction();
-	else DoInjection();
+	DoExtraction();
 }
 
 public func DoExtraction(){
 	var Injectable = FindObject2(Find_Func("HasEssence"), Find_AtPoint(), Find_NoContainer());
 	if(!Injectable) return(0);
 	
-	SetColorDw(Injectable->~EssenceInfo(1)); //get and set color
+	SetColorDw(Injectable->~EssenceInfo("Color")); //get and set color
 	Essence = GetID(Injectable);
 	Sound("StabExtract");
 	SetAction("Filled");
 	Punch(Injectable,10);
 }
 
-public func DoInjection(){
-	if(!Contained() || !Essence) return(0);
-	AddEffect("Injected",Contained(),100,1,,SRIG,Essence);
-	Sound("StabInject");
-	RemoveObject();
-}
+
 
 //other
 func Hit(){
 	if(!Random(3)) Sound("Crystal*",0,this(),25);
-}
-
-//oooooooh! a syring effect!
-public func FxInjectedStart(pTarget,iEffectNumber, iTemp, EssenceType){
-	EffectVar(0,pTarget,iEffectNumber) = EssenceType;
-}
-
-public func FxInjectedTimer(pTarget, iEffectNumber, iEffectTime){
-	if(iEffectTime > 63*36) return(-1);
-	var EssenceType = EffectVar(0,pTarget,iEffectNumber);
-	if(!Random(15) && iEffectTime > 3*36 && !Contained(pTarget)) CreateParticle("PSpark",GetX(pTarget)+RandomX(-8,8),GetY(pTarget)+8,0,-5,RandomX(25,40),DefinitionCall(EssenceType,"EssenceInfo",1,pTarget),pTarget);
-	if(iEffectTime != 3*36) return(0);
-	DefinitionCall(EssenceType,"EssenceInfo",2,pTarget);
-}
-
-public func FxInjectedStop(pTarget,iEffectNumber, iTemp){
-	var EssenceType = EffectVar(0,pTarget,iEffectNumber);
-	DefinitionCall(EssenceType,"EssenceInfo",3,pTarget);
 }
 
 //oooh! info!
