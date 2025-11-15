@@ -58,6 +58,8 @@ func InitializePlayer(int iPlr){
 	SetOwner(iPlr, flag);
 	SetFoW (0, iPlr);
 	var i, id; while (id = GetDefinition(i++)){
+		if((GetCategory(,id) & C4D_Structure) && !(GetCategory(,id) & C4D_Knowledge)) continue;
+		if((GetCategory(,id) & C4D_Vehicle) && !(GetCategory(,id) & C4D_Knowledge)) continue;
 		SetPlrKnowledge(iPlr, id);
 		var ok = false;
 		var def = id;
@@ -81,4 +83,11 @@ public func RelaunchPlayer(Owner){
 	SetOwner(Owner,conk);
 	MakeCrewMember(conk,Owner);
 	SetCursor(Owner,conk);
+}
+
+global func isBurntVariant(cid){
+	var i, m;
+	while(m = GetDefinition(i++,C4D_Structure)){
+		if(GetDefCoreVal("BurnTo", "DefCore", m) == cid) return(1);
+	}
 }
