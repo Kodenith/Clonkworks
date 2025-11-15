@@ -106,3 +106,4 @@ public func FxSyrinfInfo(object pTarget, int iEffectNumber){
 	var i = Format("$TxtEssence$",Essence,GetName(,Essence));
 	if(Essence) return(i);
 }
+public func GetResearchBase() { return(GNLB); }

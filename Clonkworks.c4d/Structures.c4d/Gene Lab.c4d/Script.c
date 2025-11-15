@@ -193,3 +193,5 @@ public func UpdateWorker(){
 	if(Contained(pWorker) != this()) pWorker = 0;
 	}
 }
+
+public func GetResearchBase() { return(ADVW); }
