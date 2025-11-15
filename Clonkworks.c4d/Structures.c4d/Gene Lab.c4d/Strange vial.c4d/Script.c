@@ -124,17 +124,17 @@ public func FxEssencePhysicalsStart(pTarget, iEffectNumber, iTemp, List,UniqueLi
         }
     }
 	
-	SetPhysical("Energy", GetPhysical("Energy", 0, pTarget) + Energy, 2,pTarget);
-    SetPhysical("Breath", GetPhysical("Breath", 0, pTarget) + Breath, 2,pTarget);
-    SetPhysical("Walk", GetPhysical("Walk", 0, pTarget) + Walk, 2,pTarget);
-    SetPhysical("Jump", GetPhysical("Jump", 0, pTarget) + Jump, 2,pTarget);
-    SetPhysical("Scale", GetPhysical("Scale", 0, pTarget) + Scale, 2,pTarget);
-    SetPhysical("Hangle", GetPhysical("Hangle", 0, pTarget) + Hangle, 2,pTarget);
-    SetPhysical("Dig", GetPhysical("Dig", 0, pTarget) + Dig, 2,pTarget);
-    SetPhysical("Swim", GetPhysical("Swim", 0, pTarget) + Swim, 2,pTarget);
-    SetPhysical("Throw", GetPhysical("Throw", 0, pTarget) + Throw, 2,pTarget);
-    SetPhysical("Push", GetPhysical("Push", 0, pTarget) + Push, 2,pTarget);
-    SetPhysical("Fight", GetPhysical("Fight", 0, pTarget) + Fight, 2,pTarget);
+	SetPhysical("Energy", GetPhysical("Energy", 0, pTarget) + Energy, 3,pTarget);
+    SetPhysical("Breath", GetPhysical("Breath", 0, pTarget) + Breath, 3,pTarget);
+    SetPhysical("Walk", GetPhysical("Walk", 0, pTarget) + Walk, 3,pTarget);
+    SetPhysical("Jump", GetPhysical("Jump", 0, pTarget) + Jump, 3,pTarget);
+    SetPhysical("Scale", GetPhysical("Scale", 0, pTarget) + Scale, 3,pTarget);
+    SetPhysical("Hangle", GetPhysical("Hangle", 0, pTarget) + Hangle, 3,pTarget);
+    SetPhysical("Dig", GetPhysical("Dig", 0, pTarget) + Dig, 3,pTarget);
+    SetPhysical("Swim", GetPhysical("Swim", 0, pTarget) + Swim, 3,pTarget);
+    SetPhysical("Throw", GetPhysical("Throw", 0, pTarget) + Throw, 3,pTarget);
+    SetPhysical("Push", GetPhysical("Push", 0, pTarget) + Push, 3,pTarget);
+    SetPhysical("Fight", GetPhysical("Fight", 0, pTarget) + Fight, 3,pTarget);
 	
 	var nUniqueList = UniqueList;
 	for(var j in nUniqueList){
@@ -150,7 +150,9 @@ public func FxEssencePhysicalsTimer(object pTarget, int iEffectNumber, int iEffe
 public func FxEssencePhysicalsStop(object pTarget, int iEffectNumber, int iReason, bool fTemp){
 	var Phys = ["Energy","Breath","Walk","Jump","Scale","Hangle","Dig","Swim","Throw","Push","Fight"];
 	for(var p in Phys){
+		//DebugLog("InEffect %s: %d",p,GetPhysical(p, 0, pTarget));
 		ResetPhysical(pTarget,p);
+		//DebugLog("Current %s: %d",p,GetPhysical(p, 0, pTarget));
 	}
 	
 	
