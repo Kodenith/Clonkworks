@@ -3,6 +3,7 @@
 #strict 2
 
 func Initialize() {
+	SpawnPlatform();
 	//forge setup
   RemoveObject(FindObject2(Find_ID(FALW)));
   CreateObject(FALW);
@@ -44,11 +45,41 @@ func Initialize() {
   Tanks[3]->InsertLiquidPx("Oil",Tanks[3]->MaxAmount());
   SetName("ENDLESS OIL TANK",Tanks[3]);
   
+  Tanks[4] = CreateObject(_CPL);
+  LocalN("plan_id",Tanks[4]) = KDNT;
+  
+  Tanks[5] = CreateObject(_CPL);
+  LocalN("plan_id",Tanks[5]) = PGTP;
+  
   for(var tank in Tanks){
 	  Enter(Cabin,tank);
   }
   
   FindObject(QUAR)->SetOrder(GOLD);
+  
+  var Tele = CreateConstruction(PGTP,(LandscapeWidth()/2)-(LandscapeWidth()/4),LandscapeHeight()/2,0,100,false,false);
+	SetName("Ground - Left Side",Tele);
+  while(VerticesStuck(Tele)){
+	  SetY(GetY(Tele)-1,Tele);
+	 }
+  Tele = CreateConstruction(PGTP,(LandscapeWidth()/2)+(LandscapeWidth()/4),LandscapeHeight()/2,0,100,false,false);
+	SetName("Ground - Right Side",Tele);
+  while(VerticesStuck(Tele)){
+	  SetY(GetY(Tele)-1,Tele);
+	 }
+	
+  MakeCavern();
+  
+    var Tele = CreateConstruction(PGTP,(LandscapeWidth()/2)-(LandscapeWidth()/4),LandscapeHeight(),0,100,false,false);
+	SetName("Cavern - Left Side",Tele);
+  while(VerticesStuck(Tele)){
+	  SetY(GetY(Tele)-1,Tele);
+	 }
+  Tele = CreateConstruction(PGTP,(LandscapeWidth()/2)+(LandscapeWidth()/4),LandscapeHeight(),0,100,false,false);
+	SetName("Cavern - Right Side",Tele);
+  while(VerticesStuck(Tele)){
+	  SetY(GetY(Tele)-1,Tele);
+	 }
 }
 
 func InitializePlayer(int iPlr){
@@ -85,9 +116,57 @@ public func RelaunchPlayer(Owner){
 	SetCursor(Owner,conk);
 }
 
-global func isBurntVariant(cid){
-	var i, m;
-	while(m = GetDefinition(i++,C4D_Structure)){
-		if(GetDefCoreVal("BurnTo", "DefCore", m) == cid) return(1);
+//generation test
+global func SpawnPlatform(){
+	var x = LandscapeWidth() / 2;
+	var y = 200;
+	var height = 15; //50 pixels high,  ok to walk on
+	var width = 0;
+	var offset = 5;
+	var OutsideOffset = 10;
+	var Banned = [BAS7,CTW0,CST1,CST2,CST3,HUT1,HUT2,DRCK,ELEV,FNDR,GIDL,IDOL,IGLO,POWR,PUMP,RSRC,SAWM,SGNL,TWR2,BMBX,CT5P,AHUT,ACLD,MWKS,WZKP];
+	
+	x-=OutsideOffset;
+	var o,i;
+	while(o = GetDefinition(i++,C4D_Structure)){
+		if(InArray(o,Banned) != -1) continue;
+		if(!(GetCategory(,o) & C4D_Knowledge)) continue;
+		width += GetWidth(o)+offset;
+		width += offset;
 	}
+	width+=OutsideOffset*2;
+	x -= width/2;
+	var iX = x+10;
+	i = 0;
+	while(o = GetDefinition(i++,C4D_Structure)){
+		if(InArray(o,Banned) != -1) continue;
+		if(!(GetCategory(,o) & C4D_Knowledge)) continue;
+		var pX = iX;
+		iX+=(GetWidth(o)+offset);
+		pX -= iX;
+		CreateConstruction(o,iX+pX/2,y,0,100,false,false);
+		iX += offset;
+	}
+	
+	DrawMaterialQuad("Brick",x,y,x+width,y,x+width,y+height,x,y+height,true);
+	CreateConstruction(ELEV,x-14,y,0,100,false,false);
+	CreateConstruction(ELEV,x+width+15,y,0,100,false,false);
+	
+	var Tele = CreateConstruction(PGTP,x+75+offset,y,0,100,false,false);
+	SetName("Base",Tele);
+}
+
+global func GetWidth(cid){
+	if(DefinitionCall(cid,"BasementRealWidth")) return(DefinitionCall(cid,"BasementRealWidth"));
+	else if(DefinitionCall(cid,"BasementWidth")) return(DefinitionCall(cid,"BasementWidth"));
+	else{
+		return(GetDefCoreVal("Width","DefCore",cid));
+	}
+}
+
+global func MakeCavern(){
+	var TopY = LandscapeHeight() - 600;
+	var BotY = LandscapeHeight() - 50;
+	
+	DrawMaterialQuad("Tunnel",0,TopY,LandscapeWidth(),TopY,LandscapeWidth(),BotY,0,BotY);
 }
