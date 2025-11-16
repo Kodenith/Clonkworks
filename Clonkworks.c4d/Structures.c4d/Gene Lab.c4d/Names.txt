@@ -1,2 +1,2 @@
-DE:Genlabor
-US:Gene Lab
+DE:Probenmischer
+US:Sample Mixer
