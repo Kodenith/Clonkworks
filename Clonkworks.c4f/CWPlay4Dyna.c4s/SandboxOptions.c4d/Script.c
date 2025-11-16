@@ -27,9 +27,9 @@ public func Activate(pByPlr){
 	AddMenuItem("$Opt3$","SpawnMenu",BUMB,pByObj,0,pByObj);
 	AddMenuItem("$Opt4$","SpawnMenu",MTBK,pByObj,0,pByObj);
 	AddMenuItem("$Opt5$","SpawnMenu",CLNK,pByObj,0,pByObj);
-	if(GetMaterialCount(Material("Earth")) < 436233){
+/* 	if(GetMaterialCount(Material("Earth")) < 436233){
 	AddMenuItem("$Opt6$","RemakeTerrain",SELV,pByObj,0,pByObj);
-	}
+	} */
 }
 
 public func SpawnMenu(identifier, Spawner){
