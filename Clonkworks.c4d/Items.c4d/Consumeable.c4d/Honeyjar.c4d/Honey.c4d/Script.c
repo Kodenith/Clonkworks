@@ -111,7 +111,6 @@ public func JoinPack(pClonk,fForce)
   // Nicht wenn unterdrückt
   if(GetEffect("IntNoPacking", pClonk)) return(0);
   if(GetEffect("IntArrowVanish", this())) return(0);
-  if(GetCommand(pClonk,0) == "Acquire" && GetCommand(pClonk,5) == GetID()) return(0);
   
   Alert(pClonk);
   
