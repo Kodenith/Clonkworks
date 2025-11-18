@@ -2,7 +2,7 @@
 Name=Charging
 Length=1
 Delay=1
-Facet=0,0,8,9,0,0
+Facet=0,0,12,12,0,0
 FacetBase=0
 NextAction=Charging
 StartCall=ChargeAir
@@ -12,7 +12,7 @@ Sound=Fusing
 Name=Charged
 Length=1
 Delay=1
-Facet=8,0,8,9,0,0
+Facet=12,0,12,12,0,0
 FacetBase=0
 NextAction=Charged
 

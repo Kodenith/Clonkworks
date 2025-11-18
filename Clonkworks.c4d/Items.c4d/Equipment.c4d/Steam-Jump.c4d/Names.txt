@@ -1,2 +1,2 @@
-DE:Windglas
-US:Windjar
+DE:Clonk-Launcher
+US:Clonk-Launcher

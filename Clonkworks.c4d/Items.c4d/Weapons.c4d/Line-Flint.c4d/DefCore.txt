@@ -4,7 +4,7 @@ id=LFLN
 Version=4,9,8
 Category=C4D_Object|C4D_SelectMaterial|C4D_SelectHomebase
 MaxUserSelect=10
-Value=30
+Value=49
 Mass=10
 Width=6
 Height=6
@@ -21,4 +21,4 @@ Timer=1
 TimerCall=Stickiness
 Picture=0,6,64,64
 Rotate=1
-Components=CPIG=2;CRYS=1;STFN=1;
+Components=CPIG=3;CRYS=1;STFN=1;

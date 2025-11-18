@@ -1,2 +1,2 @@
-DE:Kettenbombe
-US:Chain Bomb
+DE:Flint-bohrer
+US:Flint-Drill

@@ -11,7 +11,7 @@ func Initialize() {
 
 protected func Chargeup(){
 	SetAction("Charged");
-	SetPicture(0,75,64,64,this());
+	SetPicture(0,76,64,64,this());
 }
 
 //status effect
@@ -31,7 +31,7 @@ protected func DischargeAir(SpecialUser){
 	if(GetProcedure(Targ) != "FLIGHT") return(0);
 	
 	SetAction("Idle");
-	SetPicture(0,11,64,64,this());
+	SetPicture(0,12,64,64,this());
 	Sound("SteamBlast*");
 	
 	var vX =GetXDir(Targ);

@@ -53,7 +53,7 @@ public func Stickiness(){
 		   
 		if(GetActTime() == 120-18) Sound("Minebeep");
 		var vert = RandomX(1,8);
-		if(!Random(3)) CreateParticle("PSpark",GetVertex(vert,0),GetVertex(vert,1),0,0,25,RGBa(0,255,255),this());
+		if(!Random(3)) CreateParticle("PSpark",GetVertex(vert,0),GetVertex(vert,1),0,0,25,RGBa(255,0,0),this());
 	}
 }
 
@@ -68,6 +68,7 @@ public func DoExplosion(){
 	SetXDir(0); SetYDir(0); SetRDir(0);
 	SetR(GetR());
 	CreateChainExplosion(0);
+	Sound("Drill");
 	Schedule("CreateChainExplosion(1)",5);
 	Schedule("CreateChainExplosion(5)",5);
 	
