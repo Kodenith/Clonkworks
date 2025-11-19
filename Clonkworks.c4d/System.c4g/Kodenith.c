@@ -1,12 +1,34 @@
 /*-- Neues Script --*/
 
-#strict 3
+#strict 2
 
 //Returns a random color
 //Include Alpha - Alpha is also random
 global func RandomRGBa(bool IncludeAlpha){
 	if(IncludeAlpha) return(RGBa( RandomX(0,255) , RandomX(0,255) , RandomX(0,255) , RandomX(0,255)));
 	return(RGBa( RandomX(0,255) , RandomX(0,255) , RandomX(0,255)));
+}
+
+//mixes two different colors.
+global func MixColor(int col1, int col2){
+	var bi = 2;
+	var R,G,B,R2,G2,B2,foo;
+	SplitRGBaValue(col1,R,G,B,foo);
+	SplitRGBaValue(col2,R2,G2,B2,foo);
+	
+	var endR = bi*R+R2*(5-bi);
+	var endG = bi*G+G2*(5-bi);
+	var endB = bi*B+B2*(5-bi);
+	var scale = Max(Max(endR,endG),endB)/((2*bi*Max(Max(R,G),B)+(2-2*bi)*Max(Max(R2,G2),B2))/2);
+	endR = endR/scale;
+    endG = endG/scale;
+    endB = endB/scale;
+
+/* 	endR = BoundBy(endR,0,255);
+	endG = BoundBy(endG,0,255);
+	endB = BoundBy(endB,0,255); */
+	
+	return(RGBa(endR,endG,endB));
 }
 
 //this function allows the creation of forged objects without the forge itself, useful for minigames or spawning a preforged item

@@ -167,23 +167,6 @@ public func RejectContents(){
 	if(pWorker) return(1);
 }
 
-//efficient code i totally didnt steal from github
-global func MixColor(int col1, int col2){
-	var bi = 2;
-	var R,G,B,R2,G2,B2,foo;
-	SplitRGBaValue(col1,R,G,B,foo);
-	SplitRGBaValue(col2,R2,G2,B2,foo);
-	
-	var endR = bi*R+R2*(5-bi);
-	var endG = bi*G+G2*(5-bi);
-	var endB = bi*B+B2*(5-bi);
-	var scale = Max(Max(endR,endG),endB)/((2*bi*Max(Max(R,G),B)+(2-2*bi)*Max(Max(R2,G2),B2))/2);
-	endR = endR/scale;
-    endG = endG/scale;
-    endB = endB/scale;
-	return(RGBa(endR,endG,endB));
-}
-
 public func UpdateWorker(){
 	if(pWorker){
 	if(!GetAlive(pWorker)) pWorker = 0;
