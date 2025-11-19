@@ -86,7 +86,7 @@ protected func ChargeAir(){
 	
 	if(Air > (38 * 30)){
 		Air = 0;
-		Sound("JarFill");
+		Sound("Lever1");
 		Chargeup();
 	}
 	
