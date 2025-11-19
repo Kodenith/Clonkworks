@@ -4,12 +4,13 @@
 #strict 2
 #appendto CLNK
 
-//grab currently uncraftable packable items. this makes getting honey without any weird glitches possible.
+//grab any unpacked object from a packed one if a clonk is searching for one. (no needless crafting, makes honey crafting possible).
 public func ControlCommandAcquire(target, x, y, target2, def)
 {
-  if(DefinitionCall(def,"PackTo") && !GetProducerOf(def) && !FindObject(def)){
+  if(DefinitionCall(def,"PackTo") && ((!GetProducerOf(def) && !FindObject(def)) || FindObject(DefinitionCall(def,"PackTo"))) ){
 	if(GetAvailableObject (def, target2)) return(_inherited(target,x,y,target2,def));
-	DebugLog("Finding packed %v.",def);
+	if(FindObject(DefinitionCall(def,"PackTo")) && !GetAvailableObject(DefinitionCall(def,"PackTo"), target2)) return(_inherited(target,x,y,target2,def));
+	//DebugLog("Finding packed %v.",def);
 	var obj = FindPacked(def);
 	if(!obj) return(_inherited(target,x,y,target2,def));
 	//if(GetAvailableObject (obj, target2)) return(_inherited(target,x,y,target2,def));
