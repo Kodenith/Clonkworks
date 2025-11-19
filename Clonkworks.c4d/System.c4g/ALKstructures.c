@@ -19,6 +19,7 @@
 #appendto FORG
 #appendto ADVW
 #appendto CMIX
+#appendto GNLB
 
 //what advanced lines can be connected?
 public func ALKConnectType(){

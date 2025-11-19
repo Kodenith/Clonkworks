@@ -40,7 +40,7 @@ public func GrabArrow(pClonk,type){
 	if(!Item) return 0;
 	Item->GetItem();
 	if(Item){
-	if(ContainedTop(pClonk)) Enter(ContainedTop(pClonk),Item);
+	if(Contained(pClonk)) Enter(Contained(pClonk),Item);
 	else Exit(Item);
 	}
 	return(1);

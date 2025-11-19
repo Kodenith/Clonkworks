@@ -37,4 +37,5 @@ FacetBase=1
 NextAction=Process
 Sound=Research
 StartCall=MakeGoo
-
+EnergyUsage=650
+AbortCall=StopProcession

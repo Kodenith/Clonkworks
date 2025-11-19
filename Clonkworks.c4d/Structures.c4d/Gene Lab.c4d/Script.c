@@ -22,6 +22,7 @@ private func SoundCloseDoor()
 }
 
 public func SplicingAvailable(){
+	if(EnergyCheck(1530,this()) == 0) return(0);
 	if(pWorker) return(0);
 	if(GetAction() == "Process") return(0);
 	return(1);
@@ -96,6 +97,10 @@ public func EssenceSelection(pClonk){
 }
 
 public func StartProduction(pClonk){
+	if(EnergyCheck(1530,this()) == 0){
+		Sound("Error");
+		return(0);
+	}
 	for(var i = 0; i < GetLength(Selected); i++){
 		if(!EssenceList) EssenceList = [];
 		ArrayAdd(EssenceList,LocalN("Essence",Selected[i]));
@@ -117,6 +122,10 @@ func MakeGoo(){
 		
 		Goo->~SetData(EssenceList);
 		
+		while(EnergyCheck(1530,this()) == 0){
+			DoEnergy(1);
+		}
+		
 		SetAction("Idle");
 		Sound("done");
 		
@@ -127,6 +136,7 @@ func MakeGoo(){
 		pWorker = 0;
 		Selected = [];
 		EssenceList = [];
+		
 		return(0);
 	}
 	
@@ -175,6 +185,23 @@ public func UpdateWorker(){
 	}
 	if(Contained(pWorker) != this()) pWorker = 0;
 	}
+	
+	NoEnergyStop();
 }
 
 public func GetResearchBase() { return(ADVW); }
+
+func StopProcession(){
+	if(EnergyCheck(1530,this()) == 0){
+	pWorker = 0;
+	Selected = [];
+	EssenceList = [];
+	Sound("Discharge");
+	}
+}
+
+func NoEnergyStop(){
+	if(EnergyCheck(1530,this()) == 0 && GetAction() == "Process"){
+		SetAction("Idle");
+	}
+}

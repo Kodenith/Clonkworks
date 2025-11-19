@@ -25,3 +25,7 @@ Components=METL=3;TTIG=3;BARL=1;
 NoBurnDecay=0
 BlastIncinerate=85
 BurnTo=BGNB
+LineConnect=C4D_PowerInput|C4D_PowerOutput|C4D_PowerConsumer
+
+[Physical]
+Energy=100000

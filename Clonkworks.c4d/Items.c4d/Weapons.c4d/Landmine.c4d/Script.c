@@ -59,14 +59,14 @@ public func Stickiness(){
 }
 
 public func CheckNearby(){
-	if(!(GetContact(this(),-1) & 8) || FindObject2(Find_NoContainer(), Find_ID(SCWD), Find_Distance(5))){
+/* 	if(!(GetContact(this(),-1) & 8) || FindObject2(Find_NoContainer(), Find_ID(SCWD), Find_Distance(5))){
 		Sound("Click");
 		SetPicture(0, 7, 64, 64);
 		SetAction("Idle");
 		AboutToExplode = false;
 		SetColorDw(GetPlrColorDw(GetOwner()));
 		SetVisibility(VIS_All);
-	}
+	} */
 	
 	if(GetActTime() < 36){
 		return(0);
