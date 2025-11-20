@@ -8,4 +8,4 @@ public func ExplodeSize() { return(27); }
 
 /* Forschung */
 
-public func GetResearchBase() { return(TFLN); }
+public func GetResearchBase() { return(STFN); }

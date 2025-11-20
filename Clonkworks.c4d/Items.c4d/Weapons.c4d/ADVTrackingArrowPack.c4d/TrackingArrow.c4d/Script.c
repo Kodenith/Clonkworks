@@ -142,3 +142,5 @@ func Entrance(pContainer){
 	SetOwner(GetController(pContainer));
 	return(_inherited(pContainer));
 }
+
+public func IsAnvilProduct(){ return(0); }

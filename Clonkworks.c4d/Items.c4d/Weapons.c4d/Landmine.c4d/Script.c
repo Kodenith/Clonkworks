@@ -101,3 +101,5 @@ public func RejectEntrance(){
 }
 
 public func IsAdvancedProduct(){ return(1); }
+
+public func GetResearchBase() { return(TFLS); }

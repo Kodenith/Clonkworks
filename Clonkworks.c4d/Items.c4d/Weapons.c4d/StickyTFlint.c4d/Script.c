@@ -63,3 +63,4 @@ public func Stickiness(){
 	if(!(GetContact(this(),-1) & 8) && GetAction() == "ActivatedStick") SetActionKeepPhase("Activated");
 }
 
+public func GetResearchBase() { return(TFLN); }
