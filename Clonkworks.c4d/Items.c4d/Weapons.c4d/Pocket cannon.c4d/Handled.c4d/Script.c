@@ -136,15 +136,18 @@ public func Fire()
   for (var i = 0; i < 6; ++i) 
     Smoke(iX+RandomX(-5,+5),iY+RandomX(-5,+5),RandomX(5,12));
 
-  Schedule("ReturnToObj()",15,0,this());
+  Schedule("ReturnToObj(true)",15,0,this());
   return(1);
 }
 
 //other
-func ReturnToObj(){
+func ReturnToObj(Cooldown){
 	Sound("Click");
 	ChangeDef(PCAN);
 	SetCategory(C4D_Object);
+	if(Cooldown){
+		this()->ApplyCooldown();
+	}
 }
 protected func CannonPower(object obj) { return(8); }
 

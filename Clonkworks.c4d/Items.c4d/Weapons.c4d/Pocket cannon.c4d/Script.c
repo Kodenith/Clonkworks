@@ -3,6 +3,7 @@
 #strict 2
 
 func Initialize() {
+  AddEffect("PCANBio",this(),1,0,this());
   SetCategory(C4D_Object);
   return(1);
 }
@@ -11,6 +12,7 @@ public func Activate(pClonk){
 	[$TxtUse$]
 	if(Contained() != pClonk) return(1);
 	if(ContentsCount() > 1){
+		if(GetEffectCount("*Cooldown*",this())) return(0);
 		ChangeDef(PCN2); // placeholder
 		SetCategory(C4D_Vehicle);
 		pClonk->SetAction("Push",this());
@@ -42,6 +44,7 @@ public func Activate(pClonk){
 				return(1);
 			}
 			Enter(this(),item);
+			Message(Format("$TxtLoad$",GetID(item),GetName(item)),this());
 			Sound("Click");
 		}
 	}
@@ -60,4 +63,24 @@ func Hit(){ if(!Random(3)) Sound("WoodHit*"); }
 func IsAnvilProduct(){ return(1);}
 func IsAdvancedProduct(){ return(1);}
 
+//EFFECTS
 
+//Contents information
+func FxPCANBioInfo(object pTarget, int iEffectNumber){
+	if(GetID() != PCAN) return(0);
+	if(FindOtherContents(GUNP)){
+		var i = FindOtherContents(GUNP);
+		return(Format("$TxtLoad$",GetID(i),GetName(i)));
+	}
+}
+
+//Cooldown, used in functions to prevent shooting.
+func FxPCANCooldownTimer(object pTarget, int iEffectNumber, int iEffectTime){
+	if(iEffectTime > 36*2) return(-1);
+	if(!Random(3)) pTarget->Smoke(0,0,RandomX(5,10));
+}
+
+//Cooldown applying function
+public func ApplyCooldown(){
+	AddEffect("PCANCooldown",this(),100,5,this());
+}
