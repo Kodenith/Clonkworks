@@ -19,3 +19,4 @@ Entrance=-9,0,18,23
 Construction=1
 Components=METL=1;ROCK=8;WOOD=3
 ContainBlast=1
+LineConnect=128

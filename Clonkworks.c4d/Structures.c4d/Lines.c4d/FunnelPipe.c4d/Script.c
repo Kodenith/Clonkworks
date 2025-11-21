@@ -6,7 +6,7 @@ local Filter;
 protected func Initialize()
 {
   Local(0) = 1;
-  Local(1) = 7;
+  Local(1) = 4;
 	
   SetAction("Connect");  
   SetVertex(0, 0, GetX()); SetVertex(0, 1, GetY());
