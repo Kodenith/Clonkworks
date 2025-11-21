@@ -203,6 +203,8 @@ func HasLiquid(){ return(Amount > 0); }
 func IsFull(){ return(Amount >= MaxAmount()); }
 
 public func ALKConnectType(){
+	//only 1 hose can be connected to a tank.
+	if(FindObject2(Find_ID(HOSE),Find_ActionTarget(this()))) return(0);
 	return([HOSE]);
 }
 
