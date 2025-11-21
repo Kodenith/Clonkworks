@@ -1,0 +1,4 @@
+TxtUse=Verwenden/Zielen
+TxtEmpty=Leer
+TxtReq1=Schieﬂpulver erforderlich!
+TxtReq2=Munition erforderlich!

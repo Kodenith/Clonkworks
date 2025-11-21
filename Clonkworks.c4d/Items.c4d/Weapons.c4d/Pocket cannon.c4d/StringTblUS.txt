@@ -1,0 +1,4 @@
+TxtUse=Use/Aim
+TxtEmpty=Empty
+TxtReq1=Gunpowder Required!
+TxtReq2=Ammunition Required!

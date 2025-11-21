@@ -1,0 +1,4 @@
+a much weaker, but portable cannon! 
+Press the "Dig" key twice to collect gunpowder, then ammuntion. When both are present inside pressing the key twice will have you enter aim mode.
+
+Can be emptied in context menu.
