@@ -61,7 +61,7 @@ public func ContextEmpty(pClonk){
 
 func Hit(){ if(!Random(3)) Sound("WoodHit*"); }
 func IsAnvilProduct(){ return(1);}
-func IsAdvancedProduct(){ return(1);}
+//func IsAdvancedProduct(){ return(1);}
 
 //EFFECTS
 

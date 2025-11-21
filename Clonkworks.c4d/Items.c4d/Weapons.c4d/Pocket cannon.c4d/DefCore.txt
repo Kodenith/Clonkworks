@@ -15,7 +15,7 @@ VertexX=7,0,-8
 VertexY=3,0,-1
 VertexFriction=20,20,20
 VertexCNAT=10,16,1
-Components=METL=1;WOOD=1;CPIG=1;ADM3=1
+Components=METL=1;CPIG=1;ADM3=1
 Collectible=1
 Rebuy=1
 Rotate=1
