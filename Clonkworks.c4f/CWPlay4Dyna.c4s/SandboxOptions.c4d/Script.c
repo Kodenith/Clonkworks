@@ -79,7 +79,7 @@ global func LoamAtEmpty(){
 }
 
 public func Spawn(Item, Spawner){
-	var thing = CreateObject(Item,GetX(Spawner),GetY(Spawner));
+	var thing = CreateObject(Item,GetX(Spawner),GetDefBottom(Spawner));
 	Spawner->Sound("Ding");
 	if(GetID(thing) == VIAL){
 		var animals = [];
