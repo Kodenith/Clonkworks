@@ -100,7 +100,7 @@ public func ControlThrow(pClonk)
   return(Fire());
 }
 
-public func ControlDown()
+public func ControlDown(clonk)
 {
   [$TxtAimdown$|Image=CAN1:0]
   	if(GetDir(clonk) == DIR_Left)
