@@ -29,7 +29,7 @@ func ControlUp(clonk){
 	return(1);
 }
 
-public func ControlDownSingle() // Sicht zurücksetzen
+public func ControlDig() // Sicht zurücksetzen
 {
   [$TxtResetview$|Method=Classic]
   SetAction("NoAim");
