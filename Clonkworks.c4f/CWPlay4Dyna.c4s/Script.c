@@ -144,7 +144,8 @@ global func SpawnPlatform(){
 		var pX = iX;
 		iX+=(GetWidth(o)+offset);
 		pX -= iX;
-		CreateConstruction(o,iX+pX/2,y,0,100,false,false);
+		var build = CreateConstruction(o,iX+pX/2,y,0,100,false,false);
+		build->SetOwner(0);
 		iX += offset;
 	}
 	

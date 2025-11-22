@@ -5,13 +5,15 @@
 #include CXEC
 #include DOOR
 #include WRKS
-#include BS35
+#include B_AV
+
+local CurrentlyBuilding;
 
 func Initialize() {
 return(1);
 }
 
-private func SoundOpenDoor()
+/* private func SoundOpenDoor()
 {
   Sound("SteelGate2");
 }
@@ -19,7 +21,7 @@ private func SoundOpenDoor()
 private func SoundCloseDoor()
 {
   Sound("SteelGate2");
-}
+} */
 
 /* Produkteigenschaften (überladbar) */
 func ProductType() { return(C4D_Vehicle()); }
@@ -105,6 +107,7 @@ public func StartProduction(pWorker,idType,bSpecial2) {
   if (Contained(pToBuild)!=this()) 
     Enter(this(),pToBuild);
   pToBuild->~OnStartProduction(this);
+  CurrentlyBuilding = pToBuild;
   AddCommand(pWorker,"Build",pToBuild, 0,0,0,0,0,0, 3);
   if(bSpecial2)
     AppendCommand(pWorker,"Call",this(),idType,bSpecial2,0,0,"ProductionComplete", 0, 1);
@@ -177,14 +180,7 @@ private func IsWorking() {
 
 private func Smoking() {  
   if (GetPhase()%3) return(1);
-  if (Random(6)) Smoke(+48,-25,8);
-  if (Random(8)) Smoke(43,-28,5+Random(3));
-  
-  if (Random(6)) Smoke(+19,-25,8);
-  if (Random(8)) Smoke(13,-28,5+Random(3));
-  
-  if (Random(6)) Smoke(+28,-23,8);
-  if (Random(8)) Smoke(22,-20,5+Random(3));
+  if (Random(12)) Smoke(GetVertex(7,0),GetVertex(7,1),RandomX(10,5));
   return(1);
 }
 
@@ -196,4 +192,44 @@ private func FindIncompleteContents(idSearched) {
       if(GetCon(pContent)<100)
         return(pContent);
   return(0);
+}
+
+//cool garage leaving
+func LeaveGarage(){
+	if(CurrentlyBuilding && GetCon(CurrentlyBuilding) >= 100){
+		AddEffect("ADVWDone",this(),1,1,this());
+		if(!(GetCategory(CurrentlyBuilding) & C4D_Vehicle)) return(1);
+		SetAction("OpenGarage");
+		Schedule(Format("DoGarageLeaving(Object(%d))",ObjectNumber(CurrentlyBuilding)), 20, 0, this());
+		CurrentlyBuilding = 0;
+	}
+}
+
+func DoGarageLeaving(pObj){
+	Exit(pObj,-8,35-(  GetDefCoreVal("Height", "DefCore", GetID(pObj)) / 2 ));
+}
+
+private func GarageOpen()
+{
+  Sound("SteelGate2");
+}
+  
+private func CloseGarage()
+{
+  Sound("SteelGate2");
+}
+
+//fusing effect when crafting is finished
+func FxADVWDoneStart(pTarget,iEffectNumber){
+	Sound("Fusing",0,pTarget,0,0,+1);
+}
+
+func FxADVWDoneTimer(pTarget,iEffectNumber,iEffectTime){
+	if(GetID(pTarget) != ADVW) return(-1);
+	CreateParticle("PxSpark",GetVertex(7,0,pTarget),GetVertex(7,1,pTarget),RandomX(-30,30),RandomX(-5,-50),RandomX(20,50),RGBa(255,255,0));
+	if(iEffectTime > 36) return(-1);
+}
+
+func FxADVWDoneStop(pTarget,iEffectNumber){
+	Sound("Fusing",0,pTarget,0,0,-1);
 }
