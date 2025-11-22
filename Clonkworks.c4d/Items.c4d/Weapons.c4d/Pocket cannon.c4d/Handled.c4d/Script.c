@@ -21,13 +21,6 @@ func Grabbed(pByObject, fGrab){
 }
 
 //controls: classic (i suck at classic so not sure how to make this comfy for them og clonk players. sorry!)
-func ControlDig(clonk){
-	[$TxtAimdown$|Method=Classic|Image=CAN1:0]
-	if(GetDir(clonk) == DIR_Left)
-	SetAction("AimDown");
-	else SetAction("AimUp");
-}
-
 func ControlUp(clonk){
 	[$TxtAimup$|Image=CAN1:2]
 	if(GetDir(clonk) == DIR_Left)
@@ -43,11 +36,6 @@ public func ControlDownSingle() // Sicht zurücksetzen
 }
 
 //controls: jnr
-public func ControlDown()
-{
-  [$TxtAimdown$|Method=JumpAndRun|Image=CAN1:0]
-}
-
 public func ControlLeft()
 {
   [$TxtSwap$|Method=JumpAndRun]
@@ -110,6 +98,14 @@ public func ControlThrow(pClonk)
 {
   [$TxtFire$|Image=CAN1:1]
   return(Fire());
+}
+
+public func ControlDown()
+{
+  [$TxtAimdown$|Image=CAN1:0]
+  	if(GetDir(clonk) == DIR_Left)
+	SetAction("AimDown");
+	else SetAction("AimUp");
 }
 
 public func Fire()
