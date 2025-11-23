@@ -2,7 +2,7 @@
 Name=Metal detector
 id=MTLD
 Version=4,9,8
-Category=C4D_Object|C4D_SelectMaterial|C4D_SelectHomebase
+Category=C4D_Object|C4D_SelectMaterial|C4D_SelectHomebase|C4D_SelectKnowledge
 MaxUserSelect=2
 Value=35
 Mass=15
