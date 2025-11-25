@@ -13,3 +13,7 @@ TimerCall=UpdateRotation
 Vertices=1
 VertexX=-8
 VertexY=-6
+NoBurnDecay=1
+ContactIncinerate=1
+BlastIncinerate=30
+FireTop=23

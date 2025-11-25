@@ -550,6 +550,7 @@ protected func CatchBlow(int iLevel, object pByObject)
 
 protected func Death() 
 {
+	if(lorry_wipf) RemoveObject(lorry_wipf);
   Sound("BumbDie*");
   SetDir(0);
   ChangeDef(DBUB);
@@ -569,10 +570,10 @@ protected func RejectCollect(c4ID, pObject)
  return(1);
 }
 
-func RejectEntrance(pIntoObject){
+func RejectEntrance(pIntoObject,a,b,c){
 	if(GetID(pIntoObject) == LORY && FindObject2(Find_ID(BUMB),Find_Container(pIntoObject))) return(1);
-	if((BeeState == 3 || BeeState == 2) && FindObject2(Find_ID(COAN))) return(0);
-	return(1);
+	if(GetID(pIntoObject) == LORY && !Contained()) return(1);
+	if(GetAction() == "Rest" || WildcardMatch(GetAction(), "*Walk*")) return(_inherited(pIntoObject,a,b,c));
 }
 
 //lorry bumb :)
@@ -593,6 +594,8 @@ public func Entrance(obj)
 
       // An die Lore kleben
       lorry_wipf->AttachTo(obj);
+	  
+	  if(OnFire()) Incinerate(lorry_wipf);
     }
   }
 }
