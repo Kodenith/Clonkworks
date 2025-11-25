@@ -29,21 +29,21 @@ func Initialize() {
 		RemoveObject(cont);
 	}
   var Tanks = [];
-  Tanks[0] = CreateForgedObjectCustom(ALQT,0,0,0,RandomRGBa(),1,99,99,"");
+  Tanks[0] = CreateObject(LQTK);
   Tanks[0]->InsertLiquidPx("DuroLava",Tanks[0]->MaxAmount());
-  SetName("ENDLESS LAVA TANK",Tanks[0]);
+  SetName("LAVA TANK",Tanks[0]);
   
-  Tanks[1] = CreateForgedObjectCustom(ALQT,0,0,0,RandomRGBa(),1,99,99,"");
+  Tanks[1] = CreateObject(LQTK);
   Tanks[1]->InsertLiquidPx("Water",Tanks[1]->MaxAmount());
-  SetName("ENDLESS WATER TANK",Tanks[1]);
+  SetName("WATER TANK",Tanks[1]);
   
-  Tanks[2] = CreateForgedObjectCustom(ALQT,0,0,0,RandomRGBa(),1,99,99,"");
+  Tanks[2] = CreateObject(LQTK);
   Tanks[2]->InsertLiquidPx("Acid",Tanks[2]->MaxAmount());
-  SetName("ENDLESS ACID TANK",Tanks[2]);
+  SetName("ACID TANK",Tanks[2]);
   
-  Tanks[3] = CreateForgedObjectCustom(ALQT,0,0,0,RandomRGBa(),1,99,99,"");
+  Tanks[3] = CreateObject(LQTK);
   Tanks[3]->InsertLiquidPx("Oil",Tanks[3]->MaxAmount());
-  SetName("ENDLESS OIL TANK",Tanks[3]);
+  SetName("OIL TANK",Tanks[3]);
   
   Tanks[4] = CreateObject(_CPL);
   LocalN("plan_id",Tanks[4]) = KDNT;

@@ -1,7 +1,6 @@
 /*-- Ankerfähiges Segelboot --*/
 
 #strict 2
-#include BCON
 
 public func LeftVert(){ return(4); }
 public func RightVert(){ return(5); }

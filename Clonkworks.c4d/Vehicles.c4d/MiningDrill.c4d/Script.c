@@ -11,11 +11,7 @@ func Construction(){
 public func IsTrainLike(){ return(1); }
 
 func PoweredEnough(){
-	if(!FindObject2(Find_ID(ENRG)) || GetEnergy() > 0){
-		return(1);
-	}else{
-		return(0);
-	}
+	return(1);
 }
 
 private func AdjustTrainSpeed()
