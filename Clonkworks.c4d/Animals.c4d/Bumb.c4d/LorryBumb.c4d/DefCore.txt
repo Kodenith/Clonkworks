@@ -1,0 +1,15 @@
+[DefCore]
+Name=LorryBumb
+id=LBUB
+Version=4,9,8
+Category=C4D_Vehicle
+Width=24
+Height=33
+Offset=-12,-23
+Picture=0,0,24,33
+Rotate=1
+Timer=1
+TimerCall=UpdateRotation
+Vertices=1
+VertexX=-8
+VertexY=-6

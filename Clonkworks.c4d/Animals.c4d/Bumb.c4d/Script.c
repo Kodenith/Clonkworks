@@ -35,6 +35,9 @@ local BeeState;
 // 7 - Deposit Pollen
 // 8 - Escape to Water
 
+//lorry bumb :)
+local lorry_wipf;
+
 //function for bumbboxes, to see if bumb is in a wild hive
 public func IsWild(){
 	if(Comb && GetID(Comb) != BUMB){
@@ -567,8 +570,36 @@ protected func RejectCollect(c4ID, pObject)
 }
 
 func RejectEntrance(pIntoObject){
-	if(GetAction() == "Rest" && FindObject2(Find_ID(COAN))) return(0);
+	if(GetID(pIntoObject) == LORY && FindObject2(Find_ID(BUMB),Find_Container(pIntoObject))) return(1);
+	if((BeeState == 3 || BeeState == 2) && FindObject2(Find_ID(COAN))) return(0);
 	return(1);
+}
+
+//lorry bumb :)
+public func Entrance(obj) 
+{
+	
+  // Ist in eine Lore gegangen?
+  if (obj->~IsLorry())
+  {
+    // Lorenwipf suchen, der zu der Lore gehört
+    lorry_wipf = FindObject(LBUB, 0,0,0,0, 0,0, obj);
+
+    // Lorenwipf gefunden?
+    if (!lorry_wipf) 
+    {
+      // Erzeugen wir halt einen
+      lorry_wipf = CreateObject(LBUB, 0,0, -1);
+
+      // An die Lore kleben
+      lorry_wipf->AttachTo(obj);
+    }
+  }
+}
+
+func Departure(pObj){
+	if(lorry_wipf) RemoveObject(lorry_wipf);
+	SetAction("Tumble");
 }
 
 public func TurnRight()
