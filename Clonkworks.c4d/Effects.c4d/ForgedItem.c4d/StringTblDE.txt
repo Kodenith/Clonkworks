@@ -1,2 +1,0 @@
-Repair=Reparatur
-Inspect=Überprüfen

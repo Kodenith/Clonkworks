@@ -1,4 +1,0 @@
-Dont modify these for now! these will be later removed and reworked with the forge system rework.
-even if its original non-forge form is updated, these shouldnt be touched for now.
-
-Bitte ändern Sie diese vorerst nicht! Sie werden später entfernt und im Rahmen der Überarbeitung des Forge-Systems überarbeitet.Auch wenn die ursprüngliche Nicht-Forge-Form aktualisiert wird, sollten diese vorerst nicht verändert werden.

@@ -7,7 +7,7 @@ func Initialize() {
 	//forge setup
   RemoveObject(FindObject2(Find_ID(FALW)));
   CreateObject(FALW);
-  FindObject2(Find_ID(FALW))->AddForgeable(METL, RGBa(177, 171, 170, 0), 3, 34, 2, "LavaLQM");
+/*   FindObject2(Find_ID(FALW))->AddForgeable(METL, RGBa(177, 171, 170, 0), 3, 34, 2, "LavaLQM");
   FindObject2(Find_ID(FALW))->AddForgeable(CPIG, RGBa(170, 79, 66, 0), 4, 30, 3, "LavaLQM Lightning");
   FindObject2(Find_ID(FALW))->AddForgeable(TTIG, RGBa(120, 130, 139, 0), 2, 37, 0, "");
   FindObject2(Find_ID(FALW))->AddForgeable(ROCK, RGBa(190, 194, 192, 0), 6, 20, -1, "Fragile");
@@ -17,7 +17,7 @@ func Initialize() {
   FindObject2(Find_ID(FALW))->AddForgeable(FLNT, RGBa(255, 0, 0, 0), 5, 26, 5, "Explode");
   FindObject2(Find_ID(FALW))->AddForgeable(HONY, RGBa(156, 57, 13, 1), 0, 36, -6, "Sticky Burnable WaterLQM Skew");
   FindObject2(Find_ID(FALW))->AddForgeable(CRYS, RGBa(141, 169, 242, 127), 0, 45, 7, "Regen Glow Fragile");
-  FindObject2(Find_ID(FALW))->AddForgeable(MGNT, RGBa(0, 100, 255, 0), 3, 34, 2, "LavaLQM Attractive Magnet");
+  FindObject2(Find_ID(FALW))->AddForgeable(MGNT, RGBa(0, 100, 255, 0), 3, 34, 2, "LavaLQM Attractive Magnet"); */
   //all strucutres become player 1's.
   for(var struct in FindObjects(Find_Category(C4D_Structure))){
 	  SetOwner(0,struct);
