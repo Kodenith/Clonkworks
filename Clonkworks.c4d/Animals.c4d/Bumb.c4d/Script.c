@@ -49,7 +49,7 @@ public func CanRoamFine(){
 	//if its top or bottom verticies are touching the landscape, repath if cant see target
 	if(GetContact(this(), -1) & CNAT_Bottom) return(PathFree(GetX(), GetY(), gX, gY));
 	if(GetContact(this(), -1) & CNAT_Top) return(PathFree(GetX(), GetY(), gX, gY));
-	return(1);
+	return(GetPathLength(GetX(),GetY(),gX,gY));
 }
 public func IsPossessible() { return(1); }
 
@@ -129,14 +129,7 @@ func Activity(){
 	
 	//retreat to remembered water location
 	if(BeeState == 8){
-		if(GetAction() == "Idle") SetAction("Fly");
-		if(GetAction() == "Walk") SetAction("Fly");
-		
-		SetCommand(this(), "MoveTo", ,WaterX,WaterY);
-		
-		if(!OnFire()) BeeState = 0;
-		
-		Beenergy -= RandomX(2,8);
+		BUMBAI_Escape();
 	}
 	
 	//Before anything, search for water below, in case it gets on fire.
@@ -155,11 +148,56 @@ func Activity(){
 	
 	//Random Wandering (Sky)
   if(BeeState == 0){
+	return(BUMBAI_Wander());
+  }
+  
+  //Going to ground
+  if(BeeState == 1){
+	return(BUMBAI_GoGround());
+  }
+  
+  //Roaming Ground
+  if(BeeState == 2){
+	  return(BUMBAI_WanderGround());
+  }
+  
+  //Sleeping
+  if(BeeState == 3){
+	  return(BUMBAI_Sleep());
+  }
+  
+  //Attacking (Ruthless!)
+  if(BeeState == 4){
+	 return(BUMBAI_Revenge());
+  }
+  
+  //Idling in colony at night, includes constructing and gossiping
+  if(BeeState == 5){
+	  return(BUMBAI_WanderColony());
+  }
+  
+  //Collecting Pollen From Plants
+  if(BeeState == 6){
+	  return(BUMBAI_FindPollen());
+  }
+  
+  //Bring Honey to Combs
+   if(BeeState == 7){
+	  return(BUMBAI_DepositPollen());
+  }
+  
+  
+}
+
+/* BUMB AI FUNCTIONS AND HELPERS, CALLED BY TIMER. */
+
+//Changes the bumbs path, this is some basic pathfinding used by multiple states.
+func BumbRepath(){
 	if(GetAction() == "Idle") SetAction("Fly");
 	if(GetAction() == "Walk") SetAction("Fly");
-	if(!Random(20)|| Distance(GetX(),GetY(),gX,gY) <= 5 || GBackSolid(gX-GetY(),gY-GetY()) || GBackLiquid(gX-GetY(),gY-GetY()) || !CanRoamFine()){
+	if(!Random(20)|| Distance(GetX(),GetY(),gX,gY) <= 30 || GBackSolid(gX-GetY(),gY-GetY()) || GBackLiquid(gX-GetY(),gY-GetY()) || !CanRoamFine()){
 		gX = GetX() + RandomX(-500,500);
-		gY = GetY() + RandomX(-500,5000);
+		gY = GetY() + RandomX(-500,500);
 	}
 	
 	//Avoid liquids
@@ -172,16 +210,23 @@ func Activity(){
 	if(GetX() < 70) gX = GetX() + RandomX(1000,5000);
 	if(GetX() > LandscapeWidth() - 70) gX = GetX() - RandomX(1000,5000);
 	
+	SetCommand(this(), "MoveTo", ,gX,gY);
+	//DebugLog("%v repathed to %d, %d",this(),gX,gY);
+	return(1);
+}
+
+//State 0: Basic Random Movement.
+func BUMBAI_Wander(){
+	BumbRepath();
+	
 	if(Beenergy <= 200) BeeState = 1;
 	
 	Beenergy -= RandomX(1,10);
-	SetCommand(this(), "MoveTo", ,gX,gY);
 	
 	if(GrudgeTarget && ObjectDistance(this(),GrudgeTarget) < 100 && !Contained(GrudgeTarget)){
 		BeeState = 4;
 	    return(0);
 	}
-	
 	
 	//Colony Starting
 	if(ColoniesEnabled()){
@@ -230,11 +275,12 @@ func Activity(){
 			return(0);
 		}
 	}
-  }
-  
-  //Going to ground
-  if(BeeState == 1){
-	  gX = GetX() + RandomX(-10,10);
+}
+
+//State 1: Going to ground. (Transition to State 2)
+func BUMBAI_GoGround(){
+	//doesnt use normal repath function as this uses a variation of the reptather.
+	gX = GetX() + RandomX(-10,10);
 	  gY= LandscapeHeight();
 	  
 	  if(GetContact(this(), -1) & CNAT_Bottom){
@@ -255,18 +301,18 @@ func Activity(){
 	if(GetX() < 70) gX = GetX() + RandomX(1000,5000);
 	if(GetX() > LandscapeWidth() - 70) gX = GetX() - RandomX(1000,5000);
 	  
-	  Beenergy -= RandomX(1,5);
-	  SetCommand(this(), "MoveTo", ,gX,gY);
+	 Beenergy -= RandomX(1,5);
+	 SetCommand(this(), "MoveTo", ,gX,gY);
 	  
 	  if(GrudgeTarget && ObjectDistance(this(),GrudgeTarget) < 100 && !Contained(GrudgeTarget)){
 		BeeState = 4;
 		return(0);
 	}
-  }
-  
-  //Roaming Ground
-  if(BeeState == 2){
-	  if(GetContact(this(), -1) & CNAT_Bottom){
+}
+
+//State 2: Roaming Ground and Eating all the honey on the floor.
+func BUMBAI_WanderGround(){
+	if(GetContact(this(), -1) & CNAT_Bottom){
 		if(GetAction() == "Idle") SetAction("Walk");
 		if(GetAction() == "Fly") SetAction("Walk");
 	  }else{
@@ -292,7 +338,7 @@ func Activity(){
 	  }
 	  
 	  	//Eat Honey
-		if(!Random(6) && FindObject2(Find_ID(HONY), Find_Distance(20), Find_NoContainer())){
+		if(!Random(9) && FindObject2(Find_ID(HONY), Find_Distance(20), Find_NoContainer())){
 			var Food = FindObject2(Find_ID(HONY), Find_Distance(20), Find_NoContainer());
 			DoCon(RandomX(-30,-5), Food);
 			DoEnergy(5);
@@ -308,11 +354,11 @@ func Activity(){
 	 }
 	 
 	 if(InLiquid()) BeeState = 0;
-  }
-  
-  //Sleeping
-  if(BeeState == 3){
-	  if(GetAction() != "Rest") SetAction("Rest");
+}
+
+//State 3: eepy
+func BUMBAI_Sleep(){
+	if(GetAction() != "Rest") SetAction("Rest");
 	  if(GetAction() == "Rest"){
 		  if(!Random(3))
 		  DoEnergy(1);
@@ -328,11 +374,11 @@ func Activity(){
 	  }
 	  
 	  if(InLiquid()) BeeState = 0;
-  }
-  
-  //Attacking (Ruthless!)
-  if(BeeState == 4){
-	  if(GrudgeTarget == 0) BeeState = 0;
+}
+
+//State 4: Chase off and attack predators or unfortunate clonks that steal its honey.
+func BUMBAI_Revenge(){
+	if(GrudgeTarget == 0) BeeState = 0;
 	  if(BeeState == 0) return(0);
 	  
 	  if(GetAction() == "Idle") SetAction("Fly");
@@ -355,36 +401,15 @@ func Activity(){
 	  Beenergy -= RandomX(1,10);
 	  
 	  SetCommand(this(), "MoveTo", GrudgeTarget);
-  }
-  
-  //Idling in colony at night, includes constructing and gossiping
-  if(BeeState == 5){
-	  if(!Random(15)) Sound("Bsss");
-	  if(GetAction() == "Idle") SetAction("Fly");
-	  if(GetAction() == "Walk") SetAction("Fly");
-	  
-	  
-	  //check if near colony
-	  if(Distance(GetX(),GetY(),HomeX, HomeY) > 650 || MovingHome){
+}
+
+//State 5: Random wandering, but if a bumb has a colony and its night time.
+func BUMBAI_WanderColony(){
+	if(Distance(GetX(),GetY(),HomeX, HomeY) > 650 || MovingHome){
 		  SetCommand(this(), "MoveTo", ,HomeX,HomeY);
 		  MovingHome = true;
-	  }else{
-		  
-		  //Avoid liquids
-	  if(GBackLiquid(0, 30)){
-		gX = GetX() + RandomX(-250,250);
-		gY = GetY()-30;
-		}
-		  
-		if(!Random(20)|| Distance(GetX(),GetY(),gX,gY) <= 5 || GBackSolid(gX-GetY(),gY-GetY()) || GBackLiquid(gX-GetY(),gY-GetY()) || !CanRoamFine()){
-		gX = GetX() + RandomX(-250,250);
-		gY = GetY() + RandomX(-250,250);
-		}
-		
-		if(gY < 50) gY = GetY() + RandomX(100,2000);
-		if(GetX() < 70) gX = GetX() + RandomX(1000,5000);
-		if(GetX() > LandscapeWidth() - 70) gX = GetX() - RandomX(1000,5000);
-		
+	}else{
+		BumbRepath();
 		//Make Comb if you dont have one
 		if(!Comb && CheckCombSpace(true) && GetMaterial(0,0) == Material("Tunnel")){
 		  DebugLog("Bumb created a comb!");
@@ -403,9 +428,9 @@ func Activity(){
 		Beenergy -= RandomX(1,10);
 		
 		SetCommand(this(), "MoveTo", ,gX,gY);
-	  }
-	  
-	  	 if(Distance(GetX(),GetY(),HomeX, HomeY) < 100)
+	}
+	
+	if(Distance(GetX(),GetY(),HomeX, HomeY) < 100)
 		  MovingHome = false;
 	  
 	  if(DayCheck()) BeeState = 0;
@@ -414,15 +439,20 @@ func Activity(){
 		BeeState = 4;
 		return(0);
 		}
-  }
-  
-  //Collecting Pollen From Plants
-  if(BeeState == 6){
-	   if(!Random(15)) Sound("Bsss");
+}
+
+//State 6: Find and Collect pollen from flowers grass or trees. (Later, when proper flowers are added, only search flowers.)
+func BUMBAI_FindPollen(){
+	if(!Random(15)) Sound("Bsss");
 	  if(GetAction() == "Idle") SetAction("Fly");
 	  if(GetAction() == "Walk") SetAction("Fly");
 	  
 	  SetCommand(this(), "MoveTo",RandomPlant);
+	  
+	  if(!RandomPlant){
+		  BeeState = 0;
+		  return(0);
+	  }
 	  
 	  if(RandomPlant == 0 || ObjectCall(RandomPlant, "IsDeadTree")) BeeState = 0;
 	  
@@ -449,13 +479,18 @@ func Activity(){
 		BeeState = 4;
 		return(0);
 	 }
-  }
-  
-  //Bring Honey to Combs
-   if(BeeState == 7){
-	   if(!Random(15)) Sound("Bsss");
+}
+
+//State 7: Retrieve collected pollen to a comb or bumbbox.
+func BUMBAI_DepositPollen(){
+		   if(!Random(15)) Sound("Bsss");
 	  if(GetAction() == "Idle") SetAction("Fly");
 	  if(GetAction() == "Walk") SetAction("Fly");
+	  
+	  if(!Comb){
+		  BeeState = 0;
+		  return(0);
+	  }
 	  
 	  SetCommand(this(), "MoveTo",Comb);
 	  
@@ -475,10 +510,21 @@ func Activity(){
 		BeeState = 4;
 		return(0);
 	  }
-  }
-  
-  
 }
+
+//State 8: Escape to nearby water if you memorized a location, rarely effective but who cares
+func BUMBAI_Escape(){
+	if(GetAction() == "Idle") SetAction("Fly");
+		if(GetAction() == "Walk") SetAction("Fly");
+		
+		SetCommand(this(), "MoveTo", ,WaterX,WaterY);
+		
+		if(!OnFire()) BeeState = 0;
+		
+		Beenergy -= RandomX(2,8);
+}
+
+/* end of ai */
 
 protected func CatchBlow(int iLevel, object pByObject)
 {
@@ -706,14 +752,6 @@ public func ContainedUpdate(object self, int comdir, bool dig, bool throw)
 		   ;;
     
   return(1);
-}
-
-//bumbs can be recolored easily with this bumb-only modification of SetClrModulation
-public func SetClrModulation (int dwClr, object pObj, int iOverlayID){
-	if(pObj == 0 || pObj == this()){
-		if(iOverlayID == 0) SetGraphics("Recolor",this());
-	}
-	return(_inherited(dwClr,pObj,iOverlayID));
 }
 
 //essences
