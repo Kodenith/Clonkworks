@@ -572,7 +572,9 @@ protected func RejectCollect(c4ID, pObject)
 
 func RejectEntrance(pIntoObject,a,b,c){
 	if(GetID(pIntoObject) == LORY && FindObject2(Find_ID(BUMB),Find_Container(pIntoObject))) return(1);
-	if(GetID(pIntoObject) == LORY && !Contained()) return(1);
+	if(Contained()) return(_inherited(pIntoObject,a,b,c));
+	if(GetID(pIntoObject) == LORY && GetAction() != "Tumble") return(1);
+	else if(GetID(pIntoObject) == LORY && GetAction() == "Tumble") return(0);
 	if(GetAction() == "Rest" || WildcardMatch(GetAction(), "*Walk*")) return(_inherited(pIntoObject,a,b,c));
 }
 

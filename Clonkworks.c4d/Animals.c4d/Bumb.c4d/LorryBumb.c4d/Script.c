@@ -27,3 +27,10 @@ func Incineration(){
   var lorry = GetActionTarget();
   if(oth = FindContents(BUMB,lorry)) Incinerate(oth);
 }
+
+func Damage(iChange){
+	 var oth;
+  var lorry = GetActionTarget();
+  //the lorry protects the bumb.
+  if(oth = FindContents(BUMB,lorry)) Punch(oth,iChange/2);
+}

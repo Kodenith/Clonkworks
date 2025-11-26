@@ -68,6 +68,17 @@ Procedure=FLIGHT
 NextAction=Tumble
 
 [Action]
+Name=Jump
+Length=1
+Delay=1
+Facet=0,60,24,20,0,0
+FacetBase=0
+Directions=2
+FlipDir=1
+Procedure=FLIGHT
+NextAction=Tumble
+
+[Action]
 Name=Attack
 Length=8
 Delay=1
