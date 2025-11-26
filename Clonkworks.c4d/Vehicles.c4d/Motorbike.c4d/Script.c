@@ -18,6 +18,9 @@ func Initialize() {
 
 public func ContainedLeft(pByObj){
 	if(fuel == 0){
+		if(!FindObject2(Find_ID(WR_F), Find_ActionTarget(this()))){
+			FuelWarn(this(),OBRL,GetController(pByObj)+1);
+		}
 		Sound("StartFail");
 		return(0);
 	}
@@ -30,6 +33,9 @@ public func ContainedLeft(pByObj){
 
 public func ContainedRight(pByObj){
 	if(fuel == 0){
+		if(!FindObject2(Find_ID(WR_F), Find_ActionTarget(this()))){
+			FuelWarn(this(),OBRL,GetController(pByObj)+1);
+		}
 		Sound("StartFail");
 		return(0);
 	}
@@ -59,6 +65,9 @@ public func ContainedDownDouble(pByObj){
 
 public func ContainedUp(pByObj){
 		if(fuel == 0){
+		if(!FindObject2(Find_ID(WR_F), Find_ActionTarget(this()))){
+			FuelWarn(this(),OBRL,GetController(pByObj)+1);
+		}
 		Sound("StartFail");
 		return(0);
 	}
@@ -172,6 +181,7 @@ protected func ControlCommand(szCommand, pTarget, iTx, iTy)
 }
 
 protected func DoInfo(){
+	if(FindObject(FUDS)) fuel = 200;
 	if(InLiquid()){
 		Incineration();
 	}
@@ -186,7 +196,6 @@ protected func DoInfo(){
 	
 	if(fuel <= 0){
 		if(!Contained())
-		Message("{{OBRL}}",this());
 		 SetComDir(COMD_Stop);
 	}
 	

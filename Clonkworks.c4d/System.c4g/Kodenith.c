@@ -74,3 +74,26 @@ global func ContainedTop(pObj){
 		else return(pObj);
 	}
 }
+
+//fixed version of Concat
+global func Concat2() {
+  var string  = "";
+
+  // Parameter durchgehen
+  var par_num = 0;
+  var new_string;
+  while (new_string = Par(par_num++))
+    string = Format("%s%s", string, new_string);
+
+  return(string);
+}
+
+//piece an array into a string, + a devider
+global func StringPieceTogether(list,devider){
+	var str = "";
+	for(var i in list){
+		str = Concat2(str,i);
+		str = Concat2(str,devider);
+	}
+	return(str);
+}

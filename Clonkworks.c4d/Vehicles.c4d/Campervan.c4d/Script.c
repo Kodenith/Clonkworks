@@ -13,13 +13,19 @@ func Initialize() {
 	return(1);
 }
 
-public func CheckFuel(){
+public func CheckFuel(pByObj){
+	if(FindObject(FUDS)) iFuel = 200;
 	if(iFuel <= 0){
 		if(FindContents(OBRL,this()) && FindContents(OBRL,this()) != this()){
 			var barrel = FindContents(OBRL,this());
 			ChangeDef(BARL,barrel);
 			iFuel += 200;
 			return(1);
+		}
+		if(pByObj){
+			if(!FindObject2(Find_ID(WR_F), Find_ActionTarget(this()))){
+				FuelWarn(this(),OBRL,GetController(pByObj)+1);
+			}
 		}
 		Sound("StartFail");
 		SetComDir(COMD_Stop);
@@ -42,7 +48,7 @@ public func CheckOwner(iPlr){
 //movement
 public func ContainedLeft(pByObj){
 	if(!CheckOwner(GetOwner(pByObj))) return(1);
-	if(!CheckFuel()) return(1);
+	if(!CheckFuel(pByObj)) return(1);
 	if(GetAction() != "Walk" && GetAction() != "Idle") return(1);
 	if(GetAction() == "Idle") SetAction("Walk");
 	SetComDir(COMD_Left);
@@ -51,7 +57,7 @@ public func ContainedLeft(pByObj){
 
 public func ContainedRight(pByObj){
 	if(!CheckOwner(GetOwner(pByObj))) return(1);
-	if(!CheckFuel()) return(1);
+	if(!CheckFuel(pByObj)) return(1);
 	if(GetAction() != "Walk" && GetAction() != "Idle") return(1);
 	if(GetAction() == "Idle") SetAction("Walk");
 	SetComDir(COMD_Right);
@@ -135,14 +141,14 @@ func Reidle(){
 		}
 	}
 	
-	//fuel sign
+/* 	//fuel sign
 	if(iFuel <= 0){
 		if(GetAction() == "Walk"){
 			if(CheckFuel()) return(0);
 		}
 		if(!FindObject2(Find_ID(OBRL), Find_Container(this())))
 		if(!Contained()) Message("{{OBRL}}",this());
-	}
+	} */
 	
 	//fixing animation bug
 	if(GetAction() == "Idle" && GetDir() == 1){
