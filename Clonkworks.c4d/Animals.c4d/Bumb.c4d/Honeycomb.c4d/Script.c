@@ -44,3 +44,5 @@ func Update(){
 		PollenAmount -= 1;
 	}
 }
+
+public func CombAvailable(){ return(PollenAmount != 30); }

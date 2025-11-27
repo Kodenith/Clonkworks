@@ -218,9 +218,27 @@ func BumbRepath(){
 	return(1);
 }
 
+//behaviour for unstucking, for simple velocity changes to digging out.
+func BumbUnstuck(){
+	var trsh = RandomX(100,250);
+	if(GetSpeed() < 5){
+	if(GetContact(this(), -1) & CNAT_Bottom) SetYDir(GetYDir()-trsh);
+	else if(GetContact(this(),-1) & CNAT_Top) SetYDir(GetYDir()+trsh);
+	if(GetContact(this(),-1) & COMD_Left) SetXDir(GetXDir()+trsh);
+	else if(GetContact(this(),-1) & COMD_Right) SetXDir(GetXDir()-trsh);
+	}
+	
+	if(Stuck() && GetAction() != "Attack"){
+		SetAction("Attack");
+		DigFree(GetX(),GetY(),12);
+		if(!Stuck()) Sound("Dig");
+	}
+}
+
 //State 0: Basic Random Movement.
 func BUMBAI_Wander(){
 	BumbRepath();
+	BumbUnstuck();
 	
 	if(Beenergy <= 200) BeeState = 1;
 	
@@ -262,18 +280,14 @@ func BUMBAI_Wander(){
 		if(!Random(8)){
 			BeeState = 6;
 			var PlantList;
-			//if flowers are available, use them instead
-			if(ObjectCount2(Find_Func("IsFlowers"))){
-				 PlantList = FindObjects(Find_Func("IsFlowers"));
-			}else{
-				PlantList = FindObjects(Find_Func("IsTree"));
-			}
+			PlantList = FindObjects(Find_Distance(200),Find_Func("CanBePollinated"));
 			RandomPlant = PlantList[RandomX(0,GetLength(PlantList))];
+			if(!RandomPlant) BeeState = 0;
 			return(0);
 		}
 		
 		//or.. deposit it
-		if(!Random(8) && Comb && Pollen > 0){
+		if(!Random(8) && Comb && Pollen > 0 && Comb->~CombAvailable()){
 			BeeState = 7;
 			return(0);
 		}
@@ -340,6 +354,9 @@ func BUMBAI_WanderGround(){
 		SetComDir(Walkdir);
 	  }
 	  
+	  if(GetContact(this(), -1) & CNAT_Left) SetComDir(COMD_Right);
+	  else if(GetContact(this(), -1) & CNAT_Right) SetComDir(COMD_Left);
+	  
 	  	//Eat Honey
 		if(!Random(9) && FindObject2(Find_ID(HONY), Find_Distance(20), Find_NoContainer())){
 			var Food = FindObject2(Find_ID(HONY), Find_Distance(20), Find_NoContainer());
@@ -403,11 +420,13 @@ func BUMBAI_Revenge(){
 	  
 	  Beenergy -= RandomX(1,10);
 	  
+	  BumbUnstuck();
 	  SetCommand(this(), "MoveTo", GrudgeTarget);
 }
 
 //State 5: Random wandering, but if a bumb has a colony and its night time.
 func BUMBAI_WanderColony(){
+	BumbUnstuck();
 	if(Distance(GetX(),GetY(),HomeX, HomeY) > 650 || MovingHome){
 		  SetCommand(this(), "MoveTo", ,HomeX,HomeY);
 		  MovingHome = true;
@@ -450,14 +469,13 @@ func BUMBAI_FindPollen(){
 	  if(GetAction() == "Idle") SetAction("Fly");
 	  if(GetAction() == "Walk") SetAction("Fly");
 	  
+	  BumbUnstuck();
 	  SetCommand(this(), "MoveTo",RandomPlant);
 	  
 	  if(!RandomPlant){
 		  BeeState = 0;
 		  return(0);
 	  }
-	  
-	  if(RandomPlant == 0 || ObjectCall(RandomPlant, "IsDeadTree")) BeeState = 0;
 	  
 	  if(ObjectDistance(this(), RandomPlant) < 23){
 		  Pollen += RandomX(1,2);
@@ -466,6 +484,7 @@ func BUMBAI_FindPollen(){
 		  }
 		  SetAction("Attack");
 		  Sound("Sting");
+		  RandomPlant->~OnPollination();
 		  if(Pollen > 13 && Comb)
 			  BeeState = 7;
 		  else
@@ -495,6 +514,7 @@ func BUMBAI_DepositPollen(){
 		  return(0);
 	  }
 	  
+	  BumbUnstuck();
 	  SetCommand(this(), "MoveTo",Comb);
 	  
 	  if(ObjectDistance(this(), Comb) < 10){
@@ -576,6 +596,7 @@ func RejectEntrance(pIntoObject,a,b,c){
 	if(GetID(pIntoObject) == LORY && GetAction() != "Tumble") return(1);
 	else if(GetID(pIntoObject) == LORY && GetAction() == "Tumble") return(0);
 	if(GetAction() == "Rest" || WildcardMatch(GetAction(), "*Walk*")) return(_inherited(pIntoObject,a,b,c));
+	return(1);
 }
 
 //lorry bumb :)
@@ -596,6 +617,8 @@ public func Entrance(obj)
 
       // An die Lore kleben
       lorry_wipf->AttachTo(obj);
+	  
+	  lorry_wipf->SetDir(GetDir());
 	  
 	  if(OnFire()) Incinerate(lorry_wipf);
     }
@@ -802,4 +825,8 @@ public func EssenceInfo(type, object pObj){
 	//End - OnEnd, only plays once even when multiple are combined
 	if(type == "Color") return(RGBa(241,162,0));
 	if(type == "Jump") return(2800);
+}
+
+func Sting(){
+SetXDir(0); SetYDir(0);
 }

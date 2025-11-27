@@ -3,5 +3,3 @@ Name=Warn
 Length=1
 Delay=45
 Facet=0,0,15,20,0,0
-EndCall=Finish
-

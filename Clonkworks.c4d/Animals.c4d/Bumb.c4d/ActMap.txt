@@ -88,4 +88,4 @@ Procedure=FLOAT
 NextAction=Fly
 Directions=2
 FlipDir=1
-
+StartCall=Sting

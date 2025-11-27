@@ -22,9 +22,17 @@ public func ControlDig(){
 		return(0);
 	}
 			PollenAmount = 0;
-			for(var i = 0; i < RandomX(1,GetPhase()); i++){
-			var hon = CreateObject(HONY, RandomX(-5,5), RandomX(-5,5));
+			var FullJars, Remains;
+			FullJars = (GetPhase()-2) / 5;
+			Remains = (GetPhase()-2) % 5;
+			
+			DebugLog("Phase - 2: %d Full: %d Ok: %d",GetPhase()-2,FullJars,Remains);
+			for(var i = 0; i < FullJars; i++) CreateObject(HONJ);
+			if(Remains){
+			var NotFullJar = CreateObject(HONJ);
+			NotFullJar->SetPackCount(Remains);
 			}
+			
 			Sound("Rip");
 }
 
@@ -82,3 +90,5 @@ func Update(){
 		else if(!DesignatedBumb2) DesignatedBumb2 = FoundBumb;
 	};
 }
+
+public func CombAvailable(){ return(PollenAmount != 30); }

@@ -6,6 +6,20 @@ func IsFlowers(){
 	return(GetPhase() >= 2);
 }
 
+func CanBePollinated(){ return(IsFlowers()); }
+func OnPollination(){
+	if(Random(5)) return(1);
+	var neigh = FindObject2(Find_ID(GetID()), Find_Exclude(this()), Find_Distance(20), Sort_Random());
+	if(!neigh) return(0);
+	
+	neigh->SetPhase(RandomX(2,3));
+	if(ObjectCount(BSES)){
+		ObjectCall(FindObject(BSES), "SetGrass", neigh);
+	}
+	
+	return(1);
+}
+
 protected func Initialize() 
 { 
   // Zufällige Größe
