@@ -11,9 +11,9 @@ Offset=-3,-3
 Vertices=1
 VertexY=1
 VertexFriction=20
-Value=20
+Value=10
 Mass=10
-Components=FMNS=1
+Components=BUMB=1
 Picture=6,0,40,40
 Collectible=1
 Fragile=1
