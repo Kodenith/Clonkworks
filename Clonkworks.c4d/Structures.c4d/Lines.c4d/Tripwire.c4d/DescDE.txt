@@ -1,3 +1,0 @@
-Wenn etwas diesen Draht berührt, werden die beiden daran angeschlossenen Objekte aktiviert. 
-
-Dieser Draht ist steif. Wenn er in irgendeiner Weise gebogen wird, kann er brechen.

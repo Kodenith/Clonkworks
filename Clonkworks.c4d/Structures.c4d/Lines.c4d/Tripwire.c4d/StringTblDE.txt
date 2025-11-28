@@ -1,9 +1,0 @@
-TxtLinebroke=Leitung gerissen
-
-# Tweak-Menü
-TxtMenuTitle=Stell Tripwire-Erkennung ein
-TxtObj=Objekte erkennen
-TxtVehicle=Fahrzeuge erkennen
-TxtLiving=Lebewesen erkennen
-TxtPlayer=%s erkennen
-TxtDevider=Spieler:

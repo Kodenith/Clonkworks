@@ -114,10 +114,7 @@ public func TempRange(){ return(15); }
 //basic stuff
 public func IsAdvancedProduct(){ return(1); }
 
-//what advanced lines can be connected?
-public func ALKConnectType(){
-	return([TRPW]);
-}
+
 
 //global funcs
 global func UndergroundXY(int x, int y){

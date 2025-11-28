@@ -229,14 +229,6 @@ private func GetArrowCount()
   return(count);
 }
 
-public func ALKConnectType(){
-	return([FNPP,TRPW]);
-}
-
-public func TripActivate(){
-	return(Fire(true));
-}
-
 public func CanNotBeDispensedInto(MoveItem){
 	if(!MoveItem) return(1);
 	if(RejectCollect(GetID(MoveItem),MoveItem)) return(1);
