@@ -72,7 +72,10 @@ private func Transfer()
 public func LineBreak(bool fNoMsg)
 {
   if(hoseRope) RemoveObject(hoseRope);
-  if(GetID(GetActionTarget(1)) == HOSH) ChangeDef(FNKT, GetActionTarget(1));
+  if(GetID(GetActionTarget(1)) == HOSH || GetID(GetActionTarget(1)) == HSH2){
+	  ChangeDef(FNKT, GetActionTarget(1));
+	  GetActionTarget(1)->SetCategory(C4D_Object);
+  }
   Sound("LineBreak");
   if (!fNoMsg) BreakMessage();
 }

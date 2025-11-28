@@ -5,7 +5,6 @@
 #appendto PWRL
 #appendto FNPP
 #appendto HOSE
-#appendto TRPW
 
 public func isLine(){ return(1); }
 public func KitType(){

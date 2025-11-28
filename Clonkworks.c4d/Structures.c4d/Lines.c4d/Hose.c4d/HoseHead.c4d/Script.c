@@ -7,11 +7,10 @@ local IsOn;
 func Initialize() {
   IsOn = false;
   SetAction("Aim");
-  SetPhase(1);
   return(1);
 }
 
-public func IsHoseOn(){ return(IsOn); }
+public func IsHoseOn(){ return(false); }
 
 public func Spew(int Amount, string Mat, int minPower, int maxPower){
 	var angle;
@@ -35,7 +34,7 @@ public func Spew(int Amount, string Mat, int minPower, int maxPower){
 	 }
 }
 
-protected func Activate(){
+protected func Activate(pClonk){
 	[$Togl$|Image=L_RL]
 	var line;
 	var ovrlp = FindObject2(Find_NoContainer(), Find_OCF(OCF_LineConstruct), Find_AtPoint());
@@ -47,7 +46,7 @@ protected func Activate(){
 		}
 	}
 	
-	if(!line) return(Toggle());
+	if(!line) return(Toggle(pClonk));
 	
 	Sound("Connect");
 	RemoveObject(line);
@@ -57,29 +56,21 @@ protected func Activate(){
 	return(1);
 }
 
-func Toggle(){
+func Toggle(pClonk){
 	Sound("Click");
-	if(IsOn) IsOn = false;
-	else IsOn = true;
+	ChangeDef(HSH2);
+	Exit();
+	pClonk->SetAction("Push",this());
+	SetCategory(C4D_Vehicle);
+			SetPosition(GetX(pClonk),GetY(pClonk),this());
+		if(GetDir(pClonk) == DIR_Left){
+			SetR(-90);
+			this()->SetDir(DIR_Left);
+		}else{
+			SetR(90);
+			this()->SetDir(DIR_Right);
+		}
 	return(1);
-}
-
-public func ContextAimUp(){
-	[$Aim1$]
-	Sound("Connect");
-	SetPhase(0);
-}
-
-public func ContextAimVert(){
-	[$Aim2$]
-	Sound("Connect");
-	SetPhase(1);
-}
-
-public func ContextAimHori(){
-	[$Aim3$]
-	Sound("Connect");
-	SetPhase(2);
 }
 
 public func RequiresLine(){ return(true); } //line attached to hose must be disconnected via the hose!
