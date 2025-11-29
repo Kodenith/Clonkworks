@@ -1,1 +1,1 @@
-Mines through any material in it's path, as long as it's constantly powered with large amounts of energy.
+a Powerful vehicle that can dig through most materials. Requires coal or wood as fuel. Controls like a Steam Engine.
