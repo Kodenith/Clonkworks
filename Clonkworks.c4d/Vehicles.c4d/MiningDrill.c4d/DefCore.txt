@@ -23,6 +23,7 @@ TimerCall=SignalDelay
 Components=CPIG=4;METL=3;
 BorderBound=1
 Rebuy=1
+LineConnect=128
 NoPushEnter=0
 
 [Physical]

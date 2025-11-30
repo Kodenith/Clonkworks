@@ -130,3 +130,7 @@ public func FxDrillingTimer(){
 	}
 	}
 }
+
+public func ALKConnectType(){
+	return([FNPP]);
+}

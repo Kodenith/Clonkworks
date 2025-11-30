@@ -35,6 +35,7 @@ protected func Transfer()
 	  if(from->~CanNotBeDispensedFrom(MoveItem)) return(0);
 	  if(GetOCF(to) & OCF_Container){
 		  if(ContentsCount(,to) < space){
+			  if(!ObjectCall(MoveItem,"RejectEntrance",to)) 
 			  if(MoveItem != this() && to->~CanNotBeDispensedInto(MoveItem) != 1)
 			  Enter(to, MoveItem);
 		  }
@@ -45,6 +46,7 @@ protected func Transfer()
 		  if(GetOCF(cont) & OCF_Alive) return(0);
 		  if(cont){
 			 if(ContentsCount(,cont) < space){
+			  if(!ObjectCall(MoveItem,"RejectEntrance",to)) 
 			  if(MoveItem != this() && cont->~CanNotBeDispensedInto(MoveItem) != 1)
 			  Collect(cont, MoveItem);
 			 }

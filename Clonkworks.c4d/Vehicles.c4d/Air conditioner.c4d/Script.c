@@ -1,42 +1,111 @@
 /*-- Neues Script --*/
 
 #strict 2
-#include CXEC
+
+local iColdFuel, iHotFuel;
 
 func Initialize() {
+	iColdFuel = 0;
+	iHotFuel = 0;
   SetAction("Idle");
   return(1);
 }
 
-public func ControlThrow(pByObj){
-	[$TxtLeft$]
-	if(GetEnergy() == 0 && FindObject(ENRG)) return(1);
-	if(GetAction() == "Heating") return(1);
-	Sound("Click");
-	if(GetAction() == "Idle") return(SetAction("Heating"));
-	if(GetAction() == "Cooling") return(SetAction("Idle"));
+func DoWarn(cont){
+	Sound("Error");
+	if(!FindObject2(Find_ID(WR_F), Find_ActionTarget(this()))){
+			FuelWarn(this(),[COAL,ICE1],cont+1);
+	}
+	return(1);
 }
+
+public func ControlUp(pByObj){
+	[$TxtLeft$]
+	if(iHotFuel < 0) iHotFuel = 0;
+	if(iColdFuel < 0) iColdFuel = 0;
+	
+	if(GetAction() == "Heating") return(1);
+	if(GetAction() == "Cooling"){
+		Sound("Click");
+		return(SetAction("Idle"));
+	}
+	if(!FuelCheck(COAL) && !FindObject(FUDS)) return(DoWarn(GetController(pByObj)));
+	if(GetAction() == "Idle"){
+		Sound("Click");
+		return(SetAction("Heating"));
+	}
+
+}
+
 public func ControlDig(pByObj){
 	[$TxtRight$]
-	if(GetEnergy() == 0 && FindObject(ENRG)) return(1);
+	if(iHotFuel < 0) iHotFuel = 0;
+	if(iColdFuel < 0) iColdFuel = 0;
+	
 	if(GetAction() == "Cooling") return(1);
-	Sound("Click");
-	if(GetAction() == "Idle") return(SetAction("Cooling"));
-	if(GetAction() == "Heating") return(SetAction("Idle"));
+	if(GetAction() == "Heating"){
+		Sound("Click");
+		return(SetAction("Idle"));
+	}
+	if(!FuelCheck(ICE1) && !FindObject(FUDS)) return(DoWarn(GetController(pByObj)));
+	if(GetAction() == "Idle"){
+		Sound("Click");
+		return(SetAction("Cooling"));
+	}
+}
+
+public func FuelCheck(type){
+	if(FindObject(FUDS)) return(1);
+	if(iHotFuel < 1 && type == COAL){
+		if(FindContents(COAL)){
+			RemoveObject(FindContents(COAL));
+			iHotFuel+=(36*5);
+		}
+		
+		if(iHotFuel < 1) return(0);
+	}
+	
+	if(iColdFuel < 1 && type == ICE1){
+		if(FindContents(ICE1)){
+			RemoveObject(FindContents(ICE1));
+			iColdFuel+=(36*5);
+		}
+		
+		if(iColdFuel < 1) return(0);
+	}
+	
+	return(1);
+}
+
+public func RejectCollect(thing){
+	if(thing == COAL || thing == ICE1) return(0);
+	return(1);
+}
+
+public func CanNotBeDispensedInto(item){
+	return(RejectCollect(GetID(item)));
 }
 
 //heating and cooling effects
 public func DoHeat(){
+	if(!FuelCheck(COAL)){
+		Sound("Discharge");
+		SetAction("Idle");
+		return(0);
+	}
+	
 	if(InLiquid()){
 		Sound("Discharge");
 		SetAction("Idle");
 		return(0);
 	}
 	
+	iHotFuel--;
+	
 	CreateParticle("PSpark",RandomX(-8,8),RandomX(-5,5)-5,0,0,RandomX(25,40),RGBa(255,140,0),this());
 	if(!Random(5)) Smoke(0,-5,RandomX(5,15));
 	//finding a random pixel nearby and heating it up!
-	for(var i = 0; i < Random(200); i++){
+	for(var i = 0; i < Random(650); i++){
 	var iX, iY, range;
 	range = 67;
 	if(Contained()) range/=2;
@@ -69,15 +138,23 @@ public func DoHeat(){
 }
 
 public func DoCooling(){
+	if(!FuelCheck(ICE1)){
+		Sound("Discharge");
+		SetAction("Idle");
+		return(0);
+	}
+	
 	if(InLiquid()){
 		Sound("Discharge");
 		SetAction("Idle");
 		return(0);
 	}
 	
+	iColdFuel--;
+	
 	CreateParticle("PSpark",RandomX(-8,8),RandomX(-5,5)-5,0,0,RandomX(25,40),RGBa(0,140,255),this());
 	//finding a random pixel nearby and cooling it off!
-	for(var i = 0; i < Random(200); i++){
+	for(var i = 0; i < Random(650); i++){
 	var iX, iY, range;
 	range = 67;
 	iX = GetX() + RandomX(-range,range);
@@ -147,4 +224,8 @@ global func UndergroundXY(int x, int y){
 //damage
 public func Damage(int iChange, int iByPlayer){
 	if(GetDamage() > 55) Explode(30);
+}
+
+public func ALKConnectType(){
+	return([FNPP]);
 }
