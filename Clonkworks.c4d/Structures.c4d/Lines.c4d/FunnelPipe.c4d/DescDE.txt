@@ -1,1 +1,3 @@
-Verschiebt Gegenstände von einem Behälter in einen anderen.
+Bewegt bestimmte Gegenstände aus dem Gebäude/Fahrzeug, mit dem die Verbindung beginnt, zum Container am Ende der Leitung. Wenn das andere Ende nicht an einen Container angeschlossen werden kann, reicht es aus, das erweiterte Leitungsset hineinzulegen. 
+
+Standardmäßig kann jeder Gegenstand bewegt werden. Mit einem Schraubendreher können Sie einen bestimmten Gegenstand zum Bewegen auswählen.

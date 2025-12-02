@@ -1,1 +1,1 @@
-Sprays materials from Liquid Tanks and any other liquid containers. The other end automatically becomes a Hose Head that can be aimed and toggled.
+Can only be created by beggining attachment with Liquid Tanks and most other liquid containers. The ending becomes a hose which will spray material pixels in an aimed direcion.

@@ -1,1 +1,1 @@
-Sprüht Materialien aus Flüssigkeitstanks und anderen Flüssigkeitsbehältern. Das andere Ende wird automatisch zu einem Schlauchkopf, der ausgerichtet und umgeschaltet werden kann.
+Kann nur erstellt werden, indem man eine Verbindung mit Flüssigkeitstanks und den meisten anderen Flüssigkeitsbehältern herstellt. Das Ende wird zu einem Schlauch, der Materialpixel in eine bestimmte Richtung spritzt.

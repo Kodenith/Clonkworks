@@ -133,3 +133,5 @@ public func ContextInfo(pClonk){
 public func DoLineDesc(line,owner){
 	MessageWindow(GetDesc(,line),owner,CXIN,GetName(,line));
 }
+
+public func GetResearchBase() {return(LNKT);}

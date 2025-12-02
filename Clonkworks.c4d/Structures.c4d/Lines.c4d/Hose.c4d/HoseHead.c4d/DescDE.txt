@@ -1,3 +1,1 @@
-Sie können den Schlauch durch zweimaliges Drücken der Dig-Taste ein- und ausschalten. Die Zielrichtung kann im Kontextmenü geändert werden.
-
-Um die Verbindung zu trennen, gehen Sie zum verbundenen Container und drücken Sie zweimal die Dig-Taste.
+Drücken Sie zweimal auf die Taste Graben, um mit dem Zielen zu beginnen. Drücken Sie auf Werfen, um mit dem Sprühen zu beginnen/es abzubrechen. Wenn Sie den Schlauch loslassen, wird er in Ihr Inventar zurückgelegt.
