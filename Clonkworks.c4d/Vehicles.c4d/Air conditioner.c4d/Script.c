@@ -19,7 +19,7 @@ func DoWarn(cont){
 	return(1);
 }
 
-public func ControlUp(pByObj){
+public func ControlUpDouble(pByObj){
 	[$TxtLeft$]
 	if(iHotFuel < 0) iHotFuel = 0;
 	if(iColdFuel < 0) iColdFuel = 0;
@@ -37,7 +37,7 @@ public func ControlUp(pByObj){
 
 }
 
-public func ControlDig(pByObj){
+public func ControlDigDouble(pByObj){
 	[$TxtRight$]
 	if(iHotFuel < 0) iHotFuel = 0;
 	if(iColdFuel < 0) iColdFuel = 0;
