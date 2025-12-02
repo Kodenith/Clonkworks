@@ -219,16 +219,17 @@ func BumbRepath(){
 }
 
 //behaviour for unstucking, for simple velocity changes to digging out.
+//recently fixed, bumbs no longer rocket into the sky randomly
 func BumbUnstuck(){
 	var trsh = RandomX(100,250);
-	if(GetSpeed() < 5){
+	if(GetSpeed() < 5 && GetAction() == "Fly"){
 	if(GetContact(this(), -1) & CNAT_Bottom) SetYDir(GetYDir()-trsh);
 	else if(GetContact(this(),-1) & CNAT_Top) SetYDir(GetYDir()+trsh);
 	if(GetContact(this(),-1) & COMD_Left) SetXDir(GetXDir()+trsh);
 	else if(GetContact(this(),-1) & COMD_Right) SetXDir(GetXDir()-trsh);
 	}
 	
-	if(Stuck() && GetAction() != "Attack"){
+	if(Stuck() && GetAction() == "Fly"){
 		SetAction("Attack");
 		DigFree(GetX(),GetY(),12);
 		if(!Stuck()) Sound("Dig");
