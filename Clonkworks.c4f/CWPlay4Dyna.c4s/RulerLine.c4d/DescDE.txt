@@ -1,0 +1,2 @@
+Berechnet und zeigt die Anzahl der Einheiten zwischen beiden verbundenen Objekten an.
+Wird bei der Entwicklung verwendet, um einen geeigneten Abstand für kurze Kabel zu berechnen.

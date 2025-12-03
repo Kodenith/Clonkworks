@@ -20,6 +20,14 @@ protected func Transfer()
   var from = GetActionTarget(0);
   var to = GetActionTarget(1);
   
+  //break after exceeding 50 units.
+  var Units = ObjectDistance(from,to)/100;
+  if(Units > 5){
+	  LineBreak(false);
+	  RemoveObject();
+	  return(0);
+  }
+  
   if(from && to){
 	  //getting max space
 	  var space;

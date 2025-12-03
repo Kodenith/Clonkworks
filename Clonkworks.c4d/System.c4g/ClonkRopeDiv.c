@@ -30,6 +30,7 @@ protected func ControlDigDouble(pClonk)
 				return(1);
 			}
 			Sound("Connect");
+			DebugLog("%s kit type %s",GetName(Line),GetName(,Line->KitType()));
 			var Kit = CreateObject(Line->KitType());
 			SetActionTargets(Kit, to, Line);
 			return(1);
@@ -42,6 +43,7 @@ protected func ControlDigDouble(pClonk)
 				return(1);
 			}
 			Sound("Connect");
+						DebugLog("%s kit type %s",GetName(Line),GetName(,Line->KitType()));
 			var Kit = CreateObject(Line->KitType());
 			SetActionTargets(from, Kit, Line);
 			return(1);

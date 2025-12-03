@@ -34,7 +34,7 @@ public func Activate(pClonk){
 	PlayerMessage(GetOwner(pClonk),Format("$TxtTweakInfo$",GetName(LineObj)),pClonk);
 	for(var line in Lines){
 		if(line->~LineTweakable()){
-			AddMenuItem("$TxtTweak$","StartLineTweak",GetID(line),pClonk,GetIndexOf(line,Lines)+1,line);
+			AddMenuItem("$TxtTweak$","StartLineTweak",GetID(line),pClonk,0,line);
 		}
 	}
 	
