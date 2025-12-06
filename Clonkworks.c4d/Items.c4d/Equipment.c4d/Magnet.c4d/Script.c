@@ -1,18 +1,28 @@
 #strict 2
 
 local MaterialCheck;
+local iOn;
 
 func Initialize() {
+	iOn = false;
   MaterialCheck = [METL,GOLD,CRYS,CPIG,TTIG,ORE1,ORE2,ORE3]; //materials that can be attracted
   return(1);
 }
 
 func Attract(){
+	if(!iOn) return(0);
 	if(Contained()){
 		if( !(GetCategory(ContainedTop(this())) & C4D_Vehicle) && !(GetCategory(ContainedTop(this())) & C4D_Living) ){
 			return(0);
 		}
 	}
+	
+	if(!Random(1)){
+		var me = this();
+		if(Contained()) me = ContainedTop();
+	CreateParticle("PSpark",RandomX(-10,10),RandomX(-10,10),0,0,RandomX(20,50),RGBa(255,RandomX(100,255),0,128),me);
+	}
+	
 	var atrc = FindObjects(Find_Category(C4D_Object), Find_Distance(50), Find_Exclude(this()));
 	var MaxAtr = 10;
 	for(var metl in atrc){
@@ -31,9 +41,16 @@ func Attract(){
 
 public func Activate(){
 	[$Break$]
-	  CastParticles("MSpark",5,25,0,0,15,30,RGB(255,223,127),RGB(255,223,127));
-	  Sound("AnvilWork*");
-	  RemoveObject(this());
+	 Sound("Click");
+	 if(iOn){
+		 Sound("Energy",0,this(),68,0,-1,0,40);
+		 iOn = false;
+	 }
+	 else{
+		 Sound("Energy",0,this(),68,0,+1,0,40);
+		 iOn = true;
+	 }
+	 return(1);
 }
 
 protected func Hit()
