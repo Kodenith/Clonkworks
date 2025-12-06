@@ -1,4 +1,4 @@
 /*-- Neues Script --*/
 
 #strict
-#include BAS9
+#include BAS3

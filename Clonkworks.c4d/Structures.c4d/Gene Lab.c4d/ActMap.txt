@@ -1,9 +1,9 @@
 [Action]
 Name=OpenDoor
 Procedure=NONE
-Length=17
+Length=10
 Delay=1
-Facet=85,0,22,22,15,48
+Facet=0,57,14,16,22,41
 FacetBase=1
 NextAction=DoorOpen
 StartCall=SoundOpenDoor
@@ -12,7 +12,7 @@ StartCall=SoundOpenDoor
 Name=DoorOpen
 Procedure=NONE
 Delay=15
-Facet=415,0,22,22,15,48
+Facet=126,57,14,16,22,41
 FacetBase=1
 NextAction=CloseDoor
 StartCall=OpenEntrance
@@ -20,9 +20,9 @@ EndCall=CloseEntrance
 
 [Action]
 Name=CloseDoor
-Length=17
+Length=10
 Delay=1
-Facet=85,0,22,22,15,48
+Facet=0,57,14,16,22,41
 FacetBase=1
 NextAction=Idle
 StartCall=SoundCloseDoor
@@ -30,12 +30,13 @@ Reverse=1
 
 [Action]
 Name=Process
-Length=32
-Delay=2
-Facet=0,74,35,20,8,9
-FacetBase=1
+Length=16
+Delay=3
+Facet=0,0,59,57,0,0
+FacetBase=0
 NextAction=Process
 Sound=Research
 StartCall=MakeGoo
 EnergyUsage=650
 AbortCall=StopProcession
+

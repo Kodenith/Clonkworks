@@ -1,2 +1,2 @@
-DE:verbrannte Probenmischer
-US:Burnt Sample Mixer
+DE:Verbrannte Genetik Pflanze
+US:Burnt Genetics Plant

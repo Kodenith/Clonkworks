@@ -1,16 +1,14 @@
 [DefCore]
-Name=Burnt Sample Mixer
+Name=Burnt Genelab
 id=BGNB
 Version=4,9,8
 Category=C4D_Structure
-Width=82
-Height=64
-Offset=-41,-32
-Picture=0,0,82,64
-Vertices=6
-VertexX=-34,33,-31,12,3,-8
-VertexY=31,31,-2,-3,31,-9
-VertexFriction=20,20,20,20,20,20
-VertexCNAT=8,8,1,2,8,4
-NoBurnDecay=0
-BlastIncinerate=85
+Width=59
+Height=57
+Offset=-29,-28
+Picture=0,0,59,57
+Vertices=9
+VertexX=-21,21,0,-24,24,0,-11,5,15
+VertexY=28,28,28,11,11,8,-10,-12,-19
+VertexFriction=20,20,20,20,20,20,20,20,100
+VertexCNAT=8,8,8,1,2,16,4,4,70

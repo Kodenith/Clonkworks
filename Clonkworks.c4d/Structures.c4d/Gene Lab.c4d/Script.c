@@ -2,7 +2,7 @@
 
 #strict 2
 #include DOOR
-#include BAS9
+#include BAS3
 
 local pWorker;
 local Selected;

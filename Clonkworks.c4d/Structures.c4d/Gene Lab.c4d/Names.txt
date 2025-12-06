@@ -1,2 +1,2 @@
-DE:Probenmischer
-US:Sample Mixer
+DE:Genetik Pflanze
+US:Genetics Plant
