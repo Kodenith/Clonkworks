@@ -1,0 +1,21 @@
+[DefCore]
+Name=Burnt Zipline Pole
+id=BZIP
+Version=4,9,8
+Category=2
+Mass=200
+Width=28
+Height=58
+Offset=-13,-4
+Picture=0,0,28,58
+Vertices=5
+VertexX=0,-4,3,-4,3
+VertexY=0,53,53,39,39
+VertexFriction=20,20,20,20,20
+VertexCNAT=0,8,8,1,2
+ContactIncinerate=3
+Components=METL=2;WOOD=2
+BlastIncinerate=28
+Construction=1
+ConstructTo=ZIPP
+NoBurnDecay=0

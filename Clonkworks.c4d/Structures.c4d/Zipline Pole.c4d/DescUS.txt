@@ -1,0 +1,3 @@
+with the use of an Advanced Line Kit, you can attach a single zipline from it or multiple ziplines to it.
+If there's rope inside, any vehicle or clonk can be attached to the line by pushing the object into the pole.
+WARNING: Both poles need to be powered in order to work!

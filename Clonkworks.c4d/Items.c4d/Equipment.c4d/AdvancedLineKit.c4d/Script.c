@@ -41,7 +41,7 @@ protected func Activate(clonk)
 }
 
 public func LineSelection(pObject,clonk){
-	if(!pObject->~ALKConnectType()){
+	if(!pObject->~ALKConnectType(0)){
 	  Sound("Error");
       return(Message("$TxtNoNewLine$", this()) );
 	}
@@ -77,8 +77,8 @@ private func CreateLine(linetype, owner, from, to)
 private func ConnectLine(line, to)
 {
   var line_accept;
-  if(to->~ALKConnectType()){
-	  if(GetIndexOf(GetID(line), to->~ALKConnectType()) != -1){
+  if(to->~ALKConnectType(1)){
+	  if(GetIndexOf(GetID(line), to->~ALKConnectType(1)) != -1){
 		  line_accept = true;
 	  }else{
 		  line_accept = false;

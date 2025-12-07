@@ -1,0 +1,4 @@
+Err1=Verbinden Sie eine Seilbahn mit einem anderen Pfosten.
+Err2=Nicht genug Seil!
+Err3=Es ist mehr als eine Seilbahn mit dieser Quelle verbunden!
+Disc=Quellleitung trennen

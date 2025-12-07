@@ -1,0 +1,2 @@
+Kann an Seilbahnmasten befestigt werden, die Fahrzeuge und Clonks von einer Seite zur anderen bewegen.
+Die Seilrolle dieser Seilbahn ist ziemlich empfindlich. Wenn beide Masten nicht mit Strom versorgt werden, sich etwas an der Seilbahn verändert oder die Seilrolle auf festes Material trifft, bricht sie und das daran befestigte Objekt stürzt zu Boden.

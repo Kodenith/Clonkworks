@@ -5,7 +5,7 @@ local Filter;
 
 protected func Initialize()
 {
-  Local(0) = 1;
+  Local(0) = 2;
   Local(1) = 4;
 	
   SetAction("Connect");  

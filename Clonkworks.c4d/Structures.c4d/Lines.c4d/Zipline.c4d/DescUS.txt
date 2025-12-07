@@ -1,0 +1,2 @@
+Can be attached to zipline poles, which will move vehicles and clonks from one side to the other.
+the pulley of this line is pretty fragile. if both poles are unpowered, something in the line changes, or the pulley encounters solid material it will break and send the attached object plummeting down.
