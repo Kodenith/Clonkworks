@@ -1,7 +1,6 @@
 /*--- Zuflussrohr ---*/
 
 #strict
-
 protected func Initialize()
 {
   Local(0) = 1;
@@ -19,3 +18,5 @@ protected func Transfer()
   var from = GetActionTarget(0);
   var to = GetActionTarget(1);
 }
+
+public func KitType(){ return(FNKT); }

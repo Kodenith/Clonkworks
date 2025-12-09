@@ -4,23 +4,18 @@
 #include BAS1
 #include CXEC
 
-local Connector;
-
 func Initialize() {
   SetEntrance(0);
-  Connector = CreateObject(ZIPC);
-  Connector->SetAction("Attach",this());
-  Connector->SetActionData(256*0+0);
   return(1);
 }
 
 func ActivateEntrance(pObj){
 	if(GetID(pObj) == CK5P) return(1);
-	if(!EnergyCheck(200) || !Connector){
+	if(!EnergyCheck(200)){
 		return(0);
 	}
 	
-	if(!FindObject2(Find_ID(ZIPL),Find_ActionTarget(Connector))){
+	if(!FindObject2(Find_ID(ZIPL),Find_ActionTarget(this()))){
 		Message("$Err1$",this());
 		Sound("Error");
 			if(GetCommand(pObj,0) == "Enter")
@@ -28,7 +23,7 @@ func ActivateEntrance(pObj){
 		return(0);
 	}
 	
-	var Line = FindObject2(Find_ID(ZIPL),Find_ActionTarget(Connector));
+	var Line = FindObject2(Find_ID(ZIPL),Find_ActionTarget(this()));
 	if(GetID(GetActionTarget(1,Line)) == FNKT){
 		Message("$Err1$",this());
 		Sound("Error");
@@ -45,9 +40,9 @@ func ActivateEntrance(pObj){
 		return(0);
 	}
 	
-	//for now its a rock
-	var Zip = CreateObject(ZIPT,0,2);
+	var Zip = CreateObject(ZIPT,0,16);
 	LocalN("Line",Zip) = Line;
+	LocalN("memorizedCount",Zip) = GetVertexNum(Line);
 	var Rope = FindContents(CK5P);
 	Rope->ConnectObjects(Zip,pObj);
 	
@@ -57,44 +52,6 @@ func ActivateEntrance(pObj){
 }
 
 public func ALKConnectType(){
-	if(FindObject2(Find_ID(ZIPL),Find_ActionTarget(Connector)) && Par(0) == 0) return(0);
+	if(FindObject2(Find_ID(ZIPL),Find_ActionTarget(this())) && Par(0) == 0) return(0);
 	return([ZIPL]);
-}
-
-public func Recollection(){
-	for(var zip in FindObjects(Find_ID(ZIPL))){
-		if(GetActionTarget(0,zip) == this()){
-			SetActionTargets(Connector,GetActionTarget(1,zip),zip);
-		}else if(GetActionTarget(1,zip) == this()){
-			SetActionTargets(GetActionTarget(0,zip),Connector,zip);
-		}
-		
-		if(GetActionTarget(1,zip) == Connector && GetActionTarget(0,zip) == Connector){
-			var kit = CreateObject(FNKT);
-			SetActionTargets(GetActionTarget(0,zip),kit,zip);
-			//kit->Enter(pClonk);
-		}
-	}
-}
-
-public func ControlUp(pClonk){
-	[$Disc$|Image=ZIPL]
-	var zip;
-	if(zip = FindObject2(Find_ID(ZIPL), Find_ActionTarget(Connector))){
-		if(GetID(GetActionTarget(1,zip)) != FNKT) 	
-			CreateObject(FNKT);
-		RemoveObject(zip);
-		Sound("Connect");
-	}
-	return(1);
-}
-
-func Destruction(){
-	if(Connector)
-	RemoveObject(Connector);
-}
-
-func Incineration(){
-		if(Connector)
-	RemoveObject(Connector);
 }
