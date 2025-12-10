@@ -16,7 +16,7 @@ VertexY=0
 VertexFriction=20
 VertexCNAT=16
 Collectible=1
-Components=CRYS=3;METL=2
+Components=CRYS=1;METL=2
 Timer=5
 TimerCall=Attract
 Rotate=1

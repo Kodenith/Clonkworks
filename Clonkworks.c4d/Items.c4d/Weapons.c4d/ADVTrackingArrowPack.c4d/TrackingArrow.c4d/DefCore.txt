@@ -10,7 +10,7 @@ Offset=-4,-3
 Vertices=2
 VertexY=-3,3
 VertexFriction=80,80
-Value=8
+Value=10
 Mass=3
 Components=ARRW=1;CPIG=1;CRYS=1;
 Picture=0,7,64,64

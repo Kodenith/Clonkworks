@@ -10,9 +10,9 @@ Offset=-4,-3
 Vertices=2
 VertexY=-3,3
 VertexFriction=100,100
-Value=30
+Value=50
 Mass=30
-Components=METL=4;MGNT=1
+Components=METL=3;MGNT=1;CPIG=1;
 Picture=0,8,64,64
 Rebuy=1
 Collectible=1

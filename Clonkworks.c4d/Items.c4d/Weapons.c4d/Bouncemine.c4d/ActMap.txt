@@ -1,8 +1,0 @@
-[Action]
-Name=Tumble
-Length=18
-Delay=1
-Facet=0,0,14,14,0,0
-FacetBase=0
-NextAction=Tumble
-StartCall=CheckNoMovement

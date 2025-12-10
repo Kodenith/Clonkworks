@@ -1,2 +1,0 @@
-DE:Heizstrahl
-US:Heat ray
