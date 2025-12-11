@@ -401,3 +401,17 @@ public func DangerousMode(){
 public func GetCreatureSize(Creature){
 	return(Max(GetDefCoreVal("Width", "DefCore", GetID(Creature)), GetDefCoreVal("Height", "DefCore", GetID(Creature))));
 }
+
+//fuel Station Logic
+public func REFUNeedFuel(){
+	if(fuel < 195) return(1);
+}
+public func REFUFuelType(){
+	return([OBRL]);
+}
+
+public func HowToREFU(pFuel){
+	ChangeDef(BARL,pFuel);
+	fuel = 200;
+	return(1);
+}

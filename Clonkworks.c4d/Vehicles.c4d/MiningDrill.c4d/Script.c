@@ -134,3 +134,19 @@ public func FxDrillingTimer(){
 public func ALKConnectType(){
 	return([FNPP]);
 }
+
+//fuel Station Logic
+public func REFUNeedFuel(){
+	if(FindObject(FUDS)) return(0);
+	if(ContentsCount(COAL) < 5 || ContentsCount(WOOD) < 10){
+		return(1);
+	}
+}
+public func REFUFuelType(){
+	return([COAL,WOOD]);
+}
+
+public func HowToREFU(pFuel){
+	Enter(this(),pFuel);
+	return(1);
+}

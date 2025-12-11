@@ -170,3 +170,19 @@ func SoundOpenDoor(){
 func SoundCloseDoor(){
 	Sound("SteelGate2");
 }
+
+//fuel Station Logic
+public func REFUNeedFuel(){
+	if(FindObject(FUDS)) return(0);
+	if(iFuel < 160) return(1);
+}
+public func REFUFuelType(){
+	return([OBRL]);
+}
+
+public func HowToREFU(pFuel){
+	ChangeDef(BARL,pFuel);
+	iFuel = 200;
+	Enter(this(),pFuel);
+	return(1);
+}
