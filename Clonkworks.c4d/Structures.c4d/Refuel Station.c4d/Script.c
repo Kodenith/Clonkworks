@@ -15,7 +15,7 @@ private func XRigt(){ return(GetVertex(5,0)); }
 
 //entrance
 func RejectCollect(pObj){
-	if(pObj->~IsFuelItem()) if(ContentsCount() < 25) return(0);
+	if(pObj->~IsREFUItem()) if(ContentsCount() < 25) return(0);
 	return(1);
 }
 

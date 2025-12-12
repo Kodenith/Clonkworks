@@ -1,2 +1,2 @@
-TxtLeft=Turn knob left
-TxtRight=Turn knob right
+TxtLeft=Toggle left
+TxtRight=Toggle Right

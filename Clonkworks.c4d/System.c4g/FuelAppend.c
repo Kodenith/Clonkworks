@@ -3,7 +3,7 @@
 #strict
 #appendto COAL
 #appendto ICE1
-#appendto OBRL
+#appendto BARL
 #appendto WOOD
 
-func IsFuelItem(){ return(1); }
+func IsREFUItem(){ return(1); }

@@ -1,2 +1,2 @@
-TxtLeft=Knopf nach links drehen
-TxtRight=Knopf nach rechts drehen
+TxtLeft=Nach links umschalten
+TxtRight=Nach rechts umschalten

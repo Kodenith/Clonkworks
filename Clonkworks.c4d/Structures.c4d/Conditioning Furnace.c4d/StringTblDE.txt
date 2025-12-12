@@ -1,0 +1,2 @@
+TxtFuel1=Kohle laden
+TxtFuel2=Kristalle laden

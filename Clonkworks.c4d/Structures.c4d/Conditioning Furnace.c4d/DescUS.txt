@@ -1,0 +1,3 @@
+While this may seem like a great new smeltery, this furnace is designed specifially to melt or freeze nearby material in an area.
+
+Put Coal or Crystal inside to begin the process. Energy is also required.

@@ -2,6 +2,7 @@
 
 #strict
 
+
 public func ExplodeSize() 
 { 
   return(18); 

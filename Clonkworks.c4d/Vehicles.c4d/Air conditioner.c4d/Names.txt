@@ -1,2 +1,2 @@
-DE:Klimaanlage
-US:Air conditioner
+DE:Tragbarer Temperierofens
+US:Portable Conditioning Furnace
