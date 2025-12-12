@@ -69,23 +69,35 @@ public func DoExplosion(){
 	SetR(GetR());
 	CreateChainExplosion(0);
 	Sound("Drill");
-	Schedule("CreateChainExplosion(1)",5);
-	Schedule("CreateChainExplosion(5)",5);
+	Schedule("CreateChainExplosion(1,1)",5);
+	Schedule("CreateChainExplosion(5,1)",5);
 	
-	Schedule("CreateChainExplosion(2)",10);
-	Schedule("CreateChainExplosion(6)",10);
+	Schedule("CreateChainExplosion(2,1)",10);
+	Schedule("CreateChainExplosion(6,1)",10);
 	
 	Schedule("CreateChainExplosion(3)",15);
 	Schedule("CreateChainExplosion(7)",15);
-	
+/* 	
 	Schedule("CreateChainExplosion(4)",20);
-	Schedule("CreateChainExplosion(8)",20);
+	Schedule("CreateChainExplosion(8)",20); */
 	
 	Schedule("RemoveObject()",16);
 }
 
-public func CreateChainExplosion(vert){
+public func CreateChainExplosion(vert,fal){
+	if(!fal)
 	CreateObject(FLNT,GetVertex(vert,0),GetVertex(vert,1))->Explode(ExplodeSize());
+	else{
+	var obj = CreateObject(FLNT,GetVertex(vert,0),GetVertex(vert,1));
+	TerrainExplosion(ExplodeSize(),obj);
+	}
+}
+
+func TerrainExplosion(size,obj){
+	obj->CreateParticle("Blast",0,0,0,0,size*10,RGBa(255,255,255,200));
+	obj->Sound("Blast1");
+	obj->BlastFree(0,0,size);
+	RemoveObject(obj);
 }
 
 protected func Hit(xdir, ydir) {

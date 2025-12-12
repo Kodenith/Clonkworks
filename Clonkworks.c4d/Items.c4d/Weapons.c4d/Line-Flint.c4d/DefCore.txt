@@ -21,4 +21,4 @@ Timer=1
 TimerCall=Stickiness
 Picture=0,6,64,64
 Rotate=1
-Components=CPIG=3;CRYS=1;STFN=1;
+Components=CPIG=2;CRYS=1;STFN=1;
