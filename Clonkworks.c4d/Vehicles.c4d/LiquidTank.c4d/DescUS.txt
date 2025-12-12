@@ -1,3 +1,3 @@
-Can store up to 3000 pixels of any material, but you'll most likely be storing liquids here :)
+Can store up to 4500 pixels of any material, but you'll most likely be storing liquids here :)
 
 Stored liquids can be filled into barrels, released, transported through pipes, or shot out with a hose.

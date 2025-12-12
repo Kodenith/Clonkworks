@@ -139,10 +139,10 @@ public func ControlThrow(pByObj){
 		}
 		//empty? fill it up!
 		if(Amount >= barrel->BarrelMaxFill()){
-			if(LiquidType == "Water") ChangeDef(WBRL,barrel);
-			else if(LiquidType == "Acid") ChangeDef(ABRL,barrel);
-			else if(LiquidType == "Oil") ChangeDef(OBRL,barrel);
-			else if(LiquidType == "Lava" || LiquidType == "DuroLava") ChangeDef(LBRL,barrel);
+			var LQT = GetBarrelType(Material(LiquidType));
+			if(LQT){
+				ChangeDef(LQT,barrel);
+			}
 			else{
 				Message("$FillFail$",this(),LiquidType);
 				Sound("CommandFailure1");
@@ -256,3 +256,33 @@ protected func ControlDownSingle(object clonk)
   return(1);
 }
 public func GetResearchBase() { return(PUMP); }
+
+//Refuel
+public func REFUNeedFuel(){
+	if(Amount)
+		if(!GetBarrelType(Material(LiquidType))) return(0);
+	if(Amount < MaxAmount()) return(1);
+}
+public func REFUFuelType(){
+	var LQT = GetBarrelType(Material(LiquidType));
+	if(LQT) return([LQT]);
+	if(Amount == 0) return(BarrelList());
+}
+
+public func HowToREFU(pFuel){
+	var lq = pFuel->~BarrelMaterialName();
+	var cnt = pFuel->GetAmount();
+	pFuel->BarrelDoFill(-cnt);
+	ChangeDef(BARL,pFuel);
+	InsertLiquidPx(lq,cnt);
+}
+
+global func BarrelList(){
+	var b,j,l;
+	l = [];
+	while(b = MaterialName(j++)){
+		var br = GetBarrelType(Material(b));
+		if(br) ArrayAdd(l,br,true);
+	}
+	return(l);
+}
