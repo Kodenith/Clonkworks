@@ -12,7 +12,7 @@ Offset=-20,-14
 Picture=4,41,92,64
 Grab=1
 GrabPutGet=C4D_GrabGet
-Components=METL=2;TTIG=2
+Components=METL=2;BARL=2;TTIG=1
 ColorByOwner=1
 Timer=3
 TimerCall=LiquidCheck

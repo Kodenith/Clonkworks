@@ -1,0 +1,3 @@
+Eine große, unbewegliche Version des Flüssigkeitstanks. Fasst bis zu 12.000 Pixel Flüssigkeit.
+
+Die gespeicherten Flüssigkeiten können in Fässer gefüllt, abgelassen, durch Rohre transportiert oder mit einem Schlauch herausgeschossen werden.
