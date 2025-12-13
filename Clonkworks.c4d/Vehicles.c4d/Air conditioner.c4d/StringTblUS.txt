@@ -1,2 +1,0 @@
-TxtLeft=Toggle left
-TxtRight=Toggle Right

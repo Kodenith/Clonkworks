@@ -1,2 +1,0 @@
-TxtFuel1=Load up Coal
-TxtFuel2=Load up Crystals

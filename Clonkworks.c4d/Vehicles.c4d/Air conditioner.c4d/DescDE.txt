@@ -1,3 +1,0 @@
-Eine tragbare Version des Temperofens. Verwendet Kohle oder Kristalle als Brennstoff.
-
-Um zwischen den Temperaturen zu wechseln, drücken Sie zweimal nach oben, um nach links zu wechseln, und zweimal nach unten, um nach rechts zu wechseln.

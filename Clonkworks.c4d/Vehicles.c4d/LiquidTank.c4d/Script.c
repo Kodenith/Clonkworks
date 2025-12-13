@@ -21,8 +21,13 @@ func FxLQTKStatsInfo(object pTarget, int iEffectNumber){
 	return(Format("$FxFilled$",Amount,MaxAmount(),LiquidType));
 }
 
-func MaxAmount(){ return(4500); }
+func MaxAmount(){ return(6500); }
 func AmountDevision(){ return(MaxAmount()/20);}
+
+func Hit3(){
+	DepositLiquidPx(Amount);
+	Sound("ClonkHit*");
+}
 
 func LiquidCheck(){
 	if(!LiquidType) Amount = 0;

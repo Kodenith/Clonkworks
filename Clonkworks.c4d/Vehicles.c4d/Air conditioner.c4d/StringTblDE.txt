@@ -1,2 +1,0 @@
-TxtLeft=Nach links umschalten
-TxtRight=Nach rechts umschalten

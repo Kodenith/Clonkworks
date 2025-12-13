@@ -17,6 +17,7 @@ func Initialize(){
 }
 
 func IsFueled(){
+	if(FindObject(FUDS)) iFuel = 250;
 	return(iFuel > 0);
 }
 
@@ -120,7 +121,7 @@ public func FxDrillingTimer(){
 	if(GetDir() == 0) x = -25;
 	else x = 25;
 	
-	if(IsFueled()){
+	if(IsFueled() && GetComDir() != COMD_None){
 	if(GetMaterial(x,0) != Material("Sky") && GetMaterial(x,0) != Material("Tunnel") && Abs(GetXDir()) != 0){
 		Drill(x);
 	}else if(GetMaterial(x,5) != Material("Sky") && GetMaterial(x,5) != Material("Tunnel") && Abs(GetXDir()) != 0){

@@ -1,3 +1,0 @@
-A Portable Version of the Conditioning Furnace. Uses Coal or Crystal as fuel.
-
-To toggle between temperatures, press Up twice to toggle left and Dig twice to toggle right.
