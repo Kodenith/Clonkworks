@@ -10,8 +10,8 @@ func Initialize() {
 }
 
 func Update(){
-	if(DesignatedBumb)
-	DesignatedBumb.Comb = 0;
-	if(DesignatedBumb2)
-	DesignatedBumb2.Comb = 0;
+	if(DesignatedBumb != nil && GetID(DesignatedBumb) == BUMB)
+		DesignatedBumb.Comb = 0;
+	if(DesignatedBumb2 != nil &&  GetID(DesignatedBumb2) == BUMB)
+		DesignatedBumb2.Comb = 0;
 }
