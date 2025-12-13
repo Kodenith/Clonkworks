@@ -121,8 +121,8 @@ public func Fire()
   if (GetOCF(pProjectile) & OCF_Alive) pProjectile->SetKiller(GetController());
   pProjectile->SetController(GetController());
 
-  var iX = GetVertex(0,0);
-  var iY = GetVertex(0,1);
+  var iX = GetVertex(1,0);
+  var iY = GetVertex(1,1);
   
   Exit(pProjectile,iX,iY,Random(360),Sin(GetR(), CannonPower(pProjectile)), -Cos(GetR(), CannonPower(pProjectile)),+30);
   pProjectile->~Launch();
@@ -138,6 +138,7 @@ public func Fire()
 
 //other
 func ReturnToObj(Cooldown){
+	ClearScheduleCall(this(),"ReturnToObj");
 	Sound("Click");
 	ChangeDef(PCAN);
 	SetCategory(C4D_Object);
