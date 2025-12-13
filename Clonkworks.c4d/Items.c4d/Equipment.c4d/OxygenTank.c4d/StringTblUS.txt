@@ -1,7 +1,0 @@
-TxtReplenish=Toggle Breathe
-ErrNoBreathableSolo=Tank Empty!
-ErrNoBreathable=All tanks empty!
-ErrNotInWater=Can't use here!
-ErrInUse=There's an oxygen tank already in use!
-Percentage1=Filled: %d/%d Oxygen (Not Enough!)
-Percentage2=Filled: %d/%d Oxygen

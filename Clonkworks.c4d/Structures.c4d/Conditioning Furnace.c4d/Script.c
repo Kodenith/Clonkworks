@@ -15,13 +15,8 @@ func Initialize() {
 }
 
 func Check(){
-if(Delay){
-	Delay--;
-	return(0);
-}
-	if(!EnergyCheck(30)){
+	if(!EnergyCheck(30) || InLiquid()){
 		iFuel = 0;
-		Delay = 38;
 		return(0);
 	}
 	
@@ -71,7 +66,7 @@ public func DoHeat(){
 	CreateParticle("PSpark",RandomX(-20,20),RandomX(-10,20),0,0,RandomX(25,40),RGBa(255,140,0),this());
 	if(!Random(5)) Smoke(GetVertex(6,0),GetVertex(6,1),RandomX(5,15));
 	//finding a random pixel nearby and heating it up!
-	for(var i = 0; i < 600; i++){
+	for(var i = 0; i < 800; i++){
 	var iX, iY, range;
 	range = 400;
 	iX = GetX() + RandomX(-range,range);
@@ -114,7 +109,7 @@ public func DoCool(){
 	
 	CreateParticle("PSpark",RandomX(-20,20),RandomX(-10,20),0,0,RandomX(25,40),RGBa(0,140,255),this());
 	//finding a random pixel nearby and cooling it off!
-	for(var i = 0; i < 600; i++){
+	for(var i = 0; i < 800; i++){
 	var iX, iY, range;
 	range = 400;
 	iX = GetX() + RandomX(-range,range);

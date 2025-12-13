@@ -1,7 +1,0 @@
-TxtReplenish=Atmen umschalten
-ErrNoBreathableSolo=Tank leer!
-ErrNoBreathable=Alle Tanks leer!
-ErrNotInWater=Kann hier nicht verwendet werden!
-ErrInUse=Es ist bereits eine Sauerstoffflasche in Gebrauch!
-Percentage1=Gefüllt: %d/%d Sauerstoff (Nicht ausreichend!)
-Percentage2=Gefüllt: %d/%d Sauerstoff
