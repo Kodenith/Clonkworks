@@ -29,7 +29,7 @@ func ControlDownDouble(pClonk){
 
 //CLASSIC
 func ControlLeft(pClonk){
-	if(!GetPlrJumpAndRunControl(pClonk->GetController()) && rider == pClonk){
+	if(!GetPlrJumpAndRunControl(pClonk->GetController())){
 		SetDir(DIR_Left);
 		SetComDir(COMD_Left);
 		return(1);
@@ -37,7 +37,7 @@ func ControlLeft(pClonk){
 }
 
 func ControlRight(pClonk){
-	if(!GetPlrJumpAndRunControl(pClonk->GetController()) && rider == pClonk){
+	if(!GetPlrJumpAndRunControl(pClonk->GetController())){
 		SetDir(DIR_Right);
 		SetComDir(COMD_Right);
 		return(1);
@@ -45,7 +45,7 @@ func ControlRight(pClonk){
 }
 
 func ControlDown(pClonk){
-	if(!GetPlrJumpAndRunControl(pClonk->GetController()) && rider == pClonk){
+	if(!GetPlrJumpAndRunControl(pClonk->GetController())){
 		SetComDir(COMD_Stop);
 		return(1);
 	}
@@ -54,7 +54,6 @@ func ControlDown(pClonk){
 //JUMP AND RUN
 public func ControlUpdate(object self, int comdir, bool dig, bool throw)
 {
-	if(self == rider)
     SetComDir(comdir);
 }
 
@@ -69,12 +68,18 @@ func ActivateEntrance()
 {
   if(!ObjectCall(rider,"IsRiding")) rider=0;
   if(GetOCF(Par(0))&OCF_CrewMember && !rider)
-    if(GetAction()!="Jump") {
-      AdjustVertex();
-      ObjectSetAction(rider=Par(0),"Ride",this());
 	  if(!CheckFuel()){
 		  Sound("Error");
 		  FuelWarn(this(),OBRL,GetController(Par(0))+1);
+		  if(GetCommand(Par(0),0) == "Enter") FinishCommand(Par(0));
+		  return(0);
+	  }
+    if(GetAction()!="Jump") {
+      AdjustVertex();
+      ObjectSetAction(rider=Par(0),"Ride",this());
+	  var grabbers = FindObjects(Find_Action("Push"), Find_ActionTarget(this()), Find_Exclude(Contents()));
+	  for(var i in grabbers){
+			i->SetAction("Walk");
 	  }
     }
   return(1);
@@ -112,6 +117,7 @@ func Update(){
 	var BannedPhases = [4,5,6,7,8];
 	if(GetComDir() == COMD_Stop && InArray(GetPhase(),BannedPhases) != -1 && GetAction() == "Walk") SetPhase(GetPhase()+1);
 	
+	if(rider)
 	if(!WildcardMatch(GetAction(rider),"*Ride*")){
 		SetComDir(COMD_Stop);
 		rider = 0;
@@ -128,17 +134,23 @@ func CheckFuel(){
 		Sound("Snuff2");
 	}
 	if(iFuel > 0){
-		SetPhysical("Jump",75000,2);
-		SetPhysical("Walk",100000,2);
 		return(1);
-	}else{
-		SetPhysical("Jump",30000,2);
-		SetPhysical("Walk",30000,2);
 	}
 }
 
+func UseFuel(){
+	if(CheckFuel() && !FindObject2(Find_Action("Push"), Find_ActionTarget(this()))) return(1);
+}
+
 func Puff(){
-	if(!CheckFuel()) return(0);
+	if(!UseFuel()){
+		SetPhysical("Jump",30000,2);
+		SetPhysical("Walk",30000,2);
+		return(0);
+	}else{
+		SetPhysical("Jump",75000,2);
+		SetPhysical("Walk",100000,2);
+	}
 	if(GetPhase()%10 == 0){
 		Smoke(GetVertex(0,0),GetVertex(0,1),RandomX(10,20));
 		Sound("Chuff");

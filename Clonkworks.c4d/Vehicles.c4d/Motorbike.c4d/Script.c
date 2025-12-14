@@ -100,6 +100,7 @@ public func ActivateEntrance(pByObj){
 		for(var i in grabbers){
 			i->SetAction("Walk");
 		}
+		return(1);
 	}
 }
 
