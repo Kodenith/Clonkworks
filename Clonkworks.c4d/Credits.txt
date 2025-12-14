@@ -2,6 +2,9 @@ CLONKWORKS:
 Kodenith (Main creator)
 Danghor (helped with translations early on :D )
 Ryou (helped and provided 3d modeling stuff :D )
+Wipfhunter (Suggestions, Feedback, Ideas)
+
+Some models are based off of models from OpenClonk.
 
 SEILPACK:
 

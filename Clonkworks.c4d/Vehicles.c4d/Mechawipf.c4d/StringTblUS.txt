@@ -1,0 +1,2 @@
+TxtCheck=Check Fuel
+TxtFuel=%d/200 Fuel|(Additional: %d)

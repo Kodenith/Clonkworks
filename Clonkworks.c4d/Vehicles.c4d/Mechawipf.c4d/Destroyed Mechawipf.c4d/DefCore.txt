@@ -1,0 +1,19 @@
+[DefCore]
+Name=Destroyed Mechawipf
+id=DMWP
+Version=4,9,8
+Category=C4D_Vehicle
+Width=48
+Height=40
+Offset=-24,-20
+Vertices=4
+VertexX=0,-22,22,0
+VertexY=19,10,10,0
+VertexFriction=20,20,20,20
+VertexCNAT=8,1,2,4
+Grab=1
+BlastIncinerate=50
+NoBurnDecay=0
+Value=80
+Mass=200
+Components=METL=5;TTIG=3;CPIG=2;
