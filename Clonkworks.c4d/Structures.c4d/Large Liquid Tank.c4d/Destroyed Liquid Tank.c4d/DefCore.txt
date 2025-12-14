@@ -1,0 +1,21 @@
+[DefCore]
+Name=Destroyed Liquid Tank
+id=DLQT
+Version=4,9,8
+Category=C4D_Structure
+Value=150
+Mass=800
+Width=80
+Height=40
+Offset=-40,-20
+Picture=0,0,80,40
+Construction=1
+BlastIncinerate=30
+NoBurnDecay=0
+ConstructTo=LLQT
+Components=BARL=3;METL=3;TTIG=2
+Vertices=6
+VertexX=-24,0,24,-32,32,0
+VertexY=19,19,19,6,6,-18
+VertexFriction=20,20,20,20,20,20
+VertexCNAT=8,8,8,1,2,4

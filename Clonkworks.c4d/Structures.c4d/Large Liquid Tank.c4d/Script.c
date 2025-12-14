@@ -14,3 +14,15 @@ func Initialize() {
   AddEffect("LQTKStats",this(),1,0,this());
   return(1);
 }
+
+func Damage(){
+	if(GetDamage() > 120){
+		DepositLiquidPx(Amount);
+		ChangeDef(DLQT,this());
+		this()->Incinerate();
+	}
+}
+
+func Incineration(){
+	DoDamage(999);
+}

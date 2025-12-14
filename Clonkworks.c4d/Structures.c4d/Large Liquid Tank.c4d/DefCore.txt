@@ -21,3 +21,4 @@ Timer=3
 TimerCall=LiquidCheck
 LineConnect=C4D_LiquidOutput|C4D_LiquidInput|C4D_LiquidPump
 Components=BARL=3;METL=3;TTIG=2
+Construction=1
