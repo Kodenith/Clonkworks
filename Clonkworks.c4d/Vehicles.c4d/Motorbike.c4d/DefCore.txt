@@ -30,6 +30,7 @@ TimerCall=DoInfo
 Rotate=1
 NoPushEnter=1
 Rebuy=1
+Entrance=-8,-11,15,20
 
 [Physical]
 Walk=700000

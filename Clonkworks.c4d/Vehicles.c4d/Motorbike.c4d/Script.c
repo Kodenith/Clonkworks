@@ -81,7 +81,7 @@ public func ContainedUp(pByObj){
 	}
 }
 
-public func ControlUp(pByObj){
+public func ActivateEntrance(pByObj){
 	[$Ride$|Image=DSCN]
 	if(!isBuilt()) return(0);
 	if(Hostile(GetOwner(), GetOwner(pByObj))){
@@ -94,7 +94,6 @@ public func ControlUp(pByObj){
 		Enter(this(), pByObj);
 		SetColorDw(GetColorDw(pByObj));
 		SetAction("WalkMount");
-	    SetCommand(pByObj,"Grab",this());
 		
 		// making other objects ungrab
 		var grabbers = FindObjects(Find_Action("Push"), Find_ActionTarget(this()), Find_Exclude(Contents()));
@@ -323,7 +322,7 @@ public func ContextRide(pByObj){
 }
 
 protected func TryRide(pByObj){
-	if(GetActionTarget(0, pByObj) == this()) ControlUp(pByObj);
+	if(GetActionTarget(0, pByObj) == this()) SetCommand(pByObj,"Enter",this());
 }
 
 public func IsAdvancedProduct(){ return(1); }

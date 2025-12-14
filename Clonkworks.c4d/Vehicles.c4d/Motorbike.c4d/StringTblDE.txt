@@ -1,5 +1,5 @@
 Refuel=Tanken
-Ride=Ein-/Aussteigen
+Ride=Ein
 FuelFail1=Derzeit kein Kraftstoff erforderlich!
 FuelFail2=Zum Tanken des Motorrads benötigen Sie ein Ölfass.
 RideFail1=Ich habe keine Berechtigung!

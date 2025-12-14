@@ -1,5 +1,5 @@
 Refuel=Refuel
-Ride=Get on/off
+Ride=Get on
 FuelFail1=No fuel needed at this moment!
 FuelFail2=You need an Oil Barrel to refuel the Motorcycle.
 RideFail1=I don't have permission!
