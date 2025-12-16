@@ -6,18 +6,13 @@ Category=C4D_Vehicle|C4D_SelectMaterial|C4D_SelectKnowledge|C4D_SelectHomebase
 MaxUserSelect=3
 Value=120
 Mass=200
-Width=48
-Height=40
-Offset=-24,-20
-Picture=246,80,55,64
-Vertices=5
-VertexX=2,3,-13,16,2
-VertexY=-5,19,2,2,-15
-VertexFriction=20,20,20,20,20
-VertexCNAT=80,8,1,2,4
+Width=38
+Height=32
+Offset=-19,-16
+Picture=2,75,60,57
 Entrance=-9,-4,23,24
 BorderBound=1
-Components=METL=5;TTIG=3;CPIG=2;
+Components=METL=3;TTIG=3;CPIG=2;
 Grab=1
 GrabPutGet=3
 CollectionLimit=35
@@ -28,6 +23,11 @@ Timer=1
 TimerCall=Update
 BlastIncinerate=100
 BurnTo=DMWP
+Vertices=5
+VertexX=-1,0,-9,8,-1
+VertexY=-5,15,2,2,-14
+VertexFriction=20,20,20,20,20
+VertexCNAT=80,8,1,2,4
 
 [Physical]
 Jump=75000

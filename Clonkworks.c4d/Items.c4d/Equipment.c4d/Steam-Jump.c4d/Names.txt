@@ -1,2 +1,0 @@
-DE:Clonk-Launcher
-US:Clonk-Launcher

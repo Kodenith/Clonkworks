@@ -3,6 +3,7 @@
 #strict 2
 local rider;
 local iFuel;
+local CanCharge;
 
 func Initialize(){
 	SetAction("Walk");
@@ -12,7 +13,7 @@ func Initialize(){
 func ControlUp(pClonk){
 	if(rider == pClonk){
 		if(GetAction() == "Walk" || GetAction() == "Idle"){
-			iFuel -= 45;
+			iFuel -= 25;
 			if(iFuel < 0) iFuel = 0;
 			Sound("Airlock2");
 			Jump();
@@ -27,8 +28,30 @@ func ControlDownDouble(pClonk){
 	rider = 0;
 }
 
+func DashRight(){
+	CanCharge = false;
+	SetDir(DIR_Right);
+	SetXDir(70);
+	SetYDir(-30);
+	Sound("SteamBlast*");
+	iFuel -= 45;
+	return(1);
+}
+
+func DashLeft(){
+	DashRight();
+	SetDir(DIR_Left);
+	SetXDir(-70);
+}
+
 //CLASSIC
 func ControlLeft(pClonk){
+	if(rider == pClonk && CheckFuel() && GetAction() == "Jump" && CanCharge){
+		DashLeft();
+		for(var i = 0; i < RandomX(10,20); i++)
+		CreateParticle("PSpark",20,0,RandomX(50,70),RandomX(-25,25),RandomX(30,100),RGBa(255,255,255));
+		return(1);
+		}
 	if(!GetPlrJumpAndRunControl(pClonk->GetController())){
 		SetDir(DIR_Left);
 		SetComDir(COMD_Left);
@@ -37,6 +60,12 @@ func ControlLeft(pClonk){
 }
 
 func ControlRight(pClonk){
+	if(rider == pClonk && CheckFuel() && GetAction() == "Jump" && CanCharge){
+		DashRight();
+		for(var i = 0; i < RandomX(10,20); i++)
+		CreateParticle("PSpark",-20,0,-RandomX(50,70),RandomX(-25,25),RandomX(30,100),RGBa(255,255,255));
+		return(1);
+		}
 	if(!GetPlrJumpAndRunControl(pClonk->GetController())){
 		SetDir(DIR_Right);
 		SetComDir(COMD_Right);
@@ -71,7 +100,7 @@ func ActivateEntrance()
 	  if(!CheckFuel()){
 		  Sound("Error");
 		  FuelWarn(this(),OBRL,GetController(Par(0))+1);
-		  if(GetCommand(Par(0),0) == "Enter") FinishCommand(Par(0));
+		  if(GetCommand(Par(0),0) == "Enter") FinishCommand(Par(0),1);
 		  return(0);
 	  }
     if(GetAction()!="Jump") {
@@ -90,6 +119,7 @@ func AdjustVertex(){
 	else SetVertex(0,0,-2);
 	
 	if(GetAction() == "Walk"){
+		if(!CanCharge) CanCharge = true;
 		var y;
 		y=-5;
 		if(GetPhase() == 1) y = -6;
@@ -108,6 +138,14 @@ func AdjustVertex(){
 		if(GetPhase() == 3) y = -10;
 		if(GetPhase() == 4) y = -12;
 		SetVertex(0,1,y);
+	}
+	if(GetAction() == "Tumble"){
+		if(rider){
+			ObjectSetAction(rider,"Tumble");
+			SetXDir(GetXDir(),rider); SetYDir(GetYDir(),rider);
+			rider = 0;
+			SetComDir(COMD_Stop);
+		}
 	}
 }
 
@@ -156,7 +194,7 @@ func Puff(){
 		Sound("Chuff");
 	}
 	
-	if(GetPhase()%3 == 0) iFuel--;
+	if(GetPhase()%4 == 0) iFuel--;
 }
 
 func RejectGrabbed(){

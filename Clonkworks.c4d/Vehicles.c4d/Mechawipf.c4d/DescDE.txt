@@ -1,4 +1,4 @@
-Wow! Ein riesiger Roboter-Wipf!
-Man kann darauf reiten und er kann sehr hoch springen. Ideal, um die Landschaft zu erkunden.
+Die Clonk-Spezies versucht, die Tierwelt ihrer Welt als Erkundungsinstrument nachzubilden.
 
-Benötigt möglicherweise viele Ölfässer, um zu funktionieren.
+Anleitung:
+Befüllen Sie dieses Fahrzeug mit vielen Ölfässern, da es viel Kraftstoff verbraucht. Dann können Sie es fahren, indem Sie die Aufwärts-Taste vor dem Fahrzeug drücken. Sie können gehen, springen oder einen Seitensprung in der Luft machen, indem Sie die Links- oder Rechts-Taste drücken. Springen und Seitensprünge verbrauchen zusätzlichen Kraftstoff. Sie können das Fahrzeug verlassen, indem Sie zweimal die Abwärts-Taste drücken.
