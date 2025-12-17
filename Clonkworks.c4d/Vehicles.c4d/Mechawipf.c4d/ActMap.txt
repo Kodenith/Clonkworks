@@ -22,11 +22,21 @@ Procedure=FLIGHT
 
 [Action]
 Name=Tumble
-Length=8
+Length=16
 Delay=2
-Facet=190,32,43,40,0,0
+Facet=0,70,43,40,-2,-8
 NextAction=Tumble
 Procedure=FLIGHT
 Directions=2
 FlipDir=1
 
+[Action]
+Name=KneelDown
+Length=5
+Delay=3
+Facet=0,111,38,38,0,-2
+NextAction=Walk
+Procedure=KNEEL
+Directions=2
+FlipDir=1
+StartCall=LandSound

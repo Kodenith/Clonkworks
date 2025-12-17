@@ -1,4 +1,6 @@
-Die Clonk-Spezies versucht, die Tierwelt ihrer Welt als Erkundungsinstrument nachzubilden.
+The Clonk species attempts to replicate the wildlife of their world as a reliable exploration tool.
 
-Anleitung:
-Befüllen Sie dieses Fahrzeug mit vielen Ölfässern, da es viel Kraftstoff verbraucht. Dann können Sie es fahren, indem Sie die Aufwärts-Taste vor dem Fahrzeug drücken. Sie können gehen, springen oder einen Seitensprung in der Luft machen, indem Sie die Links- oder Rechts-Taste drücken. Springen und Seitensprünge verbrauchen zusätzlichen Kraftstoff. Sie können das Fahrzeug verlassen, indem Sie zweimal die Abwärts-Taste drücken.
+Instructions:
+Fill this vehicle with plenty of oil barrels, as it consumes a lot of fuel. Then you can drive it by pressing the up button in front of the vehicle. You can walk, jump, or do a side jump in the air by pressing the left or right button several times. Jumping and side jumps consume additional fuel. You can exit the vehicle by pressing the down button twice.
+
+Translated with DeepL.com (free version)

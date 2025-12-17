@@ -1,2 +1,2 @@
-DE:Taschenkanone
-US:Pocket cannon
+DE:Gartenschlauch
+US:Aimed Hose

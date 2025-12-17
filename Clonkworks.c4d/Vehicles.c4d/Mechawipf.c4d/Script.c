@@ -5,7 +5,10 @@ local rider;
 local iFuel;
 local CanCharge;
 
+local RelayTimer; //for some reason riding clonks cant initiate control left double and control right double on their mounts, but anything else works. so this is a makeshift way to get the same effect.
+
 func Initialize(){
+	RelayTimer = 16;
 	SetAction("Walk");
 }
 
@@ -34,7 +37,7 @@ func DashRight(){
 	SetXDir(70);
 	SetYDir(-30);
 	Sound("SteamBlast*");
-	iFuel -= 45;
+	iFuel -= 50;
 	return(1);
 }
 
@@ -46,7 +49,7 @@ func DashLeft(){
 
 //CLASSIC
 func ControlLeft(pClonk){
-	if(rider == pClonk && CheckFuel() && GetAction() == "Jump" && CanCharge){
+	if(rider == pClonk && CheckFuel() && GetAction() == "Jump" && CanCharge && RelayTimer <= 15 && GetDir() ==  DIR_Left){
 		DashLeft();
 		for(var i = 0; i < RandomX(10,20); i++)
 		CreateParticle("PSpark",20,0,RandomX(50,70),RandomX(-25,25),RandomX(30,100),RGBa(255,255,255));
@@ -57,10 +60,12 @@ func ControlLeft(pClonk){
 		SetComDir(COMD_Left);
 		return(1);
 	}
+	if(GetAction() == "Jump")
+	RelayTimer = 0;
 }
 
 func ControlRight(pClonk){
-	if(rider == pClonk && CheckFuel() && GetAction() == "Jump" && CanCharge){
+	if(rider == pClonk && CheckFuel() && GetAction() == "Jump" && CanCharge && RelayTimer <= 15 && GetDir() ==  DIR_Right){
 		DashRight();
 		for(var i = 0; i < RandomX(10,20); i++)
 		CreateParticle("PSpark",-20,0,-RandomX(50,70),RandomX(-25,25),RandomX(30,100),RGBa(255,255,255));
@@ -71,6 +76,8 @@ func ControlRight(pClonk){
 		SetComDir(COMD_Right);
 		return(1);
 	}
+	if(GetAction() == "Jump")
+	RelayTimer = 0;
 }
 
 func ControlDown(pClonk){
@@ -147,11 +154,24 @@ func AdjustVertex(){
 			SetComDir(COMD_Stop);
 		}
 	}
+	if(GetAction() == "KneelDown"){
+		var y;
+		y=-1;
+		if(GetPhase() == 0) y = -7;
+		if(GetPhase() == 1) y = -5;
+		if(GetPhase() == 2) y = -1;
+		if(GetPhase() == 3) y = 0;
+		if(GetPhase() == 4) y = -3;
+		SetVertex(0,1,y);
+	}
 }
 
 func Update(){
 	AdjustVertex();
 	CheckFuel();
+	
+	if(RelayTimer <= 15) RelayTimer++;
+	
 	var BannedPhases = [4,5,6,7,8];
 	if(GetComDir() == COMD_Stop && InArray(GetPhase(),BannedPhases) != -1 && GetAction() == "Walk") SetPhase(GetPhase()+1);
 	
@@ -226,3 +246,5 @@ func ControlDigDouble(){
 
 public func IsAdvancedProduct(){ return(1); }
 public func GetResearchBase(){ return(CVCB); }
+
+func LandSound(){ Sound("ClonkHit*"); }

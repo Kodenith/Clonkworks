@@ -1,2 +1,2 @@
-DE:Hosen
+DE:Gartenschlauch
 US:Hose
