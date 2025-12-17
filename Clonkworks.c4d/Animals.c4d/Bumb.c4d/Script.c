@@ -355,8 +355,9 @@ func BUMBAI_WanderGround(){
 		SetComDir(Walkdir);
 	  }
 	  
-	  if(GetContact(this(), -1) & CNAT_Left) SetComDir(COMD_Right);
-	  else if(GetContact(this(), -1) & CNAT_Right) SetComDir(COMD_Left);
+	  //find nearby walls, if solid, go away.
+	  if(GetComDir() == COMD_Left && GBackSolid(-30)) TurnRight();
+	  else if(GetComDir() == COMD_Right && GBackSolid(30)) TurnLeft();
 	  
 	  	//Eat Honey
 		if(!Random(9) && FindObject2(Find_ID(HONY), Find_Distance(20), Find_NoContainer())){
