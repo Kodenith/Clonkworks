@@ -1,0 +1,17 @@
+[DefCore]
+id=EBS2
+Version=4,9,8
+Name=ElevatorBasement
+Category=C4D_Structure
+Width=55
+Height=8
+Offset=-28,-4
+Vertices=4
+VertexX=-15,15,-15,15
+VertexY=-4,-4,4,4
+VertexFriction=100,100
+Value=1
+Mass=10
+Components=ROCK=2
+SolidMask=0,0,55,8,0,0
+Construction=1
