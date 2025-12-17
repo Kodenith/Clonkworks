@@ -29,6 +29,7 @@ func ControlDownDouble(pClonk){
 	SetComDir(COMD_Stop);
     ObjectSetAction(rider,"Walk");
 	rider = 0;
+	FinishCommand(,1);
 }
 
 func DashRight(){
@@ -83,6 +84,7 @@ func ControlRight(pClonk){
 func ControlDown(pClonk){
 	if(!GetPlrJumpAndRunControl(pClonk->GetController())){
 		SetComDir(COMD_Stop);
+		FinishCommand(,1);
 		return(1);
 	}
 }
@@ -178,6 +180,7 @@ func Update(){
 	if(rider)
 	if(!WildcardMatch(GetAction(rider),"*Ride*")){
 		SetComDir(COMD_Stop);
+		FinishCommand(,1);
 		rider = 0;
 	}
 }
@@ -248,3 +251,11 @@ public func IsAdvancedProduct(){ return(1); }
 public func GetResearchBase(){ return(CVCB); }
 
 func LandSound(){ Sound("ClonkHit*"); }
+
+//mouse control
+protected func ControlCommand(szCommand, pTarget, iTx, iTy)
+{
+ if (szCommand == "MoveTo")
+  return(SetCommand(this(),szCommand, pTarget, iTx, iTy));
+ return(0);
+}
