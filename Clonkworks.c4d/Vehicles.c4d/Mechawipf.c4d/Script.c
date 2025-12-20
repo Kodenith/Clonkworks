@@ -238,14 +238,14 @@ public func HowToREFU(pFuel){
 }
 
 //inspired by western pack's steam horse
-func ControlDigDouble(){
+/* func ControlDigDouble(){
 	[$TxtCheck$]
 	var additional;
 	for(var i in FindObjects(Find_ID(OBRL),Find_Container(this()))){
 		additional += i->GetAmount(0);
 	}
 	Message("$TxtFuel$",this(),iFuel,additional);
-}
+} */
 
 public func IsAdvancedProduct(){ return(1); }
 public func GetResearchBase(){ return(CVCB); }
@@ -258,4 +258,30 @@ protected func ControlCommand(szCommand, pTarget, iTx, iTy)
  if (szCommand == "MoveTo")
   return(SetCommand(this(),szCommand, pTarget, iTx, iTy));
  return(0);
+}
+
+//INFOBAR
+public func InfobarTrigger(){
+	if(FindObject(FUDS)) return(0);
+	return(IB_Grab+IB_Ride);
+}
+
+public func InfobarMax(){
+	return(35*200);
+}
+
+public func InfobarValue(){
+	var additional;
+	for(var i in FindObjects(Find_ID(OBRL),Find_Container(this()))){
+		additional += i->GetAmount(0);
+	}
+	return(iFuel+additional);
+}
+
+public func InfobarColor(){
+	return(RGBa(25,25,25));
+}
+
+public func InfobarInfo(){
+	return("$TxtFuel$");
 }

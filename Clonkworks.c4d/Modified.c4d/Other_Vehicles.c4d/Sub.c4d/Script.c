@@ -273,6 +273,24 @@ private func Damage()
 /* Forschung */
 
 public func IsDeepSeaResearch() { return(1); }
-public func ALKConnectType(){
-	return([FNPP]);
+
+//INFOBAR
+public func InfobarTrigger(){
+	return(IB_Grab+IB_Contained);
+}
+
+public func InfobarMax(){
+	return(150);
+}
+
+public func InfobarValue(){
+	return(150-GetDamage());
+}
+
+public func InfobarColor(){
+	return(RGBa(255,96,0));
+}
+
+public func InfobarInfo(){
+	return("$InfoHealth$");
 }

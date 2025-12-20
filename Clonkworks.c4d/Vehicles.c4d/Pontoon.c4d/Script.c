@@ -55,3 +55,24 @@ public func HowToREFU(pFuel){
 			ChangeDef(BARL,Barl);
 	return(1);
 }
+
+//INFOBAR
+public func InfobarTrigger(){
+	return(IB_Grab);
+}
+
+public func InfobarMax(){
+	return(600);
+}
+
+public func InfobarValue(){
+	return(iFuel);
+}
+
+public func InfobarColor(){
+	return(RGBa(25,25,25));
+}
+
+public func InfobarInfo(){
+	return("$InfoFuel$");
+}

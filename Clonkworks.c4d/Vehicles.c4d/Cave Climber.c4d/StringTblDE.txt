@@ -16,3 +16,5 @@ TxtTake=Entnehmen
 ErrEject1=Kann derzeit nicht ausgeworfen werden!
 ErrEject2=%s kann nicht gefunden werden!
 ErrItemMenu=Es kann keine Inhaltsaktion durchgeführt werden!
+
+InfoHealth=Höhlenkriecher Gesundheit:

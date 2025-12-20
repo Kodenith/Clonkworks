@@ -11,4 +11,3 @@ TxtStop=Anhalten/Aussteigen
 
 # info
 FxEmpty=Es ist leer.
-FxFilled=Enthält: %d/%d Pixel von %s.

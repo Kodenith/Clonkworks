@@ -1,0 +1,4 @@
+Die Infoleiste ist ein spezielles UI-Element. Wenn ein Spieler mit kompatiblen Objekten interagiert, zeigt die Leiste Daten an.
+
+Wird häufig zur Anzeige von Treibstoff, Gesundheit usw. verwendet.
+Jeder Spieler erhält beim Beitritt eine solche Leiste.

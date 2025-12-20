@@ -11,7 +11,6 @@ func Initialize() {
 	Amount = 0;
   SetAction("FillUp");
   SetPhase(0);
-  AddEffect("LQTKStats",this(),1,0,this());
   return(1);
 }
 

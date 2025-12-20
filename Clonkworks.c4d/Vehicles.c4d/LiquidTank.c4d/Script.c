@@ -8,17 +8,7 @@ func Initialize() {
 	Amount = 0;
   SetAction("FillUp");
   SetPhase(0);
-  AddEffect("LQTKStats",this(),1,0,this());
   return(1);
-}
-
-//display effect
-func FxLQTKStatsInfo(object pTarget, int iEffectNumber){
-	if(!LiquidType || !Amount){
-		return("$FxEmpty$");
-	}
-	
-	return(Format("$FxFilled$",Amount,MaxAmount(),LiquidType));
 }
 
 func MaxAmount(){ return(6500); }
@@ -290,4 +280,28 @@ global func BarrelList(){
 		if(br) ArrayAdd(l,br,true);
 	}
 	return(l);
+}
+
+//INFOBAR
+public func InfobarTrigger(){
+	return(IB_Grab);
+}
+
+public func InfobarMax(){
+	return(MaxAmount());
+}
+
+public func InfobarValue(){
+	return(Amount);
+}
+
+public func InfobarColor(){
+	var color = RGBa(0,0,1);
+	if(LiquidType) color = GetColorDw();
+	return(color);
+}
+
+public func InfobarInfo(){
+	if(Amount) return(LiquidType);
+	return("$FxEmpty$");
 }

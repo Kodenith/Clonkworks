@@ -151,3 +151,25 @@ public func HowToREFU(pFuel){
 	Enter(this(),pFuel);
 	return(1);
 }
+
+//INFOBAR
+public func InfobarTrigger(){
+	if(FindObject(FUDS)) return(0);
+	return(IB_Grab);
+}
+
+public func InfobarMax(){
+	return(20);
+}
+
+public func InfobarValue(){
+	return(ContentsCount(WOOD)+ContentsCount(COAL));
+}
+
+public func InfobarColor(){
+	return(RGBa(25,25,25));
+}
+
+public func InfobarInfo(){
+	return("$InfoFuel$");
+}

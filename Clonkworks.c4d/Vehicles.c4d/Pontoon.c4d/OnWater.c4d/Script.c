@@ -179,8 +179,25 @@ func Incineration(){
 	Explode(45);
 }
 
-func ControlDigDouble(){
-	[$TxtCheck$]
-	Message("$TxtFuel$",this(),iFuel);
-	Sound("Ding");
+//INFOBAR
+public func InfobarTrigger(){
+	return(IB_Grab);
 }
+
+public func InfobarMax(){
+	return(600);
+}
+
+public func InfobarValue(){
+	return(iFuel);
+}
+
+public func InfobarColor(){
+	return(RGBa(25,25,25));
+}
+
+public func InfobarInfo(){
+	return("$InfoFuel$");
+}
+
+public func IsAdvancedProduct(){ return(1); }

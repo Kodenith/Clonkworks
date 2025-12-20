@@ -588,3 +588,24 @@ public func Damage(){
 protected func Destruction(){
 	UndeployLegs();
 }
+
+//INFOBAR
+public func InfobarTrigger(){
+	return(IB_Grab+IB_Contained);
+}
+
+public func InfobarMax(){
+	return(120);
+}
+
+public func InfobarValue(){
+	return(120-GetDamage());
+}
+
+public func InfobarColor(){
+	return(RGBa(0,175,255));
+}
+
+public func InfobarInfo(){
+	return("$InfoHealth$");
+}

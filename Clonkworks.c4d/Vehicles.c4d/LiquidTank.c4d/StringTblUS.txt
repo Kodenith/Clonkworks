@@ -11,4 +11,3 @@ TxtStop=Stop/Exit
 
 # info
 FxEmpty=It's empty.
-FxFilled=Contains: %d/%d pixels of %s.

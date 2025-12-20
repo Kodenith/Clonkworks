@@ -1,2 +1,2 @@
 TxtCheck=Kraftstoff prüfen
-TxtFuel=%d/200 Kraftstoff|(Zusätzlich: %d)
+TxtFuel=Kraftstoff:

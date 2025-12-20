@@ -153,20 +153,6 @@ protected func UseFuel(){
 		
 		Smoke(sx, 7, RandomX(5,25));
 		
-		if(GetCursor(GetOwner(Contents()), 0) == Contents()){
-		if(fuel == 100){
-			PlayerMessage(GetOwner(Contents()), "$FuelWarn50$");
-		}
-		
-		if(fuel == 50){
-			PlayerMessage(GetOwner(Contents()), "$FuelWarn25$");
-		}
-		
-		if(fuel == 20){
-			PlayerMessage(GetOwner(Contents()), "$FuelWarn10$");
-		}
-		}
-		
 		if(fuel == 0){
 			Sound("Discharge");
 		}
@@ -414,4 +400,28 @@ public func HowToREFU(pFuel){
 	ChangeDef(BARL,pFuel);
 	fuel = 200;
 	return(1);
+}
+
+
+
+//INFOBAR
+public func InfobarTrigger(){
+	if(FindObject(FUDS)) return(0);
+	return(IB_Grab+IB_Contained);
+}
+
+public func InfobarMax(){
+	return(200);
+}
+
+public func InfobarValue(){
+	return(fuel);
+}
+
+public func InfobarColor(){
+	return(RGBa(25,25,25));
+}
+
+public func InfobarInfo(){
+	return("$InfoFuel$");
 }

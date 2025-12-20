@@ -16,3 +16,5 @@ TxtTake=Take
 ErrEject1=Can't Eject at the moment!
 ErrEject2=Can't find %s!
 ErrItemMenu=No contents action can be done!
+
+InfoHealth=Cavecrawler Health:

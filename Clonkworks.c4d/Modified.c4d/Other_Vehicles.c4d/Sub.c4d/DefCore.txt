@@ -27,7 +27,6 @@ BorderBound=7
 UprightAttach=8
 VehicleControl=2
 ClosedContainer=2
-LineConnect=128
 
 [Physical]
 Energy=100000
