@@ -1,0 +1,2 @@
+Allows fast travel on any liquids, but requires oil as fuel. Unaffected by wind.
+If needed, you can press up while grabbing to move the vehicle from water to land.

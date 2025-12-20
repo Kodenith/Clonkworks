@@ -1,0 +1,7 @@
+TxtLeft=Go Left
+TxtRight=Go Right
+TxtUp=Undeploy
+TxtRefuel=Refuel
+TxtFuel=%d/600 Fuel.
+TxtStop=Stop
+TxtCheck=Check Fuel
