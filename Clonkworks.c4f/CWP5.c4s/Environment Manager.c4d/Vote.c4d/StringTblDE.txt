@@ -1,0 +1,9 @@
+TxtInfo=Es gibt eine aktive Abstimmung. Thema:
+TxtInfo2=Wählen Sie eine Option:
+Y=Ja
+N=Nein
+Info3=Sie haben bereits abgestimmt.
+TxtCooldown=Die Abstimmung endet in %d.
+TxtNotification=Eine neue Stimme wurde abgegeben. (Thema: %v) Stimmen Sie über das Abstimmungsziel ab!
+TxtWin=Die Mehrheit der Spieler hat mit JA gestimmt. Die Abstimmung ist angenommen.
+TxtLose=Die Mehrheit der Spieler hat die Abstimmung ignoriert oder mit NEIN gestimmt. Die Abstimmung ist nicht angenommen.

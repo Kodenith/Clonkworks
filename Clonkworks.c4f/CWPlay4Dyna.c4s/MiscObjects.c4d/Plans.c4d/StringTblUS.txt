@@ -1,3 +1,0 @@
-CtrlActivateDesc=Read
-MsgActivate=Learned build knowledge for <c ffff00>%s</c>.
-MsgKnown=I already know how to build %s.

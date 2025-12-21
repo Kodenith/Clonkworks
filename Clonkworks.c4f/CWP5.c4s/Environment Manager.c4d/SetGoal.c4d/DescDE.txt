@@ -1,0 +1,1 @@
+Wählt ein Ziel aus. Nach der Auswahl werden alle Sandbox-Funktionen deaktiviert.

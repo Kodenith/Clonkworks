@@ -1,0 +1,187 @@
+/* Outset */
+
+overlay MainMat { algo=sin; x=-20; wdt=140; zoomX=90; zoomY=35; turbulence=10; };
+overlay Mat { algo=rndchecker; a=21; turbulence=100; zoomX=-99; zoomY=-99; };
+
+
+map Outset {
+             MainMat { mat=Earth; tex=Smooth; y=65; loosebounds=1;
+             };
+
+             MainMat { mat=Earth; tex=Smooth; y=70; loosebounds=1; lambda=3;
+    	       MainMat { mat=Earth; algo=bozo; tex=Ridge; };
+	           MainMat { mat=Earth; algo=bozo; tex=Rough; };
+
+             Mat { mat=Ore; tex=Rough;  };
+			 Mat { mat=CopperOre; tex=Rough;  };
+             Mat { mat=Granite; tex=Rough; };
+             Mat { mat=Water; tex=Smooth;  };
+             Mat { mat=Gold; tex=Rough; };
+             Mat { mat=Coal; tex=Swirl;  };
+             Mat { mat=Rock; tex=Rough; a=17; };
+             Mat { mat=Oil; tex=Smooth; zoomX=-50; zoomY=-50; };
+             Mat { mat=Oil; tex=Smooth; zoomX=-50; zoomY=-50; };
+	     };
+
+
+};
+
+/* Mountains landscape */
+
+// template for some spotty spots
+overlay SomeSpots { mask=1; invert=1; grp=1;
+  overlay { algo=bozo; turbulence=100; zoomY=-100; mask=1; } &
+  overlay { algo=bozo; turbulence=1000; a=2; zoomX=-50; mask=1; } &
+  overlay { algo=rndchecker; turbulence=1000; a=1; mask=1; };
+};
+
+// template for some mat layers
+overlay MatLayer { algo=rndchecker; turbulence=1000; a=6; zoomX=-100; zoomY=-100; };
+
+// template for some inner random
+overlay InRandom { algo=random; a=4; };
+
+map Mountains {
+  // ground level force
+  overlay { x=-50; y=50; wdt=200; hgt=100; loosebounds=1; turbulence=10; mat=Earth; tex=Smooth; };
+  // ground
+  overlay { algo=sin; rotate=20; oy=60; turbulence=100; } |
+  overlay { algo=sin; rotate=-20; oy=10; mat=Earth; tex=Smooth; turbulence=10;
+
+    // earth variation
+    InRandom { mat=Earth; tex=Smooth2; };
+    MatLayer { mat=Earth; tex=Ridge; a=4; };
+    MatLayer { mat=Earth; tex=Rough; a=2; };
+
+    // some InGround-stuff
+    MatLayer { mat=Rock; tex=Rough; InRandom { mat=Rock; tex=Ridge; }; };
+    SomeSpots & overlay { mat=Granite; tex=Rough; };
+    MatLayer { mat=Coal; tex=Swirl; };
+    SomeSpots & overlay { mat=Sulphur; tex=Swirl; };
+    SomeSpots & overlay { mat=Gold; tex=Rough; };
+    MatLayer { mat=Ore; tex=Rough; };
+	MatLayer { mat=CopperOre; tex=Rough; };
+	MatLayer { mat=TitaniumOre; tex=Rough; };
+
+    // caves
+    MatLayer { a=4; zoomX=-10; zoomY=0; } &
+    overlay { algo=lines; a=10; b=10; rotate=60; turbulence=1000; mat=Tunnel; tex=Smooth;
+      // liquid stop
+      overlay { algo=border; a=1; b=1; mat=Earth; tex=Smooth; InRandom { mat=Ashes; tex=Smooth3; }; };
+    };
+
+    // ensure no liquid at landscape borders
+    overlay { algo=border; a=1; b=2; mat=Earth; tex=Smooth; };
+
+    // more InGround
+    MatLayer { mat=Rock; tex=Ridge; InRandom { mat=Rock; tex=Rough; }; };
+
+  };
+};
+
+/*Meine erste dynamische Karte, die ich vollkommen selbst gemacht habe :)*/
+
+
+map Caves {
+  mat=Earth; tex=Smooth;
+	overlay{algo=bozo; turbulence=100; a=-9; mat=Rock; tex=Rock; invert=1;};
+	overlay{algo=bozo; turbulence=100; a=5; mat=Earth; tex=Smooth2;};
+	overlay{algo=rndchecker; turbulence=100; a=10; mat=Sand; tex=Smooth;};
+	overlay{algo=rndchecker; turbulence=100; a=8; mat=Granite; tex=Ridge;};
+	overlay{algo=rndchecker; turbulence=1000;}
+	  &overlay {algo=bozo; turbulence=250; mat=Earth; tex=Rough;};
+  	overlay{x=6;y=6;wdt=88;hgt=90;turbulence=10000; mat=Tunnel; loosebounds=1; tex=Smooth;
+ 	//Wasser unten am Bildschirmrand
+ 	overlay{x=-6; y=80; wdt=112; mat=Water; tex=Liquid;};
+	//Die "Erd-Inseln" in der Höhle
+	overlay{algo=rndchecker; hgt=90; turbulence=300; zoomX=50; zoomY=10; mat=Earth; tex=Smooth;loosebounds=1;
+		//...und die Materialien in ihm
+		overlay{algo=bozo; turbulence=1000; a=5; mat=Earth; tex=Smooth2;};
+		//overlay{hgt=80; algo=rndchecker; turbulence=600; a=8;}
+		//  &overlay {hgt=80; algo=bozo; turbulence=250; mat=Tunnel;};
+		overlay{algo=rndchecker; turbulence=1000; a=10; mat=Crystal; tex=Structure2;};
+		overlay{algo=bozo; turbulence=1000; a=-9; mat=Rock; tex=Rock; invert=1;};
+		overlay{algo=rndchecker; turbulence=1000; a=7; mat=Sulphur; tex=Swirl;};
+		overlay{algo=rndchecker; turbulence=1000; a=7; mat=Coal; tex=Swirl;};
+		overlay{algo=rndchecker; turbulence=1000; a=8; mat=Ore; tex=Rough;};
+		overlay{algo=rndchecker; turbulence=1000; a=8; mat=CopperOre; tex=Rough;};
+		overlay{algo=rndchecker; turbulence=1000; a=10; mat=Gold; tex=Rough;};
+		overlay{algo=border; b=2; mat=Earth; tex=Rough; };
+		overlay{algo=rndchecker; turbulence=1000; a=8; mat=Granite; tex=Ridge;};
+		overlay{algo=rndchecker; turbulence=1000; a=10; mat=Sand; tex=Smooth;};
+		overlay{algo=rndchecker; turbulence=1000;}
+		  &overlay {algo=bozo; turbulence=250; mat=Earth; tex=Rough;};
+		};//Ende "Erd-Inseln"
+	};//Ende Höhle
+	overlay{algo=rndchecker; y=95; turbulence=100; a=1; mat=Gold; tex=Rough;loosebounds=1;};
+	overlay{algo=rndchecker; y=95; turbulence=800; a=3; mat=Crystal; tex=Structure;loosebounds=1;};
+};//Ende Map
+
+/*Vulkan*/
+
+overlay Tunnels{mat=Tunnel; tex=Smooth; algo=lines; loosebounds=1;}; //Tunnelsss
+overlay Hoehlen{mat=Tunnel; tex=Smooth; algo=bozo; turbulence=8000; a=14; zoomX=55; zoomY=35;};
+
+map Vulkan {
+overlay{mat=Earth; tex=Smooth; ox=-80; oy=20; wdt=200; algo=sin; zoomX=+90; zoomY=+70; turbulence=10; loosebounds=1;
+	/*Oberfläche*/
+	overlay{mat=Ashes; tex=Smooth3; algo=border; a=5; b=4; //Heraufgeschleuderte Asche an der Oberfläche
+	  overlay{loosebounds=1; algo=rndchecker; turbulence=300; }
+	  & overlay{mat=Earth; tex=Smooth; loosebounds=1; algo=checker; turbulence=50;};};
+	overlay{algo=border; a=10; b=10;} //große Steine an der Oberfläche (früher vom Vulkan emporgeschleudert oder so ^^)
+	  & overlay{loosebounds=1; algo=checker; turbulence=50;}
+	  & overlay{mat=Granite; tex=Rough; loosebounds=1; algo=bozo; turbulence=10; a=3;};
+	/*Materialien*/
+	overlay{algo=bozo; turbulence=1000; a=5; mat=Earth; tex=Smooth2;};
+	overlay{algo=bozo; turbulence=1000; a=-9; mat=Rock; tex=Rock; invert=1;};
+	overlay{algo=rndchecker; turbulence=1000; a=7; mat=Coal; tex=Swirl;};
+	overlay{algo=rndchecker; turbulence=1000; a=8; mat=Ore; tex=Rough;};
+	overlay{algo=rndchecker; turbulence=1000; a=8; mat=TitaniumOre; tex=Rough;};
+	overlay{algo=rndchecker; turbulence=1000; a=10; mat=Gold; tex=Rough; y=30;};
+	overlay{algo=rndchecker; turbulence=1000; a=9; mat=Sulphur; tex=Swirl; y=30;};
+	overlay{algo=rndchecker; turbulence=1000; a=7; mat=Granite; tex=Ridge;};
+	Hoehlen{zoomX=55; zoomY=35; y=30; hgt=50;};
+	Hoehlen{turbulence=5000; a=9; x=60; y=80; loosebounds=1;};
+	Hoehlen{turbulence=5000; a=9; x=0; y=80; wdt=10; loosebounds=1;};
+	overlay{algo=rndchecker; turbulence=1000;}
+	  &overlay {algo=bozo; turbulence=250; mat=Earth; tex=Rough;};
+	/*Asche-Adern*/
+	overlay{mat=Ashes; tex=Smooth3; algo=lines; turbulence=1000; loosebounds=1; a=3; b=32;
+		overlay{mat=Ashes; tex=Ridge; algo=rndchecker; turbulence=500; loosebounds=1; };}; //Ascheadern
+	overlay{mat=Ashes; tex=Smooth3; algo=lines; ox=14; wdt=26; turbulence=1000; loosebounds=1; a=15; b=32; //Asche im Vulkan
+		overlay{mat=Ashes; tex=Rough; algo=rndchecker; turbulence=500; loosebounds=1; };};
+	/*Tunnel*/
+	Tunnels{ y=-10; x=-40; wdt=40; hgt=100; turbulence=700; rotate=84; zoomX=30; zoomY=10; a=5; b=50;}; //fast horizontale Gänge in ~der Mitte (durchgehend)
+	Tunnels{ y=20; x=-38; wdt=45; hgt=62; turbulence=550; rotate=36; zoomX=20; zoomY=18; a=4; b=40;}; // so \ gehende gänge auf der linken seite
+	Tunnels{ y=-50; x=25; wdt=43; hgt=50; turbulence=630; rotate=-44; zoomX=20; zoomY=20; a=4; b=30;}; // so / gehende gänge auf der rechten seite
+	/*Der Schlund + Lava*/
+	overlay{mat=Tunnel; tex=Smooth; algo=lines; ox=17; wdt=16; turbulence=1000; loosebounds=1; a=20; b=32; // Um den Haupt-Schlund noch einige kleine "Adern"
+		overlay{mat=DuroLava; tex=Liquid; algo=solid; wdt=300; y=80; loosebounds=1;};}; //Lava 
+	overlay{mat=Tunnel; tex=Smooth; algo=solid; x=22; wdt=5; turbulence=1000; loosebounds=1; //Der Haupt-Schlund
+		overlay{mat=DuroLava; tex=Liquid; algo=solid; x=-60; wdt=220; y=80; loosebounds=1;};}; //Lava 
+	
+};
+
+};
+
+//Die Idee zu dieser Landkarte stammt von Tim Wölfle. An dieser Stelle ein herzliches Dankeschön :)
+
+/*Skylands*/
+
+
+map Skylands { 
+	overlay   { loosebounds=1; hgt=80; algo=rndchecker; a=3; zoomX=40; turbulence=100;}
+	 |overlay { loosebounds=1; hgt=90; algo=rndchecker; a=3; zoomX=30; turbulence=100; mat=Earth; tex=Smooth;
+		overlay { loosebounds=1; algo=rndchecker; a=1; turbulence=80; mat=Tunnel; tex=Smooth;};
+		overlay { algo=rndchecker; a=8; turbulence=100; mat=FlySand; tex=Smooth;};
+		overlay { algo=rndchecker; a=5; turbulence=80; mat=Coal; tex=Swirl;};
+		overlay { algo=rndchecker; a=7; turbulence=100; mat=Sulphur; tex=Swirl;};
+		overlay { algo=rndchecker; a=8; turbulence=100; mat=Rock; tex=Rock;};
+		overlay { algo=rndchecker; a=8; turbulence=100; mat=Gold; tex=Rough;};
+		overlay { algo=rndchecker; a=8; turbulence=100; mat=Ore; tex=Rough;};
+		overlay { algo=rndchecker; a=8; turbulence=100; mat=TitaniumOre; tex=Rough;};
+		overlay { algo=rndchecker; a=3; turbulence=100; mat=Earth; tex=Rough;};
+		};
+overlay {algo=solid; turbulence=100; loosebounds=1; x=-10; wdt=17; };
+overlay {algo=solid; turbulence=100; loosebounds=1; x=93; };
+};//Ende Map
