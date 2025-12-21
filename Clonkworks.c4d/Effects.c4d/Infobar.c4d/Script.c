@@ -13,18 +13,20 @@ local Value;
 local Max;
 
 func Initialize(){
+	iPlr = GetOwner();
 	Local(0) = 0;
 	Local(1) = 0;
 	SetAction("Progress");
 	SetVisibility(VIS_Owner,this());
-	SetPosition(LandscapeWidth()/2,LandscapeHeight()/2);
+	SetPosition(200,-50);
 }
 
 func Update(){
-	if(!GetPlayerName(iPlr)) RemoveObject();
+	if(GetOwner() != iPlr) RemoveObject();
 	
 	var Current = GetCursor(iPlr);
 	if(!Current){
+		DebugLog("No Cursor!");
 		SetVisibility(VIS_None,this());
 		return(0);
 	}

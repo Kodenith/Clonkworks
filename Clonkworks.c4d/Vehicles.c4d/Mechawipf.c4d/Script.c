@@ -56,13 +56,13 @@ func ControlLeft(pClonk){
 		CreateParticle("PSpark",20,0,RandomX(50,70),RandomX(-25,25),RandomX(30,100),RGBa(255,255,255));
 		return(1);
 		}
+	if(GetAction() == "Jump" && GetDir() == DIR_Left)
+		RelayTimer = 0;
 	if(!GetPlrJumpAndRunControl(pClonk->GetController())){
 		SetDir(DIR_Left);
 		SetComDir(COMD_Left);
 		return(1);
 	}
-	if(GetAction() == "Jump")
-	RelayTimer = 0;
 }
 
 func ControlRight(pClonk){
@@ -72,13 +72,13 @@ func ControlRight(pClonk){
 		CreateParticle("PSpark",-20,0,-RandomX(50,70),RandomX(-25,25),RandomX(30,100),RGBa(255,255,255));
 		return(1);
 		}
+	if(GetAction() == "Jump" && GetDir() == DIR_Right)
+		RelayTimer = 0;
 	if(!GetPlrJumpAndRunControl(pClonk->GetController())){
 		SetDir(DIR_Right);
 		SetComDir(COMD_Right);
 		return(1);
 	}
-	if(GetAction() == "Jump")
-	RelayTimer = 0;
 }
 
 func ControlDown(pClonk){
@@ -105,7 +105,7 @@ func Destruction()
 func ActivateEntrance()
 {
   if(!ObjectCall(rider,"IsRiding")) rider=0;
-  if(GetOCF(Par(0))&OCF_CrewMember && !rider)
+  if(GetOCF(Par(0))&OCF_CrewMember && !rider){
 	  if(!CheckFuel()){
 		  Sound("Error");
 		  FuelWarn(this(),OBRL,GetController(Par(0))+1);
@@ -120,6 +120,7 @@ func ActivateEntrance()
 			i->SetAction("Walk");
 	  }
     }
+  }
   return(1);
 }
 

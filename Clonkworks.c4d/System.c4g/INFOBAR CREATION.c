@@ -4,6 +4,8 @@
 #appendto CLNK
 
 func Initialize(){
-	if(!FindObject2(Find_ID(I_BR),Find_Owner(GetOwner()))) CreateObject(I_BR,,,GetOwner());
+	if(!FindObject2(Find_ID(I_BR),Find_Owner(GetOwner()))){
+		var ifbar = CreateObject(I_BR,,,GetOwner());
+	}
 	return(_inherited());
 }
