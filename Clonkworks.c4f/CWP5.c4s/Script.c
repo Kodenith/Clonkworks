@@ -42,6 +42,7 @@ func InitializePlayer(int iPlr){
 }
 
 public func RelaunchPlayer(Owner){
+	if(!FindObject(___S)) return(0);
 	var conk = CreateObject(CLNK,LandscapeWidth()/2,LandscapeHeight()/3);
 	var Cabin = FindObject(HUT3);
 	if(Cabin) Enter(Cabin,conk);

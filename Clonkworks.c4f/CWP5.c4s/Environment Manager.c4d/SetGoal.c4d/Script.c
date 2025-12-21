@@ -35,5 +35,9 @@ global func StartGoal(gl){
 	for(var i = 0; i < GetPlayerCount(); i++){
 		SetWealth(GetPlayerByIndex(i),125);
 	}
+	
+	var RemoveThese = [TACC,THBA,TKNW,REAC,NMGE];
+	for(var i in RemoveThese) RemoveObject(FindObject(i));
+	CreateObject(CNMT); CreateObject(ENRG);
 	Log("Goal Started!");
 }
