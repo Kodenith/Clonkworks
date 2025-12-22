@@ -34,3 +34,12 @@ NextAction=Movement
 PhaseCall=MoveLegs
 Procedure=FLOAT
 AbortCall=UndeployLegs
+
+[Action]
+Name=Stationary
+Length=1
+Delay=1
+Facet=0,0,35,35,0,0
+NextAction=Stationary
+Procedure=FLOAT
+AbortCall=UndeployLegs

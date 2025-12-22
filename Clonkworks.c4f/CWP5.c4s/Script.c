@@ -4,14 +4,12 @@
 
 func Initialize() {
 	DrawMaterialQuad("Gold-Rough", 0,0, LandscapeWidth()-1,0, LandscapeWidth()-1,LandscapeHeight()-1, 0,LandscapeHeight()-1);
-	ScriptGo(1);
-	goto(1);
+	Schedule("begin()",1,0);
   return(1);
 }
 
-func Script1(){
+global func begin(){
 	CreateObject(___L)->SetOutset();
-	ScriptGo(0);
 }
 
 func InitializePlayer(int iPlr){

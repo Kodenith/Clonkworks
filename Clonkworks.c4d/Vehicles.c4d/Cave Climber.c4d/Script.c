@@ -7,6 +7,10 @@
 local LegVerts;
 local LegList;
 local RecentHits; //Objects that his this recently, do not modify outside of this object
+local Stationary;
+local cannon;
+local cannonrotation;
+
 
 func Initialize() {
 	RecentHits = [];
@@ -14,10 +18,33 @@ func Initialize() {
 	LegList = [];
 	SetGraphics("Window",this(),GetID(),GFX_Overlay,6);
 	SetClrModulation(RGBa(255,255,255),this(),1);
+        Stationary = 0;
+        cannonrotation=180;
+        AddEffect ("CannotBeCollected",this,1,1,0,PHCA,-1,0);
 	return(1);
 }
 
 //changing graphics & object entrance
+
+protected func RejectCollect(id idObject, object pObject)
+{
+  // Anderes Objekt nicht im Freien
+  if (Contained(pObject)) return(0);
+  // Torpedotreffer
+  if (GetDefCoreVal("Fragile",0,idObject) == 1)
+  {
+    if(GetXDir(pObject) || GetYDir(pObject))
+    pObject -> Hit();
+    return(1);
+  }
+  // U-Boot sammelt an Land nichts ein
+  //if (GetAction() ne "Swim") return(1);
+  // Objekt befindet sich nicht im Bereich des Greifers
+  //if (!Inside(GetX(pObject) - GetX() + 30 - GetDir() * 60, -8, +8)) return(1);
+  //if (!Inside(GetY(pObject) - GetY() - 14, -8, +8)) return(1);
+  // Einsammeln okay
+  return(1);
+}
 
 func Collection2(pObj){
 	if(!CrewMember(pObj)) return(0);
@@ -39,6 +66,7 @@ func Ejection(pObj){
 func ActivateEntrance(pByObj){
 	if(GetCommand(pByObj,0) == "Exit") return(_inherited(pByObj)); //if the object is exiting, do normal behaviour :)
 	if(CrewMember(pByObj) && FindObject2(Find_OCF(OCF_CrewMember), Find_Container(this()))) return(0); //only one crew member can be in this vehicle.
+	if(pByObj->~IsCannon() && !FindObject2(Find_Func("IsCannon"),Find_Container(this())) && FindObject(CCCN)) return(_inherited(pByObj)); //a singular cannon tower cannon can enter. (with a rule)
 	if(GetCategory(pByObj) & C4D_Vehicle) return(0); //vehicles cant enter.
 	return(_inherited(pByObj)); // do normal behaviour.
 }
@@ -66,54 +94,103 @@ public func ContainedUp(pByObj){
 		return(1);
 	}
 	
-	if(GetPlrJumpAndRunControl(pByObj->GetController())) return(1);
+	//if(GetPlrJumpAndRunControl(pByObj->GetController())) return(1);
 	
 	if(GetAction() == "Movement"){
 		SetComDir(COMD_Up);
 		return(1);
 	}
+        else if(GetAction() == "Stationary"){
+        if(!cannon) return(0);
+        Sound("CannonStop");
+        return(cannon->ComStop(pByObj) );
+        }
+
 }
 
 public func ContainedDown(pByObj){
 	[$TxtDown$]
 		if(GetAction() == "Idle") return(0);
-	if(GetPlrJumpAndRunControl(pByObj->GetController())) return(1);
+	//if(GetPlrJumpAndRunControl(pByObj->GetController())) return(1);
 	if(GetAction() == "Movement"){
 		SetComDir(COMD_Down);
 	}
-	
+	else if(GetAction() == "Stationary")
+        {
+         if(!cannon) return(0);
+         else if(cannon->~IsActive()) {cannon ->~ Drop(1); return(0);}
+		}
 	return(1);
 }
 
 public func ContainedLeft(pByObj){
 	[$TxtLeft$]
-	if(GetPlrJumpAndRunControl(pByObj->GetController())) return(1);
+	//if(GetPlrJumpAndRunControl(pByObj->GetController())) return(1);
 	if(GetAction() == "Movement"){
 		SetComDir(COMD_Left);
 	}
-	
+	else if(GetAction() == "Stationary"){
+        if(!cannon) return(0);
+        Sound("Click");
+        return(cannon->ComLeft(pByObj) );
+        }
 	return(1);
 }
 
 public func ContainedRight(pByObj){
 	[$TxtRight$]
-	if(GetPlrJumpAndRunControl(pByObj->GetController())) return(1);
+	//if(GetPlrJumpAndRunControl(pByObj->GetController())) return(1);
 	if(GetAction() == "Movement"){
 		SetComDir(COMD_Right);
 	}
-	
+	else if(GetAction() == "Stationary"){
+        if(!cannon) return(0);
+        Sound("Click");
+        return(cannon->ComRight(pByObj) );
+        }
+
 	return(1);
 }
 
 public func ContainedDig(pByObj){
 	[$TxtDig$]
-	if(GetPlrJumpAndRunControl(pByObj->GetController())) return(1);
+	//if(GetPlrJumpAndRunControl(pByObj->GetController())) return(1);
 	if(GetAction() == "Movement"){
 		SetComDir(COMD_Stop);
 	}
-	
+	if(GetAction() == "Stationary")
+        {
+          if (!cannon) return(0);
+          cannon->~ComAltFire(pByObj);
+          return(1);
+        }
+
 	return(1);
 }
+
+public func ContainedDigDouble(pByObj){
+	[$TxtDig$]
+	//if(GetPlrJumpAndRunControl(pByObj->GetController())) return(1);
+	if(GetAction() == "Movement"){
+		SetComDir(COMD_Stop);
+	}
+	if(Stationary) {
+        Stationary = 0; 
+        ObjectSetAction(this,"Movement",0,0,1); 
+        if(cannon) {ReleaseCannon();}}
+    else {
+		if(GetAction() != "Movement") return(1);
+        cannon = FindObject2(Find_Func("IsCannon"),Find_Container(this()));
+		if(!cannon) return(1);
+		Stationary = 1;
+        ObjectSetAction(this,"Stationary",0,0,1);
+        Sound("Connect");
+        //cannon = CreateContents(CTW7,this,1);
+        ConnectCannon(cannon,this);
+        }
+	return(1);
+}
+
 
 public func ContainedDownDouble(pByObj){
 	[$TxtDownDouble$]
@@ -127,19 +204,26 @@ public func ContainedDownDouble(pByObj){
 
 public func ContainedUpdate(object self, int comdir, bool dig, bool throw)
 {
-	
+  
   FinishCommand();
+   if(GetAction() != "Stationary" && !cannon){
   SetComDir(comdir);
+   }else{
+	   if(comdir == COMD_Left) cannon->ComLeft(self);
+	   if(comdir == COMD_Right) cannon->ComRight(self);
+	    if(comdir == COMD_Stop) cannon->ComStop(self);
+   }
   if(GetAction() != "Movement"){
 	  SetComDir(COMD_Stop);
 	  return(0);
   }
-
+	
   return(1);
 }
 
 protected func ControlCommand(szCommand, pTarget, iTx, iTy)
 {
+	if(GetAction() != "Movement") return(0);
  if (szCommand == "MoveTo"){
 	 if(GetAction() == "Idle") ContainedUp(this());
 	 if(GetAction() == "Idle") return(0);
@@ -154,11 +238,74 @@ protected func ControlCommandFinished(){
 		  SetXDir(0); SetYDir(0);
 }
 
+// Löst die Kanone vom Geschützturm
+public func ReleaseCannon()
+{
+  if(!cannon) return(0);
+  Sound("Connect");
+  cannonrotation=GetR(cannon);
+  cannon->ComStopDouble();
+  // Kategorie für die Kanone wiederherstellen
+  SetCategory(GetDefCategory(GetID(cannon)),cannon);
+  GrabContents(cannon);
+  var Replacement = CreateObject(GetID(cannon)); //its replaced as it loses its verticies upon return for some reason
+  Enter(this(),Replacement);
+  RemoveObject(cannon);
+
+  cannon = 0;
+  return(1);
+}
+
+
+public func ConnectCannonDef(object pCannon, id defChg, string szAction)
+{
+  if(!szAction) szAction = "Attaching";
+  ChangeDef(defChg, pCannon);
+  ObjectSetAction(pCannon, szAction, this() ); 
+  SetVertex(0,1,20,pCannon,2);
+  SetActionData(256*0 + 12, pCannon);
+  //SetActionData(256*0 + 12, FindObject(MLCA))
+}
+
+public func ConnectCannon(object pCannon, object pCaller)
+{
+  // Wir rufen die Connect-Funktion der Kanone auf. Somit kann die Kanone
+  // eigene Dinge tun um sich anzubauen.
+  pCannon->Connect(this() );
+  SetR(cannonrotation, pCannon);
+  //if(GetX() > LandscapeWidth() / 2) SetR(-45, pCannon);
+  
+  // neue Kategorie für die Kanone um sie in den Hintergrund zu kriegen
+  SetCategory(2,pCannon);
+  SetObjectOrder(pCannon);
+
+  // Die neue Kanone über enthaltene Objekte informieren
+  var i = ContentsCount() - 1, obj;
+  while(obj = Contents(--i) )
+    if(!obj->~IsCannon() )
+      pCannon->~ComEnter(obj);
+  
+  cannon = pCannon;
+  if(LocalN("Caller", pCannon))
+  LocalN("Caller", pCannon) == pCaller;
+  Sound("Connect");
+  SetVertex(0,1,20,pCannon,2);
+}
+
+
+
 //Item taking in and out
 //Normally throw and dig are used to to this, but dig is occupied by "Stop" for classic movement, so i will handle all the logic in here :)
 protected func ContainedThrow(pClonk){
-	if(!pClonk) return(1);
-	
+	if(!pClonk) return(1);	
+        if(GetAction() == "Stationary")
+        {
+          if (!cannon) return(0);
+          cannon->ComFire(pClonk);
+          return(1);
+        }
+        else
+        {
 	var CanPut, CanTake, CanEject;
 	CreateMenu(CVCB,pClonk,this(),0,"$TxtItemMenu$",,1);
 	if(ContentsCount(,pClonk)){
@@ -194,7 +341,7 @@ protected func ContainedThrow(pClonk){
 		Sound("CommandFailure1");
 		Message("$ErrItemMenu$",this());
 	}
-	
+	}
 	return(1);
 }
 
@@ -209,13 +356,15 @@ public func CVCBTakeMenu(foo,pClonk){
 	var AlreadyUsedType = [];
 	for(var i in Cont){
 		if(InArray(GetID(i),AlreadyUsedType) != -1) continue;
+		if(i->~IsCannon() && GetAction() != "Idle") continue;
 		AddMenuItem("$TxtTake$: %s","CVCBTake",GetID(i),pClonk,ContentsCount(GetID(i)),pClonk);
 		ArrayAdd(AlreadyUsedType,GetID(i));
 	}
 }
 
 public func CVCBTake(foo,pClonk){
-	SetCommand(pClonk,"Get",,1,,this(),foo);
+	if(FindObject2(Find_Container(this()), Find_ID(foo))->~IsCannon()) SetCommand(FindObject2(Find_Container(this()), Find_ID(foo)),"Exit");
+	else SetCommand(pClonk,"Get",,1,,this(),foo);
 }
 
 public func CVCBEjectMenu(foo,pClonk){
@@ -225,6 +374,7 @@ public func CVCBEjectMenu(foo,pClonk){
 	var AlreadyUsedType = [];
 	for(var i in Cont){
 		if(InArray(GetID(i),AlreadyUsedType) != -1) continue;
+		if(i->~IsCannon()) continue;
 		AddMenuItem("$TxtEject$: %s","CVCBEject",GetID(i),pClonk,ContentsCount(GetID(i)),i);
 		ArrayAdd(AlreadyUsedType,GetID(i),true);
 	}
@@ -301,6 +451,7 @@ protected func MoveLegs(){
 	
 	//no captain? captain dead? detach.
 	if(!FindObject2(Find_OCF(OCF_CrewMember), Find_Container(this()))){
+		if(cannon) ContainedDigDouble();
 		ContainedDownDouble();
 		SetClrModulation(RGBa(255,255,255),this(),1);
 		SetGraphics(0,this());
@@ -359,7 +510,7 @@ protected func MoveLegs(){
 	
 	//move legs
 	for(var i = 0; i < GetLength(LegList); i++){
-		if(MovedLegs >= 2) break; //max legs
+		if(MovedLegs > 1) break; //max legs
 		var leg = LegList[i];
 		leg->SetR(Angle(GetX(leg),GetY(leg),GetX(), GetY())-90);
 		var dist = Distance(GetX(leg)+GetVertex(1,0,leg), GetY(leg)+GetVertex(1,1,leg), GetX()+GetVertex(i,0), GetY()+GetVertex(i,1));
@@ -524,14 +675,13 @@ func EjectMultipleCaptains(){
 	if(GetLength(FindObjects(Find_Container(this()), Find_OCF(OCF_CrewMember))) > 1){
 		Exit(FindObject2(Find_Container(this()), Find_OCF(OCF_CrewMember)));
 	}
+	if(Contained()) return(0);
 	
 	var corpse;
 	if(corpse = FindObject2(Find_Not(Find_OCF(OCF_Alive)), Find_Category(C4D_Living), Find_Container(this()))){
 		Exit(corpse);
 		Ejection(corpse);
 	}
-	
-	if(Contained()) return(0);
 	
 	//additionally, take damage from falling objects
 	for(var i in FindObjects(Find_Distance(26),Find_Category(C4D_Object), Find_NoContainer())){
