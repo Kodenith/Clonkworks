@@ -66,10 +66,12 @@ protected func SignalDelay()
 {
 	//setting stats and sprite
 	AdjustTrainSpeed();
+	//if(GetComDir() == COMD_None) FuelTick = false;
 	
 	//fueling
+	if(iFuel < 0) iFuel = 0;
 	if(FindObject(FUDS)) iFuel = 250;
-	if(GetComDir() != COMD_None && !iFuel){
+	if(GetComDir() != COMD_None && iFuel <= 0){
 		ConsumeFuel();
 	}
 	
@@ -87,18 +89,20 @@ protected func Drill(int x){
 		x = GetX()+x;
 			var y;
 			y = GetY();
-		for(var i = -12; i < 12; i++){
-			if(GetMaterial(AbsX(x),AbsY(y)+1) == Material("Granite") || !GetMaterialVal("Density", "Material", GetMaterial(AbsX(x), AbsY(y)+i)) || GetMaterial(AbsX(x),AbsY(y)+1) == Material("Vehicle")) continue;
-			if(GetMaterialVal("DigFree", "Material", GetMaterial(AbsX(x), AbsY(y)+i))){
-				BlastFree(x,y+i,RandomX(3,5),GetOwner()-1);
-				if(!Random(10)) iFuel-=RandomX(1,2);
-			}
-			else{
+		if(GetDir()) x+=1;
+		else x--;
+		
+		for(var i = -11; i <= 11; i++){
+		if(GetMaterial(AbsX(x),AbsY(y)+i) == Material("Granite") || !GetMaterialVal("Density", "Material", GetMaterial(AbsX(x), AbsY(y))) || GetMaterial(AbsX(x),AbsY(y)+i) == Material("Vehicle") || GetMaterial(AbsX(x),AbsY(y)+i) == Material("Sky")) continue;
+		if(GBackLiquid(AbsX(x),AbsY(y)+i) || GBackSky(AbsX(x),AbsY(y)+i) || GetMaterial(AbsX(x),AbsY(y)+i) == Material("Tunnel")) continue;
+		if(!GetMaterialVal("DigFree", "Material", GetMaterial(AbsX(x), AbsY(y)+i))){
 				BlastFree(x,y-3,RandomX(15,17),GetOwner()-1);
 				iFuel -= RandomX(1,15);
-			}
+				Sound("Drill");
+				//DebugLog(MaterialName(GetMaterial(AbsX(x), AbsY(y)+i)));
+				break;
 		}
-		Sound("Drill");
+		}
 }
 
 protected func Puff()
@@ -117,17 +121,29 @@ func IsAdvancedProduct(){ return(1); }
 
 //drilling is an effect as it has to be done every frame.
 public func FxDrillingTimer(){
-		var x;
-	if(GetDir() == 0) x = -25;
-	else x = 25;
+	for(var i = -11; i <= 11; i++){
+	for(var j = -5; j <= 5; j++){
+	var x;
+	if(GetDir() == 0){
+		x = -25;
+		x+=j;
+	}
+	else{
+		x = 25;
+		x-=j;
+	}
+	
 	
 	if(IsFueled() && GetComDir() != COMD_None){
-	if(GetMaterial(x,0) != Material("Sky") && GetMaterial(x,0) != Material("Tunnel") && Abs(GetXDir()) != 0){
+		if(!GetDir()) DigFreeRect(GetX()-22,GetY()-11,5,23);
+		else DigFreeRect(GetX()+22-5,GetY()-11,5,23);
+		if(!Random(110)) iFuel--;
+	if(GetMaterial(x,i) != Material("Sky") && GetMaterial(x,i) != Material("Tunnel") && Abs(GetXDir()) != 0){
 		Drill(x);
-	}else if(GetMaterial(x,5) != Material("Sky") && GetMaterial(x,5) != Material("Tunnel") && Abs(GetXDir()) != 0){
-		Drill(x);
-	}else if(GetMaterial(x,-5) != Material("Sky") && GetMaterial(x,-5) != Material("Tunnel") && Abs(GetXDir()) != 0){
-		Drill(x);
+		return(0);
+	}
+	
+	}
 	}
 	}
 }
