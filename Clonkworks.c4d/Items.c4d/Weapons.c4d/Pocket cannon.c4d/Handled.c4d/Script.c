@@ -75,6 +75,7 @@ func AimDown(){
 }
 
 func DirHandle(){
+	SetYDir(0);
 	var Grabber = FindObject2(Find_Action("Push"),Find_ActionTarget(this()));
 	if(!Grabber){
 		ReturnToObj();
