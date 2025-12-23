@@ -10,7 +10,7 @@ Currently, you can create many new vehicles in the Advanced Workshop, ranging fr
 <div align="center">
 <details>
 <summary><b>Plan list</b></summary>
-<img width="1024" height="1536" alt="Plans" src="https://github.com/user-attachments/assets/8cd6ece1-aa2f-495a-8a7a-770c4144bf2b" />
+<img width="1024" height="1536" alt="pans" src="https://github.com/user-attachments/assets/b91e07f1-51a0-48a3-bf37-c65b6b66a081" />
 </details>
 
 Want to contribute to this mod's creation? feel free to do so! you are free to report bugs, suggest anything, or even add things. If you wanna discuss something outside of github, feel free to ask me anything on the Clonk Games discord server.
