@@ -1,0 +1,2 @@
+Used to tranfer rotational power from a rotor to conveyor belts.
+Only one can be attached from and to.

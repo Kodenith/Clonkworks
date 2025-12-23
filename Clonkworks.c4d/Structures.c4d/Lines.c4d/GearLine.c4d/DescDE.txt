@@ -1,0 +1,2 @@
+Dient zur Übertragung der Drehkraft von einem Rotor auf Förderbänder.
+Es kann nur eines von und zu angebracht werden.

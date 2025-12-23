@@ -1,0 +1,3 @@
+TxtStop=Stop Rotation
+TxtLeft=Rotate Left
+TxtRight=Rotate Right

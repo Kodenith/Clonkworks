@@ -1,0 +1,3 @@
+Ein großer brückenartiger Förderband, der Gegenstände über und unter sich transportiert.
+
+Wenn er platziert wird, verbinde einen Rotor damit, damit er sich bewegt. Benachbarte Förderbänder bewegen sich ebenfalls.

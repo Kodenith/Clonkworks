@@ -1,0 +1,3 @@
+A large bridge-like conveyor belt that transports objects above and below it.
+
+When placed, connect a rotor to it to make it move. Adjacent conveyor belts will also move.
