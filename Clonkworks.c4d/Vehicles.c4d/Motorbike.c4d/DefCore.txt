@@ -33,5 +33,5 @@ Rebuy=1
 Entrance=-8,-11,15,20
 
 [Physical]
-Walk=700000
+Walk=600000
 Jump=35000

@@ -145,7 +145,7 @@ public func RejectContents(){ return(true); }
 
 protected func UseFuel(){
 	if(!Random(8) && fuel > 0 && Abs(GetXDir()) > 15 && (GetAction() eq "Walk" || GetAction() eq "WalkMount")){
-		fuel -= 1;
+		fuel -= RandomX(1,7);
 		var sx = 15;
 		if(GetDir() == DIR_Left){
 			sx = -15;
@@ -304,8 +304,6 @@ public func ContextRide(pByObj){
 		}
 	}
 	AddCommand(pByObj,"Call",this(),pByObj,,,,"TryRide");
-	AddCommand(pByObj,"Grab",this());
-
 }
 
 protected func TryRide(pByObj){

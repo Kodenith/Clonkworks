@@ -12,7 +12,7 @@ Offset=-19,-16
 Picture=192,114,60,56
 Entrance=-9,-4,23,24
 BorderBound=1
-Components=METL=3;TTIG=3;CPIG=2;
+Components=METL=2;TTIG=3;CPIG=2;
 Grab=1
 GrabPutGet=3
 CollectionLimit=35

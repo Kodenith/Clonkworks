@@ -20,7 +20,7 @@ Grab=1
 GrabPutGet=3
 Timer=15
 TimerCall=SignalDelay
-Components=CPIG=4;METL=3;
+Components=CPIG=3;METL=2;
 BorderBound=1
 Rebuy=1
 LineConnect=128
