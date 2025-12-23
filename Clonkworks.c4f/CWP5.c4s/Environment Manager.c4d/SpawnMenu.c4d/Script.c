@@ -12,7 +12,8 @@ func Initialize(){
 } */
 
 public func Managment(){
-	SetWealth(0,999999);
+	for(var i = 0; i < GetPlayerCount(); i++)
+		SetWealth(GetPlayerByIndex(i),999999);
 }
 
 public func Activate(pByPlr){

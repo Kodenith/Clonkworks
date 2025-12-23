@@ -12,7 +12,10 @@ func Initialize(){
 }
 
 global func CastVote(fromPlr,iTopic,iCommand,iPar1,iPar2,iPar3){
-	if(FindObject(___V)) FatalError("Please wait for the current vote to end before passing another one.");
+	if(FindObject(___V)){
+		PlrMessage("Please wait for the current vote to end before passing another one.",fromPlr-1);
+		return(0);
+	}
 	var vote = CreateObject(___V);
 	LocalN("Topic",vote) = iTopic;
 	LocalN("Command",vote) = iCommand;
@@ -23,7 +26,7 @@ global func CastVote(fromPlr,iTopic,iCommand,iPar1,iPar2,iPar3){
 		Local(fromPlr-1,vote) = 1;
 	}
 	
-	Log("$TxtNotification$",iTopic);
+	Message("$TxtNotification$",,iTopic);
 }
 
 func Tick(){
@@ -35,7 +38,7 @@ func Tick(){
 	}
 	
 	if(Timer <= 10){
-		Log("$TxtCooldown$",Timer);
+		Message("$TxtCooldown$",,Timer);
 		Sound("CatapultSet",1);
 	}
 }
@@ -47,11 +50,11 @@ func FinishVote(){
 	}
 	
 	if(Ok>(GetPlayerCount()/2)){
-		Log("$TxtWin$");
+		Message("$TxtWin$");
 		Sound("Blast3",1);
 		if(!GameCallEx(Command,Par1,Par2,Par3)) eval(Format(Command,Par1,Par2,Par3));
 	}else{
-		Log("$TxtLose$");
+		Message("$TxtLose$");
 		Sound("Discharge",1);
 	}
 	RemoveObject();

@@ -4,6 +4,6 @@ Y=Yes
 N=No
 Info3=You have already voted.
 TxtCooldown=Vote ends in %d.
-TxtNotification=A New Vote has been casted.(Topic: %v) Go vote via the Vote goal!
+TxtNotification=A New Vote has been casted.|Topic: %v|Go vote via the Vote goal!
 TxtWin=Majority of players voted YES. Vote passed.
 TxtLose=Majority of player ignored or voted NO. Vote not passed.
