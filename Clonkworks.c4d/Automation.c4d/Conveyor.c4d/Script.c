@@ -8,6 +8,7 @@ local TargetSpeed;
 local Speed;
 local Deaccel;
 local tracker;
+local Xtracker;
 
 local PlayingSound;
 
@@ -31,16 +32,16 @@ private func Lock(quiet, dont_descend) {
   if (!quiet)
     Sound("Connect");
 
-  //clonks often get stuck when locking this, so there's unstuck behaviour.
-  var StuckClonk;
-  while(StuckClonk = FindObject2(Find_InRect(-43,-13,86,20),Find_NoContainer(),Find_OCF(OCF_CrewMember))){
-	  SetY(GetY(StuckClonk) - 1, StuckClonk);
-  }
-
   // Verankern
   if (!dont_descend)
     if (!GBackSolid(0, 10))
       SetPosition(GetX(), GetY()+10);
+  
+    //clonks often get stuck when locking this, so there's unstuck behaviour.
+  var StuckClonk;
+  while(StuckClonk = FindObject2(Find_InRect(-43,-13,86,20),Find_NoContainer(),Find_OCF(OCF_CrewMember))){
+	  SetY(GetY(StuckClonk) - 1, StuckClonk);
+  }
   return(1);
 }
 
@@ -62,6 +63,8 @@ private func Release(quiet, dont_ascend) {
     while (Stuck() && (++ascend_pixels < 12))
       SetPosition(GetX(), GetY()-1);
   }
+  
+  //if(FindObject2(Find_ID(GERL),Find_ActionTarget(this()))) RemoveObject(FindObject2(Find_ID(GERL),Find_ActionTarget(this())));
 
   return(1);
 }
@@ -119,54 +122,76 @@ private func DoMovement(){
 		curr+=37;
 	}
 	
-	SetPhase(curr);
+	Xtracker += (Speed * 1);
+	MoveItems(Xtracker/38);
+	Xtracker %= 38;
 	
-	MoveItems();
+	SetPhase(curr);
 }
 
-private func MoveItems(){
-	//above
-	var OnTop = FindObjects(Find_OnLine(-38,-10,38,-10),Find_Not(Find_Category(C4D_Structure)),Find_Not(Find_Category(C4D_StaticBack)), Find_Not(Find_ID(BRDG)), Find_Not(Find_ID(CNVY)));
-	for(var i in OnTop){
-		if(Contained(i)) continue;
-		var limi, diff,neg;
-		if(Speed > 0){
-		neg = false;
-		Limi = GetX(i)+Speed/30;
-		diff = GetX(i);
-		while(!GBackSolid(AbsX(diff),AbsY(GetY(i))) && diff < Limi) diff++;
-		}else{
-			neg=true;
-			Limi = GetX(i)+Speed/30;
-			diff = GetX(i);
-			while(!GBackSolid(AbsX(diff),AbsY(GetY(i))) && diff > Limi) diff--;
+private func WillObjectGetStuck(pObj,Xd){
+	var Increment = Xd/Abs(Xd);
+	var Original = GetX(pObj);
+	for(var i = 0; i < Abs(Xd); i++){
+		SetX(Original+(i*Increment),pObj);
+		if(Stuck(pObj)){
+			SetX(Original,pObj);
+			return(1);
 		}
-		SetX(diff,i);
-		if(neg && Stuck(i)) SetX(diff-GetDefOffset(GetID(i))/2,i);
-		if(!neg && Stuck(i)) SetX(diff+GetDefOffset(GetID(i))/2,i);
+	}
+	SetX(Original,pObj);
+	return(0);
+}
+
+private func MoveItems(iX){
+	//above
+	var OnTop = ObjectsOnTop();
+	for(var i in OnTop){
+		if(GetProcedure(i) == "FLOAT" || GetProcedure(i) == "ClIMB" || GetProcedure(i) == "HANGLE" || GetProcedure(i) == "FLIGHT") continue;
+		var wasStuckBefore = Stuck(i);
+		if(Contained(i)) continue;
+		
+		if(!wasStuckBefore)
+			SetX(GetX(i)+iX,i);
+		
+		if(Stuck(i) && !wasStuckBefore)
+			SetX(GetX(i)+(-iX/4),i);
+		
 		if(!ObjectOnConveyor(i)){
-			SetXDir(Speed/3,i);
+			SetXDir(GetXDir(i)+Speed/3,i);
 		}
 	}
 	
 	//below (Climbing)
-	var Below = FindObjects(Find_OnLine(-38,10,38,10),Find_FuncEqual("GetProcedure()","HANGLE"));
+	var Below = ObjectsBelow();
 	for(var i in Below){
+		var wasStuckBefore = Stuck(i);
 		if(Contained(i)) continue;
-		var Limi = GetX(i)-Speed/30;
-		var diff = GetX(i);
-		while(!GBackSolid(AbsX(diff),AbsY(GetY(i))) && diff > Limi) diff--;
-		SetX(diff,i);
+		
+		if(!wasStuckBefore)
+			SetX(GetX(i)-iX,i);
+		
+		if(Stuck(i) && !wasStuckBefore)
+			SetX(GetX(i)-(-iX/4),i);
+		
 		if(!ObjectBelowConveyor(i)){
-			SetXDir(-Speed/3,i);
+			SetXDir(GetXDir(i)-Speed/3,i);
 		}
 	}
+}
+
+private func ObjectsOnTop(){
+	return(FindObjects(Find_InRect(-43,-26,86,20),Find_Not(Find_Category(C4D_Structure)),Find_Not(Find_Category(C4D_StaticBack)), Find_Not(Find_ID(BRDG)), Find_Not(Find_ID(CNVY))));
+}
+
+private func ObjectsBelow(){
+	return(FindObjects(Find_InRect(-43,6,86,20),Find_FuncEqual("GetProcedure()","HANGLE")));
 }
 
 public func ObjectOnTop(pObj){
 	//if(Contained(pObj)) return(0);
 	if(GetAction() != "Movement") return(0);
-	var OnTop = FindObjects(Find_OnLine(-38,-10,38,-10),Find_Not(Find_Category(C4D_Structure)),Find_Not(Find_Category(C4D_StaticBack)), Find_Not(Find_ID(BRDG)), Find_Not(Find_ID(CNVY)));
+	var OnTop = ObjectsOnTop();
 	if(InArray(pObj,OnTop) != -1) return(1);
 }
 

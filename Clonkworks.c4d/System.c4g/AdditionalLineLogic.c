@@ -6,6 +6,7 @@
 #appendto FNPP
 #appendto HOSE
 #appendto ZIPL
+#appendto GERL
 
 public func isLine(){ return(1); }
 public func KitType(){

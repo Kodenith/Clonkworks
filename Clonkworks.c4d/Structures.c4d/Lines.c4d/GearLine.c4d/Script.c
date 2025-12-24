@@ -1,6 +1,6 @@
 /*--- Zuflussrohr ---*/
 
-#strict
+#strict 2
 protected func Initialize()
 {
   Local(0) = 7;
@@ -18,6 +18,12 @@ protected func Transfer()
   var Rotor = GetActionTarget(0);
   var MainBelt = GetActionTarget(1);
   if(GetID(MainBelt) != CNVY) return(0);
+  if(GetID(Rotor) == FNKT || MainBelt->GetAction() != "Movement"){
+	  LineBreak(1);
+	  RemoveObject();
+	  return(1);
+  }
+  
   var Total = AffectedConveyors();
   
   for(var i in Total){
@@ -40,3 +46,17 @@ public func IsConvSet(pObj){
 }
 
 public func KitType(){ return(FNKT); }
+
+public func LineBreak(bool fNoMsg)
+{
+  Sound("LineBreak");
+  if (!fNoMsg) BreakMessage();
+}
+
+private func BreakMessage()
+{
+  var pPumpTarget = GetActionTarget(0);
+  if (GetID(pPumpTarget) != FNKT)
+    pPumpTarget = GetActionTarget(1);
+  Message("$TxtLinebroke$", pPumpTarget);
+}
