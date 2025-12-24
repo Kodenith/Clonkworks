@@ -1,20 +1,22 @@
 [Action]
 Name=RotateRight
-Length=114
-Delay=1
+Length=29
+Delay=2
 Facet=0,0,45,50,0,0
 NextAction=RotateRight
 PhaseCall=UpdateRight
+StartCall=UpdateRight
 Sound=Gear
 EnergyUsage=500
 
 [Action]
 Name=RotateLeft
-Length=114
-Delay=1
+Length=29
+Delay=2
 Facet=0,0,45,50,0,0
 Reverse=1
 NextAction=RotateLeft
 Sound=Gear
 PhaseCall=UpdateLeft
+StartCall=UpdateLeft
 EnergyUsage=500

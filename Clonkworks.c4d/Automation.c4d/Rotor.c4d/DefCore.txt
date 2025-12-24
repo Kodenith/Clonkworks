@@ -19,9 +19,11 @@ Construction=1
 Grab=2
 VehicleControl=1
 LineConnect=35
-Timer=1
+Timer=2
 TimerCall=DieOut
 Components=WOOD=3;CPIG=2;METL=1;
+BlastIncinerate=65
+BurnTo=BRTR
 
 [Physical]
 Energy=100000

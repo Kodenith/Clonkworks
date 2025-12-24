@@ -7,6 +7,8 @@ local Mask;
 local TargetSpeed;
 local Speed;
 local Deaccel;
+
+//tracker helps with dynamic phases, Xtracker helps with moving objects along the phases. the conveyors must be nice and detailed :)
 local tracker;
 local Xtracker;
 

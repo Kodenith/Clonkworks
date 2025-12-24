@@ -1,0 +1,19 @@
+[DefCore]
+Name=Burnt Conveyor
+id=CNVB
+Version=4,9,8
+Category=C4D_Vehicle
+Width=86
+Height=13
+Offset=-43,-6
+Picture=0,0,86,13
+Vertices=4
+VertexX=-38,-38,37,37
+VertexY=6,-6,6,-6
+VertexFriction=20,20,20,20
+VertexCNAT=8,4,8,4
+Value=2
+Mass=80
+BlastIncinerate=65
+Components=METL=1;WOOD=1
+Rotate=1

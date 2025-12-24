@@ -1,2 +1,2 @@
-DE:FÃ¶rderband
+DE:Förderband
 US:Conveyor
