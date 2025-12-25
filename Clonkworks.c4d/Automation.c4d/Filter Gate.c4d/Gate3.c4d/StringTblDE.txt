@@ -1,0 +1,8 @@
+TxtFilterSet=Filter auf %s eingestellt.
+TxtTurnLeft=Gefiltertes Element wird nach links verschoben.
+TxtTurnRight=Gefiltertes Element wird nach rechts verschoben.
+TxtTurnDown=Gefiltertes Element wird nach unten verschoben.
+TxtMenu1=Filter einstellen
+TxtDeconstruct=Dekonstruieren
+TxtTurn=Drehen
+TxtChange=Änderungstyp

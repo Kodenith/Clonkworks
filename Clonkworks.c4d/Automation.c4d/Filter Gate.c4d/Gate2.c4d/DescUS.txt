@@ -1,0 +1,6 @@
+For this gate, items come from the controllable pipe below. The filtered item will go left by default, and the rest will go in the opposite direction.
+
+Behaviour can be modified with the Throw key.
+Filter can be changed with the Left key.
+
+To control the pipe: Press up or down to toggle direction, and dig to stop.

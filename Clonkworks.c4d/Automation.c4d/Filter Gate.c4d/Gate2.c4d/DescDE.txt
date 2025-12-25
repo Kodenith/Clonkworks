@@ -1,0 +1,6 @@
+Bei diesem Tor kommen die Gegenstände aus dem steuerbaren Rohr darunter. Der gefilterte Gegenstand wird standardmäßig nach links geleitet, die übrigen Gegenstände in die entgegengesetzte Richtung.
+
+Das Verhalten kann mit der Taste Werfen geändert werden.
+Der Filter kann mit der linken Taste geändert werden.
+
+Um die Leitung zu steuern: Drücken Sie nach oben oder unten, um die Richtung zu ändern, und graben Sie, um anzuhalten.

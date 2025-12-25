@@ -55,9 +55,11 @@ func UpdateRight(){
 //what advanced lines can be connected?
 public func ALKConnectType(){
 	if(Par(0) == 1) return(0);
-	if(FindObject2(Find_ID(GERL),Find_ActionTarget(this()))) return(0);
+	//if(FindObject2(Find_ID(GERL),Find_ActionTarget(this()))) return(0);
 	return([GERL]);
 }
+
+func IsAdvancedProduct(){ return(1); }
 
 public func GetResearchBase(){
 	return(CNVY);

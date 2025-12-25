@@ -32,7 +32,7 @@ func Update(){
 	}
 	
 	var Selection;
-	if(GetProcedure(Current) == "PUSH" && (GetActionTarget(0,Current)->~InfobarTrigger() & IB_Grab)){
+	if(GetProcedure(Current) == "PUSH" && (GetActionTarget(0,Current) && (GetActionTarget(0,Current)->~InfobarTrigger() & IB_Grab)) ){
 		Selection = GetActionTarget(0,Current);
 	}else if(Contained(Current) && (Contained(Current)->~InfobarTrigger() & IB_Contained)){
 		Selection = Contained(Current);

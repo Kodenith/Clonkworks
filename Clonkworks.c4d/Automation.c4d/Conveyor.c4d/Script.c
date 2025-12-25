@@ -148,6 +148,7 @@ private func WillObjectGetStuck(pObj,Xd){
 private func MoveItems(iX){
 	//above
 	var OnTop = ObjectsOnTop();
+	if(OnTop && GetLength(OnTop) != 0) 
 	for(var i in OnTop){
 		if(GetProcedure(i) == "FLOAT" || GetProcedure(i) == "ClIMB" || GetProcedure(i) == "HANGLE" || GetProcedure(i) == "FLIGHT") continue;
 		var wasStuckBefore = Stuck(i);
@@ -166,6 +167,7 @@ private func MoveItems(iX){
 	
 	//below (Climbing)
 	var Below = ObjectsBelow();
+	if(Below && GetLength(Below) != 0) 
 	for(var i in Below){
 		var wasStuckBefore = Stuck(i);
 		if(Contained(i)) continue;
@@ -239,7 +241,7 @@ public func GetNeighboursLeft(Limit){
 	var List = [];
 	while(found = FindObject2(Find_AtPoint(x,0),Find_ID(GetID()),Find_NoContainer())){
 		ArrayAdd(List,found,true);
-		x -= 86;
+		x -= 5;
 		if(GetLength(List) > Limit) break;
 	}
 	return(List);
@@ -253,7 +255,7 @@ public func GetNeighboursRight(Limit){
 	var List = [];
 	while(found = FindObject2(Find_AtPoint(x,0),Find_ID(GetID()),Find_NoContainer())){
 		ArrayAdd(List,found,true);
-		x += 86;
+		x += 5;
 		if(GetLength(List) > Limit) break;
 	}
 	return(List);
