@@ -8,14 +8,6 @@ func Hit(){
 
 public func Activate(pClonk){
 	[$TxtUnscrew$]
-	
-	//unscrewing
-	var Unscrewable = FindObject2(Find_OnLine(0,0,0,10), Find_Func("Unscrewable"), Find_NoContainer(), Find_Exclude(this()));
-	if(Unscrewable != 0){
-		Unscrew(Unscrewable);
-		return(1);
-	}
-	
 	//line tweaking
 	var LineObj = FindObject2(Find_NoContainer(),Find_OCF(OCF_LineConstruct),Find_AtPoint());
 	if(!LineObj) return(0);
@@ -47,14 +39,6 @@ public func StartLineTweak(foo,pLine){
 	var pClonk = Contained();
 	pLine->~TweakMenu(pClonk);
 	Sound("screw*");
-}
-
-public func Unscrew(pObj){
-	if(!pObj) return(0);
-
-	pObj->~Unscrew();
-	Sound("screw*");
-	return(1);
 }
 
 public func IsAnvilProduct(){ return(1); }

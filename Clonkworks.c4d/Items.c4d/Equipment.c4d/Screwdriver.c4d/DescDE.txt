@@ -1,5 +1,5 @@
-Ein kleines und praktisches Werkzeug zum Lösen und/oder Anpassen des Verhaltens einiger erweiterter Linien.
+Ein kleines und praktisches Werkzeug zum Freigeben und/oder Anpassen des Verhaltens einiger erweiterter Linien.
 
 Anleitung:
-Um etwas zu lösen, gehe in die Nähe eines lösbaren Objekts (z. B. eines Brückensegments) oder stelle dich darauf und drücke zweimal auf „Graben”.
-Um Linien anzupassen, gehe zu einem Objekt, mit dem eine erweiterte Linie verbunden ist, und drücke zweimal auf „Graben”. Es erscheint eine Liste der anpassbaren Linien, und du kannst dort deren Verhalten ändern.
+Um Linien anzupassen, gehen Sie zu einem Objekt, das mit einer erweiterten Linie verbunden ist, und drücken Sie zweimal auf Graben. Es erscheint eine Liste der anpassbaren Linien, in der Sie deren Verhalten ändern können.
+Objekte, die an Wänden und anderen Objekten befestigt sind, können gelöst werden, indem Sie sie greifen und zweimal auf „Graben“ drücken.

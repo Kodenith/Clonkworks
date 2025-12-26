@@ -146,6 +146,7 @@ private func WillObjectGetStuck(pObj,Xd){
 }
 
 private func MoveItems(iX){
+	if(!iX || Speed == 0) return(0);
 	//above
 	var OnTop = ObjectsOnTop();
 	if(OnTop && GetLength(OnTop) != 0) 
