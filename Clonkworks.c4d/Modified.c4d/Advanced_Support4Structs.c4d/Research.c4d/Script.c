@@ -64,7 +64,7 @@ protected func SelectResearchCategory(idImage, pClonk, dwCategory)
             if(!GetPlrKnowledge(iPlr, link) ) // Linkdefinition noch nicht erforscht? (passiert durch SetPlrKnowledge-Aufrufe oder Szenariovorgaben)
               continue;
         // Menüeintrag hinzufügen
-		if (idDef->~IsAdvancedProduct() && !AdvancedResearchAllowed(GetOwner(pClonk))) continue;
+		if (DefinitionCall(idDef,"IsAdvancedProduct") && !AdvancedResearchAllowed(GetOwner(pClonk))) continue;
         if (fHasBase) AddMenuItem("$TxtResearchs$", "SelectResearch", idDef, pClonk, 0, pClonk);
       }
   return(1);  

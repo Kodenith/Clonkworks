@@ -4,6 +4,6 @@
 #appendto *
 
 public func GetResearchBase() {
-	if(!_inherited() && this()->~IsAdvancedProduct()) return(ADVW);
+	if(!_inherited() && DefinitionCall(GetID(),"IsAdvancedProduct")) return(ADVW);
 	return(_inherited());
 }
