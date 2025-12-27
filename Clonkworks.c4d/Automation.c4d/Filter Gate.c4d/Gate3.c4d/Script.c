@@ -83,6 +83,7 @@ func OnChange(){
 	AdditionalObject = CreateObject(G3P_);
 	SetY(GetY(AdditionalObject)+30,AdditionalObject);
 	var Connection = CreateObject(DPLI);
+	LocalN("Source",AdditionalObject) = this();
 	Connection->Init(this(),AdditionalObject);
 }
 

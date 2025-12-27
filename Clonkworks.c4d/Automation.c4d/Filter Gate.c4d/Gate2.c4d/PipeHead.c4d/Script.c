@@ -15,6 +15,12 @@ func Find(){
 		Source->Sound("Clonk");
 		Enter(Source,find);
 	}
+	
+	if(GetY() > GetY(Source)+150){
+		SetAction("Stop");
+		SetYDir(0);
+		SetY(GetY()-1);
+	}
 }
 
 func ContactBottom(){

@@ -16,6 +16,8 @@ Mass=5
 Components=METL=1
 Picture=3,0,35,35
 HorizontalFix=1
+Timer=1
+TimerCall=FixPos
 
 [Physical]
 Float=100
