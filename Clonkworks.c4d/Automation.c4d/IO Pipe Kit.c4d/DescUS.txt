@@ -1,2 +1,0 @@
-With this tool, you can attach pipes to vehicles and buildings.
-If a 'Out' Pipe touches a 'In' Pipe, things are moved from one thing to another.

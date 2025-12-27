@@ -35,3 +35,10 @@ func Detachment(){
 
 func CanBeDetached(){ return(1); }
 func OnDetach(){ Detachment(); }
+
+global func CreateAttach(pObj,iPipe){
+	if(!DefinitionCall(iPipe,"ObjectAttachable")) return(0);
+	var Pipe = CreateObject(iPipe);
+	LocalN("Target",Pipe) = pObj;
+	return(Pipe);
+}

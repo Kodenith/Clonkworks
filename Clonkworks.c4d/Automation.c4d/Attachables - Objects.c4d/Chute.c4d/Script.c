@@ -22,19 +22,18 @@ private func GetAttachable(){
 		if(OnFire(object)) continue;
 		
 		var stop = false;
-		for(var i in FindObjects(Find_ID(PPIN))){
+		for(var i in FindObjects(Find_Func("ObjectAttachable"))){
 			if(LocalN("Target",i) == object) stop = true;
 		}
-		for(var i in FindObjects(Find_ID(PPOU))){
-			if(LocalN("Target",i) == object) stop = true;
-		}
-		
+
 		if(stop) continue;
 		
 		//checks for vehicles only
 		if(GetCategory(object) & C4D_Vehicle){
 			if(GetDefGrabPutGet(GetID(object)) != 3) continue;
 		}
+		
+		if(GetDefCoreVal("Collection","DefCore",GetID(object))) continue;
 		
 		///checks for structures only
 		if(GetCategory(object) & C4D_Structure){
@@ -54,11 +53,8 @@ func Activate(pClonk){
 		Sound("CommandFailure1");
 		return(1);
 	}
-	
-	CreateMenu(GetID(),pClonk,this());
-	SetMenuSize(2,1,pClonk);
-	AddMenuItem("$TxtSelect$","DoAttach",PPIN,pClonk,0,Obj,GetDesc(,PPIN));
-	AddMenuItem("$TxtSelect$","DoAttach",PPOU,pClonk,0,Obj,GetDesc(,PPOU));
+	DoAttach(CHT2,Obj);
+	return(1);
 }
 
 func DoAttach(type,obj){
@@ -69,7 +65,7 @@ func DoAttach(type,obj){
 		return(1);
 	}
 	
-	CreateAttachedPipe(obj,type);
+	CreateAttach(obj,type);
 	Message("$TxtAttachSuccess$",Contained(),GetName(,type),GetName(obj));
 	Sound("Connect");
 	RemoveObject();

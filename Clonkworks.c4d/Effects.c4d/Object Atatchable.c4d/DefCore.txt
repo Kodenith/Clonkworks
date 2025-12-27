@@ -1,13 +1,13 @@
 [DefCore]
-Name=OUT Pipe
-id=PPOU
+Name=Attach1
+id=ACH1
 Version=4,9,8
 Category=4
 Width=9
 Height=9
 Offset=-4,-4
 Picture=0,9,64,64
-Components=IOPK=1
+Components=WIPF=1
 Timer=1
 TimerCall=DoAttachment
 Rotate=1

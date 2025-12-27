@@ -186,11 +186,11 @@ private func MoveItems(iX){
 }
 
 private func ObjectsOnTop(){
-	return(FindObjects(Find_InRect(-43,-26,86,20),Find_Not(Find_Category(C4D_Structure)),Find_Not(Find_Category(C4D_StaticBack)), Find_Not(Find_ID(BRDG)), Find_Not(Find_ID(CNVY))));
+	return(FindObjects(Find_OnLine(-38,-10,38,-10),Find_Not(Find_Category(C4D_Structure)),Find_Not(Find_Category(C4D_StaticBack)), Find_Not(Find_ID(BRDG)), Find_Not(Find_ID(CNVY))));
 }
 
 private func ObjectsBelow(){
-	return(FindObjects(Find_InRect(-43,6,86,20),Find_FuncEqual("GetProcedure()","HANGLE")));
+	return(FindObjects(Find_OnLine(-38,10,38,10),Find_FuncEqual("GetProcedure()","HANGLE")));
 }
 
 public func ObjectOnTop(pObj){
