@@ -1,0 +1,2 @@
+Mit diesem Werkzeug können Sie Rohre an Fahrzeugen und Gebäuden befestigen.
+Wenn ein Von-Rohr ein Zu-Rohr berührt, werden Dinge von einem Ort zum anderen transportiert.

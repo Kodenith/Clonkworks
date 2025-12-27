@@ -1,1 +1,0 @@
-Fernwaffe mit mittlerer Reichweite. Benötigt kein Schießpulver, dafür leider relativ niedrige Treffsicherheit. Durch die Kommandos 'Hoch' und 'Runter' wird die Feuerstärke eingestellt.

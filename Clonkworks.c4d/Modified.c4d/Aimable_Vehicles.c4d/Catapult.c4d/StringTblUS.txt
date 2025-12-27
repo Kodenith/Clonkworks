@@ -1,4 +1,0 @@
-TxtAim1=Aim: further
-TxtAim2=Aim: shorter
-TxtFire=Fire
-TxtResetview=Reset view

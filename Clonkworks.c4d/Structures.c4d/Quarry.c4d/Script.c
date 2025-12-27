@@ -304,7 +304,3 @@ private func ResetProgress(){
 	else if(shov) Progress = 180;
 	else Progress = 280;
 }
-
-public func ALKConnectType(){
-	return([FNPP, TRPW]);
-}

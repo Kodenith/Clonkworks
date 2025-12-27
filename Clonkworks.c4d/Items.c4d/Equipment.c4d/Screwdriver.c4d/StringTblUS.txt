@@ -1,4 +1,0 @@
-TxtUnscrew=Use
-TxtTweakInfo=Tweaking lines of %s.
-TxtTweak=Tweak %s Behaviour
-TxtNoTweakable=No Tweakable Lines! :(

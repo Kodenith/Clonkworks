@@ -111,8 +111,3 @@ func Damage(){
 		Explode(50);
 	}
 }
-
-//what advanced lines can be connected?
-public func ALKConnectType(){
-	return([FNPP]);
-}

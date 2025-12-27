@@ -1,4 +1,0 @@
-TxtUnscrew=Verwenden
-TxtTweakInfo=Linien von %s optimieren.
-TxtTweak=Verhalten von %s optimieren
-TxtNoTweakable=Keine anpassbaren Zeilen! :(

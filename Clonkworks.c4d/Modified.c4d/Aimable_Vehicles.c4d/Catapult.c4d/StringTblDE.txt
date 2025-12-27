@@ -1,4 +1,0 @@
-TxtAim1=Zielen: weiter
-TxtAim2=Zielen: kürzer
-TxtFire=Feuern
-TxtResetview=Sicht zurücksetzen
