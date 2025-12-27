@@ -6,3 +6,9 @@ TxtMenu1=Set Filter
 TxtDeconstruct=Deconstruct
 TxtTurn=Turn
 TxtChange=Change Type
+
+Temp1=Products
+Temp2=Smeltable
+Temp3=Fuel
+Temp4=Fragile
+Temp5=Flammable

@@ -26,10 +26,10 @@ func RejectCollect(pId,pObj){
 	Sound("Clonk");
 	
 	var SideExit;
-	if(pId == Filter && !FilterPath) SideExit = true;
-	if(pId == Filter && FilterPath) SideExit = false;
-	if(pId != Filter && !FilterPath) SideExit = false;
-	if(pId != Filter && FilterPath) SideExit = true;
+	if(FilterCompatibleItem(pObj) && !FilterPath) SideExit = true;
+	if(FilterCompatibleItem(pObj) && FilterPath) SideExit = false;
+	if(!FilterCompatibleItem(pObj) && !FilterPath) SideExit = false;
+	if(!FilterCompatibleItem(pObj) && FilterPath) SideExit = true;
 	
 	if(SideExit){
 		var Item = pObj;

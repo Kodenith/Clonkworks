@@ -20,11 +20,11 @@ private func Move(){
 	var Item = Contents(0);
 	if(!Item) return(0);
 	if(!FilterPath){ //Filtered goes left
-		if(GetID(Item) == Filter)
+		if(FilterCompatibleItem(Item))
 			Exit(Item,-12,12,,-2);
 		else Exit(Item,12,12,,2);
 	}else{ //Filtered goes right
-		if(GetID(Item) == Filter)
+		if(FilterCompatibleItem(Item))
 			Exit(Item,12,12,,2);
 		else Exit(Item,-12,12,,-2);
 	}

@@ -26,14 +26,22 @@ public func SetFilter(pId){
 }
 
 func SetFilterGraph(){
+	
+  var FilterImage = Filter;
+  if(Filter == 1) FilterImage = WRKS;
+  if(Filter == 2) FilterImage = FNDR;
+  if(Filter == 3) FilterImage = WR_F;
+  if(Filter == 4) FilterImage = RVLT;
+  if(Filter == 5) FilterImage = FLAM;
+  
 	//outline
-  SetGraphics(0,this(),Filter,ShadowID(),4);
-  SetObjDrawTransform(600,0,((GetDefCoreVal("Picture","DefCore",Filter,2)/2)*1000)/4,0,600,GetDefHeight(GetID())*1000/4+(((GetDefCoreVal("Picture","DefCore",Filter,3)/2)*1000)/4)-10000,this(),ShadowID());
+  SetGraphics(0,this(),FilterImage,ShadowID(),4);
+  SetObjDrawTransform(600,0,((GetDefCoreVal("Picture","DefCore",FilterImage,2)/2)*1000)/4,0,600,GetDefHeight(GetID())*1000/4+(((GetDefCoreVal("Picture","DefCore",FilterImage,3)/2)*1000)/4)-10000,this(),ShadowID());
   SetClrModulation(RGBa(0,0,1),this(),ShadowID());
   
   //main
-  SetGraphics(0,this(),Filter,MainID(),4);
-  SetObjDrawTransform(500,0,((GetDefCoreVal("Picture","DefCore",Filter,2)/2)*1000)/4,0,500,GetDefHeight(GetID())*1000/4+(((GetDefCoreVal("Picture","DefCore",Filter,2)/2)*1000)/4)-10000,this(),MainID());
+  SetGraphics(0,this(),FilterImage,MainID(),4);
+  SetObjDrawTransform(500,0,((GetDefCoreVal("Picture","DefCore",FilterImage,2)/2)*1000)/4,0,500,GetDefHeight(GetID())*1000/4+(((GetDefCoreVal("Picture","DefCore",FilterImage,2)/2)*1000)/4)-10000,this(),MainID());
 }
 
 func ControlDigDouble(){
@@ -49,6 +57,18 @@ func ControlLeft(pObj){
 	if(GetProcedure(pObj) != "PUSH") return(0);
 	if(GetActionTarget(0,pObj) != this());
 	CreateMenu(GetID(),pObj,this(),,"error");
+	
+	//predefined options
+	AddMenuItem("$TxtMenu1$: $Temp1$","TryGrabbedFilter",WRKS,pObj,,pObj);
+	AddMenuItem("$TxtMenu1$: $Temp2$","TryGrabbedFilter",FNDR,pObj,,pObj);
+	AddMenuItem("$TxtMenu1$: $Temp3$","TryGrabbedFilter",WR_F,pObj,,pObj);
+	AddMenuItem("$TxtMenu1$: $Temp4$","TryGrabbedFilter",RVLT,pObj,,pObj);
+	AddMenuItem("$TxtMenu1$: $Temp5$","TryGrabbedFilter",FLAM,pObj,,pObj);
+	//empty entries to make space
+	for(var i = 0; i < 5; i++){
+		AddMenuItem(" ",0,0,pObj);
+	}
+	
 	var i,j;
 	while(j = GetDefinition(i++,C4D_Object)){
 		var ok = false;
@@ -65,9 +85,20 @@ func ControlLeft(pObj){
 func TryGrabbedFilter(Filt,pObj){
 	if(GetProcedure(pObj) != "PUSH") return(0);
 	if(GetActionTarget(0,pObj) != this());
+	if(Filt == WRKS) Filt = 1;
+	if(Filt == FNDR) Filt = 2;
+	if(Filt == WR_F) Filt= 3;
+	if(Filt == RVLT) Filt = 4;
+	if(Filt == FLAM) Filt = 5;
 	SetFilter(Filt);
 	Sound("Connect");
-	Message("$TxtFilterSet$",this(),GetName(,Filter));
+	
+	if(Filter == 1) Message("$TxtFilterSet$",this(),"$Temp1$");
+	else if(Filter == 2) Message("$TxtFilterSet$",this(),"$Temp2$");
+	else if(Filter == 3) Message("$TxtFilterSet$",this(),"$Temp3$");
+	else if(Filter == 4) Message("$TxtFilterSet$",this(),"$Temp4$");
+	else if(Filter == 5) Message("$TxtFilterSet$",this(),"$Temp5$");
+	else Message("$TxtFilterSet$",this(),GetName(,Filter));
 }
 
 public func ContextDoFilter(pClonk){
@@ -114,3 +145,26 @@ func GetResearchBase(){
 	return(CNVY);
 }
 func IsAdvancedProduct(){ return(1); }
+
+private func FilterCompatibleItem(pItem){
+	var pId = GetID(pItem);
+	if(Filter == 1){
+		if(pItem->~IsAnvilProduct()) return(1);
+		if(pItem->~IsAdvancedProduct()) return(1);
+		if(pItem->~IsChemicalProduct()) return(1);
+		if(pItem->~IsMixerProduct()) return(1);
+	}
+	else if(Filter == 2){
+		if(pItem->~SmeltResult()) return(1);
+	}
+	else if(Filter==3){
+		if(pItem->~IsREFUItem()) return(1);
+	}else if(Filter==4){
+		if(GetDefFragile(pId)) return(1);
+	}else if(Filter==5){
+		if(GetDefContactIncinerate(pId)) return(1);
+		if(GetDefBlastIncinerate(pId)) return(1);
+	}else{
+		if(pId == Filter) return(1);
+	}
+}

@@ -9,11 +9,11 @@ private func Move(){
 	var Item = Contents(0);
 	if(!Item) return(0);
 	if(!FilterPath){ //Filtered goes left
-		if(GetID(Item) == Filter)
+		if(FilterCompatibleItem(Item))
 			Exit(Item,-12,12,,-2);
 		else Exit(Item,12,12,,2);
 	}else{ //Filtered goes right
-		if(GetID(Item) == Filter)
+		if(FilterCompatibleItem(Item))
 			Exit(Item,12,12,,2);
 		else Exit(Item,-12,12,,-2);
 	}
@@ -24,14 +24,22 @@ private func Move(){
 }
 
 func SetFilterGraph(){
+	
+  var FilterImage = Filter;
+  if(Filter == 1) FilterImage = WRKS;
+  if(Filter == 2) FilterImage = FNDR;
+  if(Filter == 3) FilterImage = WR_F;
+  if(Filter == 4) FilterImage = RVLT;
+  if(Filter == 5) FilterImage = FLAM;
+  
 	//outline
-  SetGraphics(0,this(),Filter,ShadowID(),4);
-  SetObjDrawTransform(500,0,((GetDefCoreVal("Picture","DefCore",Filter,2)/2)*1000)/4,0,500,GetDefHeight(GetID())*1000/4+(((GetDefCoreVal("Picture","DefCore",Filter,3)/2)*1000)/4)-10000,this(),ShadowID());
+  SetGraphics(0,this(),FilterImage,ShadowID(),4);
+  SetObjDrawTransform(500,0,((GetDefCoreVal("Picture","DefCore",FilterImage,2)/2)*1000)/4,0,500,GetDefHeight(GetID())*1000/4+(((GetDefCoreVal("Picture","DefCore",FilterImage,3)/2)*1000)/4)-10000,this(),ShadowID());
   SetClrModulation(RGBa(0,0,1),this(),ShadowID());
   
   //main
-  SetGraphics(0,this(),Filter,MainID(),4);
-  SetObjDrawTransform(400,0,((GetDefCoreVal("Picture","DefCore",Filter,2)/2)*1000)/4,0,400,GetDefHeight(GetID())*1000/4+(((GetDefCoreVal("Picture","DefCore",Filter,2)/2)*1000)/4)-10000,this(),MainID());
+  SetGraphics(0,this(),FilterImage,MainID(),4);
+  SetObjDrawTransform(400,0,((GetDefCoreVal("Picture","DefCore",FilterImage,2)/2)*1000)/4,0,400,GetDefHeight(GetID())*1000/4+(((GetDefCoreVal("Picture","DefCore",FilterImage,2)/2)*1000)/4)-10000,this(),MainID());
 }
 
 func RejectCollect(pId,pObj){
