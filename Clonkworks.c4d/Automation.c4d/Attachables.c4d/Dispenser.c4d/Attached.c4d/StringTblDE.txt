@@ -1,0 +1,14 @@
+TxtFilterSet=Filter auf %s eingestellt.
+TxtTurnLeft=Das gefilterte Element wird entfernt.
+TxtTurnRight=Das gefilterte Element bleibt erhalten.
+TxtTurnDown=Gefiltertes Element wird nach unten verschoben.
+TxtMenu1=Filter einstellen
+TxtDeconstruct=Dekonstruieren
+TxtTurn=Drehen
+TxtChange=Änderungstyp
+
+Temp1=Produkte
+Temp2=Schmelzbar
+Temp3=Brennstoff
+Temp4=Zerbrechlich
+Temp5=Entflammbar

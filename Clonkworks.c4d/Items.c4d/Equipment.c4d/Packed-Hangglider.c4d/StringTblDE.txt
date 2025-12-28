@@ -1,2 +1,0 @@
-TxtPlace=Drachenflieger abstellen
-TxtBurnt=Es ist zerbrochen!

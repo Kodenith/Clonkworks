@@ -30,7 +30,7 @@ private func GetAttachable(){
 		
 		//checks for vehicles only
 		if(GetCategory(object) & C4D_Vehicle){
-			if(GetDefGrabPutGet(GetID(object)) != 3) continue;
+			if(!(GetDefGrabPutGet(GetID(object)) & 1)) continue;
 		}
 		
 		if(GetDefCoreVal("Collection","DefCore",GetID(object))) continue;

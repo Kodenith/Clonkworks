@@ -1,0 +1,2 @@
+DE:Aufsteckbarer Spender
+US:Attachable Dispenser

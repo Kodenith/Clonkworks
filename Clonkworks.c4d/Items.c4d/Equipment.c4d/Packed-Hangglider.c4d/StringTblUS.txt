@@ -1,2 +1,0 @@
-TxtPlace=Place Hang glider
-TxtBurnt=It crumbled!

@@ -1,0 +1,1 @@
+Dieser Spender kann nur an Strukturen angebracht und dann mit einem Filter versehen werden. Artikel, die den Kriterien entsprechen, werden entfernt.
