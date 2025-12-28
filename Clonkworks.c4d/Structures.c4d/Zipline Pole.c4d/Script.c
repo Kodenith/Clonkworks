@@ -40,9 +40,14 @@ func ActivateEntrance(pObj){
 		return(0);
 	}
 	
+	for(var i in FindObjects(Find_ID(ZIPT))){
+		if(LocalN("Dragged",i) == pObj) return(0);
+	}
+	
 	var Zip = CreateObject(ZIPT,0,16);
 	LocalN("Line",Zip) = Line;
 	LocalN("memorizedCount",Zip) = GetVertexNum(Line);
+	LocalN("Dragged",Zip) = pObj;
 	var Rope = FindContents(CK5P);
 	Rope->ConnectObjects(Zip,pObj);
 	

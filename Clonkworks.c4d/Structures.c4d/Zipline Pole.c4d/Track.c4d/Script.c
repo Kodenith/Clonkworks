@@ -7,6 +7,7 @@ local Line; //the line.
 local Step; //step, mnax 50, then sets root pos
 local RootX,RootY; //where to go from?
 local memorizedCount; //memorized amount of verts
+local Dragged; //used by the pole.
 
 local SoundPlaying; //check if sound is playing
 
