@@ -1,3 +1,5 @@
 Ein großer brückenartiger Förderband, der Gegenstände über und unter sich transportiert.
 
 Wenn er platziert wird, verbinde einen Rotor damit, damit er sich bewegt. Benachbarte Förderbänder bewegen sich ebenfalls.
+
+Sie können es auch verpacken, indem Sie zweimal die Aufwärts-Taste drücken, während Sie gedrückt halten, oder es an benachbarte Förderbänder andocken, indem Sie zweimal eine Richtungstaste drücken.

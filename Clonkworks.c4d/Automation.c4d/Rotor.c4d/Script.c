@@ -15,6 +15,7 @@ func Initialize() {
 
 func ControlLeft(pClonk){
 	[$TxtLeft$]
+	if(!EnergyCheck(1)) return(0);
 	if(GetAction() != "RotateLeft"){
 		SetAction("RotateLeft");
 		Sound("SignalClick");
@@ -23,6 +24,7 @@ func ControlLeft(pClonk){
 
 func ControlRight(pClonk){
 	[$TxtRight$]
+	if(!EnergyCheck(1)) return(0);
 	if(GetAction() != "RotateRight"){
 		SetAction("RotateRight");
 		Sound("SignalClick");

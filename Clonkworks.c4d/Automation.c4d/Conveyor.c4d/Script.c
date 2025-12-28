@@ -278,3 +278,42 @@ public func ALKConnectType(){
 	}
 	return([GERL]);
 }
+
+//packaging
+public func ControlUpDouble(pClonk){
+	[$TxtPackage$]
+	if(GetProcedure(pClonk) != "PUSH") return(0);
+	if(IsLocked()) return(0);
+	CreateObject(PCNV)->DoDamage(GetDamage());
+	Sound("Connect");
+	RemoveObject();
+}
+
+func NotLocked(){ return(!IsLocked()); }
+
+public func ContextPackage(pClonk){
+	[$TxtPackage$|Image=PCNV|Condition=NotLocked]
+	AddCommand(pClonk,"Call",this(),pClonk,0,0,38*999,"ControlUpDouble");
+	AddCommand(pClonk,"Grab",this());
+}
+
+//snap
+public func ControlLeftDouble(pClonk){
+	[$TxtSnapLeft$]
+	if(IsLocked()) return(0);
+	var Neighbour;
+	if(Neighbour = FindObject2(Find_Func("IsLocked"),Find_ID(GetID()),Find_OnLine(-95,0,-86,0),Find_NoContainer())){
+		Lock(0,1);
+		SetPosition(GetX(Neighbour)+86,GetY(Neighbour));
+	}
+}
+
+public func ControlRightDouble(pClonk){
+	[$TxtSnapRight$]
+	if(IsLocked()) return(0);
+	var Neighbour;
+	if(Neighbour = FindObject2(Find_Func("IsLocked"),Find_ID(GetID()),Find_OnLine(86,0,95,0),Find_NoContainer())){
+		Lock(0,1);
+		SetPosition(GetX(Neighbour)-86,GetY(Neighbour));
+	}
+}
