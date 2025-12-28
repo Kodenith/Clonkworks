@@ -147,10 +147,15 @@ private func WillObjectGetStuck(pObj,Xd){
 
 private func MoveItems(iX){
 	if(!iX || Speed == 0) return(0);
+	
+	//desnow
+	//if(!FindObject(STSN)) DigFreeRect(GetX()-43,GetY()-7,86,2); <- this lags!
+	
 	//above
 	var OnTop = ObjectsOnTop();
 	if(OnTop && GetLength(OnTop) != 0) 
 	for(var i in OnTop){
+		if((GetCategory(i) & C4D_Living) && FindObject(WKCV)) continue;
 		if(GetProcedure(i) == "FLOAT" || GetProcedure(i) == "ClIMB" || GetProcedure(i) == "HANGLE" || GetProcedure(i) == "FLIGHT") continue;
 		var wasStuckBefore = Stuck(i);
 		if(Contained(i)) continue;
@@ -170,6 +175,7 @@ private func MoveItems(iX){
 	var Below = ObjectsBelow();
 	if(Below && GetLength(Below) != 0) 
 	for(var i in Below){
+		if((GetCategory(i) & C4D_Living) && FindObject(WKCV)) continue;
 		var wasStuckBefore = Stuck(i);
 		if(Contained(i)) continue;
 		
@@ -303,8 +309,8 @@ public func ControlLeftDouble(pClonk){
 	if(IsLocked()) return(0);
 	var Neighbour;
 	if(Neighbour = FindObject2(Find_Func("IsLocked"),Find_ID(GetID()),Find_OnLine(-95,0,-86,0),Find_NoContainer())){
-		Lock(0,1);
 		SetPosition(GetX(Neighbour)+86,GetY(Neighbour));
+		Lock(0,1);
 	}
 }
 
@@ -313,7 +319,7 @@ public func ControlRightDouble(pClonk){
 	if(IsLocked()) return(0);
 	var Neighbour;
 	if(Neighbour = FindObject2(Find_Func("IsLocked"),Find_ID(GetID()),Find_OnLine(86,0,95,0),Find_NoContainer())){
-		Lock(0,1);
 		SetPosition(GetX(Neighbour)-86,GetY(Neighbour));
+		Lock(0,1);
 	}
 }

@@ -13,6 +13,7 @@ func DoAttachment(){
 	if(Target && !FindObject2(Find_Action("Push"), Find_ActionTarget(this())) ){
 		var i,c;
 		while(c = Contents(i++,Target,0)){
+			if(!(GetCategory(c) & C4D_Object)) continue;
 			if( (!FilterPath && FilterCompatibleItem(c)) || (FilterPath && !FilterCompatibleItem(c)) ){
 				Exit(c);
 				SetX(GetX(),c);

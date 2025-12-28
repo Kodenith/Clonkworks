@@ -1,0 +1,1 @@
+Clonks and other living creatures are unaffacted by conveyors.
