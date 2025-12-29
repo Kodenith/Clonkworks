@@ -2,7 +2,7 @@
 Name=Line-Flint
 id=LFLN
 Version=4,9,8
-Category=C4D_Object|C4D_SelectMaterial|C4D_SelectHomebase
+Category=3600
 MaxUserSelect=10
 Value=25
 Mass=10

@@ -22,7 +22,7 @@ protected func Initialize() {
 	RequireRotor = 1;
   // Im Freien erzeugte Brückensegmente sind verankert
   if (!Contained())
-    Lock(1, 1);
+    if(!ControlLeftDouble() && !ControlRightDouble()) Lock(1, 1);
   return(1);
 }
 
@@ -155,6 +155,7 @@ private func MoveItems(iX){
 	var OnTop = ObjectsOnTop();
 	if(OnTop && GetLength(OnTop) != 0) 
 	for(var i in OnTop){
+		if(ObjectOnOtherConveyor(i) && ObjectNumber() < ObjectNumber(ObjectOnOtherConveyor(i))) continue;
 		if((GetCategory(i) & C4D_Living) && FindObject(WKCV)) continue;
 		if(GetProcedure(i) == "FLOAT" || GetProcedure(i) == "ClIMB" || GetProcedure(i) == "HANGLE" || GetProcedure(i) == "FLIGHT") continue;
 		var wasStuckBefore = Stuck(i);
@@ -192,11 +193,11 @@ private func MoveItems(iX){
 }
 
 private func ObjectsOnTop(){
-	return(FindObjects(Find_OnLine(-34,-10,34,-10),Find_Not(Find_Category(C4D_Structure)),Find_Not(Find_Category(C4D_StaticBack)), Find_Not(Find_ID(BRDG)), Find_Not(Find_ID(CNVY))));
+	return(FindObjects(Find_OnLine(-40,-10,40,-10),Find_Not(Find_Category(C4D_Structure)),Find_Not(Find_Category(C4D_StaticBack)), Find_Not(Find_ID(BRDG)), Find_Not(Find_ID(CNVY))));
 }
 
 private func ObjectsBelow(){
-	return(FindObjects(Find_OnLine(-34,10,34,10),Find_FuncEqual("GetProcedure()","HANGLE")));
+	return(FindObjects(Find_OnLine(-40,10,40,10),Find_FuncEqual("GetProcedure()","HANGLE")));
 }
 
 public func ObjectOnTop(pObj){
@@ -209,6 +210,13 @@ public func ObjectOnTop(pObj){
 public func ObjectOnConveyor(pObj){
 	for(var i in FindObjects(Find_ID(CNVY))){
 		if(i->ObjectOnTop(pObj)) return(1);
+	}
+	return(0);
+}
+
+public func ObjectOnOtherConveyor(pObj){
+	for(var i in FindObjects(Find_ID(CNVY),Find_Exclude(this()))){
+		if(i->ObjectOnTop(pObj)) return(i);
 	}
 	return(0);
 }
@@ -309,8 +317,9 @@ public func ControlLeftDouble(pClonk){
 	if(IsLocked()) return(0);
 	var Neighbour;
 	if(Neighbour = FindObject2(Find_Func("IsLocked"),Find_ID(GetID()),Find_OnLine(-95,0,-86,0),Find_NoContainer())){
-		SetPosition(GetX(Neighbour)+86,GetY(Neighbour));
+		SetPosition(GetX(Neighbour)+85,GetY(Neighbour));
 		Lock(0,1);
+		return(1);
 	}
 }
 
@@ -319,7 +328,8 @@ public func ControlRightDouble(pClonk){
 	if(IsLocked()) return(0);
 	var Neighbour;
 	if(Neighbour = FindObject2(Find_Func("IsLocked"),Find_ID(GetID()),Find_OnLine(86,0,95,0),Find_NoContainer())){
-		SetPosition(GetX(Neighbour)-86,GetY(Neighbour));
+		SetPosition(GetX(Neighbour)-85,GetY(Neighbour));
 		Lock(0,1);
+		return(1);
 	}
 }
