@@ -7,7 +7,7 @@ func MoveGrabbed(){
 	if(!Grabbed || Contained(Grabbed)){
 		SetAction("Moving");
 		Sound("Click");
-		FinishCommand();
+		EndAllCommands();
 		return(1);
 	}
 	SetPosition(GetX()+GetVertex(0,0),GetY()+GetVertex(0,1),Grabbed);
@@ -15,16 +15,25 @@ func MoveGrabbed(){
 	SetYDir(0,Grabbed);
 }
 
+func EndAllCommands(){
+	FinishCommand(this(),0,4);
+	FinishCommand(this(),0,3);
+	FinishCommand(this(),0,2);
+	FinishCommand(this(),0,1);
+	FinishCommand(this(),0,0);
+}
+
 func Grab(){
 	var iItem = Grabtarg;
 	if(!iItem) return(0);
 	if(GetAction() == "Idle") return(0);
-	if(ObjectDistance(this(),iItem) <= 20){
+	if(ObjectDistance(this(),iItem) <= 20 && !ObjectOnClaw(Grabtarg)){
 		Sound("Click");
 		SetAction("Grab");
 		return(1);
 	}else{
 		Grabtarg = 0;
+		EndAllCommands();
 		return(0);
 	}
 }
@@ -48,4 +57,10 @@ func GrabAndDropOff(iItem,dX,dY){
 	AddCommand(this(),"MoveTo",0,dX,dY,0,38*6);
 	AddCommand(this(),"Call",this(),0,0,0,0,"Grab");
 	AddCommand(this(),"MoveTo",iItem,0,0,0,38*6);
+}
+
+global func ObjectOnClaw(pObj){
+	for(var i in FindObjects(Find_ID(MAM2))){
+		if(GetAction(i) == "Grab" && LocalN("Grabtarg",i) == pObj) return(1);
+	}
 }

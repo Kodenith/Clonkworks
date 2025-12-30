@@ -128,7 +128,7 @@ func ControlLeft(pClonk){
 	var Move = PointerList[SelectedPointer];
 	if(!Move) return(0);
 	SetX(GetX(Move)-Incrementation(),Move);
-	if(ObjectDistance(this(),Move) > 180) SetX(GetX(Move)+Incrementation(),Move);
+	if(ObjectDistance(this(),Move) > 150) SetX(GetX(Move)+Incrementation(),Move);
 	Sound("CatapultSet");
 }
 
@@ -137,7 +137,7 @@ func ControlRight(pClonk){
 	var Move = PointerList[SelectedPointer];
 	if(!Move) return(0);
 	SetX(GetX(Move)+Incrementation(),Move);
-	if(ObjectDistance(this(),Move) > 180) SetX(GetX(Move)-Incrementation(),Move);
+	if(ObjectDistance(this(),Move) > 150) SetX(GetX(Move)-Incrementation(),Move);
 	Sound("CatapultSet");
 }
 
@@ -146,7 +146,7 @@ func ControlUp(pClonk){
 	var Move = PointerList[SelectedPointer];
 	if(!Move) return(0);
 	SetY(GetY(Move)-Incrementation(),Move);
-	if(ObjectDistance(this(),Move) > 180) SetY(GetY(Move)+Incrementation(),Move);
+	if(ObjectDistance(this(),Move) > 150) SetY(GetY(Move)+Incrementation(),Move);
 	Sound("CatapultSet");
 }
 
@@ -155,7 +155,7 @@ func ControlDown(pClonk){
 	var Move = PointerList[SelectedPointer];
 	if(!Move) return(0);
 	SetY(GetY(Move)+Incrementation(),Move);
-	if(ObjectDistance(this(),Move) > 180) SetY(GetY(Move)-Incrementation(),Move);
+	if(ObjectDistance(this(),Move) > 150) SetY(GetY(Move)-Incrementation(),Move);
 	Sound("CatapultSet");
 }
 
@@ -278,7 +278,7 @@ public func ContextPackage(pClonk){
 //mouse
 func ControlCommand(strCommand,pTarget,iTx,iTy,pTarget2,iData,pCmdObj){
 	if(strCommand == "MoveTo"){
-		if(Distance(GetX(),GetY(),iTx,iTy) < 180){
+		if(Distance(GetX(),GetY(),iTx,iTy) < 150){
 			var Select = PointerList[SelectedPointer];
 			SetPosition(iTx,iTy,Select);
 			Sound("CatapultSet");

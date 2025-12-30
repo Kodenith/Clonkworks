@@ -211,7 +211,7 @@ public func ObjectOnTop(pObj){
 	if(InArray(pObj,OnTop) != -1) return(1);
 }
 
-public func ObjectOnConveyor(pObj){
+global func ObjectOnConveyor(pObj){
 	for(var i in FindObjects(Find_ID(CNVY))){
 		if(i->ObjectOnTop(pObj)) return(1);
 	}
@@ -232,7 +232,7 @@ public func ObjectBelow(pObj){
 	if(InArray(pObj,Below) != -1) return(1);
 }
 
-public func ObjectBelowConveyor(pObj){
+global func ObjectBelowConveyor(pObj){
 	for(var i in FindObjects(Find_ID(CNVY))){
 		if(i->ObjectBelow(pObj)) return(1);
 	}
