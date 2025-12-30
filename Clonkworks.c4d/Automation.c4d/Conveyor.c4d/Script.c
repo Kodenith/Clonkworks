@@ -187,17 +187,18 @@ private func MoveItems(iX){
 			SetX(GetX(i)-(-iX/4),i);
 		
 		if(!ObjectBelowConveyor(i)){
+			i->SetAction("Tumble");
 			SetXDir(GetXDir(i)-Speed/3,i);
 		}
 	}
 }
 
 private func ObjectsOnTop(){
-	return(FindObjects(Find_OnLine(-40,-10,40,-10),Find_Not(Find_Category(C4D_Structure)),Find_Not(Find_Category(C4D_StaticBack)), Find_Not(Find_ID(BRDG)), Find_Not(Find_ID(CNVY))));
+	return(FindObjects(Find_OnLine(-35,-10,35,-10),Find_Not(Find_Category(C4D_Structure)),Find_Not(Find_Category(C4D_StaticBack)), Find_Not(Find_ID(BRDG)), Find_Not(Find_ID(CNVY))));
 }
 
 private func ObjectsBelow(){
-	return(FindObjects(Find_OnLine(-40,10,40,10),Find_FuncEqual("GetProcedure()","HANGLE")));
+	return(FindObjects(Find_OnLine(-35,10,35,10),Find_FuncEqual("GetProcedure()","HANGLE")));
 }
 
 public func ObjectOnTop(pObj){
