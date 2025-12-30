@@ -1,1 +1,0 @@
-This dispenser can be attached to structures only, and then given a filter. Items matching the criteria will be moved out.

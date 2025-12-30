@@ -1,0 +1,9 @@
+[DefCore]
+Name=Filter Pointer
+id=MAM3
+Version=4,9,8
+Category=58720257
+Width=22
+Height=22
+Offset=-11,-11
+Picture=0,0,22,22

@@ -1,0 +1,2 @@
+DE:Filterzeiger
+US:Filter Pointer

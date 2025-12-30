@@ -10,10 +10,11 @@ func Collect(i,o){
 
 func Find(){
 	var find;
-	if(find = FindObject2(Find_AtPoint(),Find_OCF(OCF_Collectible),Find_NoContainer())){
-		if(GetAlive(find)) return(0);
+	find = FindObjects(Find_AtPoint(),Find_OCF(OCF_Collectible),Find_NoContainer());
+	for(var f in find){
+		if(GetAlive(f)) return(0);
 		Source->Sound("Clonk");
-		Enter(Source,find);
+		Enter(Source,f);
 	}
 	
 	if(GetY() > GetY(Source)+150){

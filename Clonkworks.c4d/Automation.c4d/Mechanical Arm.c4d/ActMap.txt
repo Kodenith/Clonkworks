@@ -1,0 +1,5 @@
+[Action]
+Name=Rotate
+Length=8
+Facet=0,67,39,64,0,-1
+EnergyUsage=200

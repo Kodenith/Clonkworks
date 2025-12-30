@@ -1,0 +1,12 @@
+TxtLeft=Cursor nach links bewegen
+TxtRight=Cursor nach rechts bewegen
+TxtUp=Cursor nach oben bewegen
+TxtDown=Cursor nach unten bewegen
+TxtDelete=Cursor löschen
+TxtUngrab=Loslassen
+
+TxtMenu=Menü öffnen
+TxtMenu2=Menü Mechanischer Arm
+TxtOption1=Neuen Cursor hinzufügen
+TxtOption2=Auswählen: %s
+TxtAdded=Cursor hinzugefügt: %s

@@ -1,0 +1,8 @@
+This arm grabs nearby assigned items and moves them to a desired spot. Useful for automatically putting stuff on conveyors or into vehicles.
+
+Instructions:
+* Grab to operate. Press dig once to ungrab.
+* Use the Throw key to enter the filter menu, where you can add and select filters.
+* Once a filter is selected, using movement keys will move the drop-off spot of the filtered item.
+* Pressing dig twice removes a filter.
+* Once set up, the arm will automatically pick up and move items. As long as its powered. Make sure items to be collected aren't close to the dropoff point.

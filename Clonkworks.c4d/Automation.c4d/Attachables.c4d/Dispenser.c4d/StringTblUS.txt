@@ -1,5 +1,0 @@
-TxtNoFound=No compatible objects found!
-TxtFoundLost=Object Lost!
-TxtSelect=Attach: %s
-TxtAttach=Attach
-TxtAttachSuccess=Attached %s to %s.

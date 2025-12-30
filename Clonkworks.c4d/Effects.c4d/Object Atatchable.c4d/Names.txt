@@ -1,2 +1,0 @@
-DE:Grundlegendes Gebäude-/Fahrzeug-Anhängsel
-US:Basic Building/Vehicle Attached Item
