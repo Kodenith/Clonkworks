@@ -86,6 +86,14 @@ func Logic(){
 	}
 	
 	if(GetAction(Claw) == "Idle") return(0);
+	
+	//dont let the claw go beyond its limits
+	if(ObjectDistance(this(),Claw) > 150){
+		Claw->EndAllCommands();
+		SetCommand(Claw,"MoveTo",0,GetX(),GetY()+40);
+		return(0);
+	}
+	
 	if(!GetCommand(Claw)){
 		SetXDir(0,Claw); SetYDir(0,Claw);
 		if(ObjectDistance(this(),Claw) < 50) RefreshRope();
