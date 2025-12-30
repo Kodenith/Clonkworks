@@ -34,7 +34,7 @@ func Grab(){
 	}else{
 		Grabtarg = 0;
 		EndAllCommands();
-		return(0);
+		return(1);
 	}
 }
 
@@ -52,6 +52,10 @@ func Release(){
 }
 
 func GrabAndDropOff(iItem,dX,dY){
+	if(Grabtarg){
+		Release();
+		return(0);
+	}
 	Grabtarg = iItem;
 	AddCommand(this(),"Call",this(),0,0,0,38*6,"Release");
 	AddCommand(this(),"MoveTo",0,dX,dY,0,38*6);
@@ -64,3 +68,6 @@ global func ObjectOnClaw(pObj){
 		if(GetAction(i) == "Grab" && LocalN("Grabtarg",i) == pObj) return(1);
 	}
 }
+
+//func IgnoreConveyor(){ return(1); }
+//if the claw is a vehicle it bounces weirdly

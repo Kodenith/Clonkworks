@@ -95,6 +95,7 @@ func Logic(){
 	}
 	
 	if(!GetCommand(Claw)){
+		if(LocalN("Grabtarg",Claw)) Claw->Release();
 		SetXDir(0,Claw); SetYDir(0,Claw);
 		if(ObjectDistance(this(),Claw) < 50) RefreshRope();
 		if(FindNeedMove()){

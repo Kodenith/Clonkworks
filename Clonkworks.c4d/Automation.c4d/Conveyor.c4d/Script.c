@@ -157,6 +157,7 @@ private func MoveItems(iX){
 	for(var i in OnTop){
 		if(ObjectOnOtherConveyor(i) && ObjectNumber() < ObjectNumber(ObjectOnOtherConveyor(i))) continue;
 		if((GetCategory(i) & C4D_Living) && FindObject(WKCV)) continue;
+		if(i->~IgnoreConveyor()) continue;
 		if(GetProcedure(i) == "FLOAT" || GetProcedure(i) == "ClIMB" || GetProcedure(i) == "HANGLE" || GetProcedure(i) == "FLIGHT") continue;
 		var wasStuckBefore = Stuck(i);
 		if(Contained(i)) continue;

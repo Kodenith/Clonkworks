@@ -20,7 +20,7 @@ func GetUseable(){
 	var FoundItems = FindObjects(Find_NoContainer(),Find_Distance(150,AbsX(GetX(Avoid)),AbsY(GetY(Avoid))),Find_ID(Filt),Find_Not( Find_Distance(40)),Sort_Distance());
 	var Found;
 	for(var i in FoundItems){
-		if(!Stuck(i) && Abs(GetXDir(i)) < 5 && Abs(GetYDir(i)) < 5 && !ObjectOnClaw(i)){
+		if(!Stuck(i) && Abs(GetXDir(i)) < 5 && Abs(GetYDir(i)) < 5 && !ObjectOnClaw(i) && !ObjectOnConveyor(i)){
 			Found = i;
 			break;
 		}
