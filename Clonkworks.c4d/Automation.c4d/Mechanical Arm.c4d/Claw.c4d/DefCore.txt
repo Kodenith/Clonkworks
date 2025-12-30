@@ -16,6 +16,7 @@ Rotate=1
 SilentCommands=1
 Pathfinder=5
 Components=CPIG=2
+NoTransferZones=1
 
 [Physical]
 Float=200
