@@ -10,6 +10,7 @@ local Rope;
 
 func Initialize() {
   SetAction("Rotate");
+  SetPhase(4);
   CreateClaw();
   PointerList = [];
   return(_inherited());
@@ -17,6 +18,7 @@ func Initialize() {
 
 func CreateClaw(){
 	Claw = CreateObject(MAM2,0,40);
+	ClawResort();
 	var rope = CreateObject(CK5P);
 	rope->ConnectObjects(this(),Claw);
 	LocalN("fNoPickUp_0",rope) = true;
@@ -43,6 +45,11 @@ func Logic(){
 	if(GetAction() != "Rotate") SetAction("Rotate");
 	Claw->SetRDir(0);
 	Claw->SetR(Angle(GetX(),GetY(),GetX(Claw),GetY(Claw))+180);
+	
+	if(Abs(GetActTime())%350==0){
+		ClawResort();
+	}
+	
 	if(!EnergyCheck(1)){
 		Claw->SetAction("Idle");
 		Claw->FinishCommand();
@@ -97,7 +104,9 @@ func Logic(){
 	if(!GetCommand(Claw)){
 		if(LocalN("Grabtarg",Claw)) Claw->Release();
 		SetXDir(0,Claw); SetYDir(0,Claw);
-		if(ObjectDistance(this(),Claw) < 50) RefreshRope();
+		if(ObjectDistance(this(),Claw) < 50){
+			RefreshRope();
+		}
 		if(FindNeedMove()){
 			var need = FindNeedMove();
 			var needId = GetID(need);
@@ -127,6 +136,13 @@ func RefreshRope(){
 	LocalN("fNoPickUp_1",rope) = true;
 	rope->SetRopeLength(100);
 	Rope = rope;
+}
+
+func ClawResort(){
+	for(var i in FindObjects(Find_Category(C4D_Structure),Find_Not(Find_ID(MAM2)))){
+		SetObjectOrder(i,Claw);
+	}
+	DebugLog("%v Resorted",Claw);
 }
 
 //Movement
