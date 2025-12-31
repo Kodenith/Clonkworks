@@ -195,7 +195,7 @@ private func MoveItems(iX){
 }
 
 private func ObjectsOnTop(){
-	var Objects = FindObjects(Find_OnLine(-40,-10,40,-10),Find_Not(Find_Category(C4D_Structure)),Find_Not(Find_Category(C4D_StaticBack)), Find_Not(Find_ID(BRDG)), Find_Not(Find_ID(CNVY)),Find_Not(Find_OCF(OCF_CrewMember)),Find_NoContainer());
+	var Objects = FindObjects(Find_OnLine(-41,-10,41,-10),Find_Not(Find_Category(C4D_Structure)),Find_Not(Find_Category(C4D_StaticBack)), Find_Not(Find_ID(BRDG)), Find_Not(Find_ID(CNVY)),Find_Not(Find_OCF(OCF_CrewMember)),Find_NoContainer());
 	var Clonks =  FindObjects(Find_OnLine(-34,-10,34,-10),Find_OCF(OCF_CrewMember),Find_NoContainer());
 	ArrayAddArray(Objects,Clonks,1);
 	return(Objects);
