@@ -1,0 +1,6 @@
+Bei diesem Tor kommen die Gegenstände von den Seiten. Wenn der festgelegte Wert über Null liegt, kann der Gegenstand passieren. Andernfalls fällt er nach unten.
+
+Das Verhalten kann durch zweimaliges Drücken der Aufwärts-Taste geändert werden.
+Verwenden Sie Werfen und Links, um zu erhöhen oder zu verringern.
+
+So steuerst du die Röhre: Drücke nach oben oder unten, um die Richtung zu ändern, und grabe, um anzuhalten.

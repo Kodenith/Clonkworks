@@ -1,6 +1,6 @@
 [DefCore]
 Name=Filter Gate
-id=FTG4
+id=FTGN
 Version=4,9,8
 Category=C4D_Structure|C4D_SelectBuilding
 MaxUserSelect=5

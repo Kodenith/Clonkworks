@@ -1,0 +1,6 @@
+For this gate, items come from the sides. If the set amount is above zero, the item may pass. otherwise it goes down.
+
+Behaviour can be modified by pressing Up twice.
+Use Throw and Left to Increment or Decrement.
+
+To control the pipe: Press up or down to toggle direction, and dig to stop.

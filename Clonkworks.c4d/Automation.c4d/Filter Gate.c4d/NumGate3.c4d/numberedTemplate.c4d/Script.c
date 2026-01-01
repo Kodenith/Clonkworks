@@ -56,7 +56,7 @@ public func ContextDoTurn(pClonk){
 	AddCommand(pClonk,"Grab",this());
 }
 public func SelectableGate(){
-	return(1);
+	return(0);
 }
 
 func Initialize() {
