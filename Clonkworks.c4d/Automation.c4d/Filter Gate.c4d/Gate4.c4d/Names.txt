@@ -1,0 +1,2 @@
+DE:Betrag Gate
+US:Amount Gate

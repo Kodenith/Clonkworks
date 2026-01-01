@@ -1,0 +1,10 @@
+TxtMenu1=Decrease
+TxtDeconstruct=Deconstruct
+TxtTurn=Increase
+TxtChange=Change Type
+
+Temp1=Products
+Temp2=Smeltable
+Temp3=Fuel
+Temp4=Fragile
+Temp5=Flammable
