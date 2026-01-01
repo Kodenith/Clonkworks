@@ -74,3 +74,10 @@ func FxMTLDLogicTimer(object pTarget, int iEffectNumber, int iEffectTime){
 //public funcs
 public func IsAnvilProduct(){ return(1); }
 public func IsAdvancedProduct(){ return(1); }
+
+public func Malfunction(){
+	if(!Search) return(0);
+	Sound("Click");
+	Search = 0;
+	return(1);
+}

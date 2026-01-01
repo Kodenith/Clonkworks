@@ -1,0 +1,1 @@
+Deactivates or scrambles the systems of nearby electronics upon exploding. the explosion is otherwise harmless.

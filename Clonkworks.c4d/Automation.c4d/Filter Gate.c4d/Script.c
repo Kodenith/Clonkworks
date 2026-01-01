@@ -168,3 +168,8 @@ private func FilterCompatibleItem(pItem){
 		if(pId == Filter) return(1);
 	}
 }
+
+func Malfunction(){
+	FilterPath = !FilterPath;
+	Filter = ERTH;
+}

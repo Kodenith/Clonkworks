@@ -66,3 +66,7 @@ func IsAdvancedProduct(){ return(1); }
 public func GetResearchBase(){
 	return(CNVY);
 }
+
+public func Malfunction(){
+	ControlUp();
+}

@@ -60,3 +60,7 @@ protected func Hit()
 
 func IsMetal(){ return(true); }
 func IsAnvilProduct(){ return(1); }
+
+func Malfunction(){
+	Activate();
+}

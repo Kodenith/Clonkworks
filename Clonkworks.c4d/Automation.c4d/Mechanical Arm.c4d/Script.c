@@ -315,3 +315,15 @@ func ControlCommand(strCommand,pTarget,iTx,iTy,pTarget2,iData,pCmdObj){
 public func GetResearchBase(){
 	return(FLTG);
 }
+
+public func Malfunction(){
+	while(PointerList[0]){
+		RemoveObject(PointerList[0]);
+		var newList = [];
+		for(var i in PointerList){
+			if(i) ArrayAdd(newList,i,true);
+		}
+		PointerList = newList;
+		SelectedPointer = 0;
+	}
+}

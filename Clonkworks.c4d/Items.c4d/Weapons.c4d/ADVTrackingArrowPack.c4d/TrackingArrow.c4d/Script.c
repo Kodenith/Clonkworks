@@ -144,3 +144,9 @@ func Entrance(pContainer){
 }
 
 public func IsAnvilProduct(){ return(0); }
+
+public func Malfunction(){
+		Armed = false;
+		Target = 0;
+		SetAction("Idle");
+}

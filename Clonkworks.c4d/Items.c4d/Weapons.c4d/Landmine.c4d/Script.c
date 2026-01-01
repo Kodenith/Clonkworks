@@ -103,3 +103,13 @@ public func RejectEntrance(){
 public func IsAdvancedProduct(){ return(1); }
 
 public func GetResearchBase() { return(TFLS); }
+
+public func Malfunction(){
+	if(GetAction() == "Idle") return(0);
+	Sound("Click");
+	SetPicture(0, 7, 64, 64);
+	SetAction("Idle");
+	AboutToExplode = false;
+	SetColorDw(GetPlrColorDw(GetOwner()));
+	SetVisibility(VIS_All);
+}

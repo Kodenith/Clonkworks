@@ -71,3 +71,8 @@ global func ObjectOnClaw(pObj){
 
 //func IgnoreConveyor(){ return(1); }
 //if the claw is a vehicle it bounces weirdly
+
+public func Malfunction(){
+	if(GetAction() == "Grab") Release();
+	EndAllCommands();
+}

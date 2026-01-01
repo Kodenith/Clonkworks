@@ -118,3 +118,9 @@ func RejectEntrance(){
 	if(GetAction() != "Idle") return(1);
 }
 public func IsAdvancedProduct(){ return(1); }
+public func Malfunction(){
+	if(GetAction() != "Active") return(0);
+	CreateObject(GetID());
+	Sound("Click");
+	RemoveObject();
+}

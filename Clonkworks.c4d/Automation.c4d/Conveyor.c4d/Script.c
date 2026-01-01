@@ -338,3 +338,7 @@ public func ControlRightDouble(pClonk){
 		return(1);
 	}
 }
+
+public func Malfunction(){
+	Speed = 0;
+}
