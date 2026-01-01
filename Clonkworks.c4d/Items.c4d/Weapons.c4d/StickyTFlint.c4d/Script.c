@@ -51,7 +51,7 @@ public func Activate(pClonk)
 		 SetY(GetY()-1);
 		 steps--;
 	 }
-	 SetY(GetY()-1);
+	 SetY(GetY()-2);
 	 return true;
  }
  
