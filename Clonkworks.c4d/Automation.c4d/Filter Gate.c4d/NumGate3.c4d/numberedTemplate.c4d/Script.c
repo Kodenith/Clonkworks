@@ -42,19 +42,12 @@ func RejectCollect(pId,pObj){
 	return(1);
 }
 
-func ControlThrow(pObj){
-	[$TxtTurn$|Image=WIPF]
-	if(GetProcedure(pObj) != "PUSH") return(0);
-	if(GetActionTarget(0,pObj) != this()) return(0);
-	Sound("SignalClick");
-	Amount++;
-}
-
-public func ContextDoTurn(pClonk){
-	[$TxtTurn$|Image=WIPF|Condition=IsBuilt]
-	AddCommand(pClonk,"Call",this(),0,0,0,0,"ControlThrow");
+public func ContextDoFilter(pClonk){
+	[$TxtMenu1$|Image=WIPF|Condition=IsBuilt]
+	AddCommand(pClonk,"Call",this(),0,0,0,0,"ControlLeft");
 	AddCommand(pClonk,"Grab",this());
 }
+
 public func SelectableGate(){
 	return(0);
 }
@@ -67,17 +60,35 @@ func Initialize() {
 }
 
 func ControlLeft(pObj){
-	[$TxtMenu1$|Image=FMNS]
+	[$TxtMenu1$|Image=WIPF]
 	if(GetProcedure(pObj) != "PUSH") return(0);
 	if(GetActionTarget(0,pObj) != this()) return(0);
-	Sound("SignalClick");
-	Amount--;
+	CreateMenu(GetID(),pObj,this(),,"$TxtMenu1$",,1);
+	AddMenuItem("$TxtTurn$","DoValue",WIPF,pObj,0,pObj);
+	AddMenuItem("$Decr$","DoValue",FMNS,pObj,0,pObj);
+	AddMenuItem("$TxtFin$","DoValue",,pObj,Amount,pObj);
 }
 
-public func ContextDoFilter(pClonk){
-	[$TxtMenu1$|Image=FMNS|Condition=IsBuilt]
-	AddCommand(pClonk,"Call",this(),0,0,0,0,"ControlLeft");
-	AddCommand(pClonk,"Grab",this());
+func DoValue(pid,pObj){
+	if(GetProcedure(pObj) != "PUSH") return(CloseMenu(pObj));
+	if(GetActionTarget(0,pObj) != this()) return(CloseMenu(pObj));
+	if(!pid) return(CloseMenu(pObj));
+	
+	if(pid == WIPF){
+		Sound("CatapultSet");
+		Amount++;
+	}
+	
+	if(pid == FMNS){
+		Sound("CatapultSet");
+		Amount--;
+	}
+	
+	if(Amount < 0) Amount = 0;
+	if(Amount > 99) Amount = 99;
+	
+	ControlLeft(pObj);
+	if(pid == FMNS) SelectMenuItem(1,pObj);
 }
 
 private func GetNumberID(i)

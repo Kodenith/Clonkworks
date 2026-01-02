@@ -54,7 +54,7 @@ func RejectCollect(pId,pObj){
 	return(1);
 }
 
-func ControlUpDouble(pObj){
+func ControlThrow(pObj){
 	[$TxtTurn$|Image=SG01:1]
 	if(GetProcedure(pObj) != "PUSH") return(0);
 	if(GetActionTarget(0,pObj) != this());
@@ -82,12 +82,6 @@ private func Move(){
 		SetXDir(0,AdditionalObject);
 		SetYDir(0,AdditionalObject);
 	}
-}
-
-public func ContextTurn(pClonk){
-	[$TxtTurn$|Image=SG01:1|Condition=IsBuilt]
-	AddCommand(pClonk,"Call",this(),0,0,0,0,"ControlUpDouble");
-	AddCommand(pClonk,"Grab",this());
 }
 
 public func SelectableGate(){
