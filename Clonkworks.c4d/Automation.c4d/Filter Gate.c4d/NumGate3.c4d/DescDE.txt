@@ -1,6 +1,5 @@
-Bei diesem Tor kommen die Gegenstände von den Seiten. Wenn der festgelegte Wert über Null liegt, kann der Gegenstand passieren. Andernfalls fällt er nach unten.
+Bei diesem Tor kommen die Gegenstände aus dem steuerbaren Rohr darunter. Ist die Menge größer als 0, wird der Gegenstand standardmäßig nach links transportiert, andernfalls in die entgegengesetzte Richtung.
 
-Das Verhalten kann durch zweimaliges Drücken der Aufwärts-Taste geändert werden.
-Verwenden Sie Werfen und Links, um zu erhöhen oder zu verringern.
+Funktioniert genauso wie die Version ohne Zahlen, aber Sie können den Wert durch Klicken mit der linken Maustaste ändern.
 
-So steuerst du die Röhre: Drücke nach oben oder unten, um die Richtung zu ändern, und grabe, um anzuhalten.
+So steuern Sie das Rohr: Drücken Sie nach oben oder unten, um die Richtung zu wechseln, und graben Sie, um anzuhalten.
