@@ -13,7 +13,7 @@ func isAnvilProduct(){
 func Activate(){
 	[$TxtDetach$]
 	var found;
-	if(found = FindObject2(Find_AtPoint(),Find_NoContainer(),Find_Func("CanBeDetached"))){
+	if(found = FindObject2(Find_OnLine(0,0,0,20),Find_NoContainer(),Find_Func("CanBeDetached"))){
 		Sound("Wrench*");
 		found->~OnDetach();
 	}

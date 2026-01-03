@@ -339,6 +339,13 @@ public func ControlRightDouble(pClonk){
 	}
 }
 
+//malfunction
 public func Malfunction(){
 	Speed = 0;
+}
+
+//detachment
+public func CanBeDetached(){ return(is_locked); }
+public func OnDetach(){
+	Release(0,1);
 }

@@ -1,1 +1,1 @@
-Can be used to detach things on walls and other objects.
+Can be used to detach things like conveyors or circuitry.
