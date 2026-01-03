@@ -71,7 +71,7 @@ func ThawOut(){
 			Sound("Gear",0,this(),0,0,-1);
 	}
 	
-	Message("%v",this(),Force);
+	//Message("%v",this(),Force);
 }
 
 //what advanced lines can be connected?
