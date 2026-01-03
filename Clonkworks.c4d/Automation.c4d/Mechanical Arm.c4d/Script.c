@@ -327,3 +327,5 @@ public func Malfunction(){
 		SelectedPointer = 0;
 	}
 }
+
+func IsAdvancedProduct(){ return(1); }

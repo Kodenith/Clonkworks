@@ -36,6 +36,7 @@ func ControlUp(pClonk){
 	if(GetAction() != "Idle"){
 		SetAction("Idle");
 		Sound("SignalClick");
+		Force=0;
 	}
 }
 

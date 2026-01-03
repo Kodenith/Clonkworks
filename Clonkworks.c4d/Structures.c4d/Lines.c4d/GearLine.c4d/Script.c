@@ -17,7 +17,7 @@ protected func Transfer()
   if(Contained()) Exit();
   var Rotor = GetActionTarget(0);
   var MainBelt = GetActionTarget(1);
-  if(GetID(MainBelt) != CNVY) return(0);
+  if(GetID(MainBelt) != CNVY && GetID(MainBelt) != RTR2) return(0);
   if(GetID(Rotor) == FNKT || MainBelt->GetAction() != "Movement"){
 	  LineBreak(1);
 	  RemoveObject();
@@ -34,6 +34,7 @@ protected func Transfer()
 public func AffectedConveyors(){
   var MainBelt = GetActionTarget(1);
   var Total = [];
+  if(GetID(MainBelt) != CNVY) return([MainBelt]);
   ArrayAddArray(Total,MainBelt->GetNeighboursLeft(7),1);
   ArrayAddArray(Total,MainBelt->GetNeighboursRight(7),1);
   return(Total);
