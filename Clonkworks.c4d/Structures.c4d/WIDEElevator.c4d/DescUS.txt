@@ -1,3 +1,0 @@
-A Wider and more resistant version of the normal elevator. Slower than regular.
-
-The elevator will automatically move to pick up waiting clonks, but may also be switched to permanent movement.

@@ -1,0 +1,3 @@
+TxtUp=Stop Mining
+TxtDown=Begin Mining
+TxtInfobar=Head Damage:

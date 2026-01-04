@@ -1,0 +1,8 @@
+[Action]
+Name=Broken
+Length=1
+Delay=15
+Facet=0,20,16,15,0,3
+NextAction=Broken
+StartCall=Rust
+

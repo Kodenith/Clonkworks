@@ -1,6 +1,0 @@
-TxtMine=Mine
-TxtOrder=Set Order
-TxtOrderSet=This Quarry now mines:|%s!
-TxtFail1=%s can't dig.
-TxtFail2=Only up to 5 clonks can mine.
-TxtFail3=Quarry owner hostile!

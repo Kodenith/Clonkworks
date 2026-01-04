@@ -1,0 +1,8 @@
+[Action]
+Name=Lift
+Delay=1
+Facet=100,0,2,8,44,14
+FacetBase=1
+FacetTargetStretch=1
+NextAction=Lift
+

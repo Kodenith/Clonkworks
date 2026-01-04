@@ -1,3 +1,0 @@
-Allows mining different kinds of ore, but the process is very slow. Up to 5 clonks can mine in 1 Quarry.
-
-Any lorry pushed inside will be filled and pushed out once filled.

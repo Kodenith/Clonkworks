@@ -1,3 +1,0 @@
-Eine breitere und widerstandsfähigere Version des normalen Aufzugs. Langsamer als der normale Aufzug.
-
-Der Fahrstuhl fährt automatisch zu wartenden Clonks, kann aber auch in den Dauerbetrieb geschaltet werden.

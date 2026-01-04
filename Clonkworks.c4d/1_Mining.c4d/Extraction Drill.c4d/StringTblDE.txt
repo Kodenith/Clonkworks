@@ -1,0 +1,3 @@
+TxtUp=Bergbau beenden
+TxtDown=Bergbau beginnen
+TxtInfobar=Kopfschaden:

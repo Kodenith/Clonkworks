@@ -1,6 +1,0 @@
-TxtMine=Bergwerk
-TxtOrder=Reihenfolge festlegen
-TxtOrderSet=Dieses Bergwerk baut jetzt ab:|%s!
-TxtFail1=%s kann nicht graben.
-TxtFail2=Nur bis zu 5 Clonks können abbauen.
-TxtFail3=Bergwerksbesitzer feindselig!

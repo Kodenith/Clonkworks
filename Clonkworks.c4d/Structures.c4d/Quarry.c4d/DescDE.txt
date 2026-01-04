@@ -1,3 +1,0 @@
-Ermöglicht den Abbau verschiedener Erze, allerdings ist der Prozess sehr langsam. Bis zu 5 Clonks können in einem Steinbruch abbauen.
-
-Jeder Lore, der hineingeschoben wird, wird befüllt und nach dem Befüllen wieder herausgeschoben.
