@@ -56,6 +56,7 @@ func DoMapChange(){
 	PlaceObjects(ROCK,15+(5*GetPlayerCount()),"GBackSolid",0,0,LandscapeWidth(),LandscapeHeight());
 	PlaceObjects(FLNT,15+(5*GetPlayerCount()),"GBackSolid",0,0,LandscapeWidth(),LandscapeHeight());
 	PlaceObjects(GOLD,15+(5*GetPlayerCount()),"GBackSolid",0,0,LandscapeWidth(),LandscapeHeight());
+	PlaceObjects(RDEP,5+(5*GetPlayerCount()),"GBackSolid",0,0,LandscapeWidth(),LandscapeHeight());
 	PlaceObjects(MEGG,GetPlayerCount(),"GBackSolid",0,0,LandscapeWidth(),LandscapeHeight());
 	for(var i = 0; i < 15+(GetPlayerCount()*5); i++){
 		var Placement = PlaceAnimal(WIPF);

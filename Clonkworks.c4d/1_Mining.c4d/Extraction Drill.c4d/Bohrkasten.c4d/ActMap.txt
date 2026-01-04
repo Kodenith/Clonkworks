@@ -11,6 +11,7 @@ Delay=1
 Facet=0,25,26,41,-1,0
 NextAction=DrillIdle
 Procedure=FLOAT
+DigFree=1
 
 [Action]
 Name=Drilling

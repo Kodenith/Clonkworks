@@ -14,8 +14,6 @@ func Damage(){
 }
 
 func Rust(){
-	SetR(0);
-	SetRDir(0);
 	DoCon(-1);
 }
 

@@ -30,3 +30,5 @@ NEW FUNCTIONS & USEFUL FEATURES FOR DEVELOPERS
 Viktor234
 sstj_clonkfan
 Other people included on the filename's of their scripts :)
+
+Pack also uses Elements from: SIEDELPACK

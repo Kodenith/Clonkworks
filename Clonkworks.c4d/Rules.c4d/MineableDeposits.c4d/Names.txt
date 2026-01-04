@@ -1,0 +1,2 @@
+DE:Abbaubare Lagerstätten
+US:Mineable Deposits

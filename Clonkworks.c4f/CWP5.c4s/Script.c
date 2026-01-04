@@ -49,3 +49,9 @@ public func RelaunchPlayer(Owner){
 	MakeCrewMember(conk,Owner);
 	SetCursor(Owner,conk);
 }
+
+//if the players summon meteors, might aswell be random :)
+global func GiantMeteoriteType(){ 
+var list=[RDEP,CDEP,ODEP,TDEP,GDEP];
+return(list[Random(4)]);
+}

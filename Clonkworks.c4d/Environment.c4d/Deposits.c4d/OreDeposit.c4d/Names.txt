@@ -1,0 +1,2 @@
+DE:Erzlagerstätte
+US:Ore Deposit

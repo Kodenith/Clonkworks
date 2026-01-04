@@ -24,4 +24,4 @@ VertexCNAT=4,8,8,4,8
 Collection=-12,2,24,10
 
 [Physical]
-Float=200
+Float=80

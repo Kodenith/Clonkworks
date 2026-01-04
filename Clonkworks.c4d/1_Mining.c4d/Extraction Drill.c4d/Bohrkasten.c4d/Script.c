@@ -32,7 +32,7 @@ func Timer(){
 		Durability = 0;
 		SetAction("NoHead");
 		Sound("Discharge");
-		SetComDir(COMD_Up);
+		//SetComDir(COMD_Up);
 		
 		var debri = CreateObject(EXDH,0,10);
 		SetR(180,debri);
@@ -44,7 +44,7 @@ func Timer(){
 		SetComDir(COMD_Stop);
 	}
 	
-	if(GetYDir() > 0 && GetAction() == "DrillIdle") SetAction("Drilling");
+	if((GetYDir() > 0 || GetComDir() == COMD_Down) && GetAction() == "DrillIdle") SetAction("Drilling");
 	if((GetYDir() < 0 || GetComDir() == COMD_Stop) && GetAction() == "Drilling") SetAction("DrillIdle");
 	
 	var head;
@@ -65,6 +65,9 @@ func PutHead(){
 func DoDrilling(){
 	if(GetActTime()%2 || GetActTime()%3) return(0);
 	if(GetContact(this(),-1) & CNAT_Bottom){
+		if(GetMaterial(0,GetVertex(4,1)+2) == Material("Vehicle") && FindObject2(Find_Func("IsOreDeposit"),Find_AtPoint(0,GetVertex(4,1)))){
+			return(MineDeposit(FindObject2(Find_Func("IsOreDeposit"),Find_AtPoint(0,GetVertex(4,1)))));
+		}
 		var X = GetVertex(4,0);
 		var Y = GetVertex(4,1);
 		Y += RandomX(-2,2);
@@ -72,7 +75,20 @@ func DoDrilling(){
 		
 		var Explo = CreateObject(FLNT,X,Y);
 		Explo->Explode(RandomX(10,15));
-		Durability -= RandomX(0,20);
+		Durability -= Random(10);
+	}
+}
+
+func MineDeposit(pDep){
+	var X = GetVertex(4,0);
+	var Y = GetVertex(4,1);
+	Y += RandomX(-2,2);
+	X += RandomX(-8,8);
+	
+	Durability -= Random(3);
+	CastParticles("PxSpark",5,100,X,Y,10,50,RGBa(255,255,0),RGBa(255,255,0));
+    if(pDep->~GetMined(this())){
+		CreateParticle("Blast", X,Y, 0,0, 100, RGBa(255,255,255,0));
 	}
 }
 
