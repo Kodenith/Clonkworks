@@ -53,5 +53,5 @@ public func RelaunchPlayer(Owner){
 //if the players summon meteors, might aswell be random :)
 global func GiantMeteoriteType(){ 
 var list=[RDEP,CDEP,ODEP,TDEP,GDEP];
-return(list[Random(4)]);
+return(list[RandomX(0,4)]);
 }

@@ -56,3 +56,46 @@ func ControlCommand(strCommand,pTarget,iTx,iTy,pTarget2,iData,pCmdObj){
 
 func IsAdvancedProduct(){ return(1); }
 func GetResearchBase(){ return(EFLN); }
+
+//INFOBAR
+public func InfobarTrigger(){
+	if(head) return(IB_Grab);
+}
+
+public func InfobarMax(){
+	return(500);
+}
+
+public func InfobarValue(){
+	return(LocalN("Durability",head));
+}
+
+public func InfobarColor(){
+	return(RGBa(255,215,0));
+}
+
+public func InfobarInfo(){
+	return("$TxtInfobar$");
+}
+
+//Context
+func NeedHead(){ return(LocalN("Durability",head) <= 0); }
+public func ContextApply(pClonk){
+	[$TxtApply$|Image=EXDH|Condition=NeedHead]
+	var head2 = FindObject2(Find_ID(EXDH),Find_Distance(400),Find_Not(Find_Action("Broken")));
+	if(head2){
+		AddCommand(pClonk,"PushTo",head2,0,0,head);
+	}else{
+		Message("$TxtNoHeads$",pClonk);
+		pClonk->Sound("CommandFailure1");
+	}
+}
+
+func CmdPushOutHelper(pObj){
+	SetCommand(pObj,"Exit");
+}
+
+//malfint
+func Malfunction(){
+	ControlUpSingle();
+}

@@ -21,6 +21,8 @@ Construction=1
 Timer=15
 TimerCall=Update
 LineConnect=35
+BlastIncinerate=80
+BurnTo=EXDW
 
 [Physical]
 Energy=100000
