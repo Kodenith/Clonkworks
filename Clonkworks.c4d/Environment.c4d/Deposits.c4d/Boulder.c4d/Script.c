@@ -101,14 +101,15 @@ func Incineration(){
 func Hit(){
 	if(!Random(3)) Sound("RockBreak*");
 	if(OnFire()){
-		if(!Random(10)){
+		if(!Random(10) && GetDamage() > 120){
+			  DoDamage(-999);
 			  SetR(RandomX(-180,180));
 			  SetSolidMask(GetPhase()*48, 0, 48, 48,0,0,this());
 			  SetCategory(1);
 			  CreateObject(FLNT)->Explode(RandomX(40,60));
+			  DoDamage(-999);
 			  Extinguish();
 			  MakeOre();
-			  DoDamage(-999);
 		}else{
 			var x = Par(0)/10; var y =  Par(1)/10;
 			CreateObject(FLNT)->Explode(RandomX(28,40));
@@ -149,6 +150,7 @@ for(var pItems in FindObjects(Find_Distance(150), Find_Category(C4D_Object), Fin
 }
 
 func LaunchMete(){
+    DoDamage(-999);
 	SetXDir(RandomX(-100,100));
 	Incinerate();
 	AddEffect("Meteo",this(),1,1,this());
@@ -157,21 +159,22 @@ func LaunchMete(){
 func FxMeteoTimer(){
 	if(GetCategory() & 1) return(-1);
 	if(!OnFire() || Stuck()){
+		    DoDamage(-999);
 			SetR(RandomX(-180,180));
 			SetSolidMask(GetPhase()*48, 0, 48, 48,0,0,this());
 			SetCategory(1);
 			CreateObject(FLNT)->Explode(RandomX(40,60));
+			DoDamage(-999);
 			Extinguish();
 			MakeOre();
-			DoDamage(-999);
 			return(-1);
 	}
 }
 
 func Damage(iChange){
-	if(GetDamage() > 200 && FindObject(RMND) && !OnFire()){
+	if(GetDamage() > 130 &&!OnFire()){
 		SetSolidMask();
-		var targ = RandomX(1,6);
+		var targ = RandomX(3,8);
 		for(var i = 0; i < targ; i++){
 				Fling(CreateObject(OreDepositType()),RandomX(-6,6),RandomX(-6,6));
 		}
