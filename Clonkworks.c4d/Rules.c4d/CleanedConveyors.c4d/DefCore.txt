@@ -8,5 +8,5 @@ Width=1
 Height=1
 Value=1
 Picture=0,0,64,64
-Timer=38
+Timer=20
 TimerCall=Clean

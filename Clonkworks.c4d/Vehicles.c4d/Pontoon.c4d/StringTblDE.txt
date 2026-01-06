@@ -1,8 +1,0 @@
-TxtLeft=Nach links gehen
-TxtRight=Nach rechts gehen
-TxtUp=Ausrüstung ablegen
-TxtRefuel=Auftanken
-TxtFuel=%d/600 Treibstoff.
-TxtStop=Stopp
-TxtCheck=Kraftstoff prüfen
-InfoFuel=Kraftstoff:

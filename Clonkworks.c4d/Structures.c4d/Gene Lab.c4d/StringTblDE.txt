@@ -1,5 +1,0 @@
-TxtSplice=Spleißen
-TxtCannotWork=%s wird derzeit hier verwendet.
-TxtCannotSplice=Zum Spleißen sind mindestens 4 gefüllte Spritzen erforderlich.
-TxtAdd=%s Essenz hinzufügen.
-TxtProgress=%d/4 ausgewählt.

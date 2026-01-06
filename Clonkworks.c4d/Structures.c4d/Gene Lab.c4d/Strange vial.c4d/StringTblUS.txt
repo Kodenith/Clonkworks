@@ -1,2 +1,0 @@
-TxtDrink=Drink
-TxtInfo=Contains essences of:| {{%v}} %s | {{%v}} %s | {{%v}} %s | {{%v}} %s

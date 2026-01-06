@@ -1,1 +1,0 @@
-Motorräder können Lebewesen überfahren und anfahren. (Deaktiviert auch Unfallschäden für den Fahrer.)

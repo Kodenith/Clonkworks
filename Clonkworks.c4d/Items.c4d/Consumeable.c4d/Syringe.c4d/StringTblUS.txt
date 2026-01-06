@@ -1,5 +1,0 @@
-TxtInject=Inject
-ErrAlreadyUsed=I should wait before i inject again.
-ErrBadPos=%s can't inject at the moment!
-ErrNoCorpse=Nothing to extract!
-TxtEssence={{%i}} Contains essence from %s.
