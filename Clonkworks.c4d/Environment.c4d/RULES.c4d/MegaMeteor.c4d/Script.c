@@ -8,7 +8,7 @@ func Initialize(){
 	SetPosition(0,0);
 	Chance = 25;
 	if( FindObject2(Find_ID(GetID()), Find_Exclude(this())) ){
-		LocalN("Chance",FindObject2(Find_ID(GetID()), Find_Exclude(this()))) -= 1;
+		LocalN("Chance",FindObject2(Find_ID(GetID()), Find_Exclude(this()))) -= 5;
 		RemoveObject();
 	}
 }
