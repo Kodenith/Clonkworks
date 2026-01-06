@@ -1,12 +1,12 @@
 # <p align="center">Clonkworks</p>
 
-<p align="center">From rocks to steel! this mod adds new technology to LegacyClonk.</p>
+<p align="center">Automation and Better Mining for LegacyClonk</p>
 
 Clonkworks is a In-development mod for LegacyClonk, that adds a lot of new technology and more stuff to do underground. Alongside that it adds a lot of useful features, systens, and functions.
 
-Currently, you can create many new vehicles in the Advanced Workshop, ranging from a motorbike, to a laser, to a Spider-like cave crawler, and more! You can also build a forge to create special versions of some vehicles, with their stats and properties changing based on the used materials.
+Currently, there's a working automation system done with many more things planned for it. alongside new gear, weapons, hazards, structures, and more.
 
-<p align="center"><b>Current Version: 1.3.0</b></p>
+<p align="center"><b>Current Version: 1.3.7</b></p>
 <div align="center">
 <details>
 <summary><b>Plan list</b></summary>
