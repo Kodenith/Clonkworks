@@ -11,10 +11,9 @@ Vertices=2
 VertexX=0,0
 VertexY=13,0
 VertexFriction=20,20
-VertexCNAT=80,4
+VertexCNAT=80,64
 Rotate=1
 SilentCommands=1
-Pathfinder=5
 Components=CPIG=2
 NoTransferZones=1
 

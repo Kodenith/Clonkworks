@@ -255,7 +255,7 @@ func NewCursorMenu(){
 		if(ok) AddMenuItem("$TxtOption2$","NewFilter2",j,pClonk,,pClonk);
 	}
 	
-	AddMenuItem("$TxtOption2$","NewFilter2",MAM5,pClonk,,pClonk);
+	if(!FilterExists(MAM5)) AddMenuItem("$TxtOption2$","NewFilter2",MAM5,pClonk,,pClonk);
 }
 
 func FilterExists(cID){
