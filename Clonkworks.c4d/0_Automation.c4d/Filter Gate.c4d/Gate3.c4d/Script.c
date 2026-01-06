@@ -71,7 +71,7 @@ public func SelectableGate(){
 }
 
 func Initialize() {
-  if(!Filter) Filter = GOLD;
+  if(!Filter)   Filter = 6;
   SetFilterGraph();
   if(GetID() == FLTG) ChangeDef(FTG1,this());
   

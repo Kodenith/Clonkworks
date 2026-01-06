@@ -31,11 +31,13 @@ func CreateClaw(){
 }
 
 func NewFilter(cID){
-	var new = CreateObject(MAM3,,25);
-	LocalN("Avoid",new) = this();
+	var new = CreateObject(MAM3,,50);
+	LocalN("Station",new) = this();
 	new->Set(cID);
 	ArrayAdd(PointerList,new);
 	SetVisibility(VIS_None,new);
+	
+	ResortEE();
 	return(new);
 }
 
@@ -88,7 +90,7 @@ func Logic(){
 	
 	//handling filters and moving
 	if(!GetLength(PointerList)){
-		NewFilter(GOLD);
+		NewFilter(MAM5);
 		SelectedPointer = 0;
 	}
 	
@@ -111,7 +113,7 @@ func Logic(){
 			var need = FindNeedMove();
 			var needId = GetID(need);
 			for(var j in PointerList){
-				if(LocalN("Filt",j) == needId){
+				if(LocalN("Filt",j) == needId || LocalN("Filt",j) == MAM5){
 					Claw->GrabAndDropOff(need,GetX(j),GetY(j));
 					return(1);
 				}
@@ -252,6 +254,8 @@ func NewCursorMenu(){
 		if(j==CNVY||j==BRDG||j==BALN) ok = false;
 		if(ok) AddMenuItem("$TxtOption2$","NewFilter2",j,pClonk,,pClonk);
 	}
+	
+	AddMenuItem("$TxtOption2$","NewFilter2",MAM5,pClonk,,pClonk);
 }
 
 func FilterExists(cID){
@@ -329,3 +333,18 @@ public func Malfunction(){
 }
 
 func IsAdvancedProduct(){ return(1); }
+
+//if there's an EVERYTHING ELSE cursor, make sure its all the way in the bottom
+func ResortEE(){
+	for(var i in PointerList){
+		if(LocalN("Filt",i) == MAM5){
+			var newList = [];
+			for(var j in PointerList){
+				if(LocalN("Filt",j) != MAM5) ArrayAdd(newList,j,true);
+			}
+			ArrayAdd(newList,i,true);
+			PointerList = newList;
+			return(1);
+		}
+	}
+}

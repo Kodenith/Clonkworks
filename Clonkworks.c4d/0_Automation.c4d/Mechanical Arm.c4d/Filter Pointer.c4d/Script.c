@@ -2,7 +2,7 @@
 
 #strict 2
 local Filt;
-local Avoid;
+local Station;
 
 func SetGraph(){
 	var FilterImage = Filt;
@@ -17,10 +17,18 @@ func Set(){
 }
 
 func GetUseable(){
-	var FoundItems = FindObjects(Find_NoContainer(),Find_Distance(150,AbsX(GetX(Avoid)),AbsY(GetY(Avoid))),Find_ID(Filt),Find_Not( Find_Distance(40)),Sort_Distance());
+	var FoundItems = FindObjects(Find_NoContainer(),Find_Distance(150,AbsX(GetX(Station)),AbsY(GetY(Station))),Find_ID(Filt),Find_Not( Find_Distance(40)),Sort_Distance());
+	if(Filt == MAM5){
+		FoundItems = FindObjects(Find_NoContainer(),Find_Distance(150,AbsX(GetX(Station)),AbsY(GetY(Station))),Find_OCF(OCF_Collectible),Find_Not( Find_Distance(40)),Sort_Distance(),Find_Not(Find_ID(FLAG)),Find_Not(Find_OCF(OCF_Alive)));
+		for(var i in LocalN("PointerList",Station)){
+			if(i != this()) for(var j in FoundItems){
+				if(GetID(j) == LocalN("Filt",i)) ArrayDeleteEntry(FoundItems,j);
+			}
+		}
+	}
 	var Found;
 	for(var i in FoundItems){
-		if(GetPathLength(GetX(Avoid),GetY(Avoid),GetX(i),GetY(i)) == 0) continue;
+		if(GetPathLength(GetX(Station),GetY(Station),GetX(i),GetY(i)) == 0) continue;
 		if(!Stuck(i) && Abs(GetXDir(i)) < 5 && Abs(GetYDir(i)) < 5 && !ObjectOnClaw(i) && !ObjectOnConveyor(i)){
 			Found = i;
 			break;

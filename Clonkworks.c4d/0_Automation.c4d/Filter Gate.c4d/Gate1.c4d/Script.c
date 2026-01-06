@@ -31,6 +31,7 @@ func SetFilterGraph(){
   if(Filter == 3) FilterImage = WR_F;
   if(Filter == 4) FilterImage = RVLT;
   if(Filter == 5) FilterImage = FLAM;
+  if(Filter == 6) FilterImage = MAM5;
   
 	//outline
   SetGraphics(0,this(),FilterImage,ShadowID(),4);

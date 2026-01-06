@@ -12,3 +12,4 @@ Temp2=Schmelzbar
 Temp3=Brennstoff
 Temp4=Zerbrechlich
 Temp5=Entflammbar
+Temp6=Alles

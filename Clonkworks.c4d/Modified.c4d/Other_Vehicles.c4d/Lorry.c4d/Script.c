@@ -143,6 +143,6 @@ func ControlDigDouble(pClonk){
 
 public func ContextDump(pClonk){
 	[$TxtDump$|Image=LRY1|Condition=CanDump]
-	AddCommand(pClonk,"Call",this(),pClonk,0,0,38*999,"ControlUpDouble");
+	AddCommand(pClonk,"Call",this(),pClonk,0,0,38*999,"ControlDigDouble");
 	AddCommand(pClonk,"Grab",this());
 }

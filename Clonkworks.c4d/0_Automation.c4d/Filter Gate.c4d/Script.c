@@ -15,7 +15,7 @@ protected func IsBuilt()
 }
 
 func Initialize() {
-  Filter = GOLD;
+  Filter = 6;
   SetFilterGraph();
   if(GetID() == FLTG) ChangeDef(FTG1,this());
   return(_inherited());
@@ -33,6 +33,7 @@ func SetFilterGraph(){
   if(Filter == 3) FilterImage = WR_F;
   if(Filter == 4) FilterImage = RVLT;
   if(Filter == 5) FilterImage = FLAM;
+  if(Filter == 6) FilterImage = MAM5;
   
 	//outline
   SetGraphics(0,this(),FilterImage,ShadowID(),4);
@@ -57,6 +58,7 @@ func ControlLeft(pObj){
 	if(GetProcedure(pObj) != "PUSH") return(0);
 	if(GetActionTarget(0,pObj) != this());
 	CreateMenu(GetID(),pObj,this(),,"error");
+	SetMenuSize(6,,pObj);
 	
 	//predefined options
 	AddMenuItem("$TxtMenu1$: $Temp1$","TryGrabbedFilter",WRKS,pObj,,pObj);
@@ -64,8 +66,9 @@ func ControlLeft(pObj){
 	AddMenuItem("$TxtMenu1$: $Temp3$","TryGrabbedFilter",WR_F,pObj,,pObj);
 	AddMenuItem("$TxtMenu1$: $Temp4$","TryGrabbedFilter",RVLT,pObj,,pObj);
 	AddMenuItem("$TxtMenu1$: $Temp5$","TryGrabbedFilter",FLAM,pObj,,pObj);
+	AddMenuItem("$TxtMenu1$: $Temp6$","TryGrabbedFilter",MAM5,pObj,,pObj);
 	//empty entries to make space
-	for(var i = 0; i < 5; i++){
+	for(var i = 0; i < 6; i++){
 		AddMenuItem(" ",0,0,pObj);
 	}
 	
@@ -90,6 +93,7 @@ func TryGrabbedFilter(Filt,pObj){
 	if(Filt == WR_F) Filt= 3;
 	if(Filt == RVLT) Filt = 4;
 	if(Filt == FLAM) Filt = 5;
+	if(Filt == MAM5) Filt = 6;
 	SetFilter(Filt);
 	Sound("Connect");
 	
@@ -98,6 +102,7 @@ func TryGrabbedFilter(Filt,pObj){
 	else if(Filter == 3) Message("$TxtFilterSet$",this(),"$Temp3$");
 	else if(Filter == 4) Message("$TxtFilterSet$",this(),"$Temp4$");
 	else if(Filter == 5) Message("$TxtFilterSet$",this(),"$Temp5$");
+	else if(Filter == 6) Message("$TxtFilterSet$",this(),"$Temp6$");
 	else Message("$TxtFilterSet$",this(),GetName(,Filter));
 }
 
@@ -148,6 +153,7 @@ func IsAdvancedProduct(){ return(1); }
 
 private func FilterCompatibleItem(pItem){
 	var pId = GetID(pItem);
+	if(Filter == 6) return(1);
 	if(Filter == 1){
 		if(pItem->~IsAnvilProduct()) return(1);
 		if(pItem->~IsAdvancedProduct()) return(1);
