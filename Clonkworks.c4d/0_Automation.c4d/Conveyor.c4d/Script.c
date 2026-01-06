@@ -349,3 +349,9 @@ public func CanBeDetached(){ return(is_locked); }
 public func OnDetach(){
 	Release(0,1);
 }
+
+//cleanup
+func Clean(){
+	if(!IsLocked()) return(0);
+	DigFreeRect(GetX()-43,GetY()-10,86,8);
+}
