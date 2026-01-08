@@ -27,8 +27,9 @@ func Grab(){
 	var iItem = Grabtarg;
 	if(!iItem) return(0);
 	if(GetAction() == "Idle") return(0);
-	if(ObjectDistance(this(),iItem) <= 20 && !ObjectOnClaw(Grabtarg)){
+	if(ObjectDistance(this(),iItem) <= 20 && !ObjectOnClaw(Grabtarg) && !InvalidContained(Grabtarg)){
 		Sound("Click");
+		Grabtarg->Exit();
 		SetAction("Grab");
 		return(1);
 	}else{
@@ -36,6 +37,24 @@ func Grab(){
 		EndAllCommands();
 		return(1);
 	}
+}
+
+func GetStation(){
+	var Station = 0;
+	for(var i in FindObjects(Find_ID(MAM1))){
+		if(LocalN("Claw",i) == this()){
+			Station = i;
+			break;
+		}
+	}
+	return(Station);
+}
+
+func InvalidContained(Thing){
+	var Station = GetStation();
+	if(!Station) return(1);
+	
+	if(Contained(Thing) && !LocalN("GrabFromContainer",Station)) return(1);
 }
 
 func Release(){

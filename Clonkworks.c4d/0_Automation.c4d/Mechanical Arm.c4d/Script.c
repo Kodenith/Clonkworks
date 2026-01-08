@@ -8,7 +8,10 @@ local PointerList;
 local SelectedPointer;
 local Rope;
 
+local GrabFromContainer;
+
 func Initialize() {
+  GrabFromContainer = false;
   SetAction("Rotate");
   SetPhase(4);
   CreateClaw();
@@ -38,6 +41,7 @@ func NewFilter(cID){
 	SetVisibility(VIS_None,new);
 	
 	ResortEE();
+	SelectedPointer = InArray(new,PointerList);
 	return(new);
 }
 
@@ -94,22 +98,22 @@ func Logic(){
 		SelectedPointer = 0;
 	}
 	
+	//Rope->RemovePoint(Rope->GetPointNum());
+	
 	if(GetAction(Claw) == "Idle") return(0);
 	
-	//dont let the claw go beyond its limits
-	if(ObjectDistance(this(),Claw) > 150){
+	//dont let the claw go beyond its limits, a little extended just in case it may slip
+	if(ObjectDistance(this(),Claw) > 165){
 		Claw->EndAllCommands();
 		SetCommand(Claw,"MoveTo",0,GetX(),GetY()+40);
 		return(0);
 	}
 	
 	if(!GetCommand(Claw)){
+		RefreshRope();
 		if(LocalN("Grabtarg",Claw)) Claw->Release();
 		SetXDir(0,Claw); SetYDir(0,Claw);
-		if(ObjectDistance(this(),Claw) < 50){
-			RefreshRope();
-		}
-		if(FindNeedMove()){
+		if(FindNeedMove() && !FindObject2(Find_Action("Push"),Find_ActionTarget(this()))){
 			var need = FindNeedMove();
 			var needId = GetID(need);
 			for(var j in PointerList){
@@ -131,20 +135,28 @@ func FindNeedMove(){
 }
 
 func RefreshRope(){
-	if(Rope) RemoveObject(Rope);
+	if(Rope){
+		LocalN("aPointsX",Rope) = [];
+		LocalN("aPointsY",Rope) = [];
+		LocalN("fNoPickUp_0",Rope) = true;
+	    LocalN("fNoPickUp_1",Rope) = true;
+		Rope->ConnectObjects(this(),Claw);
+		return(Rope);
+	}
 	var rope = CreateObject(CK5P);
 	rope->ConnectObjects(this(),Claw);
 	LocalN("fNoPickUp_0",rope) = true;
 	LocalN("fNoPickUp_1",rope) = true;
 	rope->SetRopeLength(100);
 	Rope = rope;
+	return(rope);
 }
 
 func ClawResort(){
 	for(var i in FindObjects(Find_Category(C4D_Structure),Find_Not(Find_ID(MAM2)))){
 		SetObjectOrder(i,Claw);
 	}
-	DebugLog("%v Resorted",Claw);
+	//DebugLog("%v Resorted",Claw);
 }
 
 //Movement
@@ -210,6 +222,23 @@ public func ControlThrow(pClonk){
 	for(var i in PointerList){
 		AddMenuItem("$TxtOption2$","Select",LocalN("Filt",i),pClonk,0,pClonk);
 	}
+	
+	//toggle
+	if(GrabFromContainer) AddMenuItem("$TxtGrabToggle$","GrabContainerToggle",_MRK,pClonk,0,pClonk,,2,1);
+	else AddMenuItem("$TxtGrabToggle$","GrabContainerToggle",_MRK,pClonk,0,pClonk);
+}
+
+func GrabContainerToggle(){
+	var pClonk = Par(1);
+	if(GetProcedure(pClonk) != "PUSH" || GetActionTarget(0,pClonk) != this()) return(0);
+	
+	var sl = GetLength(PointerList)+1;
+	
+	GrabFromContainer = !GrabFromContainer;
+	ControlThrow(pClonk);
+	Sound("Click");
+	
+	SelectMenuItem(sl,pClonk);
 }
 
 func Select(){

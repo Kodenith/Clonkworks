@@ -10,3 +10,5 @@ TxtMenu2=Mechanical Arm Menu
 TxtOption1=Add New Cursor
 TxtOption2=Select: %s
 TxtAdded=Added Cursor: %s
+
+TxtGrabToggle=Grab objects from containers
