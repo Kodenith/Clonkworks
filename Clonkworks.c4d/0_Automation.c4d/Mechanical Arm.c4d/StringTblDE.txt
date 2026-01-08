@@ -10,3 +10,5 @@ TxtMenu2=Menü Mechanischer Arm
 TxtOption1=Neuen Cursor hinzufügen
 TxtOption2=Auswählen: %s
 TxtAdded=Cursor hinzugefügt: %s
+
+TxtGrabToggle=Objekte aus Containern greifen
