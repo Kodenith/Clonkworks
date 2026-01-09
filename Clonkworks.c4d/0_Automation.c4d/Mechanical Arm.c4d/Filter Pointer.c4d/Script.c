@@ -35,6 +35,7 @@ func GetUseable(){
 			if(Abs(GetXDir(Contained(i))) >= 5 || Abs(GetYDir(Contained(i))) >= 5) continue;
 		}
 		if(GetPathLength(GetX(Station),GetY(Station),GetX(i),GetY(i)) == 0) continue;
+		if(GetCon(i) < 100 && !GetDefIncompleteActivity(GetID(i))) continue;
 		if(!Stuck(i) && Abs(GetXDir(i)) < 5 && Abs(GetYDir(i)) < 5 && !ObjectOnClaw(i) && !ObjectOnConveyor(i)){
 			Found = i;
 			break;
