@@ -33,7 +33,7 @@ public func SpawnMenu(identifier, Spawner){
 	var category = 0;
 	if(identifier == ROCK) category = C4D_Object;
 	if(identifier == BUMB) category = C4D_Living;
-	if(identifier == MTBK) category = C4D_Vehicle;
+	if(identifier == LORY) category = C4D_Vehicle;
 	if(identifier == CLNK){
 		CreateMenu(identifier,Spawner,this(),0,"Error :(");
 		category = C4D_Living;

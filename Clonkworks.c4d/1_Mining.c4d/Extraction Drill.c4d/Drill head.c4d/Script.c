@@ -19,3 +19,7 @@ func Rust(){
 
 func IsAdvancedProduct(){ return(1); }
 func GetResearchBase(){ return(EXDR); }
+
+func RejectEntrance(pInto){
+	if(GetAction() != "Idle") return(1);
+}
