@@ -29,7 +29,8 @@ protected func Initialize()
     DoCon(-Random(50) - 20);
   // Zufällige Form  
   SetAction("Grass");
-  SetPhase(Random(2));
+  SetColorDw(RGBa(255,255,255));
+  SetPhase(Random(3));
   // Zufällige Richtung
   if (Random(2)) SetDir(DIR_Right);
   // Drehung nach Erdoberfläche

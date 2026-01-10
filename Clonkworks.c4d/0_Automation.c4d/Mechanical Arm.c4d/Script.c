@@ -59,10 +59,14 @@ func Logic(){
 	if(!EnergyCheck(1)){
 		Claw->SetAction("Idle");
 		Claw->FinishCommand();
+		SetVertex(0,2,16,Claw,2);
+		SetVertex(1,2,0,Claw,2);
 	}
 	else if(GetAction(Claw) == "Idle"){
 		Claw->SetAction("Moving");
 		SetCommand(Claw,"MoveTo",0,GetX(),GetY()+45);
+		SetVertex(0,2,80,Claw,2);
+		SetVertex(1,2,64,Claw,2);
 	}
 	
 	if(GetX(Claw) < GetX()-30) SetPhase(0);
