@@ -1,1 +1,0 @@
-Warns about insufficient fuel in a vehicle.

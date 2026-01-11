@@ -16,7 +16,7 @@ func Initialize() {
 
 func Damage(){
 	if(GetDamage() > 120){
-		DepositLiquidPx(Amount);
+		OutsertLiquidPx(Amount);
 		ChangeDef(DLQT,this());
 		this()->Incinerate();
 	}

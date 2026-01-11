@@ -1,5 +1,0 @@
-[Action]
-Name=Progress
-Length=93
-Facet=0,0,314,8,0,0
-Reverse=1

@@ -1,1 +1,0 @@
-TxtFuelWarning=Nicht genug Treibstoff!|Tanken Sie mit: <c ffff00>%s</c>

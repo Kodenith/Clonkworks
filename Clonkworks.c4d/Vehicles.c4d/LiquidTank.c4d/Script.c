@@ -1,33 +1,24 @@
 #strict 2
-
-local LiquidType; //type of liquid
-local Amount; //Max 4000 pixels
+#include S_LQ
 
 func Initialize() {
 	LiquidType = 0;
 	Amount = 0;
   SetAction("FillUp");
   SetPhase(0);
-  return(1);
+  return(_inherited());
 }
 
 func MaxAmount(){ return(6500); }
 func AmountDevision(){ return(MaxAmount()/20);}
 
 func Hit3(){
-	DepositLiquidPx(Amount);
+	OutsertLiquidPx(Amount);
 	Sound("ClonkHit*");
 }
 
 func LiquidCheck(){
-	if(!LiquidType) Amount = 0;
-	if(Material(LiquidType) == -1) Amount = 0;
-	if(Amount > MaxAmount()) Amount = MaxAmount();
-	if(Amount < 0) Amount = 0;
-	if(Amount == 0) LiquidType = 0;
-	
 	SetPhase(Min(Amount / AmountDevision(),19));
-	SetMass(250+(Amount/3));
 	
 	if(LiquidType && Amount != 0){
 	var r, g, b;
@@ -37,60 +28,6 @@ func LiquidCheck(){
 	SetColorDw(RGBa(r,g,b), this());
 	}
 }
-
-public func AcceptTransfer(){
-	if(Amount < MaxAmount()) return(1);
-}
-
-//inserting and removing materials inside
-public func InsertLiquidPx(string Type, int iAmount){
-	if(iAmount < 0) return(0);
-	if(Type == "Sky") return(0);
-	if(!LiquidType){
-		LiquidType = Type;
-	}
-	
-	for(var i = 0; i < iAmount; i++){
-		if(Type != LiquidType || Amount >= MaxAmount()){
-			InsertMaterial(Material(Type));
-		}else{
-			Amount++;
-		}
-	}
-	
-	return(Amount);
-}
-
-public func DepositLiquidPx(int iAmount){
-	for(var i = 0; i < iAmount; i++){
-		if(Amount <= 0) return(i);
-		InsertMaterial(Material(LiquidType));
-		Amount--;
-	}
-}
-
-public func SetLiquidType(string Type){
-	LiquidType= Type;
-}
-
-public func SetLiquidAmount(int am){
-	Amount = am;
-	if(Amount > MaxAmount()) Amount = MaxAmount();
-	if(Amount < 0) Amount = 0;
-}
-
-public func GetLiquidType(){ return(LiquidType); }
-public func GetLiquidAmount(){ return(Amount); }
-
-public func IsLiquidStorage(){ return(1); }
-
-/* func Destruction(){
-	if(Amount && LiquidType){
-		for(var i = 0; i < Amount; i++){
-			InsertMaterial(Material(LiquidType),0,0,RandomX(-100,100),RandomX(-100,100));
-		}
-	}
-} */
 
 public func IsAdvancedProduct(){ return(1); }
 
@@ -182,7 +119,7 @@ public func ControlDig(pByObj){
 	[$Release$|Image=L_RL]
 	if(Amount != 0){
 		Sound("AirLock2");
-		DepositLiquidPx(Amount);
+		OutsertLiquidPx(Amount);
 	}
 }
 
@@ -270,16 +207,6 @@ public func HowToREFU(pFuel){
 	pFuel->BarrelDoFill(-cnt);
 	ChangeDef(BARL,pFuel);
 	InsertLiquidPx(lq,cnt);
-}
-
-global func BarrelList(){
-	var b,j,l;
-	l = [];
-	while(b = MaterialName(j++)){
-		var br = GetBarrelType(Material(b));
-		if(br) ArrayAdd(l,br,true);
-	}
-	return(l);
 }
 
 //INFOBAR
