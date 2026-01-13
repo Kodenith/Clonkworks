@@ -55,7 +55,7 @@ public func SelectableGate(){
 func Initialize() {
   Amount = 0;
   SetFilterGraph();
-  if(GetID() == FLTG) ChangeDef(FTG1,this());
+  if(GetID() == FLTG || GetID() == FTGN) ChangeDef(FTG1,this());
   return(_inherited());
 }
 

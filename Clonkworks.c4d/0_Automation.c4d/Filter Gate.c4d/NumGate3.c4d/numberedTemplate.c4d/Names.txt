@@ -1,2 +1,1 @@
-DE:Betrag Gate
-US:Amount Gate
+US:FOO

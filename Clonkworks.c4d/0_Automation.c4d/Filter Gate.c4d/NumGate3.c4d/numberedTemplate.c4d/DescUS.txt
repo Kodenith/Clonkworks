@@ -1,2 +1,0 @@
-Only a certain amount of items can pass this gate.
-Use throw to increase and left to decrease.
