@@ -66,7 +66,7 @@ func CalculateDepositContents(min,max){
 	return(iCount);
 }
 
-func GetMined(pCaller){
+func GetMined(pCaller,iNotDrillHead){
 	if(Random(4)) return(0);
 	Smoke(0,0,RandomX(5,20));
 	
@@ -85,7 +85,21 @@ func GetMined(pCaller){
 			return(1);
 		}
 		Exit(Ore);
-		SetPosition(GetX(pCaller),GetY(pCaller)+10,Ore);
+		if(!iNotDrillHead){
+			SetPosition(GetX(pCaller),GetY(pCaller)+10,Ore);
+		}else{
+			SetPosition(GetX(Ore)+RandomX(-5,5),GetY(Ore)+RandomX(-5,5),Ore);
+		  while(GBackSolid(AbsX(GetX(Ore)),AbsY(GetY(Ore))) || ObjectDistance(Ore,this()) <= 25){
+			if(ObjectDistance(Ore,this()) > 25) break;
+			var RotRef = Angle(GetX(Ore),GetY(Ore),GetX(),GetY());
+			RotRef= (RotRef + 180) % 360 - 180;
+			var iXDir = Sin(RotRef, 1);
+			var iYDir = -Cos(RotRef, 1);
+			SetX(GetX(Ore)-iXDir,Ore);
+			SetY(GetY(Ore)-iYDir,Ore);
+	     }
+			
+		}
 	}else{
 		return(1);
 	}
