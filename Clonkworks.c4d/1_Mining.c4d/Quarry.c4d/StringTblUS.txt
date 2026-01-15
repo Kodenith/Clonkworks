@@ -1,0 +1,13 @@
+TxtLeft=Move Left
+TxtRight=Move Right
+TxtStop=Stop
+TxtMenu=Open Menu
+
+TxtMenu2=Quarry Menu
+TxtFire=Fire!
+TxtPut=Put %s
+TxtDismantle1=Detach Cannon
+TxtDestPart=Dismantle Section
+TxtNewPart=Construct new Section
+TxtNewPartError=Requires:|1x Copper Ingot|Inside!
+TxtInventory=Request Item

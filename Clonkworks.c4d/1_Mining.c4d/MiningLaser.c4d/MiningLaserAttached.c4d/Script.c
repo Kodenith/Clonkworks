@@ -30,6 +30,11 @@ func ComFire(object clonk)
   return(1);
 }
 
+public func ComStopDouble(object pClonk){
+	while(laser) ShootStop();
+	return(_inherited());
+}
+
 func ShootStart()
 {
   firing=1;
