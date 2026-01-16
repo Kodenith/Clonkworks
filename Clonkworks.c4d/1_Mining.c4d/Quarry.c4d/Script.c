@@ -18,6 +18,7 @@ func Initialize(){
 	LeftSects = [];
 	RightSects = [];
 	NewSectLeft(); NewSectRight();
+	CleanSectArrays();
 }
 
 public func GetLeftestSect(){
@@ -30,6 +31,32 @@ public func GetRightestSect(){
 
 global func SetActionAttachment(AttachedVert,OwnVert,Obj){
 	SetActionData(256*OwnVert+AttachedVert,Obj);
+}
+
+func SpawnNewBeam(int x) {
+    var UseableColumns = [QUS0, QUS1, QUS2, QUS3, QUS4];
+    
+    var dist = 0;
+    var search = 120;
+    while(dist < search && !GBackSolid(x, dist)){
+        dist++;
+    }
+    if(dist >= search) return(0);
+    var bestBeam = 0;
+    var bestSize = 10000;
+	for(var definition in UseableColumns){
+        var beamSize = DefinitionCall(definition, "SupportSize");
+        if(beamSize >= (dist + 30) && beamSize < bestSize){
+            bestSize = beamSize;
+            bestBeam = definition;
+        }
+    }
+    if(bestBeam){
+		return(CreateConstruction(bestBeam,x,DefinitionCall(bestBeam, "SupportSize")-38,NO_OWNER,100,1,0));
+        //return CreateObject(bestBeam, x, DefinitionCall(bestBeam, "SupportSize")-38, NO_OWNER);
+    }
+    
+    return(0);
 }
 
 public func NewSectLeft(){
@@ -48,10 +75,8 @@ public func NewSectLeft(){
 	}
 	
 	if(GetLength(LeftSects)%6 == 0){
-		var Temp = CreateObject(ROCK,0,38);
-		var sup = Temp->CreateConstruction(QUA5,AbsX(GetX(GetLeftestSect())-22),0,GetOwner(),100,1,1);
-		RemoveObject(Temp);
-		
+		var sup = SpawnNewBeam(AbsX(GetX(GetLeftestSect())-22));
+		//DebugLog("%v",sup);
 		if(sup){
 			LocalN("Support",Sect) = sup;
 			LocalN("Sect",sup) = Sect;
@@ -78,10 +103,8 @@ public func NewSectRight(){
 	}
 	
 	if(GetLength(RightSects)%6 == 0){
-		var Temp = CreateObject(ROCK,0,38);
-		var sup = Temp->CreateConstruction(QUA5,AbsX(GetX(GetRightestSect())+22),0,GetOwner(),100,1,1);
-		RemoveObject(Temp);
-		
+		var sup = SpawnNewBeam(AbsX(GetX(GetRightestSect())+22));
+		//DebugLog("%v",sup);
 		if(sup){
 			LocalN("Support",Sect) = sup;
 			LocalN("Sect",sup) = Sect;
@@ -384,7 +407,7 @@ func RejectGrabbed(pClonk){
 
 //incineration & Destruction
 func Damage(){
-	if(GetDamage() > 100 && !Blasted){
+	if(GetDamage() > 80 && !Blasted){
 		Blasted = true;
 		if(GetLength(LeftSects)) Incinerate(LeftSects[0]);
 		if(GetLength(RightSects)) Incinerate(RightSects[0]);
@@ -396,12 +419,21 @@ func Damage(){
 			Holder->ReleaseCannon();
 			Holder->Explode(20);
 		}
-		CreateObject(ROCK,GetVertex(LeftVert(),0),GetVertex(LeftVert(),1))->Explode(15);
-		CreateObject(QUA4,GetVertex(LeftVert(),0)+10,GetVertex(LeftVert(),1))->Incinerate();
-		CreateObject(ROCK,GetVertex(RightVert(),0),GetVertex(RightVert(),1))->Explode(15);
-		CreateObject(QUA4,GetVertex(RightVert(),0)-10,GetVertex(RightVert(),1))->Incinerate();
-		CreateObject(ROCK,GetVertex(CenterVert(),0),GetVertex(CenterVert(),1))->Explode(15);
-		CreateObject(QUA6,0,38)->Incinerate();
+		
+		for(var y = -20; y < 60; y+= 20){
+			var sect;
+			sect = CreateObject(QUA4,0,y);
+			sect->Incinerate();
+			SetR(90,sect);
+		}
+		
+		for(var x = -40; x < 60; x+=20){
+			var sect;
+			sect = CreateObject(QUA4,x,-20);
+			sect->Incinerate();
+			//SetR(90,sect);
+		}
+		
 		RemoveObject();
 	}
 }

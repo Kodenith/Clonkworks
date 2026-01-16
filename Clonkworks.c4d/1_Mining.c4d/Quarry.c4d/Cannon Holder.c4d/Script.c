@@ -1,7 +1,7 @@
 /*-- Neues Script --*/
 
 #strict 2
-local cannon
+local cannon;
 
 func Initialize() {
   return(1);
