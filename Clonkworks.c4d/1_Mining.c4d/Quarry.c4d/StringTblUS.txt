@@ -11,3 +11,7 @@ TxtDestPart=Dismantle Section
 TxtNewPart=Construct new Section
 TxtNewPartError=Requires:|1x Copper Ingot|Inside!
 TxtInventory=Request Item
+
+TxtContext1=Operate
+TxtContext2=Load up
+TxtContext3=Load up with held item

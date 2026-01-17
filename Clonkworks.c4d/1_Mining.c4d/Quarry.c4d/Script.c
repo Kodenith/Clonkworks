@@ -74,7 +74,7 @@ public func NewSectLeft(){
 		SetActionAttachment(0,1,Sect);
 	}
 	
-	if(GetLength(LeftSects)%6 == 0){
+	if(GetLength(LeftSects)%8 == 0){
 		var sup = SpawnNewBeam(AbsX(GetX(GetLeftestSect())-22));
 		//DebugLog("%v",sup);
 		if(sup){
@@ -102,7 +102,7 @@ public func NewSectRight(){
 		SetActionAttachment(1,0,Sect);
 	}
 	
-	if(GetLength(RightSects)%6 == 0){
+	if(GetLength(RightSects)%8 == 0){
 		var sup = SpawnNewBeam(AbsX(GetX(GetRightestSect())+22));
 		//DebugLog("%v",sup);
 		if(sup){
@@ -235,7 +235,7 @@ func ActivateEntrance(pObj){
 }
 
 //Menu
-func ControlThrow(pObj){
+public func ControlThrow(pObj){
 	[$TxtMenu$|Image=CXTX]
 	OpenMenu(pObj);
 	return(1);
@@ -451,3 +451,52 @@ func Destruction(){ if(Holder) RemoveObject(Holder); }
 func IsAdvancedProduct(){ return(1); }
 func GetResearchBase(){ return(EXDR); }
 func RejectContents(){ return(1); }
+
+//CONTEXT
+func CmdPut(pClonk){
+	if(GetAction(pClonk) != "Push" || GetActionTarget(0,pClonk) != this()) return(0);
+	if(Contents(0,pClonk)){
+		Enter(Holder,Contents(0,pClonk));
+		Sound("Grab");
+	}
+}
+
+func CmdGrabMe(pClonk){
+	AddCommand(pClonk,"Grab",this());
+	AddCommand(pClonk,"MoveTo",this());
+}
+
+func IsBuilt(){ return(GetCon() > 99); }
+
+func ContextOperate(pClonk){
+	[$TxtContext1$|Image=QUAR|Condition=IsBuilt]
+	CmdGrabMe(pClonk);
+}
+
+func ContextLoadUp(pClonk){
+	[$TxtContext2$|Image=QUAS|Condition=IsBuilt]
+	if(GetProcedure(pClonk) == "PUSH") pClonk->SetAction("Walk");
+	var FindPut = FindObjects(Find_Distance(200),Find_NoContainer(),Find_OCF(OCF_Collectible),Find_Not(Find_ID(FLAG)));
+	if(Contents(0,pClonk)) ArrayAdd(FindPut,Contents(0,pClonk),1);
+	for(var i in FindPut){
+		if(!i || Stuck(i)) continue;
+		AddCommand(pClonk,"Call",this(),pClonk,0,0,0,"CmdPut");
+		CmdGrabMe(pClonk);
+		AddCommand(pClonk,"Get",i);
+	}
+}
+
+func ContextLoadUp2(pClonk){
+	[$TxtContext3$|Image=QUAS:1|Condition=IsBuilt]
+	if(GetProcedure(pClonk) == "PUSH") pClonk->SetAction("Walk");
+	if(!Contents(0,pClonk)) return(0);
+	var cid = GetID(Contents(0,pClonk));
+	var FindPut = FindObjects(Find_ID(cid),Find_Distance(200),Find_NoContainer(),Find_OCF(OCF_Collectible));
+	ArrayAdd(FindPut,Contents(0,pClonk),1);
+	for(var i in FindPut){
+		if(!i || Stuck(i)) continue;
+		AddCommand(pClonk,"Call",this(),pClonk,0,0,0,"CmdPut");
+		CmdGrabMe(pClonk);
+		AddCommand(pClonk,"Get",i);
+	}
+}

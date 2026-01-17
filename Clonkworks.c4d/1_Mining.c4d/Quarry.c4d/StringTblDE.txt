@@ -11,3 +11,7 @@ TxtDestPart=Abschnitt demontieren
 TxtNewPart=Neuen Abschnitt bauen
 TxtNewPartError=Erfordert:|1x Kupferbarren|Innen!
 TxtInventory=Gegenstand anfordern
+
+TxtContext1=Bedienen
+TxtContext2=Laden
+TxtContext3=Mit gehaltenem Gegenstand laden
