@@ -281,7 +281,7 @@ public func OpenMenu(pClonk){
 	}
 	
 	//Inventory
-	if(ContentsCount(,Holder) > 0){
+	if(ContentsCount(,Holder) > 0 || (LocalN("cannon",Holder) && ContentsCount(,LocalN("cannon",Holder))) ){
 		AddMenuItem("$TxtInventory$","InventoryMenu",CXIV,pClonk,0,pClonk);
 		Size++;
 	}
@@ -295,6 +295,11 @@ func InventoryMenu(foo,pClonk){
 	var i,v;
 	while(v = Contents(i++,Holder,false)){
 		AddMenuItem("$TxtInventory$: %s",Format("RequestItem(0,%d,%d)",ObjectNumber(pClonk),ObjectNumber(v)),GetID(v),pClonk);
+	}
+	if(LocalN("cannon",Holder)){
+		while(v = Contents(i++,LocalN("cannon",Holder),false)){
+			AddMenuItem("$TxtInventory$: %s",Format("RequestItem(0,%d,%d)",ObjectNumber(pClonk),ObjectNumber(v)),GetID(v),pClonk);
+		}
 	}
 }
 

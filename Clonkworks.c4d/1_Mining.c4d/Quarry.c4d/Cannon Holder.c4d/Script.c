@@ -61,6 +61,26 @@ public func ReleaseCannon()
   return(1);
 }
 
+protected func Collection2(object pObj)
+{
+  if(pObj->~IsCannon() )
+  {
+    if(!cannon)
+      ConnectCannon(pObj);
+  }
+  else
+  {
+    if(cannon)
+      cannon->~ComEnter(pObj);
+  }
+}
+
+protected func Ejection(object pObj)
+{
+  if(cannon)
+    cannon->~ComLeave(pObj);
+}
+
 /* Wird von den Kanonen als Turm erkannt */
 
 public func IsCannonTower()
@@ -72,3 +92,4 @@ public func HasCannon()
 {
   return (cannon != 0); 
 }
+
