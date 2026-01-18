@@ -22,7 +22,7 @@ func Initialize(){
 }
 
 func Update(){
-	if(GetOwner() != iPlr) RemoveObject();
+	if(GetOwner() != iPlr || GetOwner() == -1) RemoveObject();
 	
 	var Current = GetCursor(iPlr);
 	if(!Current){

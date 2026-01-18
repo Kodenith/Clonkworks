@@ -14,7 +14,7 @@ Entrance=-14,-1,29,19
 Collection=-17,-17,35,35
 BorderBound=7
 ClosedContainer=2
-CollectionLimit=15
+CollectionLimit=51
 Components=TTIG=10;
 VehicleControl=2
 ContactCalls=1
