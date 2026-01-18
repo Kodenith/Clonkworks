@@ -195,7 +195,7 @@ private func MoveItems(iX){
 }
 
 private func ObjectsOnTop(){
-	var Objects = FindObjects(Find_OnLine(-43,-10,43,-10),Find_Not(Find_Category(C4D_Structure)),Find_Not(Find_Category(C4D_StaticBack)), Find_Not(Find_ID(BRDG)), Find_Not(Find_ID(CNVY)),Find_Not(Find_OCF(OCF_CrewMember)),Find_NoContainer());
+	var Objects = FindObjects(Find_OnLine(-43,-10,43,-10),Find_Not(Find_Category(C4D_Structure)),Find_Not(Find_Category(C4D_StaticBack)), Find_Not(Find_ID(BRDG)), Find_Not(Find_Func("IsConveyor")),Find_Not(Find_OCF(OCF_CrewMember)),Find_NoContainer());
 	var Clonks =  FindObjects(Find_OnLine(-34,-10,34,-10),Find_OCF(OCF_CrewMember),Find_NoContainer());
 	ArrayAddArray(Objects,Clonks,1);
 	return(Objects);
@@ -213,14 +213,14 @@ public func ObjectOnTop(pObj){
 }
 
 global func ObjectOnConveyor(pObj){
-	for(var i in FindObjects(Find_ID(CNVY))){
+	for(var i in FindObjects(Find_Func("IsConveyor"))){
 		if(i->ObjectOnTop(pObj)) return(1);
 	}
 	return(0);
 }
 
 public func ObjectOnOtherConveyor(pObj){
-	for(var i in FindObjects(Find_ID(CNVY),Find_Exclude(this()))){
+	for(var i in FindObjects(Find_Func("IsConveyor"),Find_Exclude(this()))){
 		if(i->ObjectOnTop(pObj)) return(i);
 	}
 	return(0);
@@ -234,7 +234,7 @@ public func ObjectBelow(pObj){
 }
 
 global func ObjectBelowConveyor(pObj){
-	for(var i in FindObjects(Find_ID(CNVY))){
+	for(var i in FindObjects(Find_Func("IsConveyor"))){
 		if(i->ObjectBelow(pObj)) return(1);
 	}
 	return(0);
@@ -322,7 +322,7 @@ public func ControlLeftDouble(pClonk){
 	if(IsLocked()) return(0);
 	var Neighbour;
 	if(Neighbour = FindObject2(Find_Func("IsLocked"),Find_ID(GetID()),Find_OnLine(-95,0,-86,0),Find_NoContainer())){
-		SetPosition(GetX(Neighbour)+85,GetY(Neighbour));
+		SetPosition(GetX(Neighbour)+(Neighbour->ConveyorWidth()-1),GetY(Neighbour));
 		Lock(0,1);
 		return(1);
 	}
@@ -333,7 +333,7 @@ public func ControlRightDouble(pClonk){
 	if(IsLocked()) return(0);
 	var Neighbour;
 	if(Neighbour = FindObject2(Find_Func("IsLocked"),Find_ID(GetID()),Find_OnLine(86,0,95,0),Find_NoContainer())){
-		SetPosition(GetX(Neighbour)-85,GetY(Neighbour));
+		SetPosition(GetX(Neighbour)-(Neighbour->ConveyorWidth()-1),GetY(Neighbour));
 		Lock(0,1);
 		return(1);
 	}
@@ -355,3 +355,7 @@ func Clean(){
 	if(!IsLocked()) return(0);
 	DigFreeRect(GetX()-43,GetY()-10,86,8);
 }
+
+//new funcs for better conveyor logic
+public func IsConveyor(){ return(1); }
+public func ConveyorWidth(){ return(GetDefWidth(GetID())); }
