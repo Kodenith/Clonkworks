@@ -59,7 +59,7 @@ func GetResearchBase(){ return(EFLN); }
 
 //INFOBAR
 public func InfobarTrigger(){
-	if(head) return(IB_Grab);
+	if(head && FindObject(REXD)) return(IB_Grab);
 }
 
 public func InfobarMax(){

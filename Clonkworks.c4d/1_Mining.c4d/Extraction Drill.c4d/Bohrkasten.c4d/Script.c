@@ -23,12 +23,18 @@ func Timer(){
 		SetYDir(0);
 	}
 	
+	if(ObjectDistance(this(),Owner) > 360 && GetComDir() == COMD_Down){
+		SetY(GetY()-2);
+		SetComDir(COMD_Stop);
+		Sound("Click");
+	}
+	
 	if(GetAction() == "Idle"){
 		if(Durability > 0) SetAction("DrillIdle");
 		else SetAction("NoHead");
 	}
 	
-	if(GetAction() != "NoHead" && Durability <= 0){
+	if(GetAction() != "NoHead" && Durability <= 0 && FindObject(REXD)){
 		Durability = 0;
 		SetAction("NoHead");
 		Sound("Discharge");
@@ -75,7 +81,8 @@ func DoDrilling(){
 		
 		var Explo = CreateObject(FLNT,X,Y);
 		Explo->Explode(RandomX(10,15));
-		Durability -= Random(10);
+		if(FindObject(REXD))
+			Durability -= Random(10);
 	}
 }
 
@@ -85,7 +92,8 @@ func MineDeposit(pDep){
 	Y += RandomX(-2,2);
 	X += RandomX(-8,8);
 	
-	Durability -= Random(3);
+	if(FindObject(REXD))
+		Durability -= Random(3);
 	CastParticles("PxSpark",5,100,X,Y,10,50,RGBa(255,255,0),RGBa(255,255,0));
     if(pDep->~GetMined(this())){
 		CreateParticle("Blast", X,Y, 0,0, 100, RGBa(255,255,255,0));
