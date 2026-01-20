@@ -1,4 +1,0 @@
-The Clonk-kinds attempt to recreate it's worlds wildlife as an reliable exploration tool.
-
-Instructions:
-Fuel this up with a lot of oil barrels, as this vehicle uses lots of fuel. After that you can ride it by pressing up in front of it. You may walk, jump, or do a side dash midair by pressing left or right a couple of times. Jumping and dashing consumes extra fuel. you can exit by clicking down twice.

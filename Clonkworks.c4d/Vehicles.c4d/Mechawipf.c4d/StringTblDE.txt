@@ -1,2 +1,0 @@
-TxtCheck=Kraftstoff prüfen
-TxtFuel=Kraftstoff:

@@ -1,2 +1,0 @@
-DE:Kraftstoffwarnung
-US:Fuel Warning

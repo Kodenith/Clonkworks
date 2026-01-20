@@ -1,1 +1,0 @@
-TxtFuelWarning=Not enough fuel!|Refuel with: <c ffff00>%s</c>
