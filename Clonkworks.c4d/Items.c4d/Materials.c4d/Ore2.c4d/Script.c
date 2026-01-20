@@ -10,15 +10,15 @@ func Hit () {
 
 public func Sale(int plr) {
   var obj;
-  if (obj = FindObject (COPM, 50 - GetX (), 49 - GetY ()))
-    obj -> COPM::PlayerHasSold(plr, this ());
+  if (obj = FindObject2(Find_ID(COPM)))
+    obj->PlayerHasSold(plr, this ());
   return(GetID());
 }
 
 public func Purchase(int plr, object buyobj) {
   var obj;
-  if (obj = FindObject (COPM, 50 - GetX (), 49 - GetY ()))
-    obj -> COPM::PlayerHasBought(plr, this ());
+  if (obj = FindObject2(Find_ID(COPM)))
+    obj->PlayerHasBought(plr, this ());
 }
 
 func IsAlchemContainer() { return(true); }
