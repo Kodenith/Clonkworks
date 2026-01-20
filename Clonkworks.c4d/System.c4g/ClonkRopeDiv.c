@@ -100,7 +100,8 @@ protected func ControlDigDouble(pClonk)
       }
     }
   }
-
+	
+  if(!pRope)
   return _inherited(pClonk, ...);
 }
 
