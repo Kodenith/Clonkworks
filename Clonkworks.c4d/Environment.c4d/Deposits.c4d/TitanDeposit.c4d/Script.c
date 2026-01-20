@@ -7,8 +7,8 @@ public func OreDepositType(){ return(ORE3); }
 public func OreDepositMat(){ return("TitaniumOre"); }
 func ColorMode(){ return(1); }
 
-func MinOre(){ return(14); }
-func MaxOre(){ return(45); }
+func MinOre(){ return(500); }
+func MaxOre(){ return(1200); }
 
 func Coloration(){
 	return(0);

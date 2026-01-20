@@ -8,8 +8,8 @@ public func OreDepositMat(){ return("Rock"); }
 func ColorMode(){ return(0); }
 
 
-func MinOre(){ return(10); }
-func MaxOre(){ return(30); }
+func MinOre(){ return(100); }
+func MaxOre(){ return(200); }
 
 func Initialize() {
   SetAction("Rock");

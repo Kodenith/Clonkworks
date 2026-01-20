@@ -7,8 +7,8 @@ public func OreDepositType(){ return(GOLD); }
 public func OreDepositMat(){ return("Gold"); }
 func ColorMode(){ return(0); }
 
-func MinOre(){ return(25); }
-func MaxOre(){ return(80); }
+func MinOre(){ return(200); }
+func MaxOre(){ return(800); }
 
 func Coloration(){
 	return(0);
