@@ -164,3 +164,5 @@ func Destruction(){
 	if(Producing) RemoveObject(Producing);
 	if(Sign) RemoveObject(Sign);
 }
+
+public func GetResearchBase(){ return(CHEM); }
