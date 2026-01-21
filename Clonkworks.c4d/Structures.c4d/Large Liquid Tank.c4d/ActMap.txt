@@ -1,6 +1,0 @@
-[Action]
-Name=FillUp
-Length=20
-Facet=0,40,48,24,20,6
-FacetBase=1
-

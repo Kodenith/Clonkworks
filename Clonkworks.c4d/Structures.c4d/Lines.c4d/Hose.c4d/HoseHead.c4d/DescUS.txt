@@ -1,1 +1,0 @@
-Press the Dig key twice to begin aiming. Press throw to toggle sparing. Ungrabbing the hose will return it into your inventory.

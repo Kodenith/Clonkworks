@@ -1,1 +1,0 @@
-Any refuellable vehicle that comes on the platform will be automatically refuelled with whatever is inside of this station.

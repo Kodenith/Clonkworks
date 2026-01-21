@@ -1,1 +1,0 @@
-Can only be created by beggining attachment with Liquid Tanks and most other liquid containers. The ending becomes a hose which will spray material pixels in an aimed direcion.

@@ -3,8 +3,6 @@
 #appendto SPIP
 #appendto DPIP
 #appendto PWRL
-#appendto FNPP
-#appendto HOSE
 #appendto ZIPL
 #appendto GERL
 

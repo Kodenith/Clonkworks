@@ -1,8 +1,0 @@
-[DefCore]
-id=S_LQ
-Version=4,9,8
-Name=SystemLiquidStorage
-Width=1
-Height=1
-Picture=0,0,64,64
-Category=1

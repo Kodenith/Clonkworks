@@ -1,2 +1,0 @@
-DE:Tankstelle
-US:Refuel Station

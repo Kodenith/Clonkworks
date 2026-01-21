@@ -1,1 +1,0 @@
-Jedes betankbare Fahrzeug, das auf die Plattform fährt, wird automatisch mit dem Kraftstoff betankt, der sich in dieser Tankstelle befindet.

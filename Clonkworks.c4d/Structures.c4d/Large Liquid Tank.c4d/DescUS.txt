@@ -1,3 +1,0 @@
-A Large, inmobile version of the Liquid Tank. Holds up to 16000 pixels of liquid.
-
-Stored liquids can be filled into barrels, released, transported through pipes, or shot out with a hose.

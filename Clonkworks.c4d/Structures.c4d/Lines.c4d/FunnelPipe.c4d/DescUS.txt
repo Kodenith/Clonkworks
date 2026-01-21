@@ -1,5 +1,0 @@
-Moves designated items from the building/vehicle the connection begins with, to the container at the end of the line. if the other end can't be attached to a container, putting the advanced line kit inside is good enough.
-
-By default, any item can be moved. With a screwdriver you can set a specific item to be moved around.
-
-Max length of 5 units (500 pixels). exceeding the limit will break the line.

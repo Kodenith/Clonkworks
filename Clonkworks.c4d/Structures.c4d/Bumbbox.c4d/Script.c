@@ -92,3 +92,4 @@ func Update(){
 }
 
 public func CombAvailable(){ return(PollenAmount != 30); }
+func NoConkitConstruct(){ return(1); }

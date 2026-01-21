@@ -1,1 +1,0 @@
-Drücken Sie zweimal auf die Taste Graben, um mit dem Zielen zu beginnen. Drücken Sie auf Werfen, um mit dem Sprühen zu beginnen/es abzubrechen. Wenn Sie den Schlauch loslassen, wird er in Ihr Inventar zurückgelegt.

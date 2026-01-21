@@ -16,6 +16,8 @@ local PlayingSound;
 
 local RequireRotor;
 
+local Extension;
+
 protected func Initialize() {
 	//TargetSpeed = 60;
 	Deaccel = 1;
@@ -240,6 +242,13 @@ global func ObjectBelowConveyor(pObj){
 	return(0);
 }
 
+global func ObjectAboveConveyor(pObj){
+	for(var i in FindObjects(Find_Func("IsConveyor"))){
+		if(i->ObjectOnTop(pObj)) return(1);
+	}
+	return(0);
+}
+
 public func SetConveyorSpeed(iSpeed){
 	TargetSpeed = iSpeed;
 }
@@ -345,7 +354,7 @@ public func Malfunction(){
 }
 
 //detachment
-public func CanBeDetached(){ return(is_locked); }
+public func CanBeDetached(){ return(is_locked && !Extension); }
 public func OnDetach(){
 	Release(0,1);
 }

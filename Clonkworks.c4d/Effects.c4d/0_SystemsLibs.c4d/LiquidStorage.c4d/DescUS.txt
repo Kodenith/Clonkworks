@@ -1,3 +1,0 @@
-Shared functions and effects for liquid storage objects.
-
-(this system is different from what barrels use.)
