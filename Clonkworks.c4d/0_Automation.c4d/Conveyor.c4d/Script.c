@@ -242,13 +242,6 @@ global func ObjectBelowConveyor(pObj){
 	return(0);
 }
 
-global func ObjectAboveConveyor(pObj){
-	for(var i in FindObjects(Find_Func("IsConveyor"))){
-		if(i->ObjectOnTop(pObj)) return(1);
-	}
-	return(0);
-}
-
 public func SetConveyorSpeed(iSpeed){
 	TargetSpeed = iSpeed;
 }

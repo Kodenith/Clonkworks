@@ -1,0 +1,2 @@
+Smaller but more efficient & fully automated explosives production facility.
+Grab and press up to change produced object.
