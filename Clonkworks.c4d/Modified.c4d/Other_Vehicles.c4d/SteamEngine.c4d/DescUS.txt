@@ -1,1 +1,0 @@
-Pulls train wagons. Double click 'dig' to connect.

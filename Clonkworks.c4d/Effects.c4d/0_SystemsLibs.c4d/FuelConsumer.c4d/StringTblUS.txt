@@ -1,0 +1,1 @@
+MsgFuelNotAvailable=No fuel found

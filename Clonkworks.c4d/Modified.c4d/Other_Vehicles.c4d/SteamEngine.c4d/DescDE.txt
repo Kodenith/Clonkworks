@@ -1,1 +1,0 @@
-Zugmaschine für Waggons. Ankuppeln mit Doppelklick auf 'Graben'. Hält automatisch an Signalen.
