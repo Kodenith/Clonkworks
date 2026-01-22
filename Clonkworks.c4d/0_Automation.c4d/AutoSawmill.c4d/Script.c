@@ -50,14 +50,22 @@ func Update(){
 	}
 	
 	if(ActIdle()){
-		if(GetCDir() != 0 && EnergyCheck(10000/2)) SetAction("Sawing");
+		if(GetCDir() != 0 && EnergyCheck(10000/2) && !FindObject2(Find_OnLine(-28,20,28,20), Find_NoContainer(),Find_OCF(OCF_CrewMember))) SetAction("Sawing");
 	}else{
 		if(GetCDir() == 0 || !EnergyCheck(10000/2)) SetAction("Idle");
 	}
 }
 
 func CutUp(){
-	var Objects = FindObjects(Find_OnLine(-28,20,28,20),Find_Or(Find_Category(C4D_Living),Find_Category(C4D_Vehicle)),Find_NoContainer());
+	var Objects = FindObjects(Find_OnLine(-28,20,28,20),Find_Or(Find_Category(C4D_Living),Find_Category(C4D_Vehicle)),Find_NoContainer(),Find_Exclude(this()));
+	
+	if(!GetLength(Objects) || !Objects){
+		Sound("chainsaw_loop",0,this(),50,0,-1,0,200);
+		return(0);
+	}else{
+		Sound("chainsaw_loop",0,this(),50,0,+1,0,200);
+	}
+	
 	for(var Obj in Objects){
 		if(Obj->~IsTree()){
 			Sound("Sawmill");
