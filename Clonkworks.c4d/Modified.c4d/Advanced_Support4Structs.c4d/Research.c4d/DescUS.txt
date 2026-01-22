@@ -1,3 +1,0 @@
-Players can research new construction plans here.
-
-Advanced construction plans require an Advanced Workshop to be built by the researching player.

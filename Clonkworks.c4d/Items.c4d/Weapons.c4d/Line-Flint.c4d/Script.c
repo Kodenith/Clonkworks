@@ -124,3 +124,8 @@ public func Malfunction(){
 	Sound("Click");
 	RemoveObject();
 }
+
+public func IsAdvancedProduct(){ return(1); }
+public func IsAnvilProduct(){ return(1); }
+public func IsChemicalProduct(){ return(0); }
+public func GetResearchBase(){ return(MINE); }
