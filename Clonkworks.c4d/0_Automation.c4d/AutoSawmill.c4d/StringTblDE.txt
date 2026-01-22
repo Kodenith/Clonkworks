@@ -1,0 +1,3 @@
+TxtWrongPlacement=<c ff0000>Automatisierte Produktionsketten|Muss auf einem Förderband platziert werden!</c>
+TxtSetFilter=Produkt ändern
+TxtSet=Produziert jetzt %s.

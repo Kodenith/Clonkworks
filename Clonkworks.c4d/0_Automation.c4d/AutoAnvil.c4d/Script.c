@@ -2,88 +2,40 @@
 
 #strict 2
 #include CXEC
-
-/* GENERAL AUTOMATED PRODUCTION TEMPLATE */
-
-local Parent;
-public func RejectConstruction(iX,iY,pBuilder){
-	if(!ObjectOnConveyor(pBuilder)){
-		Message("$TxtWrongPlacement$",pBuilder);
-		pBuilder->Sound("Error");
-		return(1);
-	}
-	
-	return(0);
-}
-
-protected func Construction(){
-	var Look;
-	if(Look = FindObject2(Find_Func("IsConveyor"),Find_OnLine(0,0,0,10))){
-		Parent = Look;
-		LocalN("Extension",Parent) = this();
-	}
-	else RemoveObject();
-	
-	return(_inherited());
-}
-
-public func GetCDir(){
-	if(!Parent) return(0);
-	if(LocalN("Speed",Parent) == 0) return(0);
-	if(LocalN("Speed",Parent) < 0) return(-1);
-	return(1);
-}
-
-public func IsBuilt(){ return(GetCon() >= 100); }
-protected func BuildNeedsMaterial(){ return(1); }
-
-/* END */
+#include CHM2
 
 local Product;
 local Producing;
 
 protected func Initialize(){
-	Product = GUNP;
+	Product = CNKT;
 	return(1);
 }
 
-//Quick Array Get For Recipe
-public func GetProductComponentArray(){
-	var Ar = [];
-	var x = 0;
-	var i;
-	while(i = GetComponent(,x++,,Product)){
-		ArrayAdd(Ar,i,true);
-	}
-	return(Ar);
-}
-
-//Collection, based on conveyor direction. i cant have both pipes on the sprite go to waste :)
+//Collection
 protected func RejectCollect(idObj,pObj){
 	if(GetCDir() == 0) return(1);
-	if(pObj->~UnpackTo()){
-		Enter(this,pObj);
-		pObj->Unpack();
-		Sound("Clonk");
-		return(1);
-	}
-	if(GetCDir() == 1){
-		if(GetX(pObj) < GetX()-10) return(0);
-	}
-	if(GetCDir() == -1){
-		if(GetX(pObj) > GetX()+10) return(0);
-	}
 	
+	var Prod = GetProductComponentArray();
+	if(InArray(idObj,Prod) != -1){
+		if(pObj->~UnpackTo()){
+			Enter(this,pObj);
+			pObj->Unpack();
+			Sound("Grapple");
+			return(1);
+		}
+		return(0);
+	}
 	return(1);
 }
 
 protected func Collection(pObj,fPut){
 	if(fPut) return(1);
-	Sound("Clonk");
+	Sound("Grapple");
 	
 	var Ingr = GetProductComponentArray();
 	if(InArray(GetID(pObj),Ingr) == -1){
-		Exit(pObj,20*GetCDir(),GetDefBottom()-GetY());
+		Exit(pObj,0,GetDefBottom()-(GetY()+2));
 		return(0);
 	}
 	
@@ -92,7 +44,7 @@ protected func Collection(pObj,fPut){
 
 //Setting filter. setting one automatically checks all items so they quit.
 public func SetFilter(pId,pGrabber){
-	if(DefinitionCall(pId,"IsChemicalProduct") != 1) return(0);
+	if(DefinitionCall(pId,"IsAnvilProduct") != 1) return(0);
 	if(pGrabber && (GetAction(pGrabber) != "Push" || GetActionTarget(0,pGrabber) != this())) return(0);
 	Product = pId;
 	for(var i in FindObjects(Find_Container(this()))){
@@ -110,14 +62,14 @@ func ControlUp(pClonk){
 	CreateMenu(GetID(),pClonk,this(),1);
 	var x,i;
 	while(x = GetDefinition(i++,C4D_Object)){
-		if(!DefinitionCall(x,"IsChemicalProduct")) continue;
+		if(!DefinitionCall(x,"IsAnvilProduct")) continue;
 		if(!GetPlrKnowledge(GetController(pClonk),x)) continue;
 		AddMenuItem("%s","SetFilter",x,pClonk,0,pClonk);
 	}
 }
 
 public func ContextSetFilter(pClonk){
-	[$TxtSetFilter$|Image=CHM2|Condition=IsBuilt]
+	[$TxtSetFilter$|Image=ANV2|Condition=IsBuilt]
 	AddCommand(pClonk,"Call",this(),pClonk,0,0,38*999,"ControlUp");
 	AddCommand(pClonk,"Grab",this());
 }
@@ -144,17 +96,23 @@ protected func CheckContents(){
 		var New;
 		if(New = ComposeContents(Product,this())){
 			Producing = New;
-			SetAction("Production");
+			SetAction("Produce");
 			return(1);
 		}
-	}else{
-		if(!Random(2)) Smoke(0,-15,RandomX(10,20));
+	}
+}
+
+func TryRelease(){
+	if(GetPhase() == 8){
+		CastParticles("PxSpark",5,50,0,18,50,70,RGBa(255,255,0),RGBa(255,181,0));
+		ReleaseProduct();
+		Sound("AnvilWork*");
 	}
 }
 
 func ReleaseProduct(){
 	if(GetCDir() == 0 || !Producing) return(0);
-	Exit(Producing,20*GetCDir(),GetDefBottom()-GetY());
+	Exit(Producing,0,GetDefBottom()-(GetY()+2));
 	Producing=0;
 	return(1);
 }
@@ -167,4 +125,4 @@ func Destruction(){
 	if(Sign) RemoveObject(Sign);
 }
 
-public func GetResearchBase(){ return(CHEM); }
+public func GetResearchBase(){ return(ANVL); }

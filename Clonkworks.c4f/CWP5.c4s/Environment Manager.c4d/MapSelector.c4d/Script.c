@@ -115,9 +115,9 @@ public func SetMountains(){
 	Log("Map: $O2$");
 	DrawDefMap(0,0,LandscapeWidth(),LandscapeHeight(),"Mountains");
 	DoMapChange();
-	PlaceObjects(ODEP,5+(5*GetPlayerCount()),"GBackSolid",0,0,LandscapeWidth(),LandscapeHeight());
-	PlaceObjects(TDEP,5+(5*GetPlayerCount()),"GBackSolid",0,0,LandscapeWidth(),LandscapeHeight());
-	PlaceObjects(CDEP,5+(5*GetPlayerCount()),"GBackSolid",0,0,LandscapeWidth(),LandscapeHeight());
+	PlaceObjects(ODEP,2,"GBackSolid",0,0,LandscapeWidth(),LandscapeHeight());
+	PlaceObjects(TDEP,2,"GBackSolid",0,0,LandscapeWidth(),LandscapeHeight());
+	PlaceObjects(CDEP,2,"GBackSolid",0,0,LandscapeWidth(),LandscapeHeight());
 	return(1);
 }
 //Caves
@@ -133,7 +133,7 @@ public func SetCaves(){
 	Log("Map: $O3$");
 	DrawDefMap(0,0,LandscapeWidth(),LandscapeHeight(),"Caves");
 	DoMapChange();
-	PlaceObjects(GDEP,5+(5*GetPlayerCount()),"GBackSolid",0,0,LandscapeWidth(),LandscapeHeight());
+	PlaceObjects(GDEP,5,"GBackSolid",0,0,LandscapeWidth(),LandscapeHeight());
 	return(1);
 }
 //Chasm
@@ -149,7 +149,7 @@ public func SetChasm(){
 	Log("Map: $O4$");
 	DrawDefMap(0,0,LandscapeWidth(),LandscapeHeight(),"Vulkan");
 	DoMapChange();
-	PlaceObjects(GDEP,5+(5*GetPlayerCount()),"GBackSolid",0,0,LandscapeWidth(),LandscapeHeight());
+	PlaceObjects(GDEP,5,"GBackSolid",0,0,LandscapeWidth(),LandscapeHeight());
 	return(1);
 }
 
@@ -166,7 +166,7 @@ public func SetIslands(){
 	Log("Map: $O5$");
 	DrawDefMap(0,0,LandscapeWidth(),LandscapeHeight(),"Skylands");
 	DoMapChange();
-	PlaceObjects(GDEP,5+(5*GetPlayerCount()),"GBackSolid",0,0,LandscapeWidth(),LandscapeHeight());
+	PlaceObjects(GDEP,5,"GBackSolid",0,0,LandscapeWidth(),LandscapeHeight());
 	return(1);
 }
 

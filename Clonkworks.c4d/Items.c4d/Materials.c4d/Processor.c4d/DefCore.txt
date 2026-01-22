@@ -15,7 +15,7 @@ VertexX=0
 VertexY=0
 VertexFriction=20
 VertexCNAT=16
-Components=CRYS=1;SPHR=1;CPIG=1
+Components=SPHR=1;CPIG=1;METL=1;
 Collectible=1
 Rebuy=1
 Rotate=1

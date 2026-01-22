@@ -1,0 +1,2 @@
+Ermöglicht die automatische Konstruktion von Ambossen und fortschrittlichen Geräten.
+Greifen und nach oben drücken, um das hergestellte Objekt zu ändern.
