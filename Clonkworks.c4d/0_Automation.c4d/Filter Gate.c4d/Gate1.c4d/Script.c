@@ -28,10 +28,11 @@ func SetFilterGraph(){
   var FilterImage = Filter;
   if(Filter == 1) FilterImage = WRKS;
   if(Filter == 2) FilterImage = FNDR;
-  if(Filter == 3) FilterImage = WR_F;
+  if(Filter == 3) FilterImage = L_FU;
   if(Filter == 4) FilterImage = RVLT;
   if(Filter == 5) FilterImage = FLAM;
   if(Filter == 6) FilterImage = MAM5;
+  if(Filter == 7) FilterImage = S_DC;
   
 	//outline
   SetGraphics(0,this(),FilterImage,ShadowID(),4);

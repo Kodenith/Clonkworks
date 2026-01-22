@@ -30,10 +30,11 @@ func SetFilterGraph(){
   var FilterImage = Filter;
   if(Filter == 1) FilterImage = WRKS;
   if(Filter == 2) FilterImage = FNDR;
-  if(Filter == 3) FilterImage = WR_F;
+  if(Filter == 3) FilterImage = L_FU;
   if(Filter == 4) FilterImage = RVLT;
   if(Filter == 5) FilterImage = FLAM;
   if(Filter == 6) FilterImage = MAM5;
+  if(Filter == 7) FilterImage = S_DC;
   
 	//outline
   SetGraphics(0,this(),FilterImage,ShadowID(),4);
@@ -58,17 +59,18 @@ func ControlLeft(pObj){
 	if(GetProcedure(pObj) != "PUSH") return(0);
 	if(GetActionTarget(0,pObj) != this());
 	CreateMenu(GetID(),pObj,this(),,"error");
-	SetMenuSize(6,,pObj);
+	SetMenuSize(7,,pObj);
 	
 	//predefined options
 	AddMenuItem("$TxtMenu1$: $Temp1$","TryGrabbedFilter",WRKS,pObj,,pObj);
 	AddMenuItem("$TxtMenu1$: $Temp2$","TryGrabbedFilter",FNDR,pObj,,pObj);
-	AddMenuItem("$TxtMenu1$: $Temp3$","TryGrabbedFilter",WR_F,pObj,,pObj);
+	AddMenuItem("$TxtMenu1$: $Temp3$","TryGrabbedFilter",L_FU,pObj,,pObj);
 	AddMenuItem("$TxtMenu1$: $Temp4$","TryGrabbedFilter",RVLT,pObj,,pObj);
 	AddMenuItem("$TxtMenu1$: $Temp5$","TryGrabbedFilter",FLAM,pObj,,pObj);
 	AddMenuItem("$TxtMenu1$: $Temp6$","TryGrabbedFilter",MAM5,pObj,,pObj);
+	AddMenuItem("$TxtMenu1$: %s","TryGrabbedFilter",S_DC,pObj,,pObj);
 	//empty entries to make space
-	for(var i = 0; i < 6; i++){
+	for(var i = 0; i < 7; i++){
 		AddMenuItem(" ",0,0,pObj);
 	}
 	
@@ -90,10 +92,11 @@ func TryGrabbedFilter(Filt,pObj){
 	if(GetActionTarget(0,pObj) != this());
 	if(Filt == WRKS) Filt = 1;
 	if(Filt == FNDR) Filt = 2;
-	if(Filt == WR_F) Filt= 3;
+	if(Filt == L_FU) Filt= 3;
 	if(Filt == RVLT) Filt = 4;
 	if(Filt == FLAM) Filt = 5;
 	if(Filt == MAM5) Filt = 6;
+	if(Filt == S_DC) Filt = 7;
 	SetFilter(Filt);
 	Sound("Connect");
 	
@@ -103,6 +106,7 @@ func TryGrabbedFilter(Filt,pObj){
 	else if(Filter == 4) Message("$TxtFilterSet$",this(),"$Temp4$");
 	else if(Filter == 5) Message("$TxtFilterSet$",this(),"$Temp5$");
 	else if(Filter == 6) Message("$TxtFilterSet$",this(),"$Temp6$");
+	else if(Filter == 7) Message("$TxtFilterSet$",this(),GetName(,S_DC));
 	else Message("$TxtFilterSet$",this(),GetName(,Filter));
 }
 
@@ -170,6 +174,8 @@ private func FilterCompatibleItem(pItem){
 	}else if(Filter==5){
 		if(GetDefContactIncinerate(pId)) return(1);
 		if(GetDefBlastIncinerate(pId)) return(1);
+	}else if(Filter==7){
+		return(RandomX(0,1));
 	}else{
 		if(pId == Filter) return(1);
 	}
