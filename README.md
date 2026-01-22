@@ -26,9 +26,9 @@ You can edit everything inside the c4f file in the Clonk Editor, which can be ac
 
 C4Script documentation [Can be found here](https://crdocs.clonkspot.org/en/sdk/).
 
-## <p align="center">How to edit the Models?</p>
+## <p align="center">How to acquire the models?</p>
 
-To edit the 3d models in the **Models** folder, you need [Blender](https://www.blender.org/) and the [RenderClonk Addon](https://github.com/RoboClonk/RenderClonkAddon).
+as of Clonkworks 0.3.9, models are no longer on the repository to save space. if you want access to a model, contact me :)
 
 ## <p align="center">Translations & Credits</p>
 
