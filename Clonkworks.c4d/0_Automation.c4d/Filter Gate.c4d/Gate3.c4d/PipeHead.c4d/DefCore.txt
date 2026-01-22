@@ -7,10 +7,6 @@ ContactCalls=1
 Width=3
 Height=4
 Offset=-1,-1
-Vertices=1
-VertexY=2
-VertexCNAT=8
-VertexFriction=100
 Value=3
 Mass=5
 Components=METL=1

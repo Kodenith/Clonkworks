@@ -6,7 +6,6 @@ NextAction=Move
 Delay=5
 Length=1
 Sound=Elevator
-DigFree=1
 
 [Action]
 Name=Stop
