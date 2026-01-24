@@ -6,6 +6,7 @@
 public func OreDepositType(){ return(ORE2); }
 public func OreDepositMat(){ return("CopperOre"); }
 func ColorMode(){ return(1); }
+public func IsOreDeposit(){return(1);}
 
 func MinOre(){ return(500); }
 func MaxOre(){ return(1200); }

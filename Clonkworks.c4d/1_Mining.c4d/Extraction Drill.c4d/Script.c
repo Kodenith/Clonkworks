@@ -20,6 +20,7 @@ func Destruction(){
 
 func Update(){
 	if(GetCon() < 100) return(0);
+	if(FindObject(ENRG) && GetComDir(head) == COMD_Down) DoEnergy(-3);
 	
 	if(!head){
 		head = CreateObject(EXDC,1,20);
