@@ -8,8 +8,8 @@ public func OreDepositMat(){ return("Ore"); }
 func ColorMode(){ return(1); }
 public func IsOreDeposit(){return(1);}
 
-func MinOre(){ return(500); }
-func MaxOre(){ return(1200); }
+func MinOre(){ return(200); }
+func MaxOre(){ return(400); }
 
 func Coloration(){
 	return(0);

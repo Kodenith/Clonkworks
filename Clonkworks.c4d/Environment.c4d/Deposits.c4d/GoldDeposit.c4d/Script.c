@@ -9,7 +9,7 @@ func ColorMode(){ return(0); }
 public func IsOreDeposit(){return(1);}
 
 func MinOre(){ return(200); }
-func MaxOre(){ return(800); }
+func MaxOre(){ return(400); }
 
 func Coloration(){
 	return(0);
