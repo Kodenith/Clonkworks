@@ -35,7 +35,7 @@ protected func Collection(pObj,fPut){
 	
 	var Ingr = GetProductComponentArray();
 	if(InArray(GetID(pObj),Ingr) == -1){
-		Exit(pObj,0,GetDefBottom()-(GetY()+2));
+		Exit(pObj,0,GetDefBottom()-(GetY()+5));
 		return(0);
 	}
 	
@@ -112,7 +112,7 @@ func TryRelease(){
 
 func ReleaseProduct(){
 	if(GetCDir() == 0 || !Producing) return(0);
-	Exit(Producing,0,GetDefBottom()-(GetY()+2));
+	Exit(Producing,0,GetDefBottom()-(GetY()+5));
 	Producing=0;
 	return(1);
 }

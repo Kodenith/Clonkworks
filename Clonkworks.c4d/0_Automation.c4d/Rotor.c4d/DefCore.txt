@@ -24,6 +24,7 @@ TimerCall=DieOut
 Components=WOOD=3;CPIG=2;METL=1;
 BlastIncinerate=65
 BurnTo=BRTR
+Exclusive=1
 
 [Physical]
 Energy=100000
