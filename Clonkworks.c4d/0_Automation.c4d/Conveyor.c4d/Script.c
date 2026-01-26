@@ -265,7 +265,7 @@ public func GetNeighboursLeft(Limit){
 	var List = [];
 	while(found = FindObject2(Find_AtPoint(x,0),Find_ID(GetID()),Find_NoContainer())){
 		ArrayAdd(List,found,true);
-		x -= 5;
+		x -= 43;
 		if(GetLength(List) > Limit) break;
 	}
 	return(List);
@@ -279,7 +279,7 @@ public func GetNeighboursRight(Limit){
 	var List = [];
 	while(found = FindObject2(Find_AtPoint(x,0),Find_ID(GetID()),Find_NoContainer())){
 		ArrayAdd(List,found,true);
-		x += 5;
+		x += 43;
 		if(GetLength(List) > Limit) break;
 	}
 	return(List);
