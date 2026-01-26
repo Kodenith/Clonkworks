@@ -1,2 +1,2 @@
-Allows automatic construction of anvil and advanced equipment.
+Allows automatic construction of anvil and electronic equipment.
 Grab and press up to change produced object.

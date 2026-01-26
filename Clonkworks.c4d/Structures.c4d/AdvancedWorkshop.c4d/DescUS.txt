@@ -1,3 +1,1 @@
-Allows the creation of advanced vehicles and tools with the use of new materials like copper and titanium.
-
-Constructing this allows you and your allies to create/research better items on different workstations.
+Allows the creation of many new electronics, materials, and vehicles.

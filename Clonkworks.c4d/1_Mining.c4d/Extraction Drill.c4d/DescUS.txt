@@ -1,2 +1,2 @@
 Designed for material extraction and mining ore deposits.
-The drill will need replacement drill heads, which can be fabricated in the Advanced Workshop.
+The drill will need replacement drill heads, which can be fabricated in the Electronics Workshop

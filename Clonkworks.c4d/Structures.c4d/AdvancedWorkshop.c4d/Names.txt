@@ -1,2 +1,2 @@
-DE:Fortgeschrittenen-Werkstatt
-US:Advanced Workshop
+DE:Elektronik-Werkstatt
+US:Electronics Workshop

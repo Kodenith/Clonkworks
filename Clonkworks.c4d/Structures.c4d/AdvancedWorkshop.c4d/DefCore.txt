@@ -1,5 +1,5 @@
 [DefCore]
-Name=AdvancedWorkshop
+Name=ElectronicWorkshop
 id=ADVW
 Version=4,9,8
 Category=C4D_Structure|C4D_SelectBuilding|C4D_SelectKnowledge
