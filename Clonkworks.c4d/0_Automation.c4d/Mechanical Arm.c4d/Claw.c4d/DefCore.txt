@@ -16,6 +16,8 @@ Rotate=1
 SilentCommands=1
 Components=CPIG=2
 NoTransferZones=1
+Timer=1
+TimerCall=DrawRope
 
 [Physical]
 Float=200

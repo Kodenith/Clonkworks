@@ -95,3 +95,7 @@ public func Malfunction(){
 	if(GetAction() == "Grab") Release();
 	EndAllCommands();
 }
+
+private func DrawRope(){
+	DrawParticleLine("Rope2",0,0,AbsX(GetX(GetStation())),AbsY(GetY(GetStation())),2,40,RGBa(100, 50, 0, 50),RGBa(100, 50, 0, 50));
+}

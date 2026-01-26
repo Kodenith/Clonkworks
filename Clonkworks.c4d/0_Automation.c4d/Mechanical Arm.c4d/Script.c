@@ -6,7 +6,6 @@
 local Claw;
 local PointerList;
 local SelectedPointer;
-local Rope;
 
 local GrabFromContainer;
 
@@ -22,15 +21,9 @@ func Initialize() {
 func CreateClaw(){
 	Claw = CreateObject(MAM2,0,40);
 	ClawResort();
-	var rope = CreateObject(CK5P);
-	rope->ConnectObjects(this(),Claw);
-	LocalN("fNoPickUp_0",rope) = true;
-	LocalN("fNoPickUp_1",rope) = true;
-	rope->SetRopeLength(100);
 	
 	Claw->SetAction("Moving");
 	SetCommand(Claw,"MoveTo",0,GetX(),GetY()+40);
-	Rope = rope;
 }
 
 func NewFilter(cID){
@@ -114,7 +107,6 @@ func Logic(){
 	}
 	
 	if(!GetCommand(Claw)){
-		RefreshRope();
 		if(LocalN("Grabtarg",Claw)) Claw->Release();
 		SetXDir(0,Claw); SetYDir(0,Claw);
 		if(FindNeedMove() && !FindObject2(Find_Action("Push"),Find_ActionTarget(this()))){
@@ -136,24 +128,6 @@ func FindNeedMove(){
 	for(var i in PointerList){
 		if(i->GetUseable()) return(i->GetUseable());
 	}
-}
-
-func RefreshRope(){
-	if(Rope){
-		LocalN("aPointsX",Rope) = [];
-		LocalN("aPointsY",Rope) = [];
-		LocalN("fNoPickUp_0",Rope) = true;
-	    LocalN("fNoPickUp_1",Rope) = true;
-		Rope->ConnectObjects(this(),Claw);
-		return(Rope);
-	}
-	var rope = CreateObject(CK5P);
-	rope->ConnectObjects(this(),Claw);
-	LocalN("fNoPickUp_0",rope) = true;
-	LocalN("fNoPickUp_1",rope) = true;
-	rope->SetRopeLength(100);
-	Rope = rope;
-	return(rope);
 }
 
 func ClawResort(){

@@ -23,15 +23,15 @@ protected func Initialize()
 
 public func Activate(pByObj)
 {
-  // kein Menü bei Aktion in angefasstem Objekt
+  // kein Menï¿½ bei Aktion in angefasstem Objekt
   if(GetAction(pByObj) == "Push" && GetActionTarget(0, pByObj)->~ControlDigDouble())
     return 0;
-  // Clonk stoppen und Seilmenü erzeugen
+  // Clonk stoppen und Seilmenï¿½ erzeugen
   pByObj->SetComDir(COMD_Stop);
   CreateMenu(GetID(this), pByObj);
   // Erster Eintrag: mit sich selbst verbinden
   AddMenuItem(Format("$TxtConnect$", GetName(pByObj)), "NewConnect", 0, pByObj, 0, pByObj, 0, 4, pByObj);
-  // Folgende Einträge: Inventarobjekte
+  // Folgende Eintrï¿½ge: Inventarobjekte
   for(var pObj in FindObjects(Find_Container(pByObj), Find_OCF(iOCF), Find_Exclude(), Find_Not(Find_ID(CK5P)), Find_Not(Find_ID(CL5P))))
     AddMenuItem(Format("$TxtConnect$", GetName(pObj)), "NewConnect", 0, pByObj, 0, pObj, 0, 4, pObj);
   // Danach: Objekte am Standort auflisten
@@ -44,20 +44,20 @@ public func Activate(pByObj)
       continue;
     AddMenuItem(Format("$TxtConnect$", GetName(pObj)), "NewConnect", 0, pByObj, 0, pObj, 0, 4, pObj);
   }
-  // Auch Zweikampfgegner aufführen
+  // Auch Zweikampfgegner auffï¿½hren
   if(GetProcedure(pByObj) == "FIGHT" && GetActionTarget(0, pByObj) && !fEnemy)
     AddMenuItem(Format("$TxtConnect$", GetName(GetActionTarget(0, pByObj))), "NewConnect", 0, pByObj, 0, GetActionTarget(0, pByObj), 0, 4, GetActionTarget(0, pByObj));
-  // Wenn Gefangennahme-Regel aktiv: zuletzt gefangennehmbare Clonks aufführen
+  // Wenn Gefangennahme-Regel aktiv: zuletzt gefangennehmbare Clonks auffï¿½hren
   if(!FindObject(CR5P)) return 1;
   fEnemy = 0;
   for(var pObj in FindObjects(Find_Or(Find_AtPoint(), Find_InRect(-10, -15, 20, 30)), Find_OCF(OCF_CrewMember), Find_NoContainer(), Find_Exclude(pByObj)))
   {
     if(GetProcedure(pByObj) == "FIGHT" && pObj == GetActionTarget(0, pByObj))
       fEnemy = 1;
-    // Schlaufen-Grafik drüberlegen...
+    // Schlaufen-Grafik drï¿½berlegen...
     SetGraphics(0, pObj, CS5P, GFX_Overlay, GFXOV_MODE_Picture);
     AddMenuItem(Format("$TxtTieUp$", GetName(pObj)), "TieUp", 0, pByObj, 0, pObj, 0, 4, pObj);
-    // ...und wieder entfernen, damit es nur im Menü erscheint
+    // ...und wieder entfernen, damit es nur im Menï¿½ erscheint
     SetGraphics(0, pObj, 0, GFX_Overlay);
   }
   if(GetProcedure(pByObj) == "FIGHT" && GetActionTarget(0, pByObj) && !fEnemy)
@@ -71,10 +71,10 @@ public func Activate(pByObj)
 
 private func NewConnect(idTo, pTo)
 {
-  // Nochmal alle möglichen Objekte durchgehen
+  // Nochmal alle mï¿½glichen Objekte durchgehen
   for(var pObj in FindObjects(Find_Or(Find_AtPoint(), Find_InRect(-10, -15, 20, 30)), Find_Not(Find_And(Find_AnyContainer(), Find_Not(Find_Container(Contained()))))))
     if(pObj == pTo) var fAtPos = 1;
-  // Abbrechen, wenn Objekt nicht mehr da (außer Zweikampfgegnern)
+  // Abbrechen, wenn Objekt nicht mehr da (auï¿½er Zweikampfgegnern)
   if(!fAtPos && !(GetProcedure(Contained()) == "FIGHT" && pTo == GetActionTarget(0, Contained())))
   {
     Sound("Error", 1, 0, 100, GetOwner(Contained()) + 1);
@@ -104,7 +104,7 @@ private func TieUp(idTo, pTo)
 {
   if(NewConnect(idTo, pTo))
   {
-    // 3. Parameter für OnStartTiedMember: Wenn 1, dann war der Clonk schon vorher gefesselt
+    // 3. Parameter fï¿½r OnStartTiedMember: Wenn 1, dann war der Clonk schon vorher gefesselt
     var fWasTied = GetEffect("IntTied", pTo);
 
     // Fessel-Effekt
@@ -112,7 +112,7 @@ private func TieUp(idTo, pTo)
     if(!FindObject2(Find_ID(CY5P), Find_ActionTarget(pTo)))
       ObjectSetAction(CreateObject(CY5P), "Tied", pTo);
 
-    // Info den Szenarioscripten, Spielzielen usw. zur Verfügung stellen
+    // Info den Szenarioscripten, Spielzielen usw. zur Verfï¿½gung stellen
     GameCallEx("OnStartTiedMember", pTo, Contained(pPulley), fWasTied);
 	
     // Physicals anpassen
@@ -128,7 +128,7 @@ global func SetTiedPhysicals(pClonk)
   pClonk->SetPhysical("CanScale", 0, PHYS_StackTemporary);
   pClonk->SetPhysical("CanHangle", 0, PHYS_StackTemporary);
   pClonk->SetPhysical("CanDig", 0, PHYS_StackTemporary);
-  // Keine Hand frei zum Bauen oder Fällen
+  // Keine Hand frei zum Bauen oder Fï¿½llen
   pClonk->SetPhysical("CanConstruct", 0, PHYS_StackTemporary);
   pClonk->SetPhysical("CanChop", 0, PHYS_StackTemporary);
   return 1;
@@ -203,20 +203,20 @@ public func CalcLength(pTarget1, pTarget2)
   // Anzahl Paare
   var i = GetPointNum() - 1;
   var iCount = 0;
-  // für jedes Paar berechnen
+  // fï¿½r jedes Paar berechnen
   while(i-- > 0) iCount += VerticeLength(i, pTarget1, pTarget2);
   return iCount;
 }
 
 private func VerticeLength(i, pTarget1, pTarget2)
 {
-  // erster Vertex: Geschwindigkeit von 1.Actiontarget berücksichtigen
+  // erster Vertex: Geschwindigkeit von 1.Actiontarget berï¿½cksichtigen
   if(i == 0) return Distance(
     GetPoint(0) + GetXDir(pTarget1) / 2, 
     GetPoint(0, 1) + GetYDir(pTarget1) / 2,
     GetPoint(1),
     GetPoint(1, 1));
-  // vorletzter Vertex: Geschwindigkeit von 2.Actiontarget berücksichtigen
+  // vorletzter Vertex: Geschwindigkeit von 2.Actiontarget berï¿½cksichtigen
   if(i == (GetPointNum() - 2)) return Distance(
     GetPoint(i),
     GetPoint(i, 1),          
@@ -255,9 +255,9 @@ private func Timer()
 
 private func DrawParticleLine2 (szKind, x0, y0, x1, y1, prtdist, a, b0, b1, iYDir)
 {
-  // Parameter gültig?
+  // Parameter gï¿½ltig?
   if (!prtdist) return 0;
-  // Anzahl der benötigten Partikel berechnen
+  // Anzahl der benï¿½tigten Partikel berechnen
   var prtnum = Max(Distance(x0, y0, x1, y1) / prtdist, 2);
   var i = prtnum;
   var iXDir = Sin(Angle(x0, y0, x1, y1), 10);
@@ -278,7 +278,7 @@ private func DrawParticleLine2 (szKind, x0, y0, x1, y1, prtdist, a, b0, b1, iYDi
     if(!i) szPart = "Rope2";
     CreateParticle(szPart, x0 + (x1 - x0) * i / prtnum, y0 + (y1 - y0) * i-- / prtnum, iXDir, iYDir, a, b, this);
   }
-  // Erfolg; Anzahl erzeugter Partikel zurückgeben
+  // Erfolg; Anzahl erzeugter Partikel zurï¿½ckgeben
   return prtnum;
 }
 
@@ -296,18 +296,18 @@ func MoveRope(pObj1, pObj2)
     // Neue Position des Vertices
     a = (GetPoint(i - 1) + GetPoint(i + 1)) / 2;
     b = (GetPoint(i - 1, 1) + GetPoint(i + 1, 1)) / 2 + 1;
-    // Überschüssige Vertices, die nahe genug aneinander sind entfernen
+    // ï¿½berschï¿½ssige Vertices, die nahe genug aneinander sind entfernen
     if(GetPointNum () > 3)
       if(Distance(GetPoint(i - 1, 0), GetPoint(i - 1, 1), GetPoint(i + 1, 0), GetPoint(i + 1, 1)) < iVtxDist)
         if(PathFree(GetPoint(i - 1, 0), GetPoint(i - 1, 1), GetPoint(i + 1, 0), GetPoint(i + 1, 1)))
           { RemovePoint(i); continue; }
-    // bei zu langem Abstand einen neuen Vertex einfügen
+    // bei zu langem Abstand einen neuen Vertex einfï¿½gen
     if(Distance(GetPoint(i - 1, 0), GetPoint(i - 1, 1), GetPoint(i, 0), GetPoint(i, 1)) > (7 + iVtxDist))
     {
       InsertPoint(i, (GetPoint(i - 1, 0) + GetPoint(i, 0)) / 2, (GetPoint(i - 1, 1) + GetPoint(i, 1)) / 2);
       continue;
     }
-    // Wenn durch verschieben des Vertex das Seil durch solides ginge, nicht verschieben, und bei genug Platz einen zusätzlichen Vertex einfügen
+    // Wenn durch verschieben des Vertex das Seil durch solides ginge, nicht verschieben, und bei genug Platz einen zusï¿½tzlichen Vertex einfï¿½gen
     if(!PathFree(a, b, GetPoint(i - 1), GetPoint(i - 1, 1)))
     {
       if(Distance(GetPoint (i - 1, 0), GetPoint(i - 1, 1), GetPoint(i, 0), GetPoint(i, 1)) > iVtxDist)
@@ -331,8 +331,8 @@ func SetRopeEnd(pObj, iRopeVtx, iObjVtx, iWhichEnd)
   x = GetX(pObj) + GetVertex(iObjVtx, 0, pObj);
   y = GetY(pObj) + GetVertex(iObjVtx, 1, pObj);
   // Wenn durch die Bewegung des angebundenen Objekts das Seil durch solides
-  // ginge, einen Vertex an der letzten Position des Objekts einfügen
-  // wenn das Objekt selbst in fester Materie steckt, hülfe das auch nichts
+  // ginge, einen Vertex an der letzten Position des Objekts einfï¿½gen
+  // wenn das Objekt selbst in fester Materie steckt, hï¿½lfe das auch nichts
   if(!GBackSolid(x - GetX(), y - GetY()))
   {
     if(!PathFree(x, y, GetPoint(iRopeVtx + iWhichEnd, 0), GetPoint(iRopeVtx + iWhichEnd, 1)))
@@ -353,7 +353,7 @@ private func InsertPoint(iIndex, x, y)
 
 func Connecting()
 {
-  // Wenn angeknüpfte Objekte verloren gehen: Seil löschen
+  // Wenn angeknï¿½pfte Objekte verloren gehen: Seil lï¿½schen
   if(!GetActionTarget(0) || !GetActionTarget(1)) return RemoveObject();
   var pTarget1 = GetRealContainer(GetActionTarget(0));
   var pTarget2 = GetRealContainer(GetActionTarget(1));
@@ -365,12 +365,12 @@ func Connecting()
   iLength = Max(iLength + GetActionTarget(1)->~RopeAskChangeLength(iDifference, this), 3);
   iDifference = iCalcedLength - iLength;
   if(iDifference <= 0) return 0;
-  // bei zu kurzer Seillänge nicht mehr ziehen, um Aufschaukeln zu verhindern
+  // bei zu kurzer Seillï¿½nge nicht mehr ziehen, um Aufschaukeln zu verhindern
   if(iCalcedLength < 5) return 0;
   // freie, verbundene Seilrollen ziehen sich nicht gegenseitig an
   if(GetID(pTarget1) == CL5P && GetID(pTarget2) == CL5P && !Contained(pTarget1) && !Contained(pTarget2))
     return 0;
-  // wenn eine Seilrolle Seil gibt, dann in Ruhe lassen, außer, sie dämpft
+  // wenn eine Seilrolle Seil gibt, dann in Ruhe lassen, auï¿½er, sie dï¿½mpft
   // den Fall von Clonks
   if(LocalN("iPull", pPulley) > 0 && Contained(pPulley))
     if(GetProcedure(Contained(pPulley)) != "FLIGHT")
@@ -397,14 +397,14 @@ func Connecting()
 private func PullObject(iToX, iToY, iLength, pObj, pObj2, iVtx) // pObj wird versetzt
 {
   if(!pObj || !pObj2) return 0;
-  // Außnahmen:
-  // gefesselte Clonks lassen sich abführen
+  // Auï¿½nahmen:
+  // gefesselte Clonks lassen sich abfï¿½hren
   if(GetEffect("IntTied", pObj2))
     return 0;
-  // Gebäude (oder Inhaltsobjekte) sowie Hintergrundobjekte gar nicht ziehen
+  // Gebï¿½ude (oder Inhaltsobjekte) sowie Hintergrundobjekte gar nicht ziehen
   if(GetCategory(pObj) & C4D_Structure || GetCategory(pObj) & C4D_StaticBack)
     return 0;
-  // Objekt aus dem eigenen Grafikbereich heraus nicht ziehen, führt nur zu komischen Effekten
+  // Objekt aus dem eigenen Grafikbereich heraus nicht ziehen, fï¿½hrt nur zu komischen Effekten
   for(var pObj3 in FindObjects(Find_AtPoint(GetX(pObj2) + GetVertex(pObj2->~GetVertexToConnect(), 0, pObj2), GetY(pObj2) + GetVertex(pObj2->~GetVertexToConnect(), 1, pObj2))))
     if(pObj3 == pObj)
       return 0;
@@ -415,7 +415,7 @@ private func PullObject(iToX, iToY, iLength, pObj, pObj2, iVtx) // pObj wird ver
     || (GetActionTarget(1) == pObj && GetActionTarget()->~IsAnchor() && !Contained(GetActionTarget())))
       return 0;
   }
-  // Floateinfluss: z.B. Luftschiffe können heben
+  // Floateinfluss: z.B. Luftschiffe kï¿½nnen heben
   if(GetProcedure(pObj) == "FLOAT")
     iLength = Max(0, iLength - (GetPhysical("Float", 0, pObj) / 20));
 
@@ -447,7 +447,7 @@ private func PullObject(iToX, iToY, iLength, pObj, pObj2, iVtx) // pObj wird ver
     SetRDir(GetRDir(pObj, 100) + (iAngle - iAngle2) / 10, pObj, 100);
   if(iLength > 30)
   SetPosition(GetX(pObj) + BoundBy(x, -1, 1), GetY(pObj) - BoundBy(y, -1, 1), pObj);
-  //Falls Objekt dann feststecken würde, nicht wirklich versetzen
+  //Falls Objekt dann feststecken wï¿½rde, nicht wirklich versetzen
   if(Stuck(pObj))
     SetPosition(GetX(pObj) - BoundBy(x, -1, 1), GetY(pObj) + BoundBy(y, -1, 1), pObj);
  }
@@ -466,12 +466,12 @@ private func GetMiddlestVertex(pObj)
   // alle Vertices durchgehen
   for(i = GetVertexNum(pObj); i >= 0; i--)
   {
-    // x-Differenz zur Mitte + y-Differenz (eigentlich müsste ich Distance benutzen)
+    // x-Differenz zur Mitte + y-Differenz (eigentlich mï¿½sste ich Distance benutzen)
     t = (Abs(GetVertex(i, 0, pObj)) + Abs(GetVertex(i, 1, pObj)));
-    //s: kürzester Abstand bis jetzt
+    //s: kï¿½rzester Abstand bis jetzt
     if(s > t)
     {
-      //n: Vertex mit kürzestem Abstand
+      //n: Vertex mit kï¿½rzestem Abstand
       s = t;
       n = i;
     }
@@ -479,7 +479,7 @@ private func GetMiddlestVertex(pObj)
   return n;
 }
 
-// Ändert die angeknüpften Objekte
+// ï¿½ndert die angeknï¿½pften Objekte
 public func SetObject(pObj, iActionTarget)
 {
   // 1. Actiontarget
@@ -504,7 +504,7 @@ public func SetRopeLength(iNewLength) { return iLength = Max(iNewLength, 0); }
 // Auch im Klettern usw. benutzbar
 func ControlDigDouble(pByObj)
 {
-  // kein Menü bei angefasstem Objekt
+  // kein Menï¿½ bei angefasstem Objekt
   if(GetAction(pByObj) == "Push") return 0;
   return Activate(pByObj);
 }
