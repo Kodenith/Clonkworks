@@ -3,7 +3,6 @@
 #appendto SPIP
 #appendto DPIP
 #appendto PWRL
-#appendto ZIPL
 #appendto GERL
 
 public func isLine(){ return(1); }

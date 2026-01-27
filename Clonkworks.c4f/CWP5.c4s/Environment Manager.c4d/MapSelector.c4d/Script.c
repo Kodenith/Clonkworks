@@ -116,7 +116,6 @@ public func SetMountains(){
 	DrawDefMap(0,0,LandscapeWidth(),LandscapeHeight(),"Mountains");
 	DoMapChange();
 	PlaceObjects(ODEP,2,"GBackSolid",0,0,LandscapeWidth(),LandscapeHeight());
-	PlaceObjects(TDEP,2,"GBackSolid",0,0,LandscapeWidth(),LandscapeHeight());
 	PlaceObjects(CDEP,2,"GBackSolid",0,0,LandscapeWidth(),LandscapeHeight());
 	return(1);
 }

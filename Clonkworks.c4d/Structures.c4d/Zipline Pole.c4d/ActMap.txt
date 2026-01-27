@@ -1,8 +1,0 @@
-[Action]
-Name=Used
-Length=1
-Delay=1
-Facet=0,0,28,58,0,0
-NextAction=Used
-EnergyUsage=300
-

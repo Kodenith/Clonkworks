@@ -61,7 +61,6 @@ map Mountains {
     SomeSpots & overlay { mat=Gold; tex=Rough; };
     MatLayer { mat=Ore; tex=Rough; };
 	MatLayer { mat=CopperOre; tex=Rough; };
-	MatLayer { mat=TitaniumOre; tex=Rough; };
 
     // caves
     MatLayer { a=4; zoomX=-10; zoomY=0; } &
@@ -136,7 +135,6 @@ overlay{mat=Earth; tex=Smooth; ox=-80; oy=20; wdt=200; algo=sin; zoomX=+90; zoom
 	overlay{algo=bozo; turbulence=1000; a=-9; mat=Rock; tex=Rock; invert=1;};
 	overlay{algo=rndchecker; turbulence=1000; a=7; mat=Coal; tex=Swirl;};
 	overlay{algo=rndchecker; turbulence=1000; a=8; mat=Ore; tex=Rough;};
-	overlay{algo=rndchecker; turbulence=1000; a=8; mat=TitaniumOre; tex=Rough;};
 	overlay{algo=rndchecker; turbulence=1000; a=10; mat=Gold; tex=Rough; y=30;};
 	overlay{algo=rndchecker; turbulence=1000; a=9; mat=Sulphur; tex=Swirl; y=30;};
 	overlay{algo=rndchecker; turbulence=1000; a=7; mat=Granite; tex=Ridge;};
@@ -179,7 +177,6 @@ map Skylands {
 		overlay { algo=rndchecker; a=8; turbulence=100; mat=Rock; tex=Rock;};
 		overlay { algo=rndchecker; a=8; turbulence=100; mat=Gold; tex=Rough;};
 		overlay { algo=rndchecker; a=8; turbulence=100; mat=Ore; tex=Rough;};
-		overlay { algo=rndchecker; a=8; turbulence=100; mat=TitaniumOre; tex=Rough;};
 		overlay { algo=rndchecker; a=3; turbulence=100; mat=Earth; tex=Rough;};
 		};
 overlay {algo=solid; turbulence=100; loosebounds=1; x=-10; wdt=17; };

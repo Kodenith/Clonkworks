@@ -1,2 +1,0 @@
-Calculates and shows the amount of units between both connected object.
-Used for developing to calculate a good distance for short wires.

@@ -1,0 +1,1 @@
+before this used to be a multi-line kit. change function LineSelection to change or return old behaviour

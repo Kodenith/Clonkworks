@@ -12,7 +12,7 @@ Offset=-43,-6
 Picture=3,40,59,40
 Grab=1
 Rebuy=1
-Components=METL=1;WOOD=1
+Components=TTIG=1;WOOD=1
 Timer=1
 TimerCall=Timer
 Vertices=4

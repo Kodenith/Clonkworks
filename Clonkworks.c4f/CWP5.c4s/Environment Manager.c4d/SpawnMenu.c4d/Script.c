@@ -21,7 +21,7 @@ public func Activate(pByPlr){
 	CreateMenu(GetID(),pByObj,this(),0,GetName(),,1);
 	AddMenuItem("$Opt1$","SpawnMenu",CRYS,pByObj,0,pByObj);
 	AddMenuItem("$Opt2$","SpawnMenu",ROCK,pByObj,0,pByObj);
-	AddMenuItem("$Opt3$","SpawnMenu",BUMB,pByObj,0,pByObj);
+	AddMenuItem("$Opt3$","SpawnMenu",WIPF,pByObj,0,pByObj);
 	AddMenuItem("$Opt4$","SpawnMenu",LORY,pByObj,0,pByObj);
 	AddMenuItem("$Opt5$","SpawnMenu",CLNK,pByObj,0,pByObj);
 /* 	if(GetMaterialCount(Material("Earth")) < 436233){
@@ -32,7 +32,7 @@ public func Activate(pByPlr){
 public func SpawnMenu(identifier, Spawner){
 	var category = 0;
 	if(identifier == ROCK) category = C4D_Object;
-	if(identifier == BUMB) category = C4D_Living;
+	if(identifier == WIPF) category = C4D_Living;
 	if(identifier == LORY) category = C4D_Vehicle;
 	if(identifier == CLNK){
 		CreateMenu(identifier,Spawner,this(),0,"Error :(");

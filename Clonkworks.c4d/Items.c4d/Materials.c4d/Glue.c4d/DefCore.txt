@@ -1,6 +1,6 @@
 [DefCore]
-Name=Rubber
-id=RUBR
+Name=Glue
+id=GLUE
 Version=4,9,8
 Category=3600
 MaxUserSelect=20
@@ -10,7 +10,7 @@ Width=4
 Height=7
 Offset=-2,-3
 Picture=10,2,41,60
-Components=SPHR=1;OBRL=1
+Components=SPHR=1;WBRL=1
 Collectible=1
 Rebuy=1
 Rotate=1

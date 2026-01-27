@@ -1,2 +1,0 @@
-DE:DEV-Lineal
-US:DEV Ruler

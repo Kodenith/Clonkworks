@@ -16,7 +16,7 @@ VertexY=30,30,30,30,-4,-2,9
 VertexFriction=20,20,20,20,20,20,20
 VertexCNAT=8,8,8,8,1,2,80
 Grab=2
-Components=METL=4;TTIG=4
+Components=TTIG=3;METL=2;
 Construction=1
 Timer=15
 TimerCall=Update

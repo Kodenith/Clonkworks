@@ -52,6 +52,3 @@ OverloadTextures
 82=CopperOre-Rough
 83=CopperOre-Rock
 84=CopperOre-Ridge
-85=TitaniumOre-Rough
-86=TitaniumOre-Rock
-87=TitaniumOre-Ridge

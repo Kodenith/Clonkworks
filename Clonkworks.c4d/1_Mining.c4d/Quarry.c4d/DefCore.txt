@@ -18,7 +18,7 @@ Picture=0,0,97,76
 Entrance=-10,14,21,24
 BorderBound=1
 VehicleControl=1
-Components=METL=4;CPIG=4;TTIG=2;
+Components=TTIG=3;CPIG=3;
 Exclusive=1
 Construction=1
 LineConnect=35

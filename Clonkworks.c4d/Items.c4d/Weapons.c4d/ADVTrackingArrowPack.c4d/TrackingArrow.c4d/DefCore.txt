@@ -21,6 +21,7 @@ Float=1
 Fragile=1
 Pathfinder=5
 BorderBound=1
+NoTransferZones=1
 
 [Physical]
 Float=2500

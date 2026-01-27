@@ -12,7 +12,7 @@ Offset=-50,-25
 Picture=0,0,100,50
 Timer=20
 TimerCall=CheckBuild
-Components=METL=2;CPIG=3;TTIG=2;
+Components=METL=4;TTIG=2;CPIG=2
 Exclusive=1
 Construction=1
 AutoContextMenu=1

@@ -1,4 +1,0 @@
-Err1=Connect a zipline to another pole.
-Err2=Not enough rope!
-Err3=There's more than one source zipline connected to this!
-Disc=Disconnect Source Line

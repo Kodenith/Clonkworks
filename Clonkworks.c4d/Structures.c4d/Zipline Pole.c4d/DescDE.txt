@@ -1,3 +1,0 @@
-Mit einem Advanced Line Kit können Sie eine einzelne Seilbahn daran befestigen oder mehrere Seilbahnen daran anbringen.
-Befindet sich ein Seil im Inneren, kann jedes Fahrzeug oder jeder Clonk an der Seilbahn befestigt werden, indem das Objekt in den Pfosten geschoben wird.
-WARNUNG: Beide Pfosten müssen mit Strom versorgt werden, damit sie funktionieren!

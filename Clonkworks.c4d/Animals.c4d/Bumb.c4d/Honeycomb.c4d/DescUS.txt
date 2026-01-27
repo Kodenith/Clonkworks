@@ -1,1 +1,0 @@
-A Honeycomb is designated to a single Bumb in a colony, it slowly produces honey as pollen gets delivered to it. 

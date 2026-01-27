@@ -1,2 +1,0 @@
-TxtPack=In Glas geben
-TxtDanger=Dieser Honig ist nicht sicher zu stehlen. Vergewissere dich, dass keine Humms in der Nähe sind, bevor du ihn nimmst.
