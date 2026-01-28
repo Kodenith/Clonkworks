@@ -120,3 +120,23 @@ func FxLaserFuelConsumeTimer(pTarget,iNum,iTime){
 		return(-1);
 	}
 }
+
+public func AutoFire(pByTower){
+  if(!pByTower) pByTower = GetActionTarget();
+  if(!FindContents(OBRL,pByTower)){
+    return(0);
+  }
+
+  if(!firing) ComFire();
+  else return(0);
+
+  return(1);
+}
+
+public func AutoStop(pByTower){
+  if(firing) ComFire();
+}
+
+public func AutoRange(){ 
+    return(250);
+}

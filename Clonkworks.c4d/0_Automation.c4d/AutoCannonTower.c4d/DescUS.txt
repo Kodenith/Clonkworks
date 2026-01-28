@@ -1,0 +1,3 @@
+The cannon tower is useful to bombard distant villages or defend at medium range. You can build various types of guns in the workshop and then attach them by pushing them into the cannon tower.
+
+This cannon tower has a processor attached to it. it will shoot automatically in the direction of the cannon if neccesary.

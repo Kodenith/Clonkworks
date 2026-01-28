@@ -1,1 +1,1 @@
-Precious circuit used for Automatic Production Chains and Robotics.
+Precious circuit used for Automatization and Robotics. Can be installed onto some structures.

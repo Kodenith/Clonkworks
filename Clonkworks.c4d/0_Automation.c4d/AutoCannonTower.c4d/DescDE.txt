@@ -1,0 +1,3 @@
+Der Geschützturm ist geeignet zum Beschuss ferner Siedlungen oder zur Abwehr nahender Gegner. In der Werkstatt können verschiedene Arten von Geschützaufsätzen hergestellt und anschließend durch Hineinschieben in den Geschützturm montiert werden.
+
+Dieser Kanonenturm ist mit einem Prozessor ausgestattet. Bei Bedarf schießt er automatisch in Richtung der Kanone.
