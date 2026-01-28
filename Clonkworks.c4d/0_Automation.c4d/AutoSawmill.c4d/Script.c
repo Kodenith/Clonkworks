@@ -81,6 +81,8 @@ func CutUp(){
 		}else if(GetCategory(Obj) & C4D_Living){
 			if(!GetAlive(Obj)) continue;
 			Sound("chainsaw_hit");
+			if(GetMass(Obj) > 70) DoEnergy(-RandomX(5,20),Obj);
+			else
 			Punch(Obj,RandomX(20,30));
 			if(!Random(6) && CrewMember(Obj)) Obj->Sound("Scream");
 		}
