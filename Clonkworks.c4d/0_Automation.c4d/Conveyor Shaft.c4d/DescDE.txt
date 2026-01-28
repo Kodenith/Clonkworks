@@ -1,0 +1,1 @@
+Bewegt Gegenstände von einem unteren Förderband auf ein höheres Förderband. Die untere Welle kann nicht bewegt werden und fällt aufgrund der Schwerkraft nach unten. Sie sammelt nur Gegenstände ein, wenn sie sich auf einem Förderband befindet.

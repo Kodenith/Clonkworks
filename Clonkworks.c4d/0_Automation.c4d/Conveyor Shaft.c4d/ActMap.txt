@@ -1,0 +1,9 @@
+[Action]
+Name=Shaft
+Delay=15
+Facet=26,0,26,49,-1,16
+FacetBase=1
+FacetTargetStretch=1
+NextAction=Shaft
+StartCall=Move
+

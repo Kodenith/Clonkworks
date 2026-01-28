@@ -1,0 +1,3 @@
+Instructions=Dig: Change Destination|Throw: Teleport nearby Objects
+Change=Change Target
+Tele=Teleport
