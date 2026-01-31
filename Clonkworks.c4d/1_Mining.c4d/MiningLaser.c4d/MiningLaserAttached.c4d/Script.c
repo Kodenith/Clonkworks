@@ -15,7 +15,7 @@ func ComFire(object clonk)
   //Sound("Click");
   if(!firing){
 	  if(FindObject2(Find_Container(GetActionTarget()),Find_ID(OBRL))){
-		  AddEffect("LaserFuelConsume",GetActionTarget(),1,57,this());
+		  AddEffect("LaserFuelConsume",GetActionTarget(),1,38*2,this());
 		  ShootStart();
 	  }else{
 		 // RemoveEffect("LaserFuelConsume",GetActionTarget());

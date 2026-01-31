@@ -1,11 +1,9 @@
 /*-- Neues Script --*/
 
 #strict 2
-local Durability;
 local Owner;
 
 func Initialize(){
-	Durability = 0;
 	SetAction("NoHead");
 	PutHead();
 }
@@ -30,20 +28,7 @@ func Timer(){
 	}
 	
 	if(GetAction() == "Idle"){
-		if(Durability > 0) SetAction("DrillIdle");
-		else SetAction("NoHead");
-	}
-	
-	if(GetAction() != "NoHead" && Durability <= 0 && FindObject(REXD)){
-		Durability = 0;
-		SetAction("NoHead");
-		Sound("Discharge");
-		//SetComDir(COMD_Up);
-		
-		var debri = CreateObject(EXDH,0,10);
-		SetR(180,debri);
-		DoDamage(1000,debri);
-		return(1);
+		SetAction("DrillIdle");
 	}
 	
 	if(!EnergyCheck(1,Owner)){
@@ -52,18 +37,9 @@ func Timer(){
 	
 	if((GetYDir() > 0 || GetComDir() == COMD_Down) && GetAction() == "DrillIdle") SetAction("Drilling");
 	if((GetYDir() < 0 || GetComDir() == COMD_Stop) && GetAction() == "Drilling") SetAction("DrillIdle");
-	
-	var head;
-	if(GetAction() == "NoHead" && FindObject2(Find_ID(EXDH),Find_NoContainer(),Find_AtPoint(GetVertex(4,0),GetVertex(4,1)))){
-		head=FindObject2(Find_ID(EXDH),Find_NoContainer(),Find_AtPoint(GetVertex(4,0),GetVertex(4,1)));
-		if(GetAction(head) == "Broken") return(0);
-		RemoveObject(head);
-		PutHead();
-	}
 }
 
 func PutHead(){
-	Durability = 500;
 	Sound("Connect");
 	SetAction("DrillIdle");
 }
@@ -81,8 +57,6 @@ func DoDrilling(){
 		
 		var Explo = CreateObject(FLNT,X,Y);
 		Explo->Explode(RandomX(10,15));
-		if(FindObject(REXD))
-			Durability -= Random(10);
 	}
 }
 
@@ -91,18 +65,10 @@ func MineDeposit(pDep){
 	var Y = GetVertex(4,1);
 	Y += RandomX(-2,2);
 	X += RandomX(-8,8);
-	
-	if(FindObject(REXD))
-		Durability -= Random(3);
+
 	CastParticles("PxSpark",5,100,X,Y,10,50,RGBa(255,255,0),RGBa(255,255,0));
     if(pDep->~GetMined(this())){
 		CreateParticle("Blast", X,Y, 0,0, 100, RGBa(255,255,255,0));
-	}
-}
-
-func Destruction(){
-    if(GetAction() != "NoHead"){
-		var head = CreateObject(EXDH);
 	}
 }
 

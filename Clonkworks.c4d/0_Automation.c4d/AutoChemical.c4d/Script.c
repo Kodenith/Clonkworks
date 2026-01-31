@@ -154,7 +154,7 @@ protected func CheckContents(){
 
 func ReleaseProduct(){
 	if(GetCDir() == 0 || !Producing) return(0);
-	Producing->Initialize();
+	Producing->~Initialize();
 	Exit(Producing,20*GetCDir(),GetDefBottom()-GetY());
 	Producing=0;
 	return(1);
