@@ -19,7 +19,7 @@ Entrance=-10,3,20,20
 Exclusive=1
 BlastIncinerate=100
 LineConnect=C4D_PowerInput|C4D_PowerOutput|C4D_LiquidInput|C4D_PowerConsumer
-Timer=38
+Timer=3
 TimerCall=AutoUse
 
 [Physical]

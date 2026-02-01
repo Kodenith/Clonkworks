@@ -10,6 +10,7 @@
 
 public func AutoFire(pByTower){
     if(!pByTower) pByTower = GetActionTarget();
+    if(GetEffect("Reload",this())) return(0);
 
     //gunpowder based cannons first as theyre basically the same.
     if(GetID() == CTW2 || GetID() == CTW4){
@@ -52,6 +53,7 @@ public func AutoFire(pByTower){
         else return(0);
     }
 
+    AddEffect("Reload",this,1,1,this);
     return(1);
 }
 
@@ -72,4 +74,14 @@ public func IsDangerous(pObj){
     var pOwner = GetOwner(GetActionTarget());
     if(Hostile(pOwner,GetOwner(pObj)) && CrewMember(pObj)) return(1);
     else if(GetID(pObj) == MONS || GetID(pObj) == FMNS) return(1);
+}
+
+public func AutoReload(){
+    if(GetID() == CTW6) return(38/2);
+    if(GetID() == ACT2 || GetID() == ACT4) return(38);
+    return(60);
+}
+
+func FxReloadTimer(pTarget,iEffectNum,Timer){
+    if(Timer > AutoReload()) return(-1);
 }
