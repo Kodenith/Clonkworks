@@ -13,8 +13,7 @@ private func Shoot(id defFoo, object pProjectile, object pShooter)
   var powder = CannonPowderNeeded(pProjectile);
   if(ContentsCount(GUNP, GetActionTarget()) < powder)
   {
-    Sound("Error");
-    Message("$TxtNotenoughgunpowder1r$", GetActionTarget(), powder);
+      return(_inherited(defFoo,pProjectile,pShooter));
   }
   else
   {
