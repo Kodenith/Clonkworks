@@ -25,6 +25,8 @@ private func Move(){
 }
 
 func RejectCollect(pId,pObj){
+	if(Contained(pObj)) return(1);
+	if(Inside(GetX(pObj),GetX()-4,(GetX()-4)+15) && Inside(GetY(pObj),GetY()-17,(GetY()-17)+20))
 	Enter(this(),pObj); //dont blow up or hurt fragile objects.
 }
 

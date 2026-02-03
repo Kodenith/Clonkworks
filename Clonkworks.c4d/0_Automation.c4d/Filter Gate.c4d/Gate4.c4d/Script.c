@@ -29,9 +29,12 @@ func SetFilterGraph(){
 }
 
 func RejectCollect(pId,pObj){
+	if(Contained(pObj)) return(1);
 	var Left;
 	if(GetX(pObj) < GetX()) Left = true;
-	Enter(this(),pObj);
+	if(Inside(GetX(pObj),GetX()-14,(GetX()-14)+29) && Inside(GetY(pObj),GetY()+1,(GetY()+1)+11))
+		Enter(this(),pObj);
+	else return(1);
 	Sound("Clonk");
 	
 	var SideExit;

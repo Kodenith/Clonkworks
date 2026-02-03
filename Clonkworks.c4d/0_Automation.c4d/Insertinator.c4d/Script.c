@@ -10,6 +10,11 @@ func Initialize(){
   Message("$TxtLeft$",this);
 }
 
+func RejectCollect(pId,pObj){
+	if(Contained(pObj)) return(1);
+  if(Inside(GetX(pObj),GetX()-12,(GetX()-12)+25) && Inside(GetY(pObj),GetY()-10,(GetY()-10)+14)) Enter(this,pObj);
+}
+
 func Collection(){ Sound("Clonk"); }
 func ControlLeft(pClonk){
   [$TxtCtr$]
