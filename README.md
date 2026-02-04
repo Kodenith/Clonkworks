@@ -6,7 +6,7 @@ Clonkworks is a In-development mod for LegacyClonk, that adds a lot of new techn
 
 Currently, there's a working automation system done with many more things planned for it. alongside new gear, weapons, hazards, structures, and more.
 
-<p align="center"><b>Current Version: 0.3.9</b></p>
+<p align="center"><b>Current Version: 3.9.1 BETA</b></p>
 <div align="center">
 <details>
 <summary><b>Plan list</b></summary>
