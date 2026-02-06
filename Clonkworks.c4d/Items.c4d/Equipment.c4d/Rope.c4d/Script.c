@@ -6,7 +6,6 @@ local iLength, iCalcedLength, iOCF, iVtx1, iVtx2;
 local aPointsX, aPointsY;
 local pPulley;
 local fNoPickUp_0, fNoPickUp_1;
-local MaxLength; //new variable, set custom length of rope :)
 local Connect1, Connect2; // new variables, two objects being tied.
 local RopeColor; //new variable, quickly manage color :)
 
@@ -232,12 +231,6 @@ private func VerticeLength(i, pTarget1, pTarget2)
 
 private func Timer()
 {
-  if(MaxLength){
-	  if(GetRopeLength() > Abs(MaxLength)){
-		  SetRopeLength(Abs(MaxLength));
-	  }
-  }
-	
   var i, iAmount, iSize = 10;
   // Partikel-Effekt
   while(i < GetPointNum() - 1)
