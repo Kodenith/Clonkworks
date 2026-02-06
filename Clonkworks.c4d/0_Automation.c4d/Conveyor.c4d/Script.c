@@ -294,6 +294,7 @@ public func GetResearchBase(){
 }
 
 //what advanced lines can be connected?
+/*
 public func ALKConnectType(){
 	if(Par(0) == 0) return(0);
 	for(var i in FindObjects(Find_ID(GERL))){
@@ -301,6 +302,10 @@ public func ALKConnectType(){
 	}
 	return([GERL]);
 }
+*/
+
+//new gear line connection func
+public func IsRotorTarget(){ return(1); }
 
 //packaging
 public func ControlUpDouble(pClonk){

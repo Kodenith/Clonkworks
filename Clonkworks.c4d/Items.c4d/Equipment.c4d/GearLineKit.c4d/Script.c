@@ -2,7 +2,6 @@
 
 #strict
 
-//objects that only support custom lines should have the unused line connect type set. LineConnect=128
 
 protected func Hit()
 {
@@ -40,34 +39,13 @@ protected func Activate(clonk)
   return(1);
 }
 
-public func LineSelection(pObject,clonk){
-	if(!pObject->~ALKConnectType(0)){
-	  Sound("Error");
-      return(Message("$TxtNoNewLine$", this()) );
-	}
-	var linelist = pObject->~ALKConnectType();
-
-  if(InArray(GERL,linelist) == -1){
-	  Sound("Error");
-      return(Message("$TxtNoNewLine$", this()) );
-  }else linelist = [GERL];
-
-	if(GetLength(linelist) == 1){
-		CreateLine(linelist[0], GetOwner(), pObject, this());
-	}else{
-		CreateMenu(FNKT,clonk,this(),4,"$TxtNoNewLine$");
-		for(var i in linelist){
-			AddMenuItem("$TxtConnectline$: %s", "LineSelectionDone",i,clonk,0,pObject,GetDesc(,i));
-		}
-	}
-}
-
-protected func LineSelectionDone(linetype, from){
-  var obj = FindObject(0, 1,0,0,0, OCF_LineConstruct(), 0,0,NoContainer(), obj);
-  if(!obj) return(Message("$TxtNoNewLine$", this()));
-  if(obj != from) return(Message("$TxtNoNewLine$", this()));
-  
-  CreateLine(linetype, GetOwner(), from, this());
+func LineSelection(obj,clonk){
+  if(obj->~IsRotorSource()){
+      CreateLine(GERL,GetOwner(clonk),obj,this());
+  }else{
+      Sound("Error");
+      Message("$TxtNoConnectType$",this(),GetName(,GERL),GetName(obj));
+  }
 }
 
 private func CreateLine(linetype, owner, from, to)
@@ -83,13 +61,14 @@ private func CreateLine(linetype, owner, from, to)
 private func ConnectLine(line, to)
 {
   var line_accept;
-  if(to->~ALKConnectType(1)){
-	  if(GetIndexOf(GetID(line), to->~ALKConnectType(1)) != -1){
+  if(to->~IsRotorTarget() && GetActionTarget(1,line) == this()){
 		  line_accept = true;
-	  }else{
-		  line_accept = false;
-	  }
-  }else{
+  }
+  else if(to->~IsRotorSource() && GetActionTarget(0,line) == this()){
+      if(GetActionTarget(1,line)->~IsPrimaryRotor()) line_accept = false;
+    	else line_accept = true;
+  }
+  else{
 	  line_accept = false;
   }
 

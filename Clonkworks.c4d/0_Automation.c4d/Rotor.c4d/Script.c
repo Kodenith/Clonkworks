@@ -55,12 +55,8 @@ func UpdateRight(){
 	Force = 61;
 }
 
-//what advanced lines can be connected?
-public func ALKConnectType(){
-	if(Par(0) == 1) return(0);
-	//if(FindObject2(Find_ID(GERL),Find_ActionTarget(this()))) return(0);
-	return([GERL]);
-}
+public func IsRotorSource(){ return(1); }
+public func IsPrimaryRotor(){ return(1); }
 
 func IsAdvancedProduct(){ return(1); }
 

@@ -17,8 +17,13 @@ protected func Transfer()
   if(Contained()) Exit();
   var Rotor = GetActionTarget(0);
   var MainBelt = GetActionTarget(1);
+  if(GetID(Rotor) == GRKT || !Rotor){
+    if(MainBelt)
+      RemoveObject();
+    return(0);
+  }
   if(GetID(MainBelt) != CNVY && GetID(MainBelt) != RTR2) return(0);
-  if(GetID(Rotor) == FNKT || MainBelt->GetAction() != "Movement"){
+  if(MainBelt->GetAction() != "Movement"){
 	  LineBreak(1);
 	  RemoveObject();
 	  return(1);
@@ -46,7 +51,7 @@ public func IsConvSet(pObj){
 	if(InArray(pObj,List) != -1) return(1);
 }
 
-public func KitType(){ return(FNKT); }
+public func KitType(){ return(GRKT); }
 
 public func LineBreak(bool fNoMsg)
 {

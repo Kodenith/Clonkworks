@@ -74,16 +74,6 @@ func ThawOut(){
 	//Message("%v",this(),Force);
 }
 
-//what advanced lines can be connected?
-public func ALKConnectType(){
-	if(Par(0) == 1){
-		for(var i in FindObjects(Find_ID(GERL))){
-			if(GetActionTarget(1,i) != this()) continue;
-			return(0);
-		}
-	}
-	return([GERL]);
-}
 
 func IsAdvancedProduct(){ return(1); }
 func GetResearchBase(){ return(ROTR); }
@@ -100,3 +90,6 @@ func Incineration(){
 		Fling(wood,RandomX(-3,3),RandomX(-3,3));
 		RemoveObject();
 }
+
+public func IsRotorTarget(){ return(1); }
+public func IsRotorSource(){ return(1); }
