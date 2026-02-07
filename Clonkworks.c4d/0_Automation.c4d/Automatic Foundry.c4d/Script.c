@@ -56,6 +56,8 @@ protected func Collection(pObj,fPut){
 	Sound("Clonk");
 }
 
+local Smelted;
+
 func Update(){
   if(!Parent){
     RemoveObject();
@@ -73,7 +75,7 @@ func Update(){
         if(!smeltMe->~SmeltResult()) continue;
         ConsumeFuel(10,this,0,true);
         SetAction("Burning");
-        ChangeDef(smeltMe->SmeltResult(),smeltMe);
+        Smelted = smeltMe;
         return(1);
     }
   }
@@ -116,6 +118,8 @@ func Burning(){
   if(GetActTime() > 38){
     SetAction("Idle");
     Sound("Pshshsh");
+    ChangeDef(Smelted->SmeltResult(),Smelted);
+    Smelted = 0;
   }
 }
 
