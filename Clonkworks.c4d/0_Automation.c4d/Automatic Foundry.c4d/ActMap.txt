@@ -1,11 +1,4 @@
 [Action]
-Name=Idle
-Procedure=NONE
-Length=1
-Facet=60,0,60,50
-NextAction=Idle
-
-[Action]
 Name=Burning
 Length=4
 Delay=1
@@ -23,5 +16,4 @@ Facet=0,50,32,23,20,27
 FacetBase=1
 NextAction=Idle
 PhaseCall=Depos
-EndCall=IdleFix
 StartCall=LeverSound

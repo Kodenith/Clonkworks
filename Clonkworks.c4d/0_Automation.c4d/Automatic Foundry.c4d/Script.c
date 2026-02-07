@@ -57,6 +57,7 @@ protected func Collection(pObj,fPut){
 }
 
 local Smelted;
+local Tiredness;
 
 func Update(){
   if(!Parent){
@@ -70,7 +71,8 @@ func Update(){
 
   if(!IsBuilt() || GetCDir() == 0 || !ActIdle()) return(0);
   SetPhase(0);
-  if(CheckContainedFuel()>=10){
+  if(CheckContainedFuel()>=10 && Tiredness < 5){
+  Tiredness++;
     for(var smeltMe in FindObjects(Find_Container(this) ) ){
         if(!smeltMe->~SmeltResult()) continue;
         ConsumeFuel(10,this,0,true);
@@ -80,6 +82,7 @@ func Update(){
     }
   }
   if(FindJunk()){
+      Tiredness = 0;
       SetAction("Filling");
   }
 }
@@ -109,8 +112,6 @@ func Depos(){
     }
   }
 }
-
-func IdleFix(){ return(SetAction("Idle")); }
 
 func Burning(){
   if(!Random(2))
