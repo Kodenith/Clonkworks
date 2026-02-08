@@ -81,9 +81,11 @@ func Update(){
         return(1);
     }
   }
-  if(FindJunk()){
+  else if(FindJunk()){
       Tiredness = 0;
       SetAction("Filling");
+  }else{
+      Tiredness = 0;
   }
 }
 
