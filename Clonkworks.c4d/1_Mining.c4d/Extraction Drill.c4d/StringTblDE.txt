@@ -3,3 +3,5 @@ TxtDown=Bergbau beginnen
 TxtInfobar=Kopfschaden:
 TxtApply=Neuen Bohrkopf anbringen
 TxtNoHeads=Keine Bohrköpfe verfügbar!
+TxtTurnLeft=Nach links abbiegen
+TxtTurnRight=Nach rechts abbiegen
