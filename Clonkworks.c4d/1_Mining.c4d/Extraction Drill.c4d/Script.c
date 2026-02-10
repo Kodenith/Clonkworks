@@ -5,6 +5,7 @@
 #include CXEC
 
 local head;
+local Left;
 
 func Initialize() {
   SetAction("Lift");
@@ -18,6 +19,7 @@ func Destruction(){
 	if(head) RemoveObject(head);
 }
 
+
 func Update(){
 	if(GetCon() < 100) return(0);
 	if(FindObject(ENRG) && GetComDir(head) == COMD_Down) DoEnergy(-3);
@@ -29,7 +31,9 @@ func Update(){
 	}
 	
 	if(Contents(0)){
-		Exit(Contents(0),GetVertex(6,0),GetVertex(6,1),0,RandomX(2,4));
+		if(!Left)
+		Exit(Contents(0),GetVertex(6,0),GetVertex(6,1),0,3);
+		else Exit(Contents(0),-GetVertex(6,0),GetVertex(6,1),0,-3);
 	}
 }
 
@@ -46,6 +50,25 @@ func ControlUpSingle(pClonk){
 	SetComDir(COMD_Up,head);
 	return(1);
 }
+
+//turn
+func ControlLeft(pClonk){
+	[$TxtTurnLeft$]
+	if(Left) return(0);
+	SetGraphics("Left",this,GetID());
+	Sound("Click");
+	Left = true;
+}
+
+//turn
+func ControlRight(pClonk){
+	[$TxtTurnRight$]
+	if(!Left) return(0);
+	SetGraphics(0,this,GetID());
+	Sound("Click");
+	Left = false;
+}
+
 
 //mouse
 func ControlCommand(strCommand,pTarget,iTx,iTy,pTarget2,iData,pCmdObj){

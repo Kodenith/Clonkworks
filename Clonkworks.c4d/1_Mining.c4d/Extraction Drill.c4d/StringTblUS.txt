@@ -3,3 +3,5 @@ TxtDown=Begin Mining
 TxtInfobar=Head Damage:
 TxtApply=Attach new drill head
 TxtNoHeads=No available drill heads!
+TxtTurnLeft=Turn Left
+TxtTurnRight=Turn Right
