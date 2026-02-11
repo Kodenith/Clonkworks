@@ -1,0 +1,3 @@
+Drills small tunnels in the ground, and partially drills deposits. Unlike the durable variation, this one can be taken anywhere.
+
+Press the dig button twice to begin drilling.

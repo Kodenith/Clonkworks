@@ -1,0 +1,2 @@
+TxtDown=Begin Mining
+TxtWarning=<c ff0000>Cannot mine in front of a structure.</c>
