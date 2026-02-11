@@ -1,2 +1,0 @@
-DE:Aktive Stimme
-US:Active Vote

@@ -1,7 +1,0 @@
-TxtInfo=Wählen Sie eine andere Landschaft zum Spielen aus:
-O1=Ausgangspunkt
-O2=Gebirgskette
-O3=Höhlen
-O4=Schlucht
-O5=Inseln
-O6=Wasser

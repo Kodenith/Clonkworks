@@ -1,1 +1,0 @@
-Handles selecting a goal. Upon selection every sandbox thing is turned off.

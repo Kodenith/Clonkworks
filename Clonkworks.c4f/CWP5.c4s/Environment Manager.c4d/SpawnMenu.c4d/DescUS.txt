@@ -1,1 +1,0 @@
-Handles spawning of objects and temporary clonk-type changing.

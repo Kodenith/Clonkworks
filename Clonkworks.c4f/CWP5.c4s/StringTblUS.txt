@@ -1,1 +1,0 @@
-TxtWelcome=Welcome to Clonkworks Playground 5!|You can spawn any needed objects with the <c ffff00>Spawn Objects</c> Goal.|You can also change the landscape via the <c ffff00>Set Landscape</c> Goal.|Want to do a goal? You can do it with the <c ffff00>Set Goal</c> Goal.|Have fun!

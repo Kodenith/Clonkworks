@@ -1,1 +1,0 @@
-Allows you to quickly travel between places on the playground. you can build your own or move one if you want another teleportation spot.

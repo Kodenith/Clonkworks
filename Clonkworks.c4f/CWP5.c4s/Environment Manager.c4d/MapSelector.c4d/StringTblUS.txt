@@ -1,7 +1,0 @@
-TxtInfo=Select a Different Landscape to play on:
-O1=Outset
-O2=Mountain Range
-O3=Caves
-O4=Chasm
-O5=Islands
-O6=Water

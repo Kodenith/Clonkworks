@@ -28,7 +28,7 @@ C4Script documentation [Can be found here](https://crdocs.clonkspot.org/en/sdk/)
 
 ## <p align="center">How to acquire the models?</p>
 
-as of Clonkworks 0.3.9, models are no longer on the repository to save space. if you want access to a model, contact me :)
+as of Clonkworks 3.9 BETA, models are no longer on the repository to save space. if you want access to a model, contact me :)
 
 ## <p align="center">Translations & Credits</p>
 

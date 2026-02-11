@@ -1,3 +1,0 @@
-NoAccount=You have no team account.
-AccountWith=You have a team account with:
-And=and

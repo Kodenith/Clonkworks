@@ -1,1 +1,0 @@
-TxtWelcome=Willkommen bei Clonkworks Playground 5!|Mit dem Ziel <c ffff00>Objekte spawnen</c> kannst du alle benötigten Objekte spawnen.|Mit dem Ziel <c ffff00>Landschaft festlegen</c> kannst du auch die Landschaft ändern.|Möchtest du ein Ziel festlegen? Das kannst du mit dem Ziel <c ffff00>Ziel festlegen</c> tun.|Viel Spaß!

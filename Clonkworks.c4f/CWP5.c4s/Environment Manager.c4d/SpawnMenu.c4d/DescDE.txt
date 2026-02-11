@@ -1,1 +1,0 @@
-Verarbeitet das Spawnen von Objekten und temporäre Änderungen des Clonk-Typs.
