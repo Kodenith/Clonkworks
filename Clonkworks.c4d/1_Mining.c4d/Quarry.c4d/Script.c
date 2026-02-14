@@ -177,6 +177,10 @@ func Logic(){
 	
 		if(GetComDir(Holder) == COMD_Stop && !GetCommand(Holder)) SetXDir(0,Holder);
 	}
+
+	while(Contents(0,this,0)){
+		Enter(Holder,Contents(0,this,0));
+	}
 }
 
 //Holder Control
@@ -233,6 +237,8 @@ func ActivateEntrance(pObj){
 		SetR(180, pObj);
 	}
 }
+
+
 
 //Menu
 public func ControlThrow(pObj){

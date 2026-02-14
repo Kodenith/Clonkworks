@@ -41,7 +41,7 @@ func Decide(){
   }
 
   var Finders;
-  Finders = FindObjects(Find_OnLine(-100,0,100,0),Find_Or(Find_Category(C4D_Vehicle),Find_Category(C4D_Structure)),Find_OCF(OCF_Container),Find_NoContainer(),Find_Exclude(this()),Find_Not(Find_ID(INSR)));
+  Finders = FindObjects(Find_OnLine(-100,0,100,0),Find_Or(Find_Category(C4D_Vehicle),Find_Category(C4D_Structure)),Find_Or(Find_OCF(OCF_Container),Find_ID(QUAR)),Find_NoContainer(),Find_Exclude(this()),Find_Not(Find_ID(INSR)));
   if(!Finders) return(0);
 
   for(var i in Finders){
