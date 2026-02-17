@@ -1,4 +1,0 @@
-Eine viel schwächere, aber tragbare Kanone! 
-Drücke zweimal die Taste „Graben“, um Schießpulver und dann Munition zu sammeln. Wenn beides vorhanden ist, gelangst du durch zweimaliges Drücken der Taste in den Zielmodus.
-
-Kann im Kontextmenü geleert werden.

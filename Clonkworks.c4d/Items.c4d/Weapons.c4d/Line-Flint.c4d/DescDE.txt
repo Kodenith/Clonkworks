@@ -1,2 +1,0 @@
-Beim Werfen haftet es an einer Wand und zeigt auf den Clonk oder das Objekt, das es geworfen hat.
-Es bildet einen Tunnel mit mehreren Explosionen in der Richtung, in die es zeigt.

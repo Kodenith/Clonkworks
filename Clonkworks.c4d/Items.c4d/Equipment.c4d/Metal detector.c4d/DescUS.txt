@@ -1,1 +1,0 @@
-Helps with finding lost or hidden metals. Upon activation you can select what to search for.

@@ -1,1 +1,0 @@
-Reccomended to use with conveyors. Will filter out items, sending specific ones forward, and others in another direction.

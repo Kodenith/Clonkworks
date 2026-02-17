@@ -1,2 +1,0 @@
-DE:Richtungsgatter
-US:Directional Gate

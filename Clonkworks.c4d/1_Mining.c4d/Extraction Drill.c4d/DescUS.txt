@@ -1,2 +1,0 @@
-Designed for material extraction and mining ore deposits.
-Grab and use left and right to change output direction, then press down to begin mining, or up to stop.

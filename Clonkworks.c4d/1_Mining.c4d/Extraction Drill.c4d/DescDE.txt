@@ -1,2 +1,0 @@
-Entwickelt für die Materialgewinnung und den Abbau von Erzvorkommen.
-Greifen Sie zu und verwenden Sie die linke und rechte Taste, um die Ausgabrichtung zu ändern. Drücken Sie dann die Taste nach unten, um mit dem Mining zu beginnen, oder nach oben, um es zu beenden.

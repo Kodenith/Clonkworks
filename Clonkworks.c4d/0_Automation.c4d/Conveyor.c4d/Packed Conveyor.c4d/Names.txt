@@ -1,2 +1,0 @@
-DE:Verpackungsförderer
-US:Packed Conveyor

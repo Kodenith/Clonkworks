@@ -1,2 +1,0 @@
-DE:Prozessor
-US:Processor

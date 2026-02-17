@@ -1,3 +1,0 @@
-TxtWrongPlacement=<c ff0000>Automated production chains|Must be placed on a conveyor!</c>
-TxtSetFilter=Change Product
-TxtSet=Now Producing %s.

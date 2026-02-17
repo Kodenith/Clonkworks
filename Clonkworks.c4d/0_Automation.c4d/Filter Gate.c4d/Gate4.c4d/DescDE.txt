@@ -1,4 +1,0 @@
-Bei diesem Tor wird der Ball von der Seite, die den Kriterien entspricht, nach oben geschleudert. 
-
-Das Verhalten kann mit der Taste „Throw“ geändert werden.
-Der Filter kann mit der linken Taste geändert werden.

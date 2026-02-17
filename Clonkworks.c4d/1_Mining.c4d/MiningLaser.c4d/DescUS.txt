@@ -1,1 +1,0 @@
-Mighty laser for ressource and deposit extraction. Consumes lots of oil barrels

@@ -1,1 +1,0 @@
-Giant rocks with materials in them, they can be mined with a extraction drill, or shabby'ly with flints if a rule is enabled.

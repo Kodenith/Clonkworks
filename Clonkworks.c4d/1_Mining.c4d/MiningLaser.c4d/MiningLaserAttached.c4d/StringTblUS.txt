@@ -1,3 +1,0 @@
-TxtNoammo=No ammo
-TxtShoots=Shoot %s
-TxtShootsAll=Shoot all

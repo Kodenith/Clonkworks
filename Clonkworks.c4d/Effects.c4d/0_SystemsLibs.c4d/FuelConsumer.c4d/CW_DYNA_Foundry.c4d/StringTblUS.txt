@@ -1,3 +1,0 @@
-TxtNooreavailable=No ore available.
-TxtNeedsfueltoburn=Needs fuel to burn.
-TxtProducemetal=Produce metal

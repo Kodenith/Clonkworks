@@ -1,1 +1,0 @@
-Flies towards enemies and monsters.

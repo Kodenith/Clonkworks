@@ -1,3 +1,0 @@
-/*-- Neues Script --*/
-
-#strict

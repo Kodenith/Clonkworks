@@ -1,1 +1,0 @@
-Used for mining, terraforming, destruction and many other operations. You can attach a cannon head by pushing it inside of this, then you can move the head or perform operations by pressing the Throw key.

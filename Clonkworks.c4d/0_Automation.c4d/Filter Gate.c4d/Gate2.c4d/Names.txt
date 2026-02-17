@@ -1,2 +1,0 @@
-DE:Aufsteigende Richtungsgatter
-US:Ascending Directional Gate

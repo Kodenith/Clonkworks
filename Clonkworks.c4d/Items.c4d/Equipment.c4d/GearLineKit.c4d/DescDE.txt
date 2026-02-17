@@ -1,3 +1,0 @@
-Wird verwendet, um Rotoren mit Förderbändern zu verbinden. Verbundene Förderbänder beeinflussen bis zu 7 benachbarte Förderbänder in beide Richtungen.
-
-Getriebelinien können durch Trennen von der Quelle von Förderbändern getrennt werden.

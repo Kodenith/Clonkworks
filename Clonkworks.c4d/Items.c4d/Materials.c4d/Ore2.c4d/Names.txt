@@ -1,2 +1,0 @@
-DE:Kupfererz
-US:Chunk of Copper ore

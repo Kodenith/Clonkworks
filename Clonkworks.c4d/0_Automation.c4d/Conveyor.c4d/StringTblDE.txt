@@ -1,3 +1,0 @@
-TxtPackage=Paket 
-TxtSnapLeft=Links ausrichten
-TxtSnapRight=Rechts ausrichten

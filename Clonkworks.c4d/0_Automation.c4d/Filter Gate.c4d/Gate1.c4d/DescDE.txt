@@ -1,4 +1,0 @@
-Bei diesem Tor kommen die Gegenstände von oben. Der gefilterte Gegenstand wird standardmäßig nach links geleitet, die übrigen Gegenstände in die entgegengesetzte Richtung.
-
-Das Verhalten kann mit der Taste Werfen geändert werden.
-Der Filter kann mit der Taste Links geändert werden.

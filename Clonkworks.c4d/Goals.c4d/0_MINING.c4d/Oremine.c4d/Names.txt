@@ -1,2 +1,0 @@
-DE:Erzabbau
-US:Ore Mining

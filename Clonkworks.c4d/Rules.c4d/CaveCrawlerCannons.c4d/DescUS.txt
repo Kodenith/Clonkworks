@@ -1,1 +1,0 @@
-The cave crawler can hold and use 1 cannon head from the cannon tower.

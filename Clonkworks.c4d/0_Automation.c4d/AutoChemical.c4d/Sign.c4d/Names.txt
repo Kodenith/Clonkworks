@@ -1,2 +1,0 @@
-DE:Produktanzeigeschild
-US:Product Display Sign

@@ -1,6 +1,0 @@
-Bei diesem Tor kommen die Gegenstände von den Seiten. Standardmäßig wird der gefilterte Gegenstand durchgelassen, während der Rest in die steuerbare Leitung geleitet wird.
-
-Das Verhalten kann mit der Taste Werfen geändert werden.
-Der Filter kann mit der linken Taste geändert werden.
-
-So steuerst du die Leitung: Drücke nach oben oder unten, um die Richtung umzuschalten, und grabe, um anzuhalten.

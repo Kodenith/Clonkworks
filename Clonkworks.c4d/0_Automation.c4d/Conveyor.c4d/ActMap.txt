@@ -1,6 +1,0 @@
-[Action]
-Name=Movement
-Length=37
-Facet=0,13,86,13,0,0
-NextAction=Movement
-

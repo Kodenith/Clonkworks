@@ -1,1 +1,0 @@
-Shared functions for fuel-consuming structures.

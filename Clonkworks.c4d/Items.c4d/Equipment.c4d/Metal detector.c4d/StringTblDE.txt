@@ -1,9 +1,0 @@
-InfoOn=Suche nach: {{%i}} %s
-InfoOff=Suche nach: Nichts
-
-MenuLookFor=Suchen nach: %s
-MenuEmpty=Keine Materialien gefunden
-
-MsgLook=Suche nach:|%s!
-MsgStop=Ausgeschaltet.
-MsgNoMore=Alle %s sind verkauft oder weg.

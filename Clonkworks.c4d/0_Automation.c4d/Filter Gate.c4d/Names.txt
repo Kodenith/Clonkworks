@@ -1,2 +1,0 @@
-DE:Filtertor
-US:Filter Gate

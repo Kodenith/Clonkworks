@@ -1,4 +1,0 @@
-Dient zur Übertragung der Drehkraft von einem Rotor auf Förderbänder.
-Es kann nur eines von und zu angebracht werden.
-
-Um die Verbindung zu einem Förderband zu trennen, können Sie einfach die Verbindung zur Quelle trennen. Das andere Ende wird sich dann von selbst trennen.

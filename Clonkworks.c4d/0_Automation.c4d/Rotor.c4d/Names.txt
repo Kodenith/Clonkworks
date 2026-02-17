@@ -1,2 +1,0 @@
-DE:Rotor
-US:Rotor

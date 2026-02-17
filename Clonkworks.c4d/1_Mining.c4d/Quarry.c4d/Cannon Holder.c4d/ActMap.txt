@@ -1,8 +1,0 @@
-[Action]
-Name=Float
-Delay=1
-Facet=0,22,1,1,0,0
-FacetBase=1
-Procedure=FLOAT
-NextAction=Float
-

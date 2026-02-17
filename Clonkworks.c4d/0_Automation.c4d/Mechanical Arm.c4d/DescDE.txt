@@ -1,8 +1,0 @@
-Dieser Arm greift nach zugewiesenen Gegenständen in der Nähe und bewegt sie an einen gewünschten Ort. Nützlich, um Gegenstände automatisch auf Förderbänder oder in Fahrzeuge zu legen.
-
-Anleitung:
-* Zum Bedienen greifen. Einmal auf „Graben” drücken, um das Greifen zu beenden.
-* Mit der Taste Werfen gelangst du in das Filtermenü, wo du Filter hinzufügen und auswählen kannst.
-* Sobald ein Filter ausgewählt ist, kannst du mit den Bewegungstasten den Abgabepunkt des gefilterten Gegenstands verschieben.
-* Durch zweimaliges Drücken auf „Graben” wird ein Filter entfernt.
-* Nach der Einrichtung greift der Arm automatisch nach Gegenständen und bewegt sie. Solange er mit Strom versorgt wird. Achten Sie darauf, dass sich die zu sammelnden Gegenstände nicht in der Nähe des Ablagepunkts befinden.

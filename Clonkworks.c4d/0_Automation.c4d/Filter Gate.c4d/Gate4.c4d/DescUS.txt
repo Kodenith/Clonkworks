@@ -1,4 +1,0 @@
-For this gate, coming from the side that match the criteria will be launched upwards. 
-
-Behaviour can be modified with the Throw key.
-Filter can be changed with the Left key.

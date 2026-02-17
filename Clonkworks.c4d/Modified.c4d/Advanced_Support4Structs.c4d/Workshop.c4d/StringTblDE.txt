@@ -1,3 +1,0 @@
-NoPlrKnowledge=Keine Baupläne vorhanden
-Construction=Konstruktion
-Production=Produktion

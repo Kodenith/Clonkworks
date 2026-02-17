@@ -1,3 +1,0 @@
-TxtNooreavailable=Kein Erz verfügbar.
-TxtNeedsfueltoburn=Kein Brennmaterial verfügbar.
-TxtProducemetal=Metallproduktion

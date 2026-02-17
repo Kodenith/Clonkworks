@@ -1,2 +1,0 @@
-DE:Angeschraubter Bergbaulaser
-US:Attached mining laser

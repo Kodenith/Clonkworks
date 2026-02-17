@@ -1,2 +1,0 @@
-DE:Grundlegend Verfolgungspfeil
-US:Basic Tracking arrow

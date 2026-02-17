@@ -1,1 +1,0 @@
-Erzeugt aus Erz und Brennmaterial Metall.

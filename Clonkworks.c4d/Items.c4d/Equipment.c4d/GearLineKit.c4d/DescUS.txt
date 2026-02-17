@@ -1,3 +1,0 @@
-Used to connect rotor to conveyors. Connected conveyors affect up to 7 neighbouring conveyors in both directions.
-
-Gear lines may be disconnected from conveyors by disconnection from the source.

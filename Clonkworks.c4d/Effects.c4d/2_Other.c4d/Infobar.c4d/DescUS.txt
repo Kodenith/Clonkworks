@@ -1,4 +1,0 @@
-The infobar is a special ui element. if a player interacts with compatible objects, the bar will show data.
-
-Commonly used for showing fuel, health, etc.
-Each player gets one on join.

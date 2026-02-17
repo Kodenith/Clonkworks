@@ -1,1 +1,0 @@
-TxtWrongPlacement=<c ff0000>Muss auf einem Förderband platziert werden!</c>
