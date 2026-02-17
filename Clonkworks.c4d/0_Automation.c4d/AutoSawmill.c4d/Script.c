@@ -67,12 +67,25 @@ func CutUp(){
 	}
 	
 	for(var Obj in Objects){
+		var Sawable = GetID(Obj) != WOOD && GetComponent(WOOD,0,Obj) && ComponentAll(Obj,WOOD) && !Obj->~IsArrow();
 		if(Obj->~IsTree()){
 			Sound("Sawmill");
 			CastParticles("Dust",RandomX(7,40),RandomX(20,40),RandomX(-28,28),18,10,20,RGBa(255,255,255),RGBa(255,255,255));
 			DoDamage(RandomX(35,80),Obj);
 			if(GetDamage(Obj) > (Obj->TreeStrength()*8)){
 				Split2Components(Obj);
+				continue;
+			}
+		}else if(Sawable){
+			Sound("Sawmill");
+			CastParticles("Dust",RandomX(7,40),RandomX(20,40),RandomX(-28,28),18,10,20,RGBa(255,255,255),RGBa(255,255,255));
+			DoDamage(RandomX(5,15),Obj);
+			var NeededDamage = GetDefBlastIncinerate(GetID(Obj))*3;
+			if(!NeededDamage) NeededDamage = 70;
+
+			if(GetDamage(Obj) > NeededDamage){
+				CastObjects(WOOD,GetComponent(WOOD,0,Obj),10,AbsX(GetX(Obj)),AbsY(GetY(Obj)));
+				RemoveObject(Obj);
 				continue;
 			}
 		}else if(GetCategory(Obj) & C4D_Vehicle){
