@@ -155,7 +155,9 @@ protected func CheckContents(){
 func ReleaseProduct(){
 	if(GetCDir() == 0 || !Producing) return(0);
 	Producing->~Initialize();
-	Exit(Producing,20*GetCDir(),GetDefBottom()-GetY());
+	var ExitY = GetDefBottom()-GetY();
+	ExitY-=GetDefHeight(GetID(Producing));
+	Exit(Producing,20*GetCDir(),ExitY);
 	Producing=0;
 	return(1);
 }

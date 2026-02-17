@@ -206,7 +206,9 @@ func LeaveGarage(){
 }
 
 func DoGarageLeaving(pObj){
-	Exit(pObj,-8,35-(  GetDefCoreVal("Height", "DefCore", GetID(pObj)) / 2 ));
+  var ExitY=GetDefBottom()-GetY();
+  //ExitY+=GetDefHeight(GetID(pObj))/2;
+	Exit(pObj,-8,ExitY);
 }
 
 private func GarageOpen()
