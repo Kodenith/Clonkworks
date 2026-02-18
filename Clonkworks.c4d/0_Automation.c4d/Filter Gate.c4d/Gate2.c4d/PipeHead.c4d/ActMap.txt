@@ -1,0 +1,16 @@
+[Action]
+Name=Move
+Procedure=FLOAT
+FacetBase=1
+NextAction=Move
+Delay=5
+Length=1
+Sound=Elevator
+
+[Action]
+Name=Stop
+Procedure=FLOAT
+FacetBase=1
+NextAction=Stop
+Delay=5
+Length=1

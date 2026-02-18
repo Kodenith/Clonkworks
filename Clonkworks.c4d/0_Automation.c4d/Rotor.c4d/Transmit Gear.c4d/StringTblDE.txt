@@ -1,0 +1,3 @@
+TxtStop=Drehung stoppen
+TxtLeft=Nach links drehen
+TxtRight=Nach rechts drehen

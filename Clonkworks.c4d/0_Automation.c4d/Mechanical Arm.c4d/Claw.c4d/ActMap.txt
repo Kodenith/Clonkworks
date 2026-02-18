@@ -1,0 +1,16 @@
+[Action]
+Name=Moving
+Length=1
+Delay=1
+Facet=0,0,41,29,0,0
+NextAction=Moving
+Procedure=FLOAT
+
+[Action]
+Name=Grab
+Length=1
+Delay=1
+Facet=56,0,11,29,15,0
+NextAction=Grab
+StartCall=MoveGrabbed
+Procedure=FLOAT

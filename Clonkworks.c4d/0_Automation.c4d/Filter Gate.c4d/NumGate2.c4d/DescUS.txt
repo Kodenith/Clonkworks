@@ -1,0 +1,5 @@
+For this gate, items come from the controllable pipe below. If the amount is more than 0, the item will go left by default, otherwise will go in the opposite direction.
+
+operates the same as the non-numbered variant, but you can change the value by clicking the left button.
+
+To control the pipe: Press up or down to toggle direction, and dig to stop.

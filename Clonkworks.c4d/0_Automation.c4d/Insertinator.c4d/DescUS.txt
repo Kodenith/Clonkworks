@@ -1,0 +1,2 @@
+Fires stored items into nearby buildings, while also engulfing them in a special dust that lets them travel safely for a short tine.
+Grab and press left/right to change direction.

@@ -1,0 +1,3 @@
+Turns Electricity into Rotation power for Conveyors.
+
+With the use of the Gear Line Kit, You can attach Gear lines from this to a desired conveyor line.

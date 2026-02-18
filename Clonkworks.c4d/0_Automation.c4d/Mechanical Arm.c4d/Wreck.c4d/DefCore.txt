@@ -1,0 +1,22 @@
+[DefCore]
+Name=Destroyed Mechanical Arm
+id=MAM4
+Version=4,9,8
+Category=C4D_Structure
+Value=180
+Mass=500
+Width=39
+Height=63
+Offset=-20,-2
+Picture=0,0,39,63
+Vertices=7
+VertexX=-15,13,-13,12,-6,4,-1
+VertexY=60,60,29,29,-2,-2,25
+VertexFriction=20,20,20,20,20,20,20
+VertexCNAT=8,8,1,2,4,4,16
+Construction=1
+ConstructTo=MAM1
+Rotate=1
+BlastIncinerate=100
+NoBurnDecay=0
+Components=CPIG=4;METL=2

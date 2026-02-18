@@ -1,0 +1,7 @@
+[Action]
+Name=Movement
+Length=17
+Facet=0,0,25,30,0,0
+Reverse=1
+NextAction=Rotate
+

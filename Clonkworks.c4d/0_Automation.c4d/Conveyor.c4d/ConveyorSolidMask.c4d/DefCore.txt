@@ -1,0 +1,10 @@
+[DefCore]
+Name=ConvSolid
+id=CNVM
+Version=4,9,8
+Category=C4D_Structure
+Width=86
+Height=13
+Offset=-43,-6
+Picture=0,0,72,11
+SolidMask=0,0,86,13,0,0

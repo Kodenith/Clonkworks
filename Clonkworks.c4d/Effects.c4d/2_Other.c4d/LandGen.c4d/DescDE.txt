@@ -1,0 +1,7 @@
+In Clonk gab es bisher nur 2 arten Maps zu gestalten.
+Statische Maps, die mühsam gezeichnet werden müssen und immer gleich aussehen.
+Und die Dynamischen Maps, die gescriptet werden und niemals gleich sind. 
+
+Nun LandGen ist eine Mischung, ein Semi-Dynamischer Mapgenerator.
+Mit Flächen als Objekte in der Landschaft plaziert kann man ziel genau Materialien verteilen, währendessen der Inhalt der
+flächen total unterschiedlich - halt Dynamisch - sein können.

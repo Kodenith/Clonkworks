@@ -1,0 +1,3 @@
+Bei diesem Tor kommen die Elemente von oben. Ist die Menge größer als null, wird das Element standardmäßig nach links verschoben. Andernfalls erfolgt die Verschiebung in die entgegengesetzte Richtung.
+
+Funktioniert genauso wie die Variante ohne Zahlen, aber Sie können den Wert durch Klicken auf die linke Schaltfläche ändern.

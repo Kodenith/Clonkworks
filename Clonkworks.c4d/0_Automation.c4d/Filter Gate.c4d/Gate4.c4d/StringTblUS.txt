@@ -1,0 +1,14 @@
+TxtFilterSet=Filter set to %s.
+TxtTurnLeft=Filtered item will not be launched.
+TxtTurnDown=Filtered item will be launched.
+TxtMenu1=Set Filter
+TxtDeconstruct=Deconstruct
+TxtTurn=Turn
+TxtChange=Change Type
+
+Temp1=Products
+Temp2=Smeltable
+Temp3=Fuel
+Temp4=Fragile
+Temp5=Flammable
+Temp6=Everything

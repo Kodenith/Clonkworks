@@ -1,0 +1,2 @@
+DE:Bergbaulaser
+US:Mining laser

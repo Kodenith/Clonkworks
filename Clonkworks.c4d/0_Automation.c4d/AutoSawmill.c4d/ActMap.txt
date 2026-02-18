@@ -1,0 +1,8 @@
+[Action]
+Name=Sawing
+Length=5
+Delay=3
+Facet=0,0,70,50,0,0
+PhaseCall=CutUp
+NextAction=Sawing
+EnergyUsage=500

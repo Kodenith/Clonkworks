@@ -1,0 +1,2 @@
+DE:Fortgeschritten Verfolgungspfeil
+US:Advanced Tracking arrow

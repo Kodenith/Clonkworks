@@ -1,0 +1,1 @@
+Erzeugt nach seiner ersten Explosion mehrere Explosionen um sich herum.

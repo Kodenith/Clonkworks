@@ -1,0 +1,2 @@
+Upon throwing, it will attach to a wall and point at the clonk or object that threw it.
+It will make a tunnel with several explosions in the direction it's facing.

@@ -1,0 +1,2 @@
+A special vehicle used for climbing up the walls of caverns and chasms, it's slow but reliable.
+Once your clonk has entered this, press "Up" to mount the vehicle to a wall. to dismount, press "Dig"

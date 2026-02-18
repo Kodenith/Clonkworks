@@ -1,0 +1,1 @@
+Moves items from a lower conveyor to a higher conveyor. The bottom shaft can not be moved and falls with gravity, it will only collect if its on a conveyor.

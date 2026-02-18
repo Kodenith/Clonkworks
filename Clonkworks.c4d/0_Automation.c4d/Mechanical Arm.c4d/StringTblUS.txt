@@ -1,0 +1,14 @@
+TxtLeft=Move Cursor Left
+TxtRight=Move Cursor Right
+TxtUp=Move Cursor Up
+TxtDown=Move Cursor Down
+TxtDelete=Delete Cursor
+TxtUngrab=Ungrab
+
+TxtMenu=Open Menu
+TxtMenu2=Mechanical Arm Menu
+TxtOption1=Add New Cursor
+TxtOption2=Select: %s
+TxtAdded=Added Cursor: %s
+
+TxtGrabToggle=Grab objects from containers

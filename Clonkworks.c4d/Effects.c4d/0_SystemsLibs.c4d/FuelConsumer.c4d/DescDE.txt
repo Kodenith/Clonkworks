@@ -1,0 +1,1 @@
+Geteilte Funktionen für Gebäude mit Brennofen.

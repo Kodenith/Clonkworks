@@ -1,0 +1,15 @@
+TxtTasklist=Aufgaben:
+
+TxtChunks1=Es gibt <c ffff00>%d Goldbrocken</c>, die darauf warten, verkauft zu werden. %d davon befinden sich außerhalb eines Behälters.
+TxtChunks2=Alle Brocken wurden verkauft!
+
+TxtOre1=Es gibt noch <c ffff00>%d Einheiten Golderz</c> zu fördern.
+TxtOre2=Das gesamte Golderz wurde abgebaut!
+
+TxtDepo1=Es müssen noch <c ffff00>%d Goldvorkommen</c> abgebaut werden.
+TxtDepo2=Alle Goldvorkommen wurden abgebaut!
+
+TxtComp1=Du/Dein Team habt %d Goldbrocken verkauft. <c ff0000>Größter: %d</c>
+TxtComp2=Du/Dein Team habt %d Goldbrocken verkauft. <c 00ff00>Du bist der beste Bergmann!</c>
+
+TxtComplete=<c 00ff00> Alle Aufgaben abgeschlossen! </c>

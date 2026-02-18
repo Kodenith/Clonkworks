@@ -1,0 +1,3 @@
+For this gate, items come from the top. If the amount is more than zero the item will go left by default. otherwise the opposite direction.
+
+operates the same as the non-numbered variant, but you can change the value by clicking the left button.

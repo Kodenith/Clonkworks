@@ -1,0 +1,5 @@
+A large bridge-like conveyor belt that transports objects above and below it.
+
+When placed, connect a rotor to it to make it move. Adjacent conveyor belts will also move.
+
+You can also pack it by pressing Up twice while holding, or snap to neighbouring conveyors by pressing a direction key twice.

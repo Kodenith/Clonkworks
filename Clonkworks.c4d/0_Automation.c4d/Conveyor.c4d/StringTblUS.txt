@@ -1,0 +1,3 @@
+TxtPackage=Package
+TxtSnapLeft=Snap Left
+TxtSnapRight=Snap Right

@@ -1,0 +1,2 @@
+DE:Verbrannter Förderband
+US:Burnt Conveyor
