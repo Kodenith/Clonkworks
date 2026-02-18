@@ -39,7 +39,7 @@ private func Lock(quiet, dont_descend) {
   // Verankern
   if (!dont_descend)
     if (!GBackSolid(0, 10))
-      SetPosition(GetX(), GetY()+10);
+      SetPosition(GetX(), GetY()+11);
   
     //clonks often get stuck when locking this, so there's unstuck behaviour.
   var StuckClonk;
