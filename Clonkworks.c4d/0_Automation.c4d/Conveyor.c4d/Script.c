@@ -305,7 +305,7 @@ public func ALKConnectType(){
 */
 
 //new gear line connection func
-public func IsRotorTarget(){ return(1); }
+public func IsRotorTarget(){ return(is_locked); }
 
 //packaging
 public func ControlUpDouble(pClonk){
