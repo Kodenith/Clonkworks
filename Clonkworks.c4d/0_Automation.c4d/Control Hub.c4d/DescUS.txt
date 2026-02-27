@@ -1,0 +1,2 @@
+Allows setting up orders for some automatic production chains. Requires energy to connect.
+Place on a conveyor to allow dispensing items automatically onto said production chains.

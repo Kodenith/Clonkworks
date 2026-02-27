@@ -1,0 +1,2 @@
+Ermöglicht die Einrichtung von Aufträgen für bestimmte automatische Produktionsketten. Erfordert Energie zum Anschließen.
+Auf einem Förderband platzieren, um Gegenstände automatisch auf die genannten Produktionsketten zu verteilen.
