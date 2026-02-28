@@ -17,7 +17,11 @@ protected func RejectCollect(idObj,pObj){
 	if(GetCDir() == 0) return(1);
 	
 	var Prod = GetProductComponentArray();
-	if(InArray(idObj,Prod) != -1){
+	var Prod2= GetOrderComponentArray();
+	if(!GetEffect("OrderMode",this)){
+			Prod2 = Prod;
+	}
+	if(InArray(idObj,Prod) != -1 || InArray(idObj,Prod2) != -1){
 		if(pObj->~UnpackTo()){
 			Enter(this,pObj);
 			pObj->Unpack();
@@ -34,7 +38,11 @@ protected func Collection(pObj,fPut){
 	Sound("Grapple");
 	
 	var Ingr = GetProductComponentArray();
-	if(InArray(GetID(pObj),Ingr) == -1){
+	var Ingr2 = GetOrderComponentArray();
+	if(!GetEffect("OrderMode",this)){
+			Ingr2 = Ingr;
+	}
+	if(InArray(GetID(pObj),Ingr) == -1 && InArray(GetID(pObj),Ingr2) == -1){
 		Exit(pObj,0,GetDefBottom()-(GetY()+5));
 		return(0);
 	}
@@ -54,6 +62,9 @@ public func SetFilter(pId,pGrabber){
 	if(pGrabber){
 		Message("$TxtSet$",this(),GetName(,Product));
 		Sound("Click");
+		if(GetEffect("OrderMode",this)){
+			RemoveEffect("OrderMode",this);
+		}
 	}
 }
 
@@ -114,6 +125,8 @@ func ReleaseProduct(){
 	if(GetCDir() == 0 || !Producing) return(0);
 	Exit(Producing,0,GetDefBottom()-(GetY()+5));
 	Producing=0;
+	if(GetEffect("OrderMode",this))
+		ConsumeOrder();
 	return(1);
 }
 
@@ -126,3 +139,15 @@ func Destruction(){
 }
 
 public func GetResearchBase(){ return(ANVL); }
+
+//order logic. uses an effect.
+func ChooseOrderItem(){
+	var pClonk = Par(1);
+	CreateMenu(GetID(),pClonk,this(),1);
+	var x,i;
+	while(x = GetDefinition(i++,C4D_Object)){
+		if(!DefinitionCall(x,"IsAnvilProduct")) continue;
+		if(!GetPlrKnowledge(GetController(pClonk),x)) continue;
+		AddMenuItem("%s","SetFooItem",x,pClonk,0,pClonk);
+	}
+}

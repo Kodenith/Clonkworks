@@ -95,6 +95,9 @@ protected func Collection(pObj,fPut){
 	
 	var Ingr = GetProductComponentArray();
 	var Ingr2 =  GetOrderComponentArray();
+	if(!GetEffect("OrderMode",this)){
+			Ingr2 = Ingr;
+	}
 	if(InArray(GetID(pObj),Ingr) == -1 && InArray(GetID(pObj),Ingr2) == -1){
 		Exit(pObj,20*GetCDir(),GetDefBottom()-GetY());
 		return(0);
