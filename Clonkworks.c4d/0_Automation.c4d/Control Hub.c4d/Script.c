@@ -9,6 +9,12 @@
 local Conveyor;
 local ObjectIndex;
 
+func OnMenuSelection(Index,Clonk){
+    if(GetMenu(Clonk) == CHUB){
+        SetPlrView(GetController(Clonk),ObjectIndex[Index]);
+    }
+}
+
 func SoundOpenDoor(){
   Sound("SteelGate2");
 }
@@ -50,6 +56,7 @@ func Collection(){
     Sound("Clonk");
 }
 
+
 func CheckConveyor(){
     if(Conveyor && OnFire(Conveyor)){
         //temporary
@@ -75,8 +82,8 @@ public func ContextConnectToStation(pClonk){
         return(0);
     }
 
-    ObjectIndex = FindObjects(Find_Distance(350),Find_Func("AutoOrderComp"),Find_NoContainer(),Find_Not(Find_Hostile(GetController(pClonk))));
-    CreateMenu(CHBS,pClonk,this,0,"$TxtConnectFail2$");
+    ObjectIndex = FindObjects(Find_Distance(650),Find_Func("AutoOrderComp"),Find_NoContainer(),Find_Not(Find_Hostile(GetController(pClonk))));
+    CreateMenu(CHBS,pClonk,this,0,"$TxtConnectFail2$",0,0,0,CHUB);
     for(var Obj in ObjectIndex){
         AddMenuItem(Format("$TxtMenuConnect$",GetName(Obj)),Format("CallStation(%v,%v)",ObjectNumber(Obj),ObjectNumber(pClonk)),GetID(Obj),pClonk);
     }
@@ -85,6 +92,13 @@ public func ContextConnectToStation(pClonk){
 public func CallStation(pStation,pCaller){
     var Station = Object(pStation);
     var Caller = Object(pCaller);
+
+    if(!Station || OnFire(Station)){
+        Message("$TxtConnectFail3$",this);
+        Sound("Discharge");
+        return(0);
+    }
+
     if(!EnergyCheck(10000)){
         Message("$TxtNoPower$",this);
         Sound("Discharge");

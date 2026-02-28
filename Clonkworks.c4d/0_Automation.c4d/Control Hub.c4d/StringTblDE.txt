@@ -1,0 +1,6 @@
+TxtConnect=Mit automatischer Station verbinden
+TxtConnectFail1=Nicht genügend Strom!
+TxtConnectFail3=Station existiert nicht!
+TxtConnectFail2=Keine Verbindung möglich!
+TxtMenuConnect=Verbinden mit: %s
+TxtNoPower=Unzureichende Stromversorgung!
