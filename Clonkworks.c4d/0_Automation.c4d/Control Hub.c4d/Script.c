@@ -21,7 +21,7 @@ func SoundConnect(){
 }
 
 func Initialize(){
-    if(Conveyor = FindObject2(Find_AtPoint(0,30),Find_ID(CNVY),Find_NoContainer(),Find_Func("IsRotorTarget"))){
+    if(Conveyor = FindObject2(Find_AtPoint(0,20),Find_ID(CNVY),Find_NoContainer(),Find_Func("IsRotorTarget"))){
         LocalN("Extension",Conveyor) = this;
         SetGraphics("Funnel",this,GetID());
         Sound("Connect");
