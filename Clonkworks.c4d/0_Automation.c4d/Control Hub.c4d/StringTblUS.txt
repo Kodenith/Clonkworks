@@ -1,0 +1,6 @@
+TxtConnect=Connect to Automatic Station
+TxtConnectFail1=Not Enough Electricity!
+TxtConnectFail3=Station does not exist!
+TxtConnectFail2=Nothing to connect to!
+TxtMenuConnect=Connect to: %s
+TxtNoPower=Insufficient Power!
