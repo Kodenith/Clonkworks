@@ -346,3 +346,11 @@ func AD_NeedItem(pStation){
 	}
 	return(0);
 }
+
+//malfunction
+func Malfunction(){
+	if(GetEffect("OrderMode",this)){
+			RemoveEffect("OrderMode",this);
+	}
+	Product = _MRK;
+}

@@ -1,0 +1,2 @@
+DE:Zerstörter Steuerungszentrale
+US:Destroyed Control Hub

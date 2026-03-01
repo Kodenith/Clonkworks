@@ -60,8 +60,7 @@ func Collection(){
 
 func Update(){
     if(Conveyor && OnFire(Conveyor)){
-        //temporary
-        RemoveObject();
+        Incinerate();
     }
 
     if(Abs(FrameCounter()) % 19 == 0 && AutoDepositTo) DoAutoDeposit();
@@ -181,4 +180,9 @@ func DoAutoDeposit(){
     }
 
     return(1);
+}
+
+func Malfunction(){
+    DoDamage(RandomX(10,30));
+    if(GetDamage() >= 85) Incinerate();
 }
