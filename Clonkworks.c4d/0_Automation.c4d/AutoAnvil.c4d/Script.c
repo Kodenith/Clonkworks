@@ -17,11 +17,10 @@ protected func RejectCollect(idObj,pObj){
 	if(GetCDir() == 0) return(1);
 	
 	var Prod = GetProductComponentArray();
-	var Prod2= GetOrderComponentArray();
-	if(!GetEffect("OrderMode",this)){
-			Prod2 = Prod;
+	if(GetEffect("OrderMode",this)){
+			Prod = GetOrderComponentArray();
 	}
-	if(InArray(idObj,Prod) != -1 || InArray(idObj,Prod2) != -1){
+	if(InArray(idObj,Prod) != -1){
 		if(pObj->~UnpackTo()){
 			Enter(this,pObj);
 			pObj->Unpack();
@@ -38,11 +37,10 @@ protected func Collection(pObj,fPut){
 	Sound("Grapple");
 	
 	var Ingr = GetProductComponentArray();
-	var Ingr2 = GetOrderComponentArray();
-	if(!GetEffect("OrderMode",this)){
-			Ingr2 = Ingr;
+	if(GetEffect("OrderMode",this)){
+			Ingr = GetOrderComponentArray();
 	}
-	if(InArray(GetID(pObj),Ingr) == -1 && InArray(GetID(pObj),Ingr2) == -1){
+	if(InArray(GetID(pObj),Ingr) == -1){
 		Exit(pObj,0,GetDefBottom()-(GetY()+5));
 		return(0);
 	}
@@ -124,9 +122,15 @@ func TryRelease(){
 func ReleaseProduct(){
 	if(GetCDir() == 0 || !Producing) return(0);
 	Exit(Producing,0,GetDefBottom()-(GetY()+5));
-	Producing=0;
-	if(GetEffect("OrderMode",this))
+	//in case of orders, move it so it doesnt consume the item for crafting again
+	if(GetEffect("OrderMode",this)){
+		if(GetCDir() > 0)
+			SetX(GetX(Producing)+(GetCDir()*10),Producing);
+		else if(GetCDir() < 0)
+			SetX(GetX(Producing)+(GetCDir()*12),Producing);
 		ConsumeOrder();
+	}
+	Producing=0;
 	return(1);
 }
 

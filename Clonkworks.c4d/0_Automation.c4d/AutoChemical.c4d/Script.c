@@ -94,11 +94,10 @@ protected func Collection(pObj,fPut){
 	Sound("Clonk");
 	
 	var Ingr = GetProductComponentArray();
-	var Ingr2 =  GetOrderComponentArray();
-	if(!GetEffect("OrderMode",this)){
-			Ingr2 = Ingr;
+	if(GetEffect("OrderMode",this)){
+		Ingr = GetOrderComponentArray();
 	}
-	if(InArray(GetID(pObj),Ingr) == -1 && InArray(GetID(pObj),Ingr2) == -1){
+	if(InArray(GetID(pObj),Ingr) == -1){
 		Exit(pObj,20*GetCDir(),GetDefBottom()-GetY());
 		return(0);
 	}
@@ -280,7 +279,7 @@ func Substraction(){
 	if(fooNumber < 1) fooNumber = 1;
 	NumberMenu(0,Par(1));
 	Sound("Click");
-	SelectMenuItem(Par(1),2);
+	SelectMenuItem(2,Par(1));
 }
 
 //adds new order
