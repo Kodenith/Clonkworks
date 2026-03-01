@@ -242,7 +242,7 @@ func OrderMenu(Caller){
 
 
 	//Add a new order button. It begins a big journey through badly written functions to finally deliver the new order to the king of orders who makes orders. the end.
-	AddMenuItem("$TxtNewOrder$","ChooseOrderItem",OREM,Caller,0,Caller);
+	AddMenuItem("$TxtNewOrder$","ChooseOrderItem",CHBS,Caller,0,Caller,"",2,3);
 	//Button for toggling keeping stuff inside for later production.
 	if(KeepItems){
 	  AddMenuItem("$TxtKeep$","ToggleKeep",_MRK,Caller,0,Caller,"",2,1);
