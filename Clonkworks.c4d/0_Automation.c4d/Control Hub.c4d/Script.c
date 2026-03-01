@@ -12,6 +12,7 @@ local ObjectIndex;
 func OnMenuSelection(Index,Clonk){
     if(GetMenu(Clonk) == CHUB){
         SetPlrView(GetController(Clonk),ObjectIndex[Index]);
+        CreateParticle("Terashock",AbsX(GetX(ObjectIndex[Index])),AbsY(GetY(ObjectIndex[Index])),0,0,8*GetDefWidth(GetID(ObjectIndex[Index])),GetPlrColorDw(GetController(Clonk)));
     }
 }
 
@@ -105,5 +106,6 @@ public func CallStation(pStation,pCaller){
         return(0);
     }
     SetAction("Connected");
+    Station->~DoConnectParticles(GetController(Caller));
     Station->~OrderMenu(Caller);
 }

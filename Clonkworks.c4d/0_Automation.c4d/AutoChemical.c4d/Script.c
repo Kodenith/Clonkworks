@@ -326,3 +326,10 @@ func ConsumeOrder(){
 		OrderAmounts[GetLength(OrderAmounts)-1] -= 1;
 	}
 }
+
+
+//particles :)
+func DoConnectParticles(Own){
+	var Amount = RandomX(8,15);
+	while(Amount--) CreateParticle("MSpark",RandomX(-GetDefWidth(GetID())/2,GetDefWidth(GetID())/2),(GetDefHeight(GetID())/2)-RandomX(0,7),0,RandomX(-10,-40),RandomX(45,75),GetPlrColorDw(Own));
+}
