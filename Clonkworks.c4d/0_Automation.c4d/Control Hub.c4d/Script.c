@@ -8,6 +8,7 @@
 
 local Conveyor;
 local ObjectIndex;
+local AutoDepositTo;
 
 func OnMenuSelection(Index,Clonk){
     if(GetMenu(Clonk) == CHUB){
@@ -47,9 +48,8 @@ func Initialize(){
 func RejectCollect(oId,pObj){
     if(Contained(pObj)) return(0);
     if(!Conveyor) return(1);
-    DebugLog("%v",AbsX(GetX(pObj)) );
-    if(LocalN("Speed",Conveyor) > 5 && AbsX(GetX(pObj)) < -28) return(0);
-    if(LocalN("Speed",Conveyor) < -5 && AbsX(GetX(pObj)) > 28) return(0);
+    if(LocalN("Speed",Conveyor) > 5 && AbsX(GetX(pObj)) < -20) return(0);
+    if(LocalN("Speed",Conveyor) < -5 && AbsX(GetX(pObj)) > 20) return(0);
     return(1);
 }
 
@@ -58,11 +58,13 @@ func Collection(){
 }
 
 
-func CheckConveyor(){
+func Update(){
     if(Conveyor && OnFire(Conveyor)){
         //temporary
         RemoveObject();
     }
+
+    if(Abs(FrameCounter()) % 19 == 0 && AutoDepositTo) DoAutoDeposit();
 }
 
 func ActivateEntrance(pObj){
@@ -105,7 +107,78 @@ public func CallStation(pStation,pCaller){
         Sound("Discharge");
         return(0);
     }
+
+    DoEnergy(-10000);
     SetAction("Connected");
     Station->~DoConnectParticles(GetController(Caller));
     Station->~OrderMenu(Caller);
+}
+
+//Selecting Autodepositing
+public func CanAutoDeposit(){
+    return(!AutoDepositTo && Conveyor && isBuilt());
+}
+
+public func CanCancelAutoDeposit(){
+    return(AutoDepositTo != 0 && Conveyor && isBuilt());
+}
+
+public func ContextBeginAutodep(pClonk){
+    [$TxtAutodep$|Image=CHBS:1|Condition=CanAutoDeposit]
+    if(Contained(pClonk) != this()){
+        SetCommand(pClonk,"Enter",this);
+        AppendCommand(pClonk,"Call",this,pClonk,0,0,0,"ContextBeginAutodep");
+        return(0);
+    }
+
+    ObjectIndex = FindObjects(Find_Distance(650),Find_Func("AutoDepositHere"),Find_NoContainer(),Find_Not(Find_Hostile(GetController(pClonk))));
+    CreateMenu(CHBS,pClonk,this,0,"$TxtConnectFail2$",0,0,0,CHUB);
+    for(var Obj in ObjectIndex){
+        AddMenuItem(Format("$TxtDepo$",GetName(Obj)),Format("SetDepositStation(%v,%v)",ObjectNumber(Obj),ObjectNumber(pClonk)),GetID(Obj),pClonk);
+    }
+}
+
+func SetDepositStation(Objnum,ClonkNum){
+    var pObj = Object(Objnum);
+    var pClonk = Object(ClonkNum);
+
+    Message("$TxtDepoSet$",this,GetName(pObj));
+    SetAction("Connected");
+    AutoDepositTo = pObj;
+    SetPlrView(GetController(pClonk),this);
+}
+
+public func ContextStopAutodep(pClonk){
+    [$TxtAutodepCancel$|Image=CHBS:2|Condition=CanCancelAutoDeposit]
+    if(Contained(pClonk) != this()){
+        SetCommand(pClonk,"Enter",this);
+        AppendCommand(pClonk,"Call",this,pClonk,0,0,0,"ContextStopAutodep");
+        return(0);
+    }
+
+    Message("$TxtDepoCancel$",this);
+    Sound("Click");
+    AutoDepositTo = 0;
+}
+
+func DoAutoDeposit(){
+    var pID = AutoDepositTo->AD_NeedItem(this);
+    if(!pID) return(0);
+    
+    var pItem = FindContents(pID);
+    if(!pItem) return(0);
+
+    if(Abs(LocalN("Speed",Conveyor)) < 5) return(0);
+    if(!EnergyCheck(10000)) return(0);
+    DoEnergy(-10000);
+    var Right = LocalN("Speed",Conveyor)<0;
+    if(!Right) Right = -1;
+
+    Exit(pItem,-Right*40, GetDefBottom()-GetY());
+    var UnstuckPixels = 6;
+    while(Stuck(pItem) && UnstuckPixels--){
+        SetY(GetY(pItem)-1,pItem);
+    }
+
+    return(1);
 }

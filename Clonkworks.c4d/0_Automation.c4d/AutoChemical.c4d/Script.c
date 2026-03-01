@@ -174,7 +174,9 @@ protected func CheckContents(){
 
 func ReleaseProduct(){
 	if(GetCDir() == 0 || !Producing) return(0);
-	var Incr = GetOrderComponentArray();
+	var Incr = [];
+	if(GetEffect("OrderMode",this))
+	  Incr = GetOrderComponentArray();
 	if( (!KeepItems && GetEffect("OrderMode",this)) || !GetEffect("OrderMode",this) || (InArray(GetID(Producing),Incr) == -1 && GetEffect("OrderMode",this))){
 		Producing->~Initialize();
 		var ExitY = GetDefBottom()-GetY();
@@ -332,4 +334,15 @@ func ConsumeOrder(){
 func DoConnectParticles(Own){
 	var Amount = RandomX(8,15);
 	while(Amount--) CreateParticle("MSpark",RandomX(-GetDefWidth(GetID())/2,GetDefWidth(GetID())/2),(GetDefHeight(GetID())/2)-RandomX(0,7),0,RandomX(-10,-40),RandomX(45,75),GetPlrColorDw(Own));
+}
+
+//Automatic depositing stuff
+func AutoDepositHere(){ return(1); }
+
+func AD_NeedItem(pStation){
+	var x,am;
+	while(am = GetComponent(0,x++,0,Product)){
+		if(ContentsCount(am) < GetComponent(am,0,0,Product)) return(am);
+	}
+	return(0);
 }

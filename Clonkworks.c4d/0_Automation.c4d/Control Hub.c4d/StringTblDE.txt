@@ -4,3 +4,9 @@ TxtConnectFail3=Station existiert nicht!
 TxtConnectFail2=Keine Verbindung möglich!
 TxtMenuConnect=Verbinden mit: %s
 TxtNoPower=Unzureichende Stromversorgung!
+
+TxtAutodep=Automatische Einzahlung
+TxtAutodepCancel=Automatische Einzahlung stoppen
+TxtDepo=Einzahlung an: %s
+TxtDepoSet=Jetzt wird automatisch an %s eingezahlt!
+TxtDepoCancel=Automatische Einzahlung gestoppt.
