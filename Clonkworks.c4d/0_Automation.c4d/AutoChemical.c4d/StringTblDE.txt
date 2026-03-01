@@ -8,3 +8,4 @@ TxtSetAmout=Wie viele?
 TxtAdd=+1 hinzufügen
 TxtDec=-1 abziehen
 TxtDone=Fertig!
+TxtKeep=Artikel für weitere Produktion aufbewahren?

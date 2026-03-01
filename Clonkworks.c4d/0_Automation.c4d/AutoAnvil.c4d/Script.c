@@ -124,10 +124,12 @@ func ReleaseProduct(){
 	Exit(Producing,0,GetDefBottom()-(GetY()+5));
 	//in case of orders, move it so it doesnt consume the item for crafting again
 	if(GetEffect("OrderMode",this)){
+		if(!KeepItems){
 		if(GetCDir() > 0)
 			SetX(GetX(Producing)+(GetCDir()*10),Producing);
 		else if(GetCDir() < 0)
 			SetX(GetX(Producing)+(GetCDir()*12),Producing);
+		}
 		ConsumeOrder();
 	}
 	Producing=0;

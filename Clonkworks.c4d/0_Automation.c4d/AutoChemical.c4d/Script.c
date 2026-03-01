@@ -3,6 +3,8 @@
 #strict 2
 #include CXEC
 
+local KeepItems;
+
 /* GENERAL AUTOMATED PRODUCTION TEMPLATE */
 
 local Parent;
@@ -172,10 +174,13 @@ protected func CheckContents(){
 
 func ReleaseProduct(){
 	if(GetCDir() == 0 || !Producing) return(0);
-	Producing->~Initialize();
-	var ExitY = GetDefBottom()-GetY();
-	ExitY-=GetDefHeight(GetID(Producing));
-	Exit(Producing,20*GetCDir(),ExitY);
+	var Incr = GetOrderComponentArray();
+	if( (!KeepItems && GetEffect("OrderMode",this)) || !GetEffect("OrderMode",this) || (InArray(GetID(Producing),Incr) == -1 && GetEffect("OrderMode",this))){
+		Producing->~Initialize();
+		var ExitY = GetDefBottom()-GetY();
+		ExitY-=GetDefHeight(GetID(Producing));
+		Exit(Producing,20*GetCDir(),ExitY);
+	}
 	Producing=0;
 	if(GetEffect("OrderMode",this))
 		ConsumeOrder();
@@ -228,13 +233,28 @@ func OrderMenu(Caller){
 	}
 
 	//make menu full of current orders.
-	CreateMenu(CHBS,Caller,this,1,"$TxtOrderMenu$",0,1);
+	CreateMenu(CHBS,Caller,this,0,"$TxtOrderMenu$",0,1);
 	for(var i = GetLength(OrderID)-1; i >= 0; i--){
 		AddMenuItem(GetName(,OrderID[i]),Format("DeleteIndex(%d,%d)",i,ObjectNumber(Caller)),OrderID[i],Caller,OrderAmounts[i]);
 	}
 
+
 	//Add a new order button. It begins a big journey through badly written functions to finally deliver the new order to the king of orders who makes orders. the end.
 	AddMenuItem("$TxtNewOrder$","ChooseOrderItem",OREM,Caller,0,Caller);
+	//Button for toggling keeping stuff inside for later production.
+	if(KeepItems){
+	  AddMenuItem("$TxtKeep$","ToggleKeep",_MRK,Caller,0,Caller,"",2,1);
+	}else{
+	  AddMenuItem("$TxtKeep$","ToggleKeep",_MRK,Caller,0,Caller);
+	}
+}
+
+func ToggleKeep(){
+	Sound("Click");
+	if(KeepItems) KeepItems = 0;
+	else KeepItems = 1;
+	if(Par(1))
+		OrderMenu(Par(1));
 }
 
 func ChooseOrderItem(){
