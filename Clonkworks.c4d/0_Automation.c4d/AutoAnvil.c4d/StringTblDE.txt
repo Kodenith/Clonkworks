@@ -1,3 +1,10 @@
 TxtWrongPlacement=<c ff0000>Automatisierte Produktionsketten|Muss auf einem Förderband platziert werden!</c>
 TxtSetFilter=Produkt ändern
 TxtSet=Produziert jetzt %s.
+
+TxtOrderMenu=Aktuelle Bestellungen
+TxtNewOrder=Neue Bestellung hinzufügen
+TxtSetAmout=Wie viele?
+TxtAdd=+1 hinzufügen
+TxtDec=-1 abziehen
+TxtDone=Fertig!

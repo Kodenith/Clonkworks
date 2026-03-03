@@ -17,6 +17,9 @@ protected func RejectCollect(idObj,pObj){
 	if(GetCDir() == 0) return(1);
 	
 	var Prod = GetProductComponentArray();
+	if(GetEffect("OrderMode",this)){
+			Prod = GetOrderComponentArray();
+	}
 	if(InArray(idObj,Prod) != -1){
 		if(pObj->~UnpackTo()){
 			Enter(this,pObj);
@@ -34,6 +37,9 @@ protected func Collection(pObj,fPut){
 	Sound("Grapple");
 	
 	var Ingr = GetProductComponentArray();
+	if(GetEffect("OrderMode",this)){
+			Ingr = GetOrderComponentArray();
+	}
 	if(InArray(GetID(pObj),Ingr) == -1){
 		Exit(pObj,0,GetDefBottom()-(GetY()+5));
 		return(0);
@@ -54,6 +60,9 @@ public func SetFilter(pId,pGrabber){
 	if(pGrabber){
 		Message("$TxtSet$",this(),GetName(,Product));
 		Sound("Click");
+		if(GetEffect("OrderMode",this)){
+			RemoveEffect("OrderMode",this);
+		}
 	}
 }
 
@@ -113,6 +122,16 @@ func TryRelease(){
 func ReleaseProduct(){
 	if(GetCDir() == 0 || !Producing) return(0);
 	Exit(Producing,0,GetDefBottom()-(GetY()+5));
+	//in case of orders, move it so it doesnt consume the item for crafting again
+	if(GetEffect("OrderMode",this)){
+		if(!KeepItems){
+		if(GetCDir() > 0)
+			SetX(GetX(Producing)+(GetCDir()*10),Producing);
+		else if(GetCDir() < 0)
+			SetX(GetX(Producing)+(GetCDir()*12),Producing);
+		}
+		ConsumeOrder();
+	}
 	Producing=0;
 	return(1);
 }
@@ -126,3 +145,15 @@ func Destruction(){
 }
 
 public func GetResearchBase(){ return(ANVL); }
+
+//order logic. uses an effect.
+func ChooseOrderItem(){
+	var pClonk = Par(1);
+	CreateMenu(GetID(),pClonk,this(),1);
+	var x,i;
+	while(x = GetDefinition(i++,C4D_Object)){
+		if(!DefinitionCall(x,"IsAnvilProduct")) continue;
+		if(!GetPlrKnowledge(GetController(pClonk),x)) continue;
+		AddMenuItem("%s","SetFooItem",x,pClonk,0,pClonk);
+	}
+}

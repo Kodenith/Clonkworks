@@ -1,0 +1,14 @@
+TxtConnect=Connect to Automatic Station
+TxtConnectFail1=Not Enough Electricity!
+TxtConnectFail3=Station does not exist!
+TxtConnectFail2=Nothing to connect to!
+TxtMenuConnect=Connect to: %s
+TxtNoPower=Insufficient Power!
+
+TxtAutodep=Automatic Depositing
+TxtAutodepCancel=Stop Automatic Depositing
+TxtDepo=Deposit to: %s
+TxtDepoSet=Now automatically depositing to %s!
+TxtDepoCancel=Automatic Depositing Stopped.
+
+TxtAlreadyUsing=Another clonk is using that!

@@ -132,3 +132,16 @@ func RejectContents(){ if(!ActIdle()) return(1); }
 public func GetResearchBase(){ return(FNDR); }
 
 func LeverSound(){ Sound("Lever1"); }
+
+//Automatic depositing stuff
+func AutoDepositHere(){ return(1); }
+
+func AD_NeedItem(pStation){
+	if(!ContentsCount(COAL)) return(COAL);
+
+  for(var i in FindObjects(Find_Container(pStation))){
+    if(i->~SmeltResult()) return(GetID(i));
+  }
+
+	return(0);
+}

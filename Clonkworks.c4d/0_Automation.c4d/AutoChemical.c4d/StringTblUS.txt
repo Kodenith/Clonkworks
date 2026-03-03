@@ -1,3 +1,11 @@
 TxtWrongPlacement=<c ff0000>Automated production chains|Must be placed on a conveyor!</c>
 TxtSetFilter=Change Product
 TxtSet=Now Producing %s.
+
+TxtOrderMenu=Current Orders
+TxtNewOrder=Add New Order
+TxtSetAmout=How Many?
+TxtAdd=Add +1
+TxtDec=Substract -1
+TxtDone=Done!
+TxtKeep=Keep items for further production?

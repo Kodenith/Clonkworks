@@ -93,3 +93,18 @@ func Incineration(){
 
 public func IsRotorTarget(){ return(1); }
 public func IsRotorSource(){ return(1); }
+
+func AutoOrderComp(){ return(GetCon() > 99 && EnergyCheck(1)); }
+
+func OrderMenu(Caller){
+	CreateMenu(GetID(),Caller,this,0,GetName(),,1);
+	AddMenuItem("$TxtLeft$","ControlLeft",,Caller);
+	AddMenuItem("$TxtStop$","ControlUp",,Caller);
+	AddMenuItem("$TxtRight$","ControlRight",,Caller);
+}
+
+//particles :)
+func DoConnectParticles(Own){
+	var Amount = RandomX(8,15);
+	while(Amount--) CreateParticle("MSpark",RandomX(-GetDefWidth(GetID())/2,GetDefWidth(GetID())/2),(GetDefHeight(GetID())/2)-RandomX(0,7),0,RandomX(-10,-40),RandomX(45,75),GetPlrColorDw(Own));
+}
