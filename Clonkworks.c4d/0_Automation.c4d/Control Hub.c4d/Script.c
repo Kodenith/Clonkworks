@@ -208,3 +208,5 @@ func Malfunction(){
     DoDamage(RandomX(10,30));
     if(GetDamage() >= 85) Incinerate();
 }
+
+func GetResearchBase(){ return(PRCS); }

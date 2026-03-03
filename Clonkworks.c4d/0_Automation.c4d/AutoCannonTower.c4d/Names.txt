@@ -1,2 +1,0 @@
-DE:Geschützturm
-US:Cannon tower
