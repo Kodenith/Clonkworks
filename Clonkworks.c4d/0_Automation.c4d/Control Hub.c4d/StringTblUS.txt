@@ -10,3 +10,5 @@ TxtAutodepCancel=Stop Automatic Depositing
 TxtDepo=Deposit to: %s
 TxtDepoSet=Now automatically depositing to %s!
 TxtDepoCancel=Automatic Depositing Stopped.
+
+TxtAlreadyUsing=Another clonk is using that!

@@ -66,6 +66,7 @@ func Update(){
     if(Abs(FrameCounter()) % 19 == 0 && AutoDepositTo) DoAutoDeposit();
 }
 
+/*
 func ActivateEntrance(pObj){
     if(FindObject2(Find_OCF(OCF_CrewMember),Find_OCF(OCF_Alive),Find_Container(this)) && (GetOCF(pObj) & OCF_CrewMember)){
         if(Contained(pObj) == this) return(_inherited(pObj));
@@ -73,6 +74,7 @@ func ActivateEntrance(pObj){
     }
     return(_inherited(pObj));
 }
+*/
 
 // Connecting to other stations to give them orders.
 
@@ -81,6 +83,13 @@ public func ContextConnectToStation(pClonk){
     if(Contained(pClonk) != this()){
         SetCommand(pClonk,"Enter",this);
         AppendCommand(pClonk,"Call",this,pClonk,0,0,0,"ContextConnectToStation");
+        return(0);
+    }
+
+        
+    if(CheckForClonkWithMenu()){
+        Message("$TxtAlreadyUsing$",pClonk);
+        pClonk->Sound("CommandFailure1");
         return(0);
     }
 
@@ -122,11 +131,24 @@ public func CanCancelAutoDeposit(){
     return(AutoDepositTo != 0 && Conveyor && isBuilt());
 }
 
+func CheckForClonkWithMenu(){
+    for(var i in FindObjects(Find_Container(this),Find_OCF(OCF_CrewMember),Find_OCF(OCF_Alive))){
+        if(GetMenu(i) == CHUB) return(1);
+    }
+    return(0);
+}
+
 public func ContextBeginAutodep(pClonk){
     [$TxtAutodep$|Image=CHBS:1|Condition=CanAutoDeposit]
     if(Contained(pClonk) != this()){
         SetCommand(pClonk,"Enter",this);
         AppendCommand(pClonk,"Call",this,pClonk,0,0,0,"ContextBeginAutodep");
+        return(0);
+    }
+
+    if(CheckForClonkWithMenu()){
+        Message("$TxtAlreadyUsing$",pClonk);
+        pClonk->Sound("CommandFailure1");
         return(0);
     }
 
