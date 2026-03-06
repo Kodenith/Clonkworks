@@ -2,7 +2,7 @@
 Name=Produce
 Length=19
 Delay=1
-Facet=0,0,30,48,0,0
+Facet=0,0,34,38,0,0
 NextAction=Idle
 PhaseCall=TryRelease
 EnergyUsage=650

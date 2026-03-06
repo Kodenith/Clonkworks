@@ -5,17 +5,10 @@ Version=4,9,8
 Category=C4D_Structure|C4D_SelectKnowledge
 Value=75
 Mass=1000
-Width=30
-Height=48
-Offset=-15,-24
-Picture=0,0,30,48
-Vertices=5
-VertexX=-11,10,-1,0,0
-VertexY=23,23,23,-19,4
-VertexFriction=20,20,20,20,20
-VertexCNAT=8,8,8,4,16
-Collection=-12,13,24,11
-Components=METL=4;PRCS=1;
+Width=34
+Height=38
+Offset=-17,-19
+Components=METL=5;PRCS=1;
 Construction=1
 Grab=1
 GrabPutGet=2
@@ -24,7 +17,13 @@ TimerCall=CheckContents
 ContainBlast=1
 LineConnect=35
 HorizontalFix=1
-
+Collection=-11,12,22,7
+Vertices=4
+VertexX=-16,15,0,0
+VertexY=18,18,18,-13
+VertexFriction=20,20,20,20
+VertexCNAT=8,8,8,4
+TopFace=5,35,23,3,5,35
 
 [Physical]
 Energy=100000

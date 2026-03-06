@@ -12,7 +12,7 @@ Offset=-44,-19
 Collection=-40,13,83,8
 Construction=1
 LineConnect=35
-Components=WOOD=3;TTIG=3;PRCS=1
+Components=WOOD=5;TTIG=2;PRCS=1
 Timer=1
 TimerCall=Update
 Picture=11,0,68,39

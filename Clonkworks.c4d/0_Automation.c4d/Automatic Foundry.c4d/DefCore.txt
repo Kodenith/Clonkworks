@@ -13,7 +13,7 @@ id=FND2
 Version=4,9,8
 Construction=1
 Category=C4D_Structure|C4D_SelectKnowledge
-Components=METL=3;ROCK=3;PRCS=1
+Components=METL=3;ROCK=6;PRCS=1
 Timer=5
 TimerCall=Update
 Exclusive=1

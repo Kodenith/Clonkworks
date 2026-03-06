@@ -17,4 +17,4 @@ VertexCNAT=8,8,8,4,4
 BlastIncinerate=85
 Construction=1
 ConstructTo=CHUB
-Components=WOOD=2;TTIG=3;CPIG=1
+Components=WOOD=5;TTIG=2;PRCS=1
