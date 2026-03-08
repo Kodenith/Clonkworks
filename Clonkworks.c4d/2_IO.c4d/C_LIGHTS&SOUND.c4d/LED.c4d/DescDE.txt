@@ -1,0 +1,1 @@
+Jeder Eingang, der hier angelegt wird, lässt ihn leuchten. Sie können die Farbe dieses und jedes anderen Schaltkreises über das Kontextmenü ändern.

@@ -1,6 +1,6 @@
 [DefCore]
-Name=Circuit1
-id=CC1_
+Name=Circuit2
+id=CC2_
 Version=4,9,8
 Category=C4D_Object|C4D_SelectMaterial|C4D_SelectKnowledge|C4D_SelectHomebase
 MaxUserSelect=50

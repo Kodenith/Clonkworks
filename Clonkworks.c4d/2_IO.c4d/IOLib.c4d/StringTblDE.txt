@@ -2,6 +2,7 @@
 TxtRemoveContext=Ausgangsdraht löschen
 TxtRemoveMenu=Welchen Ausgang löschen?
 TxtOutputOption=<c ffff00>%s</c> bis %s's <c ffff00>%s</c>
+TxtCantRO=Diese Schaltung unterstützt keine Ausgänge.
 
 # Menü „Farbe“
 TxtColorContext=Schaltung neu einfärben

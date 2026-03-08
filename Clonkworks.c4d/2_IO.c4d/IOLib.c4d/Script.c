@@ -51,6 +51,11 @@ public func ControlDigDouble(pClonk){
   if(GetAction(pClonk) != "Push" ) return(0);
   if(GetActionTarget(0,pClonk) != this) return(0);
 
+  if(!WireFrom()){
+    Message("$TxtCantRO$",pClonk);
+    return(0);
+  }
+
   CreateMenu(GetID(),pClonk,this,0,"$TxtRemoveMenu$",0,1);
   for(var Output in FindObjects(Find_ID(WIRE),Find_ActionTarget(this))){
     if(GetID(GetActionTarget(1,Output)) == WRKT) continue;

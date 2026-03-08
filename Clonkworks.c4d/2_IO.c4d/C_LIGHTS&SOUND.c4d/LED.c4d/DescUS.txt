@@ -1,0 +1,1 @@
+Any input provided to this will make it glow. You can change the color of this and any other circuit with the context menu.

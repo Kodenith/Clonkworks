@@ -1,0 +1,1 @@
+Ermöglicht die schnelle Erstellung von Lichtern, Lautsprechern, Emittern und anderen eher grundlegenden Ausgängen.

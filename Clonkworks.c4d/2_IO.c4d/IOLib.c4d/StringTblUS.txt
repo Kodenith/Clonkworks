@@ -2,6 +2,7 @@
 TxtRemoveContext=Clear Output Wires
 TxtRemoveMenu=Which Output to Clear?
 TxtOutputOption=<c ffff00>%s</c> to %s's <c ffff00>%s</c>
+TxtCantRO=This circuit does not support outputs.
 
 # Color menu
 TxtColorContext=Recolor Circuit
