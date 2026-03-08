@@ -1,0 +1,2 @@
+Used to connect inputs and outputs of circuitry together.
+Wires cant be disconnected normally once fully connected, press dig twice while holding onto the source of a wire to open its wire removal menu.

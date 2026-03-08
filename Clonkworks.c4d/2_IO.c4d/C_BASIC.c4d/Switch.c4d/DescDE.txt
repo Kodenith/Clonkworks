@@ -1,0 +1,1 @@
+Greifen Sie den Wurfschlüssel und drücken Sie ihn, um umzuschalten. Er gilt als eingeschaltet, wenn die Hand nach unten zeigt.

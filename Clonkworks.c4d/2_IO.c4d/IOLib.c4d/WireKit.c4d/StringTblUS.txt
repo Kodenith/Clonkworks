@@ -1,0 +1,10 @@
+TxtConnectline=Connect line
+TxtNoNewLine=Cannot create a new line here.
+TxtLineRemoval=%s disconnected.
+TxtNewLine=New %s|connecting from %s.
+TxtNoConnectType=%s cannot be connected|to %s.
+TxtConnect=%s|connected to %s
+TxtLineInfo=Help: Advanced Lines
+
+TxtOutput=Select Output:
+TxtInput=Select Input:

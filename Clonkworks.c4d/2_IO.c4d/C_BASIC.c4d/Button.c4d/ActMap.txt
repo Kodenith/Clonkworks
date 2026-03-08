@@ -1,0 +1,15 @@
+[Action]
+Name=Clicked
+Length=1
+Delay=3
+Facet=8,0,8,8,0,0
+NextAction=Unclicked
+Procedure=FLOAT
+
+[Action]
+Name=Unclicked
+Delay=5
+Facet=0,0,8,8,0,0
+NextAction=Unclicked
+Procedure=FLOAT
+

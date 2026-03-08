@@ -1,0 +1,11 @@
+# Menü „Draht entfernen“
+TxtRemoveContext=Ausgangsdraht löschen
+TxtRemoveMenu=Welchen Ausgang löschen?
+TxtOutputOption=<c ffff00>%s</c> bis %s's <c ffff00>%s</c>
+
+# Menü „Farbe“
+TxtColorContext=Schaltung neu einfärben
+TxtColorSelect1=Vordefinierte Farbe verwenden.
+TxtColorSelect2=Farbe nach %s.
+TxtColorSet=Farbe festlegen.
+TxtCantRecolor=Diese Schaltung kann nicht neu eingefärbt werden.

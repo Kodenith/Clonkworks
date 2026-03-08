@@ -1,0 +1,2 @@
+DE:Grundlegende Eingangsschaltung
+US:Basic Input Circuit

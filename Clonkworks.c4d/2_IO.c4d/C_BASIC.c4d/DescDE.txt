@@ -1,0 +1,1 @@
+Ermöglicht die schnelle Erstellung einfacher Schaltflächen, Schalter und anderer klickbarer Elemente.

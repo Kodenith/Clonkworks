@@ -1,0 +1,1 @@
+Grab and press the throw key to toggle. It is considered on when the hand is facing down.

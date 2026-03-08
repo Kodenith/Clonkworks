@@ -1,0 +1,12 @@
+[Action]
+Name=Right
+Delay=1
+Facet=16,0,16,16,0,0
+NextAction=Right
+
+[Action]
+Name=Middle
+Delay=1
+Facet=32,0,16,16,0,0
+NextAction=Middle
+

@@ -1,0 +1,3 @@
+Shared functions for wiring, gates, wired objects, etc. Programmed by Kodenith for Clonkworks.
+
+Tested only for LC, but uses #strict 2 syntax.

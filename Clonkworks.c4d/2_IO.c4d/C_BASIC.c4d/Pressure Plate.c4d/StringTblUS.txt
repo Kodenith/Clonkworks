@@ -1,0 +1,3 @@
+TxtIncrease=Increase
+TxtDecrease=Decrease
+TxtVal=Weight: %d/%d

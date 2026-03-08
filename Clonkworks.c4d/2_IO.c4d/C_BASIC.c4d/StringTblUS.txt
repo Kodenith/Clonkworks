@@ -1,0 +1,5 @@
+TxtUse=Attach Circuit
+TxtMenu=Attach Which Circuit?
+TxtNoWall=This circuit needs to be placed|on a wall!
+TxtSpace=Something is blocking this location.
+TxtPlaced=New|%s
