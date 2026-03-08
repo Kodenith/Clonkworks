@@ -4,6 +4,7 @@
 #appendto DPIP
 #appendto PWRL
 #appendto GERL
+#appendto WIRE
 
 public func isLine(){ return(1); }
 public func KitType(){

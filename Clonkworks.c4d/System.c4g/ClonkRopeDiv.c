@@ -15,6 +15,7 @@ protected func ControlDigDouble(pClonk)
 {
 	// disconnecting custom lines and getting their proper kits.
 	var ovrlp = FindObject(0, 1,0,0,0, OCF_LineConstruct, 0,0,NoContainer(), ovrlp);
+  var FoundNoDisconnectionLine = 0;
 	
 	if(ovrlp && GetAction(pClonk) != "Push"){
 	SetComDir(COMD_Stop);
@@ -22,28 +23,35 @@ protected func ControlDigDouble(pClonk)
 	for(var Line in Lines){
 		var from = GetActionTarget(0, Line);
 		var to = GetActionTarget(1, Line);
+
+    if(Line->~NoDisconnection()){
+      FoundNoDisconnectionLine = 1;
+      continue;
+    }
 		
 		if(from == ovrlp){
+          FoundNoDisconnectionLine = 0;
 			if(ContentsCount()) break;
 			if(GetID(to) == Line->KitType() || to->~RequiresLine()){
 				Sound("Error");
 				return(1);
 			}
 			Sound("Connect");
-			DebugLog("%s kit type %s",GetName(Line),GetName(,Line->KitType()));
+			//DebugLog("%s kit type %s",GetName(Line),GetName(,Line->KitType()));
 			var Kit = CreateObject(Line->KitType());
 			SetActionTargets(Kit, to, Line);
 			return(1);
 		}
 		
 		if(to == ovrlp){
+          FoundNoDisconnectionLine = 0;
 			if(ContentsCount()) break;
 			if(GetID(from) == Line->KitType() || from->~RequiresLine()){
 				Sound("Error");
 				return(1);
 			}
 			Sound("Connect");
-						DebugLog("%s kit type %s",GetName(Line),GetName(,Line->KitType()));
+						//DebugLog("%s kit type %s",GetName(Line),GetName(,Line->KitType()));
 			var Kit = CreateObject(Line->KitType());
 			SetActionTargets(from, Kit, Line);
 			return(1);
@@ -52,7 +60,7 @@ protected func ControlDigDouble(pClonk)
 	}
 	
   if(GetAction(pClonk) == "Push") return _inherited(pClonk, ...);
-  // Eklige Effekte bei Mischung mit Leitungsbausätzen... Finger weg!
+  // Eklige Effekte bei Mischung mit Leitungsbausï¿½tzen... Finger weg!
   if(Contents() && Contents()->~IsKit()) return _inherited(pClonk, ...);
   // Activate-Funktionen in Inventarobjekten haben Vorrang
   if(Contents() && Contents()->~Activate(this)) return(1);
@@ -68,7 +76,7 @@ protected func ControlDigDouble(pClonk)
     {
       if(GetActionTarget(1, pRope) == pObj || GetActionTarget(0, pRope) == pObj)
       {
-        // Bestimmte Seile können nicht abgenommen werden (z.B. Enterhaken, Anker)
+        // Bestimmte Seile kï¿½nnen nicht abgenommen werden (z.B. Enterhaken, Anker)
         if((LocalN("fNoPickUp_0", pRope) && GetActionTarget(0, pRope) == pObj)
         || (LocalN("fNoPickUp_1", pRope) && GetActionTarget(1, pRope) == pObj))
           continue;
@@ -76,7 +84,7 @@ protected func ControlDigDouble(pClonk)
         if(pObj == this && GetEffectCount("IntTied", this) && EffectVar(0, this, GetEffect("IntTied", this)) == pRope)
           return _inherited(pClonk, ...);
         Sound("ArrowHit");
-        // Seilabnahme von Seilrolle würde zu zusammenfügen des Seiles führen
+        // Seilabnahme von Seilrolle wï¿½rde zu zusammenfï¿½gen des Seiles fï¿½hren
         if(GetID(pObj) == CL5P) return pObj->PickUp();
         // Seil von Objekt auf Seilrolle umswitchen
         var pPulley = CreateObject(CL5P, 0, 0, GetOwner(this));
@@ -100,6 +108,8 @@ protected func ControlDigDouble(pClonk)
       }
     }
   }
+
+  if(FoundNoDisconnectionLine) return(1);
 	
   if(!pRope)
   return _inherited(pClonk, ...);
@@ -112,10 +122,10 @@ protected func ControlDigDouble(pClonk)
 
 protected func Death(int iKilledBy)
 {
-  // War gefesselt? Für Auswertung in OnClonkDeath Effekt noch mal wiederherstellen
+  // War gefesselt? Fï¿½r Auswertung in OnClonkDeath Effekt noch mal wiederherstellen
   if(FindObject2(Find_ID(CY5P), Find_ActionTarget(this)))
     AddEffect("IntTied", this, 25);
-  // Effekt erst NACH OnClonkDeath löschen
+  // Effekt erst NACH OnClonkDeath lï¿½schen
   ScheduleCall(0, "RemoveTiedEffects", 1);
   return _inherited(iKilledBy, ...);
 }
@@ -145,7 +155,7 @@ global func GetCapturer(pClonk)
 
 
 /*--------------------------------------------------------*/
-/*-- Enterhaken können auch im Springen geworfen werden --*/
+/*-- Enterhaken kï¿½nnen auch im Springen geworfen werden --*/
 /*--------------------------------------------------------*/
 
 protected func ControlThrow(pClonk)
@@ -158,7 +168,7 @@ protected func ControlThrow(pClonk)
   return _inherited(pClonk, ...);
 }
 
-// Launch über Ejection im Clonk statt Departure im Enterhaken, so verschwinden Zugeffekte (?!)
+// Launch ï¿½ber Ejection im Clonk statt Departure im Enterhaken, so verschwinden Zugeffekte (?!)
 func Ejection(pObj)
 {
   if(pObj->~IsHook()) pObj->~Launch(this);
@@ -178,7 +188,7 @@ protected func ControlUp(pClonk)
 
 
 /*-----------------------------------*/
-/*-- Seilrolle hemmt keine Sprünge --*/
+/*-- Seilrolle hemmt keine Sprï¿½nge --*/
 /*-----------------------------------*/
 
   if(GetID(Contents()) == CL5P && GetProcedure() == "WALK")
