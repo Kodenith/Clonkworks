@@ -126,6 +126,5 @@ public func Malfunction(){
 }
 
 public func IsAdvancedProduct(){ return(1); }
-public func IsAnvilProduct(){ return(1); }
-public func IsChemicalProduct(){ return(0); }
+public func IsChemicalProduct(){ return(1); }
 public func GetResearchBase(){ return(MINE); }

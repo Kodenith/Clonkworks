@@ -21,4 +21,4 @@ func Hit(){
 
 public func GetResearchBase() { return(SFLN); }
 public func IsAdvancedProduct(){ return(1); }
-public func IsAnvilProduct(){ return(1); }
+public func IsChemicalProduct(){ return(1); }

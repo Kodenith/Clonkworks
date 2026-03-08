@@ -15,7 +15,7 @@ Collection=-17,-17,35,35
 BorderBound=7
 ClosedContainer=2
 CollectionLimit=51
-Components=TTIG=3;METL=3;
+Components=TTIG=7;METL=3;
 VehicleControl=2
 ContactCalls=1
 Rebuy=1

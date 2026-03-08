@@ -1,4 +1,0 @@
-NoPlrKnowledge=No construction plans
-Construction=Construction
-Production=Production
-Category=Category
