@@ -1,0 +1,1 @@
+If the input is not 0, 0 is outputted. and vice-versa.

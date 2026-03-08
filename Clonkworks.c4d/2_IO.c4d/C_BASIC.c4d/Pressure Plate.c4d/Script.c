@@ -88,3 +88,8 @@ func ControlRight(){
   if(ActivateWeight > 500) ActivateWeight = 500;
   Sound("Click");
 }
+
+func Malfunction(){ OnDetach(); }
+func Damage(){
+  if(GetDamage() > 50) OnDetach();
+}

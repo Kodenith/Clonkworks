@@ -41,3 +41,8 @@ func OnDetach(){
   Sound("Connect");
   Split2Components();
 }
+
+func Malfunction(){ OnDetach(); }
+func Damage(){
+  if(GetDamage() > 50) OnDetach();
+}

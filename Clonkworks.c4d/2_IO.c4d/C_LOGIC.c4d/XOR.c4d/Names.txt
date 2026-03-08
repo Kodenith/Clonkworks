@@ -1,0 +1,2 @@
+DE:X-ODER-Gatter
+US:XOR Gate

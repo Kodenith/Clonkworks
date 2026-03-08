@@ -28,3 +28,8 @@ func Check(){
   if(InputActive("Display") && GetAction() == "Off") SetAction("On");
   if(!InputActive("Display") && GetAction() != "Off") SetAction("Off");
 }
+
+func Malfunction(){ OnDetach(); }
+func Damage(){
+  if(GetDamage() > 50) OnDetach();
+}

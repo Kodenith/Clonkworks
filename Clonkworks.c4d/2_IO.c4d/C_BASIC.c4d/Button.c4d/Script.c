@@ -37,6 +37,11 @@ public func OutputActive(string OutputName){
    if(OutputName == "Pressed" && GetAction() == "Clicked") return(1);
 }
 
+func Malfunction(){ OnDetach(); }
+func Damage(){
+  if(GetDamage() > 50) OnDetach();
+}
+
 func CanBeDetached(){ return(1); }
 func OnDetach(){
   Sound("Connect");

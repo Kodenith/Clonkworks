@@ -1,0 +1,1 @@
+Beide Eingänge müssen entweder 0 oder nicht 0 sein, damit als Ausgabe 1 zurückgegeben wird.

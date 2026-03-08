@@ -1,0 +1,2 @@
+DE:X-Nicht-ODER-Gatter
+US:XNOR Gate

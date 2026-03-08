@@ -1,0 +1,2 @@
+DE:Nicht-UND-Gatter
+US:NAND Gate

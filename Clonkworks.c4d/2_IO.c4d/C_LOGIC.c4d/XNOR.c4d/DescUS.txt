@@ -1,0 +1,1 @@
+Both inputs have to be or not be 0 to return 1 as an output.
