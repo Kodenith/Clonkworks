@@ -1,0 +1,1 @@
+Gibt die erste Eingabe zurück, wenn die zweite wahr ist. Die Ausgabe ist nicht auf 1 oder 0 beschränkt.
