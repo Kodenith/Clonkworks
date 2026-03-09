@@ -1,0 +1,1 @@
+Begrenzt eine ganze Zahl zwischen zwei anderen ganzen Zahlen.
