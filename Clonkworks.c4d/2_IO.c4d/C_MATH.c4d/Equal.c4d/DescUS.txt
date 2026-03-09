@@ -1,0 +1,1 @@
+Checks if A is equal to B

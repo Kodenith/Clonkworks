@@ -1,2 +1,2 @@
-DE:Nicht-ODER-Gatter
+DE:NOR Gatter
 US:NOR Gate

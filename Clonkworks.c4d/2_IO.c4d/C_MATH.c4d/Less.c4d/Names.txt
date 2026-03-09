@@ -1,0 +1,2 @@
+DE:Weniger als
+US:Less Than

@@ -1,0 +1,1 @@
+Allows quick construction of variables, calculators, strings, and other fun value stuff.

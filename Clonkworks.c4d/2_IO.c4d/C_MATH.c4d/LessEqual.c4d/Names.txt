@@ -1,0 +1,2 @@
+DE:Kleiner oder gleich
+US:Less Or Equal

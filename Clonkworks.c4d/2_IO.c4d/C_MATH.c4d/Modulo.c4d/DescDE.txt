@@ -1,0 +1,1 @@
+Gibt den Rest der Division beider Ganzzahlen zurück.

@@ -1,2 +1,2 @@
-DE:X-ODER-Gatter
+DE:XOR Gatter
 US:XOR Gate

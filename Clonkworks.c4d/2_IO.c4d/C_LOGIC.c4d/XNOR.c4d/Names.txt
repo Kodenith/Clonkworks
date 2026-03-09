@@ -1,2 +1,2 @@
-DE:X-Nicht-ODER-Gatter
+DE:XNOR-Gatter
 US:XNOR Gate

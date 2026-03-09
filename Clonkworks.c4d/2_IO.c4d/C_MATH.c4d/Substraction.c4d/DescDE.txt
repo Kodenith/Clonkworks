@@ -1,0 +1,1 @@
+Subtrahiert zwei ganze Zahlen voneinander.

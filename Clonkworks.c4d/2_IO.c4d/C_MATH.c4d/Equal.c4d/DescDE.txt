@@ -1,0 +1,1 @@
+Überprüft, ob A gleich B ist.

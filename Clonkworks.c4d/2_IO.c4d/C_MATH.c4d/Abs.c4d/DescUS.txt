@@ -1,0 +1,1 @@
+Returns a positive and negative version of a number it recieves into seperate outputs.
