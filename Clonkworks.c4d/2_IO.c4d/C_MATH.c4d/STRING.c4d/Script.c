@@ -16,7 +16,13 @@ public func OutputList(){
   return(["Value"]);
 }
 
-public func WireTo(){ return(0); }
+public func InputList(){
+  return(["Set"]);
+}
+
+public func CheckSet(){
+   if(InputActive("Set") && GetType(InputActive("Set")) == C4V_String) Value = InputActive("Set");
+}
 
 func MustBeOnWall(){ return(1); }
 
