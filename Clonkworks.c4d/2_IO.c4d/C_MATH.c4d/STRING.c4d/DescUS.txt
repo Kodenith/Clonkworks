@@ -1,0 +1,1 @@
+Stores a single string value. Can only be assigned manually.

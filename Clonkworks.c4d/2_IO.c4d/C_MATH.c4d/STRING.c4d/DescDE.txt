@@ -1,0 +1,1 @@
+Speichert einen einzelnen String-Wert. Kann nur manuell zugewiesen werden.

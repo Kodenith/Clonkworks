@@ -1,0 +1,1 @@
+Wenn der Eingang „Speak“ aktiviert ist, wird die Zeichenfolge wiedergegeben, die an den Eingang „Message“ gesendet wird.
