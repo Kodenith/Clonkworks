@@ -15,7 +15,7 @@ VertexX=0
 VertexY=0
 VertexFriction=20
 VertexCNAT=16
-Components=METL=1
+Components=CPIG=1
 Collectible=1
 Rebuy=1
 Float=1
