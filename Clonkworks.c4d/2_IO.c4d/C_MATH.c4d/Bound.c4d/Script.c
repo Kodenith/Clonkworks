@@ -21,8 +21,8 @@ func MustBeOnWall(){ return(1); }
 
 //used by wire, check if a certain output is active
 public func OutputActive(string OutputName){
-   if(GetType(InputActive("Min")) != C4V_Int && GetType(InputActive("Min")) != 0) return(0);
-   if(GetType(InputActive("Max")) != C4V_Int && GetType(InputActive("Max")) != 0) return(0);
+   if(GetType(InputActive("Min")) != C4V_Int) return(0);
+   if(GetType(InputActive("Max")) != C4V_Int) return(0);
    if(GetType(InputActive("Number")) != C4V_Int) return(0);
    return(BoundBy(InputActive("Number"),InputActive("Min"),InputActive("Max")));
 }

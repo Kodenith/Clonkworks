@@ -1,0 +1,1 @@
+Erzeugt eine Zufallszahl zwischen zwei ganzen Zahlen.

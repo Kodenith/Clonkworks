@@ -1,0 +1,2 @@
+DE:Zufällige ganze Zahl
+US:Random Integer
