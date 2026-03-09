@@ -14,16 +14,24 @@ public func OutputList(){
 }
 
 public func InputList(){
-  return(["A","B"]);
+  return(["R","G","B"]);
 }
 
 func MustBeOnWall(){ return(1); }
 
 //used by wire, check if a certain output is active
 public func OutputActive(string OutputName){
-   if(GetType(InputActive("A")) != C4V_Int && GetType(InputActive("A")) != 0) return(0);
+   if(GetType(InputActive("R")) != C4V_Int && GetType(InputActive("R")) != 0) return(0);
+   if(GetType(InputActive("G")) != C4V_Int && GetType(InputActive("G")) != 0) return(0);
    if(GetType(InputActive("B")) != C4V_Int && GetType(InputActive("B")) != 0) return(0);
-   return(InputActive("A")+InputActive("B"));
+   var R = InputActive("R");
+   var G = InputActive("G");
+   var B = InputActive("B");
+   R = BoundBy(R,1,255);
+   G = BoundBy(G,1,255);
+   B = BoundBy(B,1,255);
+
+   return(RGBa(R,G,B));
 }
 
 func Malfunction(){ OnDetach(); }

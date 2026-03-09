@@ -1,0 +1,9 @@
+Bietet die Strinfunktionen
+
+replaceAll(string zeichenkette,string suchMuster,string ersetzenDurch)
+replaceFirst(string zeichenkette,string suchMuster,string ersetzenDurch)
+substring(int start,string zeichenkette,int ende)
+charAt(string zeichenkette,int i)	
+getLetter(int zahl)
+
+by TqmTqm
