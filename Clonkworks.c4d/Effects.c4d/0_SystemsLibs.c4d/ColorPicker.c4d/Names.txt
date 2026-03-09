@@ -1,0 +1,2 @@
+DE:Farbwahl
+US:Color Picker

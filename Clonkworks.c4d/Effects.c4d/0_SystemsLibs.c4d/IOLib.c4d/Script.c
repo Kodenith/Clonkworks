@@ -96,28 +96,22 @@ public func ContextRecolor(pClonk){
     return(0);
   }
 
-  if(GetAction(pClonk) != "Push" && GetActionTarget(0,pClonk) != this){
+  if(GetAction(pClonk) != "Push" || GetActionTarget(0,pClonk) != this){
     AddCommand(pClonk,"Call",this,pClonk,0,0,0,"ContextRecolor");
     AddCommand(pClonk,"Grab",this);
     return(0);
   }
 
-  CreateMenu(WATR,pClonk,this,0);
-  var Colors = [RGBa(255,0,0),RGBa(255,255/2,0),RGBa(255,255,0),RGBa(0,255,0),RGBa(0,255,255),RGBa(0,255/2,255),RGBa(0,0,255),RGBa(170,0,255),RGBa(255,0,255),RGBa(255,0,138),RGBa(255,255,255)];
-  for(var c in Colors){
-    AddMenuItem("$TxtColorSelect1$",Format("TryRecolor(%d,Object(%d))",c,ObjectNumber(pClonk)),IO__,pClonk,0,," ",7,2,c);
-  }
-
-  for(var i = 0; i < GetPlayerCount(); i++){
-    var c = GetPlrColorDw(GetPlayerByIndex(i));
-    AddMenuItem(Format("$TxtColorSelect2$",GetPlayerName(GetPlayerByIndex(i))),Format("TryRecolor(%d,Object(%d))",c,ObjectNumber(pClonk)),FLAG,pClonk,0,," ",6,c);
-  }
+  OpenColorPicker(pClonk,this,GetColorDw(),false,255);
 }
 
-func TryRecolor(Color,Clonk){
+
+public func ColorPickerCallback(Color, Clonk){
+  DebugLog("Test");
   if(GetAction(Clonk) != "Push" ) return(0);
   if(GetActionTarget(0,Clonk) != this) return(0);
 
+  
   SetColorDw(Color);
   Message("$TxtColorSet$",this);
   Sound("Splash1");

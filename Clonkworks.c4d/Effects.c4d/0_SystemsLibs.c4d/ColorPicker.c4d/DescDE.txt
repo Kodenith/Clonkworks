@@ -1,0 +1,1 @@
+Stellt eine Schnittstelle für quantisierte Farbwahl zur Verfügung.
