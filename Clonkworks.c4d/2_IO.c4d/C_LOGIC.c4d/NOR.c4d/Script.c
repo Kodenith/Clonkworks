@@ -1,6 +1,6 @@
 /*-- Neues Script --*/
 
-#strict 2
+#strict 3
 #include IO__
 
 func Initialize() {

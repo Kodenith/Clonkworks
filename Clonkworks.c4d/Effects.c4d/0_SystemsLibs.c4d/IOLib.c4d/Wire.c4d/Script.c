@@ -1,6 +1,6 @@
 /*--- Zuflussrohr ---*/
 
-#strict 2
+#strict 3
 protected func Initialize()
 {
   Local(0) = 343;

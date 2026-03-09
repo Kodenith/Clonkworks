@@ -1,6 +1,6 @@
 /*-- Neues Script --*/
 
-#strict 2
+#strict 3
 #include IO__
 
 func Initialize() {
@@ -35,6 +35,7 @@ func MustBeOnWall(){ return(1); }
 //used by wire, check if a certain output is active
 public func OutputActive(string OutputName){
    if(OutputName == "Pressed" && GetAction() == "Clicked") return(1);
+     return(0);
 }
 
 func Malfunction(){ OnDetach(); }

@@ -1,6 +1,6 @@
 /*-- Neues Script --*/
 
-#strict 2
+#strict 3
 #include IO__
 
 func Initialize() {
@@ -37,6 +37,8 @@ public func OutputActive(string OutputName){
    if(OutputName == "Held Amount" && GetAction() == "On"){
       return(ObjectCount2(Find_Action("Push"),Find_ActionTarget(this),Find_NoContainer()));
    }
+
+     return(0);
 }
 
 func CanBeDetached(){ return(1); }

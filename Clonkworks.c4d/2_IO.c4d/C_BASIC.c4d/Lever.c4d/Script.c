@@ -1,6 +1,6 @@
 /*-- Neues Script --*/
 
-#strict 2
+#strict 3
 #include BAS1
 #include IO__
 
@@ -41,6 +41,7 @@ public func OutputActive(string OutputName){
    if(OutputName == "Left" && GetAction() == "Idle") return(1);
    if(OutputName == "Right" && GetAction() == "Right") return(1);
    if(OutputName == "Up" && GetAction() == "Middle") return(1);
+     return(0);
 }
 
 func CanBeDetached(){ return(1); }

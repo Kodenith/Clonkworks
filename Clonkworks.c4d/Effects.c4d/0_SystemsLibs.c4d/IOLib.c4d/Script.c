@@ -1,6 +1,6 @@
 /* INPUT OUTPUT BY KODENITH */
 //wire color is 343
-#strict 2
+#strict 3
 
 //can this be wired from and to?
 public func WireFrom(){ return(GetCon() > 99); }
@@ -80,7 +80,7 @@ public func DisconnectWire(Wire,Clonk){
 
 public func ContextClearWires(pClonk){
   [$TxtRemoveContext$|Image=IO__:1|Conditon=WireFrom]
-  AddCommand(pClonk,"Call",this,pClonk,0,0,0,"ControlDigDouble");
+  AddCommand(pClonk,"Call",this,pClonk,,,,"ControlDigDouble");
   AddCommand(pClonk,"Grab",this);
 }
 
@@ -97,7 +97,7 @@ public func ContextRecolor(pClonk){
   }
 
   if(GetAction(pClonk) != "Push" || GetActionTarget(0,pClonk) != this){
-    AddCommand(pClonk,"Call",this,pClonk,0,0,0,"ContextRecolor");
+    AddCommand(pClonk,"Call",this,pClonk,,,,"ContextRecolor");
     AddCommand(pClonk,"Grab",this);
     return(0);
   }

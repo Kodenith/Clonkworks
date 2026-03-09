@@ -1,6 +1,6 @@
 /*-- Neues Script --*/
 
-#strict 2
+#strict 3
 #include IO__
 
 func Initialize() {
@@ -21,9 +21,13 @@ func MustBeOnWall(){ return(1); }
 
 //used by wire, check if a certain output is active
 public func OutputActive(string OutputName){
-   if(GetType(InputActive("A")) != C4V_Int) return(0);
-   if(GetType(InputActive("B")) != C4V_Int) return(0);
-   return(InputActive("A")*InputActive("B"));
+   var A = InputActive("A");
+   var B = InputActive("B");
+   if(GetType(A) != C4V_Int && A != nil) return(0);
+   if(GetType(B) != C4V_Int && B != nil) return(0);
+   if(A == nil) A = 0;
+   if(B == nil) B = 0;
+   return(A*B);
 }
 
 func Malfunction(){ OnDetach(); }

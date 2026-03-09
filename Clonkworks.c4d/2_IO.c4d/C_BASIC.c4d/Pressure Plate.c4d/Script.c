@@ -1,13 +1,13 @@
 /*-- Neues Script --*/
 
-#strict 2
+#strict 3
 #include IO__
 #include BAS1
 local ActivateWeight;
 
 func Initialize() {
-  SetAction("Off");
   ActivateWeight = 50;
+  SetAction("Off");
   return(1);
 }
 
@@ -44,6 +44,7 @@ public func GetHeldWeight(){
 public func OutputActive(string OutputName){
   if(OutputName == "Activated" && GetAction() == "On") return(1);
   if(OutputName == "Weight Value") return(GetHeldWeight());
+  return(0);
 }
 
 func CanBeDetached(){ return(1); }
