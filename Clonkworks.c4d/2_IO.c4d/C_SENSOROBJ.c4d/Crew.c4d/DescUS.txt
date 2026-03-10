@@ -1,0 +1,4 @@
+Detects clonks in a set range. Returns: A Boolean, The Detected Object, X Position, Y Position.
+
+The range can be set manually or by wire.
+Included are some extra inputs to narrow down their owners. (only one of them can be active at a time)

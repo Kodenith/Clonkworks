@@ -1,0 +1,2 @@
+DE:Sensor- und Objekt-Schaltung
+US:Sensor & Object Circuit

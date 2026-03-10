@@ -1,0 +1,4 @@
+Erkennt Clonk in einem festgelegten Bereich. Gibt zurück: einen booleschen Wert, das erkannte Objekt, die X-Position, die Y-Position.
+
+Der Bereich kann manuell oder per Kabel eingestellt werden.
+Enthalten sind einige zusätzliche Eingaben, um deren Besitzer einzugrenzen. (Es kann jeweils nur einer davon aktiv sein.)

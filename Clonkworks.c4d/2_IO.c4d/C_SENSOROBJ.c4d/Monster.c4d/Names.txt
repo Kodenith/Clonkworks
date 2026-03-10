@@ -1,0 +1,2 @@
+DE:Monstersensor
+US:Monster Sensor

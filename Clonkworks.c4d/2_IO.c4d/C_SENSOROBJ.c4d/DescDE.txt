@@ -1,0 +1,1 @@
+Ermöglicht die schnelle Konstruktion von Sensoren und objektbezogenen Schaltungen.
