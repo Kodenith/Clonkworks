@@ -1,0 +1,1 @@
+Überprüft, ob es in Flüssigkeit eingetaucht oder vergraben ist. Gibt Folgendes zurück: Den Materialnamen, ob es sich um festes Material handelt, ob es sich um flüssiges Material handelt.

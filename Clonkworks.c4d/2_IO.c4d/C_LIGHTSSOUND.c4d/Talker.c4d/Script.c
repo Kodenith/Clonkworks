@@ -38,6 +38,7 @@ func CheckMessage(){
     if(GetAction() != "Attached" && !InputActive("Speak")){
         SetAction("Attached");
         Sound("Command");
+        Message(" ",this);
     }
 
     if(InputActive("Speak")){

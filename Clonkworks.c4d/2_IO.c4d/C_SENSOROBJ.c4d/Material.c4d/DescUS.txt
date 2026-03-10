@@ -1,0 +1,1 @@
+Checks if it's submerged in liquid or buried. Returns: The Material Name, If it's in solid material, If it's in liquid material.
