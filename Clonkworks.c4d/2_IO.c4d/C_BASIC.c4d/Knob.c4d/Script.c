@@ -41,13 +41,14 @@ public func OutputActive(string OutputName){
      return(0);
 }
 
-func CanBeDetached(){ return(1); }
-func OnDetach(){
-  Sound("Connect");
-  Split2Components();
-}
-
 func Malfunction(){ OnDetach(); }
 func Damage(){
-  if(GetDamage() > 50) OnDetach();
+  if(GetDamage() > 50 && !Locked) OnDetach();
+}
+func CanBeDetached(){ return(!Locked); }
+func OnDetach(pClonk){
+  if(pClonk && Hostile(GetOwner(),GetController(pClonk)) && !FindObject(WSAB)) return(0);
+  if(Locked) return(0);
+  Sound("Connect");
+  Split2Components();
 }

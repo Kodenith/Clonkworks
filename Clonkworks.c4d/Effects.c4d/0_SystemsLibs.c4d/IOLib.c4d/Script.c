@@ -48,6 +48,7 @@ public func DoesInputHaveWire(string InputName){
 
 public func ControlDigDouble(pClonk){
   [$TxtRemoveContext$|Image=IO__:1|Conditon=WireFrom]
+    if(Hostile(GetOwner(),GetOwner(pClonk)) && !FindObject(WSAB)) return(1);
   if(GetAction(pClonk) != "Push" ) return(0);
   if(GetActionTarget(0,pClonk) != this) return(0);
 
@@ -91,6 +92,7 @@ public func AllowRecolor(){ return(GetCon() > 99 && GetDefCoreVal("ColorByOwner"
 
 public func ContextRecolor(pClonk){
   [$TxtColorContext$|Image=WATR|Conditon=AllowRecolor]
+  if(Hostile(GetOwner(),GetOwner(pClonk)) && !FindObject(WSAB)) return(1);
   if(!AllowRecolor()){
     Message("$TxtCantRecolor$",pClonk);
     return(0);
@@ -107,7 +109,7 @@ public func ContextRecolor(pClonk){
 
 
 public func ColorPickerCallback(Color, Clonk){
-  DebugLog("Test");
+  //DebugLog("Test");
   if(GetAction(Clonk) != "Push" ) return(0);
   if(GetActionTarget(0,Clonk) != this) return(0);
 
@@ -115,4 +117,30 @@ public func ColorPickerCallback(Color, Clonk){
   SetColorDw(Color);
   Message("$TxtColorSet$",this);
   Sound("Splash1");
+}
+
+
+//special
+local Locked;
+
+public func Lock(state){
+  Locked = state;
+}
+
+public func CircuitLocked(){ return(Locked); }
+
+global func LockAllCircuits(){
+  for(var i in FindObjects(Find_Func("IsCircuit"))) i->Lock(1);
+}
+
+global func LockAllCircuitsOwned(iPlr){
+  for(var i in FindObjects(Find_Func("IsCircuit"),Find_Owner(iPlr))) i->Lock(1);
+}
+
+global func HideLockedCircuits(){
+      for(var i in FindObjects(Find_Func("IsCircuit"),Find_Func("CircuitLocked"))) SetVisibility(VIS_None,i);
+}
+
+public func RejectGrabbed(pObj){
+  if(Hostile(GetOwner(),GetOwner(pObj)) && !FindObject(WSAB)) return(1);
 }

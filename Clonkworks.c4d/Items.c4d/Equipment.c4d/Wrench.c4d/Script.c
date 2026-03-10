@@ -15,6 +15,6 @@ func Activate(){
 	var found;
 	if(found = FindObject2(Find_OnLine(0,0,0,20),Find_NoContainer(),Find_Func("CanBeDetached"))){
 		Sound("Wrench*");
-		found->~OnDetach();
+		found->~OnDetach(Par(0));
 	}
 }

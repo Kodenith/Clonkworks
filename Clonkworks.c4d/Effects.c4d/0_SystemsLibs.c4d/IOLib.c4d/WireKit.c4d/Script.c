@@ -39,8 +39,13 @@ protected func Activate(clonk)
   return(1);
 }
 
+func CanWireThis(obj,clonk){
+  if(Hostile(GetController(clonk),GetOwner(obj)) && FindObject(WSAB)) return(1);
+  if(!Hostile(GetController(clonk),GetOwner(obj))) return(1);
+}
+
 func LineSelection(obj,clonk){
-  if(obj->~WireFrom()){
+  if(obj->~WireFrom() && CanWireThis(obj,clonk)){
       CreateMenu(IO__,clonk,this,0,"$TxtOutput$",0,1);
       for(var i in obj->~OutputList()){
         AddMenuItem(i,Format("CreateLine(WIRE,%d,Object(%d),Object(%d),\"%s\")",GetOwner(clonk),ObjectNumber(obj),ObjectNumber(this),i),WIRE,clonk);
@@ -66,7 +71,7 @@ private func CreateLine(linetype, owner, from, to,output)
 private func ConnectLine(line, to)
 {
   var line_accept;
-  if(to->~WireTo() && GetActionTarget(1,line) == this()){
+  if(to->~WireTo() && GetActionTarget(1,line) == this() && CanWireThis(to,Contained())){
 		  line_accept = true;
   }
   else{
