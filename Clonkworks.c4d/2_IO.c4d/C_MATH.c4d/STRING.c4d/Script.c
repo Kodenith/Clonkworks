@@ -72,11 +72,14 @@ public func ControlUp(pClonk){
 
 func InputCallback(string szInput) {
     var Input = szInput;
-    Input = ReplaceAll(Input,"%d","%v");
-    Input = ReplaceAll(Input,"%s","%v");
-    Input = ReplaceAll(Input,"%x","%v");
-    Input = ReplaceAll(Input,"%X","%v");
-    Input = ReplaceAll(Input,"%i","%v");
+    for(var i = 0; i < GetLength(Input)-1; i++){
+      //Log("Current: %s, Next: %s",Input[i],Input[i+1]);
+      if(Input[i] == "%" && Input[i+1] != "v"){
+        Sound("Error");
+        Message("$TxtPlaceError$",this,"%v");
+        return(0);
+      }
+    }
     Value = Input;
     Sound("Click");
 }
