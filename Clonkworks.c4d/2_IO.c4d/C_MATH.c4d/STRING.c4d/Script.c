@@ -9,6 +9,7 @@ func Initialize() {
   SetAction("Attached");
   SetComDir(COMD_None);
   Value="Foo";
+  SetColorDw(RGBa(69,69,69));
   return(1);
 }
 

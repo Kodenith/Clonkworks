@@ -18,3 +18,4 @@ VehicleControl=1
 Construction=1
 LineConnect=128
 Components=CC4_=1
+ColorByOwner=1

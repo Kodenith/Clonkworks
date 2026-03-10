@@ -20,3 +20,4 @@ LineConnect=128
 Components=CC4_=1
 Timer=1
 TimerCall=FastHandle
+ColorByOwner=1
