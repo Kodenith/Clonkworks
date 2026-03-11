@@ -1,0 +1,1 @@
+This is a non-standard gate. It will return the first input it recieves if the "Key" input is active.

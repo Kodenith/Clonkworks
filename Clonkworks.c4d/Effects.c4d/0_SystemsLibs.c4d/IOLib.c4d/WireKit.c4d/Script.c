@@ -106,8 +106,7 @@ private func ConnectLine(line, to)
     
   CreateMenu(IO__,Contained(),this,0,"$TxtInput$",0,1);
   for(var i in to->~InputList()){
-        //only one output can be connected to an input
-       if(to->DoesInputHaveWire(i) && !FindObject(MLIO)) continue;
+       if(to->DoesInputHaveWire(i)) continue;
        AddMenuItem(i,Format("FinishConnection(Object(%d),Object(%d),\"%s\")",ObjectNumber(to),ObjectNumber(line),i),WIRE,Contained());
   }
 

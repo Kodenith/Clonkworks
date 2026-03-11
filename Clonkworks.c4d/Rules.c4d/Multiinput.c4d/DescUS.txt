@@ -1,1 +1,0 @@
-Inputs allow more than 1 output connected to them. Not great for things like math or logic circuits.

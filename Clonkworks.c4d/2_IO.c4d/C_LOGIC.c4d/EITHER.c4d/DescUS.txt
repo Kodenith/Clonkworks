@@ -1,0 +1,1 @@
+This is a non-standard gate. It will check and return the first non-zero input it recieves.

@@ -1,0 +1,2 @@
+DE:Umschaltbares Gatter
+US:Toggled Gate

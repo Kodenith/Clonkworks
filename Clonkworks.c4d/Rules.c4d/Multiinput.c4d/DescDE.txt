@@ -1,1 +1,0 @@
-Eingänge ermöglichen den Anschluss von mehr als einem Ausgang. Nicht ideal für Dinge wie mathematische oder logische Schaltungen.
