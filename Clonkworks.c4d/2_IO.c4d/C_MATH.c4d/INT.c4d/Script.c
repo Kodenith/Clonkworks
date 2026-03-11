@@ -25,6 +25,7 @@ func FastHandle(){
   if(InputActive("Increase")) Value++;
   if(InputActive("Decrease")) Value--;
   if(InputActive("Set")) Value = InputActive("Set");
+  else if(DoesInputHaveWire("Set")) Value = 0;
 }
 
 func MustBeOnWall(){ return(1); }
