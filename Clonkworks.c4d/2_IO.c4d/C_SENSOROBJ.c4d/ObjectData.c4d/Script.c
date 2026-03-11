@@ -10,7 +10,7 @@ func Initialize() {
 }
 
 public func OutputList(){
-  return(["Name","ID String","Original Name","Action","Procedure","Energy","Mana","Breath","Owner Name","X Coordinate","Y Coordinate","Mass","Value"]);
+  return(["Name","ID String","Original Name","Action","Procedure","Energy","Mana","Breath","Owner Name","X Coordinate","Y Coordinate","Mass","Original Mass","Value","Container","Contents Amount"]);
 }
 
 public func InputList(){
@@ -37,6 +37,9 @@ public func OutputActive(string OutputName){
    if(OutputName == "Y Coordinate") return(GetY(A));
    if(OutputName == "Mass") return(GetMass(A));
    if(OutputName == "Value") return(GetValue(A));
+   if(OutputName == "Container") return(Contained(A));
+   if(OutputName == "Contents Amount") return(ContentsCount(,A));
+   if(OutputName == "Original Mass") return(GetMass(,GetID(A)));
      return(0);
 }
 
@@ -50,4 +53,11 @@ func OnDetach(pClonk){
   if(Locked) return(0);
   Sound("Connect");
   Split2Components();
+}
+
+func UpdateAction(){
+  if(!InputActive("Object") && GetAction() != "Attached") SetAction("Attached");
+  if(InputActive("Object") && !(GetCategory(InputActive("Object")) & C4D_Living) && GetAction() != "Data") SetAction("Data");
+  if(InputActive("Object") && (GetCategory(InputActive("Object")) & C4D_Living) && GetAlive(InputActive("Object")) && GetAction() != "Alive") SetAction("Alive");
+  if(InputActive("Object") && (GetCategory(InputActive("Object")) & C4D_Living) && !GetAlive(InputActive("Object")) && GetAction() != "Flatline") SetAction("Flatline");
 }

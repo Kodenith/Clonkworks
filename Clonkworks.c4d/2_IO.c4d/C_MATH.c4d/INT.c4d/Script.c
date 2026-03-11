@@ -18,17 +18,12 @@ public func OutputList(){
 }
 
 public func InputList(){
-  return(["Increase","Decrease","Fast Increase","Fast Decrease","Set"]);
-}
-
-func Calc(){
-  if(InputActive("Increase")) Value++;
-  if(InputActive("Decrease")) Value--;
+  return(["Increase","Decrease","Set"]);
 }
 
 func FastHandle(){
-  if(InputActive("Fast Increase")) Value++;
-  if(InputActive("Fast Decrease")) Value--;
+  if(InputActive("Increase")) Value++;
+  if(InputActive("Decrease")) Value--;
   if(InputActive("Set")) Value = InputActive("Set");
 }
 

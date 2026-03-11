@@ -1,8 +1,7 @@
 [Action]
 Name=Attached
-Delay=15
+Delay=1
 Facet=0,0,13,11,0,0
 NextAction=Attached
-StartCall=Calc
 Procedure=FLOAT
 
