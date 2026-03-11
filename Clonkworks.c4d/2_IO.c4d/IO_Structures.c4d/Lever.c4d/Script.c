@@ -50,6 +50,10 @@ func Damage(){
 }
 func OnDetach(){
   Sound("Connect");
+    if(!FindObject(CNMT)){
+  RemoveObject();
+  return(0);
+  }
   Split2Components();
 }
 

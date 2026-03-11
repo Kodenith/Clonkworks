@@ -92,6 +92,10 @@ func Damage(){
 }
 func OnDetach(pClonk){
   Sound("Connect");
+  if(!FindObject(CNMT)){
+  RemoveObject();
+  return(0);
+  }
   Split2Components();
 }
 
