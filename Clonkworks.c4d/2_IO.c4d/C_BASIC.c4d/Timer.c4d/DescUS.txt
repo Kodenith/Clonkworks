@@ -1,0 +1,1 @@
+Waits a certain amount of ticks when activated, then outputs 1. The amount of ticks can be set manually or by wire.

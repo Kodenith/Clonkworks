@@ -1,0 +1,25 @@
+[DefCore]
+Name=Smashed Monitor
+id=I5BM
+Version=4,9,8
+Category=C4D_Structure
+Value=50
+Mass=100
+Width=44
+Height=30
+Offset=-22,-15
+Picture=0,0,44,30
+Vertices=6
+VertexX=-19,0,18,-21,20,0
+VertexY=14,11,14,-3,-2,-12
+VertexFriction=20,20,20,20,20,20
+VertexCNAT=8,8,8,1,2,4
+Grab=1
+Rotate=1
+NoPushEnter=1
+Exclusive=1
+BlastIncinerate=15
+NoBurnDecay=0
+Construction=1
+ConstructTo=I5_M
+Components=METL=3;CPIG=1

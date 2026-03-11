@@ -1,0 +1,15 @@
+[Action]
+Name=NoConnection
+Length=4
+Delay=1
+Facet=0,30,44,30,0,0
+NextAction=NoConnection
+Sound=Static
+
+[Action]
+Name=Displaying
+Length=1
+Delay=1
+Facet=0,60,44,30,0,0
+NextAction=Displaying
+AbortCall=ClearDisplay

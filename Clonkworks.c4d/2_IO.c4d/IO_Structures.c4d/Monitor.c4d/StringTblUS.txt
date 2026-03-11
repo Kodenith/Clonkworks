@@ -1,0 +1,3 @@
+TxtChange=Change Channel
+TxtChannelSet=Channel Set to Channel %d.
+TxtChannel=Channel %d
