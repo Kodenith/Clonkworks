@@ -27,14 +27,14 @@ public func WireTo(){ return(0); }
 //this function returns a list of string that can be output.
 //default is a single output.
 public func OutputList(){
-  return(["Pressed"]);
+  return(["OnClick"]);
 }
 
 func MustBeOnWall(){ return(1); }
 
 //used by wire, check if a certain output is active
 public func OutputActive(string OutputName){
-   if(OutputName == "Pressed" && GetAction() == "Clicked") return(1);
+   if(OutputName == "OnClick" && GetAction() == "Clicked" && GetPhase() == 0) return(1);
      return(0);
 }
 

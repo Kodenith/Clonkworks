@@ -34,10 +34,11 @@ func CheckSound(){
         SetAction("Play");
     }
 
+    /*
     if(GetAction() != "Attached" && !InputActive("Play")){
         SetAction("Attached");
     }
-
+    */
     if(InputActive("Play")){
         Sound(InputActive("Sound Name"));
     }
