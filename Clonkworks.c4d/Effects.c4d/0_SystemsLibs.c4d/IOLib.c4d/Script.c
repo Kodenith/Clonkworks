@@ -81,6 +81,7 @@ public func DisconnectWire(Wire,Clonk){
 
 public func ContextClearWires(pClonk){
   [$TxtRemoveContext$|Image=IO__:1|Conditon=WireFrom]
+      if(GetCon() < 100) return(1);
   AddCommand(pClonk,"Call",this,pClonk,,,,"ControlDigDouble");
   AddCommand(pClonk,"Grab",this);
 }
@@ -92,6 +93,7 @@ public func AllowRecolor(){ return(GetCon() > 99 && GetDefCoreVal("ColorByOwner"
 
 public func ContextRecolor(pClonk){
   [$TxtColorContext$|Image=WATR|Conditon=AllowRecolor]
+      if(GetCon() < 100) return(1);
   if(Hostile(GetOwner(),GetOwner(pClonk)) && !FindObject(WSAB)) return(1);
   if(!AllowRecolor()){
     Message("$TxtCantRecolor$",pClonk);

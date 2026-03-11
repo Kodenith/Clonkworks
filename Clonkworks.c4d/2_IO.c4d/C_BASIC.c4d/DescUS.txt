@@ -1,1 +1,1 @@
-Allows quick construction of basic buttons, switches, and other clickey things.
+Allows quick construction of basic input and output circuits.

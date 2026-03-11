@@ -8,10 +8,12 @@ local ActivateWeight;
 func Initialize() {
   ActivateWeight = 50;
   SetAction("Off");
+  SetY(GetY()-1);
   return(1);
 }
 
 func CheckPressure(){
+  if(GetCon() < 100) return(0);
   if(GetAction() == "Off" && GetHeldWeight()>=ActivateWeight){
     Sound("Click");
     SetAction("On");
@@ -88,10 +90,9 @@ func Malfunction(){ OnDetach(); }
 func Damage(){
   if(GetDamage() > 50 && !Locked) OnDetach();
 }
-func CanBeDetached(){ return(!Locked); }
 func OnDetach(pClonk){
-  if(pClonk && Hostile(GetOwner(),GetController(pClonk)) && !FindObject(WSAB)) return(0);
-  if(Locked) return(0);
   Sound("Connect");
   Split2Components();
 }
+
+func GetResearchBase(){ return(CC1_); }

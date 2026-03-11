@@ -2,8 +2,9 @@
 Name=Pressure Plate
 id=I1_P
 Version=4,9,8
-Category=C4D_Structure
-Value=2
+Category=1154
+Value=20
+Mass=100
 Width=20
 Height=18
 Offset=-10,-9
@@ -17,5 +18,5 @@ Construction=1
 ColorByOwner=1
 Grab=2
 VehicleControl=1
-Components=CC1_=1
+Components=CC1_=1;METL=1
 LineConnect=128

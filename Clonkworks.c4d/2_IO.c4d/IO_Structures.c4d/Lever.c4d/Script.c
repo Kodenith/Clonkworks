@@ -48,10 +48,9 @@ func Malfunction(){ OnDetach(); }
 func Damage(){
   if(GetDamage() > 50 && !Locked) OnDetach();
 }
-func CanBeDetached(){ return(!Locked); }
-func OnDetach(pClonk){
-  if(pClonk && Hostile(GetOwner(),GetController(pClonk)) && !FindObject(WSAB)) return(0);
-  if(Locked) return(0);
+func OnDetach(){
   Sound("Connect");
   Split2Components();
 }
+
+func GetResearchBase(){ return(CC1_); }
