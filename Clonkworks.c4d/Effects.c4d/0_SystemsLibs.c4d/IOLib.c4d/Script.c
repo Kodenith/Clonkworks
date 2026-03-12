@@ -48,6 +48,7 @@ public func DoesInputHaveWire(string InputName){
 
 public func ControlDigDouble(pClonk){
   [$TxtRemoveContext$|Image=IO__:1|Conditon=WireFrom]
+  if(Locked) return(1);
     if(Hostile(GetOwner(),GetOwner(pClonk)) && !FindObject(WSAB)) return(1);
   if(GetAction(pClonk) != "Push" ) return(0);
   if(GetActionTarget(0,pClonk) != this) return(0);
@@ -93,6 +94,7 @@ public func AllowRecolor(){ return(GetCon() > 99 && GetDefCoreVal("ColorByOwner"
 
 public func ContextRecolor(pClonk){
   [$TxtColorContext$|Image=WATR|Conditon=AllowRecolor]
+    if(Locked) return(1);
       if(GetCon() < 100) return(1);
   if(Hostile(GetOwner(),GetOwner(pClonk)) && !FindObject(WSAB)) return(1);
   if(!AllowRecolor()){
