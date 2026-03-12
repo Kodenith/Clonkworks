@@ -19,5 +19,5 @@ Construction=1
 Timer=1
 TimerCall=Check
 LineConnect=128
-Components=CC2_=1
+Components=CC1_=1
 ColorByOwner=1

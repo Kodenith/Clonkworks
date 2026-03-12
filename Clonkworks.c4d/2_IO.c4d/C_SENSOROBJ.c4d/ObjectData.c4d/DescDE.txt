@@ -1,1 +1,1 @@
-Ermöglicht Ihnen, eine Vielzahl nützlicher Daten aus Objekten zu extrahieren. Für einige davon sind möglicherweise Entwicklungskenntnisse erforderlich ;)
+Ermöglicht Ihnen, eine Vielzahl nützlicher Daten aus Objekten zu extrahieren.

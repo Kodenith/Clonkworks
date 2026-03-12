@@ -1,0 +1,1 @@
+Benachrichtigt seinen Besitzer mit einer Nachricht und einem Ton. Wer es an sich nimmt, wird zu seinem neuen Besitzer.
