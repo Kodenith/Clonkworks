@@ -21,7 +21,7 @@ public func NewCircuit(Type){
     var yOffset = 10;
     if(DefinitionCall(Type,"MustBeOnWall")){
         yOffset = 3;
-        if(GBackSolid() || GBackLiquid() || GBackSky()){
+        if((GBackSolid() || GBackLiquid() || GBackSky()) && !FindCastleWall()){
             Message("$TxtNoWall$",Contained());
             Sound("Error");
             return(0);
@@ -38,4 +38,11 @@ public func NewCircuit(Type){
     Sound("Connect");
     CreateConstruction(Type,0,yOffset,GetOwner(Contained()),100);
     RemoveObject();
+}
+
+func FindCastleWall(){
+    var OnTop = FindObjects(Find_Category(C4D_StaticBack),Find_OCF(OCF_Fullcon),Find_NoContainer(),Find_AtPoint());
+    for(var Part in OnTop){
+        if(Part->~CastlePartWidth()) return(Part);
+    }
 }
