@@ -1,8 +1,0 @@
-[Action]
-Name=Attached
-Length=3
-Delay=1
-Facet=0,0,13,13,0,0
-NextAction=Attached
-Procedure=FLOAT
-

@@ -10,7 +10,7 @@ func Initialize() {
 }
 
 public func OutputList(){
-  return(["Name","ID String","Original Name","Action","Procedure","Energy","Mana","Breath","Owner Name","X Coordinate","Y Coordinate","Mass","Original Mass","Value","Container","Contents Amount"]);
+  return(["ID String","Energy","Mana","Breath","Owner Name","X Coordinate","Y Coordinate","Container","Held Item","Contents Amount"]);
 }
 
 public func InputList(){
@@ -24,22 +24,16 @@ public func OutputActive(string OutputName){
    var A = InputActive("Object");
    if(GetType(A) != C4V_C4Object) return(0);
    //DebugLog("%v",A);
-   if(OutputName == "Name") return(GetName(A));
    if(OutputName == "ID String") return(Format("%i",GetID(A)));
-   if(OutputName == "Original Name") return(GetName(,GetID(A)));
-   if(OutputName == "Action") return(GetAction(A));
-   if(OutputName == "Procedure") return(GetProcedure(A));
    if(OutputName == "Energy") return(GetEnergy(A));
    if(OutputName == "Mana") return(GetMagicEnergy(A));
    if(OutputName == "Breath") return(GetBreath(A));
    if(OutputName == "Owner Name") return(GetPlayerName(GetOwner(A)));
    if(OutputName == "X Coordinate") return(GetX(A));
    if(OutputName == "Y Coordinate") return(GetY(A));
-   if(OutputName == "Mass") return(GetMass(A));
-   if(OutputName == "Value") return(GetValue(A));
    if(OutputName == "Container") return(Contained(A));
+   if(OutputName == "Held Item") return(Contents(0,A));
    if(OutputName == "Contents Amount") return(ContentsCount(,A));
-   if(OutputName == "Original Mass") return(GetMass(,GetID(A)));
      return(0);
 }
 
