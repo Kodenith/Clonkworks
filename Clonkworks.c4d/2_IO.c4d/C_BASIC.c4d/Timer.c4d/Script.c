@@ -13,11 +13,11 @@ func Initialize() {
 }
 
 public func OutputList(){
-  return(["Timeout","Set Ticks"]);
+  return(["Timeout"]);
 }
 
 public func InputList(){
-  return(["Start"]);
+  return(["Start","Set Ticks"]);
 }
 
 private func TryTimer(){

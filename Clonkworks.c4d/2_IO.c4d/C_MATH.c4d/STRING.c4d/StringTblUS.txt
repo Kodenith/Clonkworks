@@ -1,1 +1,2 @@
-TxtPlaceError=<c ff0000>Strings can only use %v placeholders!</c>
+TxtModify=Set Value Manually
+TxtPlaceError=<c ff0000>Strings can only use the %v placeholder!</c>

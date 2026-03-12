@@ -1,0 +1,3 @@
+Any Non-Timed Flint can be put inside, then it can be blown up when activated.
+
+(Using this damages it and stuff around it, be careful!)

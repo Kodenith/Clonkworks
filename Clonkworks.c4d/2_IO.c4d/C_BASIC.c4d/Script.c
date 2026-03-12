@@ -5,7 +5,7 @@ func Hit(){ if(!Random(3)) Sound("MetalHit*"); }
 func GetResearchBase(){ return(WRKT); }
 func IsAnvilProduct(){ return(1); }
 
-public func UsedCircuits(){ return([I1_B,I1_S,I1_K,I2_L,I2_T,I2_S,I1_T,I1_A]); }
+public func UsedCircuits(){ return([I1_B,I1_S,I1_K,I2_L,I2_T,I2_S,I1_T,I1_A,I1MN]); }
 
 public func Activate(pClonk){
     [$TxtUse$]

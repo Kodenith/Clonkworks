@@ -1,0 +1,3 @@
+Jeder nicht zeitgesteuerte Zünder kann hineingelegt werden und wird bei Aktivierung zur Explosion gebracht.
+
+(Dies beschädigt das Gerät und die Umgebung, seien Sie vorsichtig!)
