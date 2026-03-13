@@ -13,6 +13,7 @@ protected func Activate(clonk)
   [$TxtConnectline$]
   var obj = FindObject2(Find_OCF(OCF_LineConstruct()),Find_OnLine(0,0,0,18),Find_NoContainer());
   if(!obj) return(Message("$TxtNoNewLine$", this()) );
+  if(obj->~WireRedirect()) obj = obj->WireRedirect();
   var pLine = FindObject(0, 0,0,0,0, 0, "Connect", this() );
   SetComDir(COMD_Stop(), clonk);
 

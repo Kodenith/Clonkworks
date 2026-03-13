@@ -1,0 +1,1 @@
+Bewegt Gegenstände, wenn es per Kabel aktiviert wird. Benötigt Strom und kann gedreht werden

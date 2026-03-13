@@ -1,0 +1,16 @@
+[Action]
+Name=Left
+Delay=1
+Facet=0,0,18,19,0,0
+NextAction=Left
+StartCall=MoveLeft
+Sound=CannonRotation
+
+[Action]
+Name=Right
+Delay=1
+Facet=0,0,18,19,0,0
+NextAction=Right
+StartCall=MoveRight
+Sound=CannonRotation
+
