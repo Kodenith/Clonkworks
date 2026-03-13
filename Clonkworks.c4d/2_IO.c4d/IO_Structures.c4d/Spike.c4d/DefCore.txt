@@ -17,7 +17,7 @@ VertexCNAT=4,8,8
 Construction=1
 Components=METL=1;TTIG=3;
 HorizontalFix=1
-Timer=10
+Timer=1
 TimerCall=CheckStab
 LineConnect=35
 Grab=2

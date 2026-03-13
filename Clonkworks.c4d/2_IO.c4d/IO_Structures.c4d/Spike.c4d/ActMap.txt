@@ -1,7 +1,7 @@
 [Action]
 Name=Retract
 Length=5
-Delay=1
+Delay=3
 Facet=0,0,10,30,0,0
 NextAction=Hold
 StartCall=StabSound
