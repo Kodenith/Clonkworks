@@ -22,7 +22,7 @@ public func GetDetection(){
 
 func Detect(){
   var Type;
-  if(InputActive("ID String")) Type = C4Id(InputActive("ID String"));
+  if(InputActive("ID String") && GetType(InputActive("ID String")) ==  C4V_String) Type = C4Id(InputActive("ID String"));
   else Type = RMMG;
   SetGraphics(nil,this(),Type,1,4);
 

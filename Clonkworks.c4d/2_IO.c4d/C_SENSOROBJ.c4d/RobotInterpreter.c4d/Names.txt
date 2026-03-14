@@ -1,0 +1,2 @@
+DE:Roboter-Sensor-Interpreter
+US:Robot Sensor Interpreter

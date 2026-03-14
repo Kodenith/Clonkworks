@@ -1,0 +1,1 @@
+Allows you to find specific objects near a robot thanks to a built in sensor.
