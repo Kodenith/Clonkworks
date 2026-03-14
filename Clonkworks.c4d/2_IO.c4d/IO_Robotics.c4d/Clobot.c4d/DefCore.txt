@@ -32,17 +32,17 @@ NoPushEnter=1
 NoBreath=1
 
 [Physical]
-Energy=100000
+Energy=150000
 Walk=70000
 Jump=50000
-Scale=40000
-Hangle=40000
-Dig=42000
+Scale=60000
+Hangle=60000
+Dig=60000
 Swim=60000
 Throw=50000
-Push=50000
-Fight=60000
+Push=80000
+Fight=80000
 CanDig=1
-CanConstruct=1
-CanChop=1
+CanConstruct=0
+CanChop=150
 CorrosionResist=1

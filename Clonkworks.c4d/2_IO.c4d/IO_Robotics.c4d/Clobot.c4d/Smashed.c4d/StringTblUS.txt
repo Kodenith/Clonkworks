@@ -1,1 +1,2 @@
 TxtRevive=Revive with battery
+TxtReviveFail=It's systems are fried!

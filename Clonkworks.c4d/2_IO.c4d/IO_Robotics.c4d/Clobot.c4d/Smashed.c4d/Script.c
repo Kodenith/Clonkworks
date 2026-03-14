@@ -28,6 +28,7 @@ func Incineration(){
 func ControlThrow(pClonk){
   [$TxtRevive$|Image=ADM3]
   if(GetID(Contents(,pClonk)) == ADM3){
+      if(GetAction() == "Deteriorate") return(Message("$TxtReviveFail$",this));
       RemoveObject(Contents(,pClonk));
       if(!Random(10)) Explode(15);
       else Revive();

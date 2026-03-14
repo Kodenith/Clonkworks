@@ -13,7 +13,7 @@ public func OutputList(){
 }
 
 public func InputList(){
-  return(["Move Left","Move Right","Move Up","Move Down","Jump","Dig","Activiate Held","Throw","Chop","Grab","Ungrab","Follow Object","Acquire Object","Cancel Command"]);
+  return(["Move Left","Move Right","Move Up","Move Down","Jump","Dig","Stop Dig","Activiate Held","Throw","Chop","Grab","Ungrab","Follow Object","Acquire Object","Cancel Command"]);
 }
 
 public func HasCamera(){ return(1); }
@@ -53,6 +53,8 @@ private func HandleInput(){
   }else if(InputActive("Dig") && GetAction() == "Walk"){
     SetAction("Dig");
   }
+
+  if(GetAction() == "Dig" && !InputActive("Stop Dig")) SetAction("Walk");
 
   if(Contents()){
     if(InputActive("Activiate Held")) Contents()->~Activate();
@@ -97,13 +99,14 @@ public func OutputActive(string OutputName){
 protected func Hurt()
 {
   Sound("ClonkHit*");
+  CastParticles("PxSpark",RandomX(2,6),RandomX(5,50),0,5,20,50,RGBa(255,255,0),RGBa(255,150,0));
   return(1);
 }
 
 private func Punching()
 {
   if (!Random(3)) Sound("ClonkHit*");
-  if (!Random(5)) Sound("Punch*");
+  if (!Random(5)) Sound("MetalHit*");
   if (!Random(2)) return(1);
   Punch(GetActionTarget());
   return(1);
@@ -118,6 +121,8 @@ protected func Death(int iKilledBy)
   if(GetAlchemBag()) GetAlchemBag()->~Loose();
 
   Sound("ClobotDeath");
+  CastObjects(CLSC,RandomX(3,7),RandomX(20,45));
+  CastParticles("PxSpark",RandomX(2,6),RandomX(30,70),0,5,20,50,RGBa(255,255,0),RGBa(255,150,0));
   MakeCorpse(OnFire());
   return(1);
 }
