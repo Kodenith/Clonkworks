@@ -9,11 +9,11 @@ func Initialize(){
 }
 
 public func OutputList(){
-  return(["[Sensor] Nearby Objects","[Object/Camera] This","[Object] Held item"]);
+  return(["[Sensor] Nearby Objects","[Sensor] Nearby Objects (Unordered)","[Object/Camera] This","[Object] Held item"]);
 }
 
 public func InputList(){
-  return(["Move Left","Move Right","Move Up","Move Down","Jump","Dig","Activiate Held","Throw","Chop","[Object] Get","[Object] Grab","UnGrab","[Object] Go to","Cancel Command"]);
+  return(["Move Left","Move Right","Move Up","Move Down","Jump","Dig","Activiate Held","Throw","Chop","Grab","Ungrab","Follow Object","Acquire Object","Cancel Command"]);
 }
 
 public func HasCamera(){ return(1); }
@@ -28,8 +28,8 @@ private func HandleInput(){
   if(InputActive("Move Down") && InputActive("Move Left")) MoveDir = COMD_DownLeft;
   if(InputActive("Move Down") && InputActive("Move Right")) MoveDir = COMD_DownRight;
 
-  if(!InputActive("Chop") && !InputActive("[Object] Get") && !InputActive("[Object] Grab") && !InputActive("[Object] Go to")){
-    //if(MoveDir != COMD_Stop) FinishCommand();
+  if(InputActive("Cancel Command")) FinishCommand();
+
     SetComDir(MoveDir);
     if(GetContact(this, -1) & CNAT_Right) if(GetAction() == "Walk" && GetDir() == DIR_Right) SetAction("Scale");
     if(GetContact(this, -1) & CNAT_Left) if(GetAction() == "Walk" && GetDir() == DIR_Left) SetAction("Scale");
@@ -47,7 +47,6 @@ private func HandleInput(){
     if(GetContact(this, -1) & CNAT_Top) if(GetAction() == "Hangle" && MoveDir == COMD_Down){
       SetAction("Jump");
     }
-  }
 
   if(InputActive("Jump")){
     Jump();
@@ -65,31 +64,30 @@ private func HandleInput(){
 
   if(InputActive("Chop")) ContextChop();
 
-  if(InputActive("Cancel Command")) return(FinishCommand());
-  
-  if(InputActive("[Object] Get") && GetType(InputActive("[Object] Get")) == C4V_C4Object && !GetCommand()){
-      SetCommand(this,"Get",InputActive("[Object] Get"));
-      return(nil);
+  if(InputActive("Grab") && !GetCommand()){
+      var ToGrab = FindObject2(Find_AtPoint(),Find_NoContainer(),Find_OCF(OCF_Grab));
+      if(ToGrab)
+      SetCommand(this,"Grab",ToGrab);
   }
 
-  if(InputActive("[Object] Grab") && GetType(InputActive("[Object] Grab")) == C4V_C4Object && !GetCommand()){
-      SetCommand(this,"Grab",InputActive("[Object] Grab"));
-      return(nil);
+  if(InputActive("Follow Object") && GetType(InputActive("Follow Object")) == C4V_C4Object && !GetCommand()){
+      SetCommand(this,"MoveTo",InputActive("Follow Object"));
   }
 
-  if(InputActive("[Object] Go to") && GetType(InputActive("[Object] Go to")) == C4V_C4Object && !GetCommand()){
-      SetCommand(this,"MoveTo",InputActive("[Object] Go to"));
-      return(nil);
+  if(InputActive("Acquire Object") && GetType(InputActive("Acquire Object")) == C4V_C4Object && !GetCommand() && (GetOCF(InputActive("Acquire Object")) & OCF_Collectible)){
+      SetCommand(this,"Get",InputActive("Acquire Object"));
   }
 
-  if(InputActive("UnGrab")){
+  if(InputActive("Ungrab")){
       SetCommand(this,"UnGrab");
-      return(nil);
   }
+
+  if(InputActive("Cancel Command")) FinishCommand();
 }
 
 public func OutputActive(string OutputName){
    if(OutputName == "[Sensor] Nearby Objects") return(FindObjects(Find_Distance(500),Sort_Distance()));
+   if(OutputName == "[Sensor] Nearby Objects (Unordered)") return(FindObjects(Find_Distance(500)));
    if(OutputName == "[Object/Camera] This") return(this);
    if(OutputName == "[Object] Held item") return(Contents());
      return(0);
@@ -104,6 +102,8 @@ protected func Hurt()
 
 private func Punching()
 {
+  if (!Random(3)) Sound("ClonkHit*");
+  if (!Random(5)) Sound("Punch*");
   if (!Random(2)) return(1);
   Punch(GetActionTarget());
   return(1);
