@@ -30,6 +30,9 @@ private func RobotLogic(){
     if(GetXDir() < 20) SetXDir(GetXDir()+RandomX(2,5));
   }
 
+  if(doSound) Sound("Elevator",false,this,50,0,+1);
+  else Sound("Elevator",false,this,50,0,-1);
+
   if(InputActive("Thrust Upwards") && GBackSolid(0,12) && Abs(GetYDir()) < 20){
       Fling(this,0,-5,nil,true);
       Sound("Discharge");
