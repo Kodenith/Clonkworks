@@ -89,7 +89,7 @@ private func HandleInput(){
 }
 
 public func OutputActive(string OutputName){
-   if(OutputName == "[Sensor] Nearby Objects") return(FindObjects(Find_Distance(350),Sort_Distance()));
+   if(OutputName == "[Sensor] Nearby Objects") return(FindObjects(Find_Distance(500),Sort_Distance()));
    if(OutputName == "[Object/Camera] This") return(this);
    if(OutputName == "[Object] Held item") return(Contents());
      return(0);

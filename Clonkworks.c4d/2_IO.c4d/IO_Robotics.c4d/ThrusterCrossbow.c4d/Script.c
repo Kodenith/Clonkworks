@@ -58,7 +58,7 @@ private func RobotLogic(){
 }
 
 public func OutputActive(string OutputName){
-   if(OutputName == "[Sensor] Nearby Objects") return(FindObjects(Find_Distance(100)));
+   if(OutputName == "[Sensor] Nearby Objects") return(FindObjects(Find_Distance(200),Sort_Distance()));
    if(OutputName == "[Object/Camera] This") return(this);
      return(0);
 }

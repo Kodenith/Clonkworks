@@ -19,3 +19,4 @@ Components=WOOD=2;TTIG=1;
 NoPushEnter=1
 NoBurnDecay=1
 ContactIncinerate=3
+BlastIncinerate=35
