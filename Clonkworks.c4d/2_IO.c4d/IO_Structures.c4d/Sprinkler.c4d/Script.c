@@ -25,7 +25,12 @@ func Initialize(){
 
 func Update(){
   if(GetCon() < 100) return(nil);
-  if(Barrel->GetAmount() == 0 && GetID(Barrel) != BARL) ChangeDef(BARL,Barrel);
+  if(!Barrel) Barrel = CreateContents(BARL);
+
+  var amt = Barrel->GetAmount();
+  if(!amt) amt = 0;
+
+  if(amt <= 0 && GetID(Barrel) != BARL) ChangeDef(BARL,Barrel);
   if(InputActive("Sprinkle")){
     if(GetAction() == "Idle" && EnergyCheck(500) && Barrel->GetAmount()) SetAction("Sprinkle");
     TryDrain();
@@ -64,6 +69,7 @@ func DoSprinkling(){
   var Times = 15;
   if(Barrel->~BarrelMaterial() == -1) return(nil);
   while(Times--){
+    if(Barrel->GetAmount() == nil || Barrel->GetAmount() <= 0) break;
     var mat = Barrel->~BarrelMaterial();
     LocalN("iFillLevel",Barrel)--;
     CastPXS(MaterialName(mat),1,50);

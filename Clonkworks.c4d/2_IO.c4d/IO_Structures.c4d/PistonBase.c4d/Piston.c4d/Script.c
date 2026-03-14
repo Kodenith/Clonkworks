@@ -33,12 +33,11 @@ func Push(){
   var PushPower = 5;
   for(var pushed in Pushables){
     var tPushPower = PushPower;
-    if(GetMass(pushed) >= 520) continue;
-    if(GetMass(pushed) > 70) tPushPower = 4;
-    if(GetMass(pushed) >= 120) tPushPower = 3;
-    if(GetMass(pushed) >= 220) tPushPower = 2;
-    if(GetMass(pushed) >= 320) tPushPower = 1;
-    if(GetMass(pushed) >= 420) tPushPower = RandomX(0,1);
+    if(GetMass(pushed) >= 1000) continue;
+    if(GetMass(pushed) >= 50) tPushPower = 4;
+    if(GetMass(pushed) >= 300) tPushPower = 3;
+    if(GetMass(pushed) >= 600) tPushPower = 2;
+    if(GetMass(pushed) >= 800) tPushPower = 1;
     Fling(pushed,Sin(GetR(), PushPower), -Cos(GetR(), tPushPower),nil,true);
   }
 }
