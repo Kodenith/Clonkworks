@@ -9,7 +9,9 @@ public func InputList(){
 
 //reusable function for all sensors :D
 public func GetDetection(){
-  var Objects = FindObjects(Find_Distance(Range),Find_Category(C4D_Object),Find_Exclude(this),Find_Exclude(InputActive("Except")),Sort_Distance());
+  var Exc = InputActive("Except");
+  if(GetType(Exc) != C4V_C4Object) Exc = nil;
+  var Objects = FindObjects(Find_Distance(Range),Find_Category(C4D_Object),Find_Exclude(this),Find_Exclude(Exc),Sort_Distance());
   for(var i in Objects){
     if(Contained(i) && !InputActive("Detect contained?")) continue;
     if(GetDefExplosive(GetID(i))) return(i);

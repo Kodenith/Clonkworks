@@ -31,6 +31,7 @@ public func GetDetection(){
   if(!pId) return(nil);
 
   for(var i in DetectList){
+    if(i == InputActive("Except")) continue;
     if(GetCategory(i) & C4D_Living)
       if(GetAlive(i) != 1 && InputActive("Ignore Dead")) continue;
     if(Contained(i) && InputActive("Ignore Contained")) continue;
