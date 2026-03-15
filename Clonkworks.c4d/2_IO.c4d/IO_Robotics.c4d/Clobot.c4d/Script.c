@@ -57,7 +57,7 @@ private func HandleInput(){
   if(GetAction() == "Dig" && !InputActive("Stop Dig")) SetAction("Walk");
 
   if(Contents()){
-    if(InputActive("Activiate Held")) Contents()->~Activate();
+    if(InputActive("Activiate Held")) Contents()->~Activate(this);
     if(InputActive("Throw")){
       SetCommand(this,"Throw");
       return(nil);
@@ -139,3 +139,5 @@ private func MakeCorpse(burn){
   if(burn) Incinerate(corpse); 
   return(RemoveObject());
 }
+
+public func isClobot(){ return(1); }
