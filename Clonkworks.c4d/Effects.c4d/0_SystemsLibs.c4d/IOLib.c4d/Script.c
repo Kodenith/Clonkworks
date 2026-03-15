@@ -147,3 +147,20 @@ global func HideLockedCircuits(){
 public func RejectGrabbed(pObj){
   if(Hostile(GetOwner(),GetOwner(pObj)) && !FindObject(WSAB)) return(1);
 }
+
+//dependance - created for castle walls :)
+public func StartDependingOn(pObj){
+  AddEffect("CircuitDependance",this,1,5,this,nil,pObj);
+}
+
+func FxCircuitDependanceStart(Target,EffectNum,Temp,Obj){
+  EffectVar(0,Target,EffectNum) = Obj;
+}
+
+func FxCircuitDependanceTimer(Target,EffectNum,Time){
+  var Depend = EffectVar(0,Target,EffectNum);
+  if(!Depend || OnFire(Depend) || GetCon(Depend) < 100){
+      DoDamage(999);
+      return(-1);
+  }
+}

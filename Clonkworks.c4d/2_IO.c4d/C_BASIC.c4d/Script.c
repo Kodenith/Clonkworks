@@ -36,7 +36,8 @@ public func NewCircuit(Type){
 
     Message("$TxtPlaced$",Contained(),GetName(,Type));
     Sound("Connect");
-    CreateConstruction(Type,0,yOffset,GetOwner(Contained()),100);
+    var circuit = CreateConstruction(Type,0,yOffset,GetOwner(Contained()),100);
+    if(FindCastleWall()) circuit->StartDependingOn(FindCastleWall());
     RemoveObject();
 }
 
