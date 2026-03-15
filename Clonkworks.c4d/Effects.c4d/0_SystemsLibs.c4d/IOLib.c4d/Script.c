@@ -2,6 +2,9 @@
 //wire color is 343
 #strict 3
 
+//special
+local Locked;
+
 //can this be wired from and to?
 public func WireFrom(){ return(GetCon() > 99); }
 public func WireTo(){ return(GetCon() > 99); }
@@ -123,15 +126,11 @@ public func ColorPickerCallback(Color, Clonk){
   Sound("Splash1");
 }
 
-
-//special
-local Locked;
-
 public func Lock(state){
   Locked = state;
 }
 
-public func CircuitLocked(){ return(Locked); }
+public func IsCircuitLocked(){ return(Locked); }
 
 global func LockAllCircuits(){
   for(var i in FindObjects(Find_Func("IsCircuit"))) i->Lock(1);
@@ -142,7 +141,7 @@ global func LockAllCircuitsOwned(iPlr){
 }
 
 global func HideLockedCircuits(){
-      for(var i in FindObjects(Find_Func("IsCircuit"),Find_Func("CircuitLocked"))) SetVisibility(VIS_None,i);
+      for(var i in FindObjects(Find_Func("IsCircuit"),Find_Func("IsCircuitLocked"))) SetVisibility(VIS_None,i);
 }
 
 public func RejectGrabbed(pObj){

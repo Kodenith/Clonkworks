@@ -1,2 +1,0 @@
-DE:Batterie
-US:Battery
