@@ -1,2 +1,0 @@
-Feuert Gegenstände in nahegelegene Gebäude und hüllt sie gleichzeitig in einen speziellen Staub ein, der es ihnen ermöglicht, sich für kurze Zeit sicher fortzubewegen.
-Greifen Sie zu und drücken Sie links/rechts, um die Richtung zu ändern.

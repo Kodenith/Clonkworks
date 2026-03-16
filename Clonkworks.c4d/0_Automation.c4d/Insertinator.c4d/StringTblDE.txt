@@ -1,3 +1,0 @@
-TxtLeft=Feuert: Links
-TxtRight=Feuert: Rechts
-TxtCtr=Richtung ändern

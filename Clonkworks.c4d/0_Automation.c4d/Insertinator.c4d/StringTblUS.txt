@@ -1,3 +1,0 @@
-TxtLeft=Will Fire: Left
-TxtRight=Will Fire: Right
-TxtCtr=Change Direction
