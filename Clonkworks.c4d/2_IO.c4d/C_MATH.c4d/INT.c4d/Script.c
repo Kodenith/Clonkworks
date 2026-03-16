@@ -24,7 +24,13 @@ public func InputList(){
 func FastHandle(){
   if(InputActive("Increase")) Value++;
   if(InputActive("Decrease")) Value--;
-  if(InputActive("Set") != nil) Value = InputActive("Set");
+  var Set = InputActive("Set");
+  if(GetType(Set) ==C4V_Bool){
+   if(Set == false) Set = 0;
+    if(Set == true) Set = 1;
+  }
+  //DebugLog("%v %v",InputActive("Set"),Set);
+  if(Set != nil && GetType(Set) == C4V_Int) Value = InputActive("Set");
 }
 
 func MustBeOnWall(){ return(1); }

@@ -1,0 +1,1 @@
+Wenn dieser Wert 0 oder „false“ erhält, gibt er nichts zurück. Andernfalls gibt er den eingegebenen Wert zurück.

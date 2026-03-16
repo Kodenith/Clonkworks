@@ -1,2 +1,0 @@
-DE:Entweder-Gatter
-US:Either Gate

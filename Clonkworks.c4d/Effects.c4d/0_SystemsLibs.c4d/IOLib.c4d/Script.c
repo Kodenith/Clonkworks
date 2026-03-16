@@ -33,6 +33,7 @@ public func OutputActive(string OutputName){
 public func InputActive(string InputName){
   for(var Wire in FindObjects(Find_ID(WIRE))){
       if(GetActionTarget(1,Wire) == this){
+          //if(Wire->GetOutputValue() == nil && Wire->ConnectedTo() == InputName) return(nil);
           if(Wire->GetOutputValue() != nil && Wire->ConnectedTo() == InputName) return(Wire->GetOutputValue());
       }
   }

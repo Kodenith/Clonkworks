@@ -1,1 +1,0 @@
-Dies ist ein nicht standardmäßiges Gatter. Es überprüft und gibt die erste Eingabe zurück, die ungleich Null ist.

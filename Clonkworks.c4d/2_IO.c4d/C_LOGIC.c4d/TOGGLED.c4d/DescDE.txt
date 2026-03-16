@@ -1,1 +1,0 @@
-Dies ist ein nicht standardmäßiges Gatter. Es gibt die erste Eingabe zurück, die es empfängt, wenn die Eingabe „Key“ aktiv ist.
