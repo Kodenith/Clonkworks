@@ -14,6 +14,7 @@ func Timer(){
 		SetY(GetY(Owner));
 		SetComDir(COMD_Stop);
 	}
+
 	if(GetComDir() != COMD_Stop){
 		Sound("Elevator",0,this(),0,0,+1);
 	}else{

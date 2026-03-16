@@ -3,6 +3,7 @@
 #strict 2
 #include EXDB
 #include CXEC
+#include IO__
 
 local head;
 local Left;
@@ -19,9 +20,17 @@ func Destruction(){
 	if(head) RemoveObject(head);
 }
 
+func WireFrom(){ return(0); }
+public func InputList(){ return(["Stop","Drill"]); }
 
 func Update(){
 	if(GetCon() < 100) return(0);
+
+	if(InputActive("Stop")) ControlUpSingle();
+	else if(InputActive("Drill")) ControlDownSingle();
+
+	if(Abs(FrameCounter()) % 15 == 0){
+
 	if(FindObject(ENRG) && GetComDir(head) == COMD_Down) DoEnergy(-3);
 	
 	if(!head){
@@ -35,6 +44,8 @@ func Update(){
 		Exit(Contents(0),GetVertex(6,0),GetVertex(6,1),0,3);
 		else Exit(Contents(0),-GetVertex(6,0),GetVertex(6,1),0,-3);
 	}
+
+	}
 }
 
 //control
@@ -47,6 +58,7 @@ func ControlDownSingle(pClonk){
 //control
 func ControlUpSingle(pClonk){
 	[$TxtUp$|Image=EXDC:1]
+	if(GetY(head)-1 < GetY()) return(1);
 	SetComDir(COMD_Up,head);
 	return(1);
 }

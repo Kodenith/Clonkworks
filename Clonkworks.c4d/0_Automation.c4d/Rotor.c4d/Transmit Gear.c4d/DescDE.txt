@@ -1,1 +1,0 @@
-Ermöglicht die Fernsteuerung eines Rotors und den Anschluss an Förderbänder.
