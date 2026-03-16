@@ -17,6 +17,7 @@ func SetFilterGraph(){
   if(Filter == 5) FilterImage = FLAM;
   if(Filter == 6) FilterImage = MAM5;
   if(Filter == 7) FilterImage = S_DC;
+  if(Filter == 8) FilterImage = WIRE;
   
 	//outline
   SetGraphics(0,this(),FilterImage,ShadowID(),4);
@@ -42,6 +43,8 @@ func RejectCollect(pId,pObj){
 	if(FilterCompatibleItem(pObj) && FilterPath) SideExit = false;
 	if(!FilterCompatibleItem(pObj) && !FilterPath) SideExit = false;
 	if(!FilterCompatibleItem(pObj) && FilterPath) SideExit = true;
+
+	TickOut();
 	
 	if(SideExit){
 		var Item = pObj;

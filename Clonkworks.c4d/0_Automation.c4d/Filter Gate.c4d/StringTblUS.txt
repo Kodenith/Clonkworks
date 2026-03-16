@@ -13,3 +13,4 @@ Temp3=Fuel
 Temp4=Fragile
 Temp5=Flammable
 Temp6=Everything
+Temp8=Wired

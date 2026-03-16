@@ -1,2 +1,0 @@
-DE:Richtungsbetrag Gate
-US:Directional Amount Gate
