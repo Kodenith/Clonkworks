@@ -5,7 +5,7 @@ func Initialize(){
 }
 
 func Redefine(){
-  var real = CreateObject(CLBT);
+  var real = CreateObject(CLBT,0,10);
   if(Contained()) Enter(Contained(),real);
   SetCommand(real,"Exit");
   return(RemoveObject());

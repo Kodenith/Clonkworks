@@ -6,6 +6,7 @@ func Initialize(){
   SetAction("Walk");
   SetDir(Random(2));
   Resort(this);
+  SetPlrViewRange(500,this);
 }
 
 public func OutputList(){

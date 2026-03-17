@@ -57,3 +57,8 @@ public func OutputActive(string OutputName){
 }
 
 public func GetResearchBase() { return(LORY); }
+
+func Initialize(){
+  SetPlrViewRange(200,this);
+  return(_inherited());
+}

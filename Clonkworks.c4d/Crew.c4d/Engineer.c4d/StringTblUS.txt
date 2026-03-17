@@ -1,0 +1,14 @@
+TxtEngi=Production
+TxtNewItem=Produce: %s
+TxtNewSet=Producing %s.
+TxtCancel=Cancel production?
+Y=Yes
+N=No
+TxtProductionCancel=Production Cancelled.
+TxtFinalMenu=What do you wanna do?
+TxtFinalCancel=Cancel Production
+TxtCantProduce=%s can't begin production at this moment.
+TxtShift=Shift Items
+
+IB1=Producing: <c ffff00>%s</c>|%s
+IB2=<c 00ff00>You can begin producing %s.</c> 

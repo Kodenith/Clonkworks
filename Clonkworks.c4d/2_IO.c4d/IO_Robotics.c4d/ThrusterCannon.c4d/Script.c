@@ -2,6 +2,11 @@
 #include CANN
 #include IO__
 
+func Initialize(){
+  SetPlrViewRange(200,this);
+  return(_inherited());
+}
+
 public func OutputList(){
   return(["[Sensor] Nearby Objects","[Object/Camera] This"]);
 }

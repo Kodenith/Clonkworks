@@ -64,3 +64,8 @@ public func OutputActive(string OutputName){
 }
 
 public func GetResearchBase() { return(XBOW); }
+
+func Initialize(){
+  SetPlrViewRange(200,this);
+  return(_inherited());
+}

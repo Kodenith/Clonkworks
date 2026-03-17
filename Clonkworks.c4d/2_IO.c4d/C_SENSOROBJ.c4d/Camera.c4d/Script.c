@@ -6,6 +6,7 @@
 func Initialize() {
   SetAction("Track");
   SetComDir(COMD_None);
+  SetPlrViewRange(300,this);
   return(1);
 }
 
