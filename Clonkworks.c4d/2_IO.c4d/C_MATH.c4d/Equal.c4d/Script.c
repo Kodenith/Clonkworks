@@ -23,8 +23,6 @@ func MustBeOnWall(){ return(1); }
 public func OutputActive(string OutputName){
    var A = InputActive("A");
    var B = InputActive("B");
-   if(GetType(A) != C4V_Int && A != nil) return(0);
-   if(GetType(B) != C4V_Int && B != nil) return(0);
    if(A == nil) A = 0;
    if(B == nil) B = 0;
    return(A==B);
