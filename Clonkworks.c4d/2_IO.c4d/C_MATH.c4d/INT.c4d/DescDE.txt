@@ -1,0 +1,1 @@
+Speichert einen einzelnen Integerwert. Er kann per Kabel oder manuell geändert werden.

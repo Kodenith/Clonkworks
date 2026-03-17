@@ -1,0 +1,2 @@
+DE:Anpassbarersensor
+US:Custom Sensor

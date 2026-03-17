@@ -18,7 +18,7 @@ VertexCNAT=8,8,8,8,1,2,80
 Grab=2
 Components=TTIG=3;METL=2;
 Construction=1
-Timer=15
+Timer=1
 TimerCall=Update
 LineConnect=35
 BlastIncinerate=80

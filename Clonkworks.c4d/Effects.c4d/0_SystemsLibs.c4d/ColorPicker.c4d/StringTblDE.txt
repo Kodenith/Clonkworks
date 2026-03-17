@@ -1,0 +1,10 @@
+IncR=Mehr Rot
+IncG=Mehr Grün
+IncB=Mehr Blau
+IncA=Weniger Deckkraft
+DecR=Weniger Rot
+DecG=Weniger Grün
+DecB=Weniger Blau
+DecA=Mehr Deckkraft
+Accept=Übernehmen
+PlrClr=Spielerfarbe auswählen

@@ -1,0 +1,25 @@
+[DefCore]
+Name=Metal Gate
+id=MGAT
+Version=4,9,8
+Category=C4D_Structure|C4D_SelectKnowledge
+Value=25
+Mass=1000
+Width=10
+Height=35
+Offset=-5,-17
+Picture=0,0,10,35
+Vertices=4
+VertexX=-3,2,-3,2
+VertexY=17,17,-17,-17
+VertexFriction=20,20,20,20
+VertexCNAT=8,8,4,4
+Timer=1
+TimerCall=HandleGate
+Grab=2
+Construction=1
+LineConnect=35
+Components=TTIG=3;
+
+[Physical]
+Energy=100000

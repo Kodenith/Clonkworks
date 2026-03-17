@@ -1,0 +1,2 @@
+DE:Zeichenfolgenwert
+US:String Value

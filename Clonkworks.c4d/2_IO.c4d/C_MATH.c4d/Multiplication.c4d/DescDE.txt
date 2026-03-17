@@ -1,0 +1,1 @@
+Multipliziert zwei ganze Zahlen miteinander

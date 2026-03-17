@@ -1,0 +1,1 @@
+If activated by wire, drains different liquids via Source Pipe and spews them out everywhere.

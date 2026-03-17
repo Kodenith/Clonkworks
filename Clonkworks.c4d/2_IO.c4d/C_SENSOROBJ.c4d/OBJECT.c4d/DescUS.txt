@@ -1,0 +1,1 @@
+Stores a single object. Used to preserve object data even if an object has left a sensor.

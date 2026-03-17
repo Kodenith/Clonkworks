@@ -3,6 +3,7 @@
 #strict 2
 #include CXEC
 #include BAS3
+#include IO__
 local Force;
 
 public func GetRotorForce(){
@@ -42,8 +43,12 @@ public func ControlUp(pClonk){
 
 //timers
 func DieOut(){
-	if(Force > 0) Force--;
-	if(Force < 0) Force++;
+	if(InputActive("Left")) ControlLeft();
+	else if(InputActive("Right")) ControlRight();
+	else if(InputActive("Stop")) ControlUp();
+	
+	if(Force > 0 && Abs(FrameCounter()) % 2 == 0) Force--;
+	if(Force < 0 && Abs(FrameCounter()) % 2 == 0) Force++;
 	if(Force == 0 && GetAction() != "Idle") SetAction("Idle");
 }
 
@@ -82,3 +87,6 @@ func DoConnectParticles(Own){
 	var Amount = RandomX(8,15);
 	while(Amount--) CreateParticle("MSpark",RandomX(-GetDefWidth(GetID())/2,GetDefWidth(GetID())/2),(GetDefHeight(GetID())/2)-RandomX(0,7),0,RandomX(-10,-40),RandomX(45,75),GetPlrColorDw(Own));
 }
+
+func WireFrom(){ return(0); }
+func InputList(){ return(["Left","Right","Stop"]); }

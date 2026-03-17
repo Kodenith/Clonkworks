@@ -2,10 +2,13 @@
 
 #strict 2
 #include DRBS
+#include IO__
 
 local AdditionalObject;
 local Filter;
 local FilterPath;
+
+local Out;
 
 private func ShadowID(){ return(1); }
 private func MainID(){ return(2); }
@@ -35,6 +38,7 @@ func SetFilterGraph(){
   if(Filter == 5) FilterImage = FLAM;
   if(Filter == 6) FilterImage = MAM5;
   if(Filter == 7) FilterImage = S_DC;
+  if(Filter == 8) FilterImage = WIRE;
   
 	//outline
   SetGraphics(0,this(),FilterImage,ShadowID(),4);
@@ -46,7 +50,7 @@ func SetFilterGraph(){
   SetObjDrawTransform(500,0,((GetDefCoreVal("Picture","DefCore",FilterImage,2)/2)*1000)/4,0,500,GetDefHeight(GetID())*1000/4+(((GetDefCoreVal("Picture","DefCore",FilterImage,2)/2)*1000)/4)-10000,this(),MainID());
 }
 
-func ControlDigDouble(){
+func ControlUpDouble(){
 	[$TxtDeconstruct$]
 	Sound("SignalClick");
     CreateObject(CNKT,0,0,GetOwner(Par(0)) );
@@ -59,7 +63,7 @@ func ControlLeft(pObj){
 	if(GetProcedure(pObj) != "PUSH") return(0);
 	if(GetActionTarget(0,pObj) != this());
 	CreateMenu(GetID(),pObj,this(),,"error");
-	SetMenuSize(7,,pObj);
+	SetMenuSize(8,,pObj);
 	
 	//predefined options
 	AddMenuItem("$TxtMenu1$: $Temp1$","TryGrabbedFilter",WRKS,pObj,,pObj);
@@ -69,8 +73,9 @@ func ControlLeft(pObj){
 	AddMenuItem("$TxtMenu1$: $Temp5$","TryGrabbedFilter",FLAM,pObj,,pObj);
 	AddMenuItem("$TxtMenu1$: $Temp6$","TryGrabbedFilter",MAM5,pObj,,pObj);
 	AddMenuItem("$TxtMenu1$: %s","TryGrabbedFilter",S_DC,pObj,,pObj);
+	AddMenuItem("$TxtMenu1$: $Temp8$","TryGrabbedFilter",WIRE,pObj,,pObj);
 	//empty entries to make space
-	for(var i = 0; i < 7; i++){
+	for(var i = 0; i < 8; i++){
 		AddMenuItem(" ",0,0,pObj);
 	}
 	
@@ -97,6 +102,7 @@ func TryGrabbedFilter(Filt,pObj){
 	if(Filt == FLAM) Filt = 5;
 	if(Filt == MAM5) Filt = 6;
 	if(Filt == S_DC) Filt = 7;
+	if(Filt == WIRE) Filt = 8;
 	SetFilter(Filt);
 	Sound("Connect");
 	
@@ -107,6 +113,7 @@ func TryGrabbedFilter(Filt,pObj){
 	else if(Filter == 5) Message("$TxtFilterSet$",this(),"$Temp5$");
 	else if(Filter == 6) Message("$TxtFilterSet$",this(),"$Temp6$");
 	else if(Filter == 7) Message("$TxtFilterSet$",this(),GetName(,S_DC));
+	else if(Filter == 8) Message("$TxtFilterSet$",this(),"$Temp8$");
 	else Message("$TxtFilterSet$",this(),GetName(,Filter));
 }
 
@@ -176,6 +183,9 @@ private func FilterCompatibleItem(pItem){
 		if(GetDefBlastIncinerate(pId)) return(1);
 	}else if(Filter==7){
 		return(RandomX(0,1));
+	}else if(Filter==8){
+		if(InputActive("Allow")) return(1);
+		else return(0);
 	}else{
 		if(pId == Filter) return(1);
 	}
@@ -184,4 +194,27 @@ private func FilterCompatibleItem(pItem){
 func Malfunction(){
 	FilterPath = !FilterPath;
 	Filter = ERTH;
+}
+
+func WireTo(){ return(Filter == 8); }
+public func OutputList(){
+  return(["OnMove"]);
+}
+
+public func OutputActive(){
+	return(Out);
+}
+
+public func InputList(){
+  if(Filter == 8)
+  return(["Allow"]);
+}
+
+public func TickOut(){
+	Out = 1;
+	ScheduleCall(this,"StopTickOut",1);
+}
+
+public func StopTickOut(){
+	Out = 0;
 }

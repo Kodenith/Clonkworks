@@ -1,0 +1,10 @@
+TxtConnectline=Verbindung herstellen
+TxtNoNewLine=Hier kann keine neue Zeile erstellt werden.
+TxtLineRemoval=%s getrennt.
+TxtNewLine=Neue %s|Verbindung von %s.
+TxtNoConnectType=%s kann nicht verbunden werden|mit %s.
+TxtConnect=%s|verbunden mit %s
+TxtLineInfo=Hilfe: Erweiterte Zeilen
+
+TxtOutput=Ausgabe auswählen:
+TxtInput=Eingabe auswählen:

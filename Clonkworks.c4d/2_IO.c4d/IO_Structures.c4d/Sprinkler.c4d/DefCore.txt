@@ -1,0 +1,27 @@
+[DefCore]
+Name=Liquid Sprinkler
+id=SRIK
+Version=4,9,8
+Category=C4D_Structure|C4D_SelectKnowledge
+Value=45
+Mass=850
+Width=16
+Height=11
+Offset=-8,-5
+Picture=0,0,16,11
+Vertices=3
+VertexX=-8,7,-1
+VertexY=5,5,-2
+VertexFriction=20,20,20
+VertexCNAT=8,8,4
+Construction=1
+Exclusive=1
+HorizontalFix=1
+LineConnect=101
+Timer=1
+TimerCall=Update
+Grab=2
+Components=CPIG=2;TTIG=2;
+
+[Physical]
+Energy=100000

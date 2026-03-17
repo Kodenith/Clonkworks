@@ -1,2 +1,0 @@
-DE:Einfüger
-US:Insertinator

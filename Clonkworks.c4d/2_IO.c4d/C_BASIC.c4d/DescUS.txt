@@ -1,0 +1,1 @@
+Allows quick construction of basic input and output circuits.

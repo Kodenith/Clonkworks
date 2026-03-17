@@ -1,0 +1,4 @@
+Detects objects of a selectable type in a set range. Returns: A Boolean, The Detected Object, X Position, Y Position.
+
+The range can be set manually or by wire.
+The ID of the object is an input that takes in a string. You may need development knowledge to know all ID's.

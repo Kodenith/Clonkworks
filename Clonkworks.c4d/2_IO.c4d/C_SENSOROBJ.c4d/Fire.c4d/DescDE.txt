@@ -1,0 +1,3 @@
+Erkennt brennende Objekte in einem festgelegten Bereich. Gibt zurück: Einen booleschen Wert, das erkannte Objekt, die X-Position, die Y-Position.
+
+Der Bereich kann manuell oder per Kabel eingestellt werden.

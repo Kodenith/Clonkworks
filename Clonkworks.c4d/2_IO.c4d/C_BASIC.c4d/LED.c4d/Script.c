@@ -1,0 +1,41 @@
+/*-- Neues Script --*/
+
+#strict 3
+#include IO__
+
+func Initialize() {
+  SetAction("Off");
+  SetComDir(COMD_None);
+  return(1);
+}
+
+public func WireFrom(){ return(0); }
+
+func MustBeOnWall(){ return(1); }
+
+//this function returns a list of string that can be input.
+public func InputList(){
+  return(["Display","RGB"]);
+}
+
+func Check(){
+  if(InputActive("Display") && GetAction() == "Off") SetAction("On");
+  if(!InputActive("Display") && GetAction() != "Off") SetAction("Off");
+
+  var RGB = InputActive("RGB");
+  if(RGB && GetType(RGB) == C4V_Int){
+    SetColorDw(RGB);
+  }
+}
+
+func Malfunction(){ OnDetach(); }
+func Damage(){
+  if(GetDamage() > 50 && !Locked) OnDetach();
+}
+func CanBeDetached(){ return(!Locked); }
+func OnDetach(pClonk){
+  if(pClonk && Hostile(GetOwner(),GetController(pClonk)) && !FindObject(WSAB)) return(0);
+  if(Locked) return(0);
+  Sound("Connect");
+  Split2Components();
+}

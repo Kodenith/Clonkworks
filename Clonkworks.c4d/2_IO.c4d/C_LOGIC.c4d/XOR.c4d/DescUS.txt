@@ -1,0 +1,1 @@
+returns on output of 1 only if one of the inputs is not 0. If both aren't or theyre both 0 - it doesn't work.

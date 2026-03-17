@@ -1,0 +1,1 @@
+Activates if enough weight is set on it. Grab and press left/right to change how much weight it can take.

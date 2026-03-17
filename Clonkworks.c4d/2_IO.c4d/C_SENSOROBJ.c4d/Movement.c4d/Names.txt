@@ -1,0 +1,2 @@
+DE:Bewegungssensor
+US:Movement Sensor

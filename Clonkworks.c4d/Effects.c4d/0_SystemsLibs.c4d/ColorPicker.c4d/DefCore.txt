@@ -1,0 +1,9 @@
+[DefCore]
+id=CLRP
+Name=Color Picker
+Version=4,9,5
+Category=C4D_StaticBack
+Width=1
+Height=1
+Picture=0,0,128,128
+ColorByOwner=1

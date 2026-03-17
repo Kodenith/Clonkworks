@@ -1,0 +1,1 @@
+Es wird der erste Wert der 10 Eingaben zurückgegeben. Sind nicht alle auf einen Wert gesetzt, wird nichts zurückgegeben.

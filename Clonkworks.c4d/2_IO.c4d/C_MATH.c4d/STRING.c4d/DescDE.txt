@@ -1,0 +1,1 @@
+Speichert einen einzelnen String-Wert. Er kann per Wire oder manuell geändert werden.

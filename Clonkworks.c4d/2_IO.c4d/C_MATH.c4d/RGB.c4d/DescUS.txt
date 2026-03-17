@@ -1,0 +1,1 @@
+Combines three integers into a color.

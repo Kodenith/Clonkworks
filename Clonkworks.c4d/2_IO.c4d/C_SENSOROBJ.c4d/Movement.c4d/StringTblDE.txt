@@ -1,0 +1,3 @@
+TxtRange=Bereich: %d
+TxtLeft=Bereich verkleinern
+TxtRight=Bereich vergrößern

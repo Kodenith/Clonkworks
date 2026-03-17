@@ -1,0 +1,10 @@
+IncR=Increase red
+IncG=Increase green
+IncB=Increase blue
+IncA=Decrease opacity
+DecR=Decrease red
+DecG=Decrease green
+DecB=Decrease blue
+DecA=Increase opacity
+Accept=Accept
+PlrClr=Use player color

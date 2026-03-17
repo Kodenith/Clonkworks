@@ -1,0 +1,2 @@
+DE:Nein Null
+US:No Zero

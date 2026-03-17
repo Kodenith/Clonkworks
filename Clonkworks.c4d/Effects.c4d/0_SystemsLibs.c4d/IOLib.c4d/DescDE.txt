@@ -1,0 +1,1 @@
+Gemeinsame Funktionen für Verkabelung, Tore, verkabelte Objekte usw. Programmiert von Kodenith für Clonkworks.

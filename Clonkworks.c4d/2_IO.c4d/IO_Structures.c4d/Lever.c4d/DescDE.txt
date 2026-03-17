@@ -1,0 +1,1 @@
+Kann nach links, rechts und oben gedreht werden. Alle drei Richtungen haben einen Ausgang.

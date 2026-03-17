@@ -1,0 +1,2 @@
+DE:NAND-Gatter
+US:NAND Gate

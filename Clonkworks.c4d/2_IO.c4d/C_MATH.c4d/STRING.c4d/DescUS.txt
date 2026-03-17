@@ -1,0 +1,1 @@
+Stores a single string value. It can be modified by wire or manually.

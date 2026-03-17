@@ -19,3 +19,4 @@ Fragile=1
 Collectible=1
 Components=CRYS=2;SFLN=1;
 Rebuy=1
+Explosive=1

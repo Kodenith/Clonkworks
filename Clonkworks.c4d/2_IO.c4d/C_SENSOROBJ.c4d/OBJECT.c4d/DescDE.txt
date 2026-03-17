@@ -1,0 +1,1 @@
+Speichert ein einzelnes Objekt. Wird verwendet, um Objektdaten zu erhalten, auch wenn ein Objekt einen Sensor verlassen hat.

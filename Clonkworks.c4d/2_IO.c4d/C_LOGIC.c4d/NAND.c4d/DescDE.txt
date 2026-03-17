@@ -1,0 +1,1 @@
+Wenn beide Eingaben nicht 0 sind, gibt es eine Ausgabe von 0 zurück.

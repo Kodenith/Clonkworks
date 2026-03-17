@@ -1,0 +1,1 @@
+Wartet nach der Aktivierung eine bestimmte Anzahl von Ticks und gibt dann 1 aus. Die Anzahl der Ticks kann manuell oder per Draht eingestellt werden.

@@ -1,0 +1,1 @@
+Alerts it's owner with a message and sound. Whoever grabs it changes its owner to them.

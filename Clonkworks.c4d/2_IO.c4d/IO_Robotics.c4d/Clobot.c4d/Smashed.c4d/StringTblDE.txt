@@ -1,0 +1,2 @@
+TxtRevive=Mit Akku wiederbeleben
+TxtReviveFail=Seine Systeme sind hinüber!

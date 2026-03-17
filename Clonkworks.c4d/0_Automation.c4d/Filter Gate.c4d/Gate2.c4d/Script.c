@@ -19,6 +19,7 @@ private func Move(){
 	
 	var Item = Contents(0);
 	if(!Item) return(0);
+	TickOut();
 	if(!FilterPath){ //Filtered goes left
 		if(FilterCompatibleItem(Item))
 			Exit(Item,-12,12,,-2);

@@ -1,1 +1,0 @@
-Allows you to control a rotor from a distance, also allows connection to conveyors.

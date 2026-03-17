@@ -8,6 +8,7 @@ private func Move(){
 	
 	var Item = Contents(0);
 	if(!Item) return(0);
+	TickOut();
 	if(!FilterPath){ //Filtered goes left
 		if(FilterCompatibleItem(Item))
 			Exit(Item,-12,12,,-2);
@@ -33,6 +34,7 @@ func SetFilterGraph(){
   if(Filter == 5) FilterImage = FLAM;
   if(Filter == 6) FilterImage = MAM5;
   if(Filter == 7) FilterImage = S_DC;
+  if(Filter == 8) FilterImage = WIRE;
   
 	//outline
   SetGraphics(0,this(),FilterImage,ShadowID(),4);

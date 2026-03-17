@@ -1,0 +1,1 @@
+Gibt eine positive und eine negative Version einer empfangenen Zahl in separaten Ausgaben zurück.

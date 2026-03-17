@@ -1,0 +1,3 @@
+TxtRange=Range: %d
+TxtLeft=Decrease Range
+TxtRight=Increase Range

@@ -1,0 +1,2 @@
+DE:NOT-Gatter
+US:NOT Gate

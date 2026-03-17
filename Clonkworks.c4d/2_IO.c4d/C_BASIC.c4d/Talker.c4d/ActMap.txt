@@ -1,0 +1,17 @@
+[Action]
+Name=Attached
+Delay=1
+Facet=11,0,11,11,0,0
+NextAction=Attached
+StartCall=CheckMessage
+Procedure=FLOAT
+
+[Action]
+Name=Talk
+Length=2
+Delay=3
+Facet=0,0,11,11,0,0
+NextAction=Talk
+Procedure=FLOAT
+StartCall=CheckMessage
+

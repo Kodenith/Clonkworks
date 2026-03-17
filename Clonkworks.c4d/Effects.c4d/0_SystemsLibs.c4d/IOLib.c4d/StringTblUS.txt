@@ -1,0 +1,12 @@
+# Wire Removal Menu
+TxtRemoveContext=Clear Output Wires
+TxtRemoveMenu=Which Output to Clear?
+TxtOutputOption=<c ffff00>%s</c> to %s's <c ffff00>%s</c>
+TxtCantRO=This circuit does not support outputs.
+
+# Color menu
+TxtColorContext=Recolor Circuit
+TxtColorSelect1=Use predefined color.
+TxtColorSelect2=Color after %s.
+TxtColorSet=Color Set.
+TxtCantRecolor=This circuit can not be recolored.

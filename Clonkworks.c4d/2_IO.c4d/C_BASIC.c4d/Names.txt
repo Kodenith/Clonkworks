@@ -1,0 +1,2 @@
+DE:Grundlegende Eingabe-/Ausgabeschaltung
+US:Basic Input/Output Circuit

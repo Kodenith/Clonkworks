@@ -31,6 +31,7 @@ func RejectCollect(pId,pObj){
 	if(!FilterCompatibleItem(pObj) && !FilterPath) SideExit = false;
 	if(!FilterCompatibleItem(pObj) && FilterPath) SideExit = true;
 	
+	TickOut();
 	if(SideExit){
 		var Item = pObj;
 		if(Left) Exit(Item,14,12,,2);

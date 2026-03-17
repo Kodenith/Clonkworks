@@ -1,0 +1,2 @@
+DE:Druckplatte
+US:Pressure Plate

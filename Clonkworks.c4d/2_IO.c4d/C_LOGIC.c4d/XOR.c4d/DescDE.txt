@@ -1,0 +1,1 @@
+gibt nur dann den Wert 1 zurück, wenn einer der Eingänge nicht 0 ist. Wenn beide nicht 0 sind oder beide 0 sind, funktioniert es nicht.

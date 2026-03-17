@@ -1,0 +1,9 @@
+[Action]
+Name=Sprinkle
+Length=16
+Delay=1
+Facet=0,0,16,11,0,0
+NextAction=Sprinkle
+Sound=Gear
+PhaseCall=DoSprinkling
+EnergyUsage=500

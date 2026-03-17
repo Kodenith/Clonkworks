@@ -1,0 +1,14 @@
+[DefCore]
+Name=Clobot
+id=CLBD
+Version=4,9,8
+Category=3332
+MaxUserSelect=3
+Value=80
+Mass=2000
+Width=49
+Height=74
+Offset=-24,-37
+Picture=0,0,49,74
+ColorByOwner=1
+Components=WOOD=5;TTIG=4;PRCS=2

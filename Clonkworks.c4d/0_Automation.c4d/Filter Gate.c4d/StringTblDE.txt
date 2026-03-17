@@ -13,3 +13,4 @@ Temp3=Brennstoff
 Temp4=Zerbrechlich
 Temp5=Entflammbar
 Temp6=Alles
+Temp8=Kabelgebunden

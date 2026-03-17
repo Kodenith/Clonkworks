@@ -1,0 +1,16 @@
+[Action]
+Name=Attached
+Delay=1
+Facet=0,0,13,13,0,0
+NextAction=Attached
+Procedure=FLOAT
+StartCall=TryAlert
+
+[Action]
+Name=Alert
+Length=10
+Delay=1
+Facet=0,0,13,13,0,0
+NextAction=Attached
+Procedure=FLOAT
+

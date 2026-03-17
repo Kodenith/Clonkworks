@@ -1,0 +1,3 @@
+Ermöglicht die Anzeige von bis zu 3 verschiedenen Kameras, wenn diese über Kabel angeschlossen sind.
+
+Durch Drücken der Wurf-Taste durch die Kanäle schalten.

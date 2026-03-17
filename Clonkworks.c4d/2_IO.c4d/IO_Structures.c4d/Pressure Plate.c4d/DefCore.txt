@@ -1,0 +1,22 @@
+[DefCore]
+Name=Pressure Plate
+id=I1_P
+Version=4,9,8
+Category=C4D_Structure|C4D_SelectKnowledge
+Value=20
+Mass=100
+Width=20
+Height=18
+Offset=-10,-9
+Picture=0,16,20,2
+Vertices=2
+VertexX=-10,9
+VertexY=8,8
+VertexFriction=20,20
+VertexCNAT=8,8
+Construction=1
+ColorByOwner=1
+Grab=2
+VehicleControl=1
+Components=CC1_=1;METL=1
+LineConnect=128

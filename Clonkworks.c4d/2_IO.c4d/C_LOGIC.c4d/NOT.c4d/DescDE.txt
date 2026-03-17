@@ -1,0 +1,1 @@
+Wenn der Eingang nicht 0 ist, wird 0 ausgegeben. Und umgekehrt.

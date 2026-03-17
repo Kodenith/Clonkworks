@@ -22,3 +22,4 @@ NoPushEnter=1
 Timer=5
 TimerCall=Move
 Components=CNKT=1
+LineConnect=128

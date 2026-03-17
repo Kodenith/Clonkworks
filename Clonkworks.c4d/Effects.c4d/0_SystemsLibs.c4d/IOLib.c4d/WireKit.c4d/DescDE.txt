@@ -1,0 +1,2 @@
+Wird verwendet, um Ein- und Ausgänge von Schaltkreisen miteinander zu verbinden.
+Kabel können nach dem vollständigen Anschließen nicht mehr normal getrennt werden. Drücken Sie zweimal auf graben, während Sie die Quelle eines Kabels gedrückt halten, um das Menü zum Entfernen des Kabels zu öffnen.

@@ -1,0 +1,1 @@
+Kombiniert drei Ganzzahlen zu einer Farbe.

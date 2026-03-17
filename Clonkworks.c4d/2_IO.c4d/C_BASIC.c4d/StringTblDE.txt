@@ -1,0 +1,5 @@
+TxtUse=Schaltkreis anbringen
+TxtMenu=Welchen Schaltkreis anbringen?
+TxtNoWall=Dieser Schaltkreis muss an einer Wand angebracht werden!
+TxtSpace=Etwas blockiert diesen Standort.
+TxtPlaced=Neu|%s

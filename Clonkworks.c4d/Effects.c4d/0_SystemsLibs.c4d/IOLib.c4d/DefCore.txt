@@ -1,0 +1,10 @@
+[DefCore]
+id=IO__
+Version=4,9,8
+Name=InputOutputLib
+Category=C4D_StaticBack
+Width=64
+Height=64
+Mass=1
+Picture=0,0,64,64
+ColorByOwner=1

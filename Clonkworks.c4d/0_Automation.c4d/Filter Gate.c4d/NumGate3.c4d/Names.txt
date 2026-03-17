@@ -1,2 +1,0 @@
-DE:Betrag Abstiegstor
-US:Amount Descension Gate

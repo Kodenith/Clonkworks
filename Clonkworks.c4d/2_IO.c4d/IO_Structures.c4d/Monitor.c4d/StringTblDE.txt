@@ -1,0 +1,3 @@
+TxtChange=Kanal ändern
+TxtChannelSet=Kanal auf Kanal %d eingestellt.
+TxtChannel=Kanal %d

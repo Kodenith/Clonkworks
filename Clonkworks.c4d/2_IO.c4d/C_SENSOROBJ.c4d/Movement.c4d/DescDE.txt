@@ -1,0 +1,3 @@
+Erkennt Bewegungen in einem festgelegten Bereich. Gibt zurück: einen booleschen Wert, das erkannte Objekt, die X-Position, die Y-Position.
+
+Der Bereich kann manuell oder per Kabel eingestellt werden.

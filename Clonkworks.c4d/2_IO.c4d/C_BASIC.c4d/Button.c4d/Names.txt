@@ -1,0 +1,2 @@
+DE:Schaltfläche
+US:Button

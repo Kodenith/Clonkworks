@@ -1,0 +1,16 @@
+[Action]
+Name=Off
+Delay=1
+Facet=0,0,11,11,0,0
+NextAction=Off
+Procedure=FLOAT
+StartCall=CheckGrab
+
+[Action]
+Name=On
+Delay=1
+Facet=11,0,11,11,0,0
+NextAction=On
+StartCall=CheckGrab
+Procedure=FLOAT
+

@@ -1,0 +1,7 @@
+[Action]
+Name=Attached
+Delay=10
+Facet=0,0,13,11,0,0
+NextAction=Attached
+Procedure=FLOAT
+StartCall=CheckSet

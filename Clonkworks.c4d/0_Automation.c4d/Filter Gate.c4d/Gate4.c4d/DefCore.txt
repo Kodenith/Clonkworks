@@ -23,3 +23,4 @@ VertexCNAT=8,8,4,4
 Collection=-14,1,29,11
 NoPushEnter=1
 Components=CNKT=1
+LineConnect=128

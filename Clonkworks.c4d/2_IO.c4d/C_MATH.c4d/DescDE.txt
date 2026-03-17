@@ -1,0 +1,1 @@
+Ermöglicht die schnelle Erstellung von Variablen, Taschenrechnern, Zeichenfolgen und anderen nützlichen Werten.

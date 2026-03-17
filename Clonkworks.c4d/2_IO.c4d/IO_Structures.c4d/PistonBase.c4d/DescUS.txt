@@ -1,0 +1,1 @@
+Pushes stuff when activated by wire. Requires power and can be rotated

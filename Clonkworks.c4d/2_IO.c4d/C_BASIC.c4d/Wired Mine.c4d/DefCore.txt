@@ -1,0 +1,24 @@
+[DefCore]
+Name=Wired Mine
+id=I1MN
+Version=4,9,8
+Category=2
+Value=2
+Width=13
+Height=13
+Offset=-6,-6
+Picture=13,0,13,13
+Vertices=1
+VertexX=0
+VertexY=0
+VertexFriction=20
+VertexCNAT=16
+Timer=1
+TimerCall=Check
+CollectionLimit=1
+GrabPutGet=3
+Grab=2
+Construction=1
+LineConnect=128
+VehicleControl=1
+Components=CC1_=1
