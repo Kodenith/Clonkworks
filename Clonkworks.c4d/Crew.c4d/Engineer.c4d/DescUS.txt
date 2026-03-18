@@ -1,6 +1,6 @@
-The Engineer can produce different items and vehicles on the go, and can hold an additional item.
+The Engineer can produce different items and vehicles and vehicles anywhere, and can hold up to 2 items.
 
-Press Special 1 to change between items in the inventory.
-Press Special 2 to Set or Remove a currently crafted item, add ingredient to current crafting, or begin crafting. The Infobar on the bottom left will tell you the progress of acquiring items.
+Items can be shifted with Special 1.
+Special 2 can be used to select a recipe, add a current item to crafting progress, cancel crafting or begin crafting. The information bar at the bottom left will tell you what's left.
 
-<c ff0000>WARNING: Cancelling production leaves less than or half the items you gathered!</c>
+Cancelling gathering yields half or less items than gathered.

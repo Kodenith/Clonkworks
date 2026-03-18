@@ -12,3 +12,5 @@ TxtShift=Shift Items
 
 IB1=Producing: <c ffff00>%s</c>|%s
 IB2=<c 00ff00>You can begin producing %s.</c> 
+
+Shucks=oh man this sucks

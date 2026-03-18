@@ -33,23 +33,28 @@ public func EngiMenu(){
 
     if(!Product){
         //item prod selection menu
-        CreateMenu(WRNC,this,this,1);
+        CreateMenu(WRNC,this,this,1,"$Shucks$");
         
         var i, x;
+
+        if(!FindObject(ENAV)){
         while(x = GetDefinition(i++,C4D_Object)){
             if(x->~IsAnvilProduct() && GetPlrKnowledge(GetController(),x)){
                 AddMenuItem("$TxtNewItem$","SetProduce",x,this,nil,nil,GetDesc(,x));
             }
         }
+        }
 
         i = 0;
 
+        if(!FindObject(ENVH)){
         while(x = GetDefinition(i++,C4D_Vehicle)){
             if(IsVehicleNoCraftable(x)) continue;
 
             if(GetPlrKnowledge(GetController(),x)){
                 AddMenuItem("$TxtNewItem$","SetProduce",x,this,nil,nil,GetDesc(,x));
             }
+        }
         }
 
         return(1);
@@ -95,14 +100,17 @@ private func Welding(){
     if(GetActTime() == 1) Sound("Fuse");
     if(!Random(15)) Sound("Spark*");
 
+    var Time = 1;
+
     if(GetCategory(,Product) & C4D_Object){
+        if(!FindObject(ENSB)) Time = Max(GetMass(,Product)/7,1);
         var WeldDir = -5;
         if(GetDir() == DIR_Right) WeldDir = 5;
 
         if(!Random(2))
         CastParticles("PxSpark",RandomX(1,5),RandomX(10,65),WeldDir-RandomX(-2,2),RandomX(6,10),10,50,RGBa(255,255,0),RGBa(255,0,0));
 
-        if(GetActTime() > 38*4){
+        if(GetActTime() > 38*Time){
             SetAction("KneelUp");
             ComponentsArray = nil;
             ComponentsArrayString = nil;
@@ -116,6 +124,7 @@ private func Welding(){
     }   
 
     if(GetCategory(,Product) & C4D_Vehicle){
+        if(!FindObject(ENSB)) Time = Max(GetMass(,Product)/10,4);
         var Amount = RandomX(0,2);
         var OffsetX = GetDefWidth(Product)/2;
         var OffsetY = GetDefHeight(Product)/2;
@@ -123,7 +132,7 @@ private func Welding(){
             CastParticles("PSpark",1,0,RandomX(-OffsetX,OffsetX),RandomX(-OffsetY,OffsetY),10,50,RGBa(255,255,0),RGBa(255,0,0));
         }
 
-        if(GetActTime() > 38*10){
+        if(GetActTime() > 38*Time){
             SetAction("KneelUp");
             ComponentsArray = nil;
             ComponentsArrayString = nil;
@@ -178,6 +187,24 @@ private func SetProduce(ID){
     }
 
     Size = GetLength(ComponentsArray);
+
+    if(FindObject(ENSB)){
+        if(GetAction() != "Walk" || Contained()){
+            Sound("Error");
+            PlayerMessage(GetController(),"$TxtCantProduce$",this,GetName());
+            Product = nil;
+            ComponentsArray = nil;
+            ComponentsArrayString = nil;
+            ComponentsArrayUsed = nil;
+            return(1);
+        }
+        ComponentsArray = [];
+        ComponentsArrayUsed = [];
+        SetComponentString();
+        BeginProduction();
+        Size = 0;
+        return(1);
+    }
 
     SetComponentString();
 }

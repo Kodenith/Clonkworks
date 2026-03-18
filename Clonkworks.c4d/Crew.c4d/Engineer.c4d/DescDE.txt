@@ -1,6 +1,6 @@
-Der Ingenieur kann unterwegs verschiedene Gegenstände und Fahrzeuge herstellen und einen zusätzlichen Gegenstand mit sich führen.
+Der Ingenieur kann überall verschiedene Gegenstände und Fahrzeuge herstellen und bis zu 2 Gegenstände mit sich führen.
 
-Drücke Spezialtaste 1, um zwischen den Gegenständen im Inventar zu wechseln.
-Drücke Spezial 2, um einen aktuell hergestellten Gegenstand anzulegen oder zu entfernen, Zutaten zum aktuellen Herstellungsvorgang hinzuzufügen oder mit der Herstellung zu beginnen. Die Infoleiste unten links zeigt dir den Fortschritt beim Erwerb von Gegenständen an.
+Gegenstände können mit Spezialfunktion 1 verschoben werden.
+Mit Spezialfunktion 2 kannst du ein Rezept auswählen, einen aktuellen Gegenstand zum Herstellungsfortschritt hinzufügen, die Herstellung abbrechen oder mit der Herstellung beginnen. Die Informationsleiste unten links zeigt dir an, was noch übrig ist.
 
-<c ff0000>WARNUNG: Wenn du die Herstellung abbrichst, bleiben weniger als die Hälfte der gesammelten Gegenstände übrig!</c>
+Wenn du das Sammeln abbrichst, erhältst du die Hälfte oder weniger der gesammelten Gegenstände.
