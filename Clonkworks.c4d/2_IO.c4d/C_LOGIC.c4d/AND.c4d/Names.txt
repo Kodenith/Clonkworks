@@ -1,2 +1,0 @@
-DE:AND-Gatter
-US:AND Gate

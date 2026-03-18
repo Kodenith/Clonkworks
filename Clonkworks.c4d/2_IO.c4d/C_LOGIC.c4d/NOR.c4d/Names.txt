@@ -1,2 +1,0 @@
-DE:NOR Gatter
-US:NOR Gate

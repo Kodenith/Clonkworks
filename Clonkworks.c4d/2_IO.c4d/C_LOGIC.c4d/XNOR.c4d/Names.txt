@@ -1,2 +1,0 @@
-DE:XNOR-Gatter
-US:XNOR Gate

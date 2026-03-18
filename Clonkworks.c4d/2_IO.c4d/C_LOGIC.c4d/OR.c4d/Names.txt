@@ -1,2 +1,0 @@
-DE:OR-Gatter
-US:OR Gate
