@@ -1,4 +1,4 @@
-Dieser Arm greift nach zugewiesenen Gegenständen in der Nähe und bewegt sie an einen gewünschten Ort. Nützlich, um Gegenstände automatisch auf Förderbänder oder in Fahrzeuge zu legen.
+Dieser Arm greift nach zugewiesenen Gegenständen in der Nähe und bewegt sie an einen gewünschten Ort.
 
 Anleitung:
 * Zum Bedienen greifen. Einmal auf „Graben” drücken, um das Greifen zu beenden.

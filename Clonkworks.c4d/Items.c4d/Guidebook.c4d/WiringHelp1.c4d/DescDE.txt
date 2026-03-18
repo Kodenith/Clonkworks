@@ -1,0 +1,6 @@
+Die Verkabelung mag auf den ersten Blick verwirrend erscheinen, ist aber eigentlich ganz einfach.
+Manche Schaltkreise oder Strukturen können ein Signal oder einen Wert ausgeben, andere nehmen nur Signale oder Werte entgegen. Es gibt auch Schaltkreise und Strukturen, die beides können.
+
+Mit dem Wire Kit kannst du zu einem Element mit einem Ausgang gehen und einen Ausgang auswählen, dann zu einem Element mit einem Eingang gehen und einen Eingang auswählen. So einfach ist das :)
+
+Wenn du eine Leitung trennen möchtest, gehe zu dem Schaltkreis, der die Leitung ausgibt, drücke zweimal auf „Graben“ und wähle dann die Leitung aus.

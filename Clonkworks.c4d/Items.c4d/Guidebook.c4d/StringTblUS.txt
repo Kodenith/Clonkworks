@@ -1,0 +1,7 @@
+TxtRead=Read
+
+TxtAbout1=About this book
+TxtCate1=Automation
+TxtCate2=Mining
+TxtCate3=Circuitry
+TxtCate4=Materials & Other

@@ -1,3 +1,0 @@
-Useful in mining, as it will explode with a delay.
-
-It bounces off of walls.

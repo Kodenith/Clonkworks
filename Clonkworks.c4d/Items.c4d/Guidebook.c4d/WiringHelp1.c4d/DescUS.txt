@@ -1,0 +1,6 @@
+Wiring may seem confusing at first, but it's actually pretty simple.
+Some circuits or structures can output a signal or value, and some only accept. There are also circuits and structures that accept both.
+
+With the Wire Kit, you can go up to something with an output and choose an output, then go up to something with an input and choose an input. It's as easy as that :)
+
+If you wanna disconnect a wire, go to the circuit that outputs the wire, and press dig twice, then choose the wire.

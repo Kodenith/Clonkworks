@@ -1,4 +1,4 @@
-This arm grabs nearby assigned items and moves them to a desired spot. Useful for automatically putting stuff on conveyors or into vehicles.
+This arm grabs nearby assigned items and moves them to a desired spot.
 
 Instructions:
 * Grab to operate. Press dig once to ungrab.

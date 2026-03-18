@@ -1,0 +1,3 @@
+Mit der „Höhlenkriecher-Kanonen“-Regel können Höhlenkriecher Kanonen einsetzen, die man normalerweise für den Kanonenturm verwenden würde. So kannst du ihn als eine Art tragbaren Kanonenturm oder als irdische Alternative zum U-Boot nutzen :)
+
+Jeder Höhlenkriecher kann nur einen Kanonenkopf aufnehmen, und die Munitionsmenge ist durch die Kapazität des Fahrzeugs begrenzt. Außerdem können Trümmerteile ihn beschädigen – sei also vorsichtig, wenn du Kanonen mit dem Höhlenkriecher handhabst!

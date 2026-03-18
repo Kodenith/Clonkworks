@@ -1,0 +1,4 @@
+Als Roboter gelten alle Fahrzeuge, die man per Kabel steuern kann. Mit ihnen lassen sich extrem coole Dinge anstellen, die die Automatisierung, die Verteidigung oder langweilige Aufgaben erheblich verbessern.
+Alle Roboter verfügen über zahlreiche Eingänge für eine präzise Steuerung, eine Kamera und Sensoren.
+
+Allerdings erfordert es Zeit und viele Schaltkreise, deine Roboter so zu programmieren, dass sie das tun, was du willst. Achte darauf, dass du weißt, was du tust, wenn du sie programmierst.
