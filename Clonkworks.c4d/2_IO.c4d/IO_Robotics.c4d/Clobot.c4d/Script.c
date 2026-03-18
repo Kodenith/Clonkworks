@@ -14,7 +14,7 @@ public func OutputList(){
 }
 
 public func InputList(){
-  return(["Move Left","Move Right","Move Up","Move Down","Jump","Dig","Stop Dig","Activiate Held","Throw","Chop","Grab","Ungrab","Follow Object","Acquire Object","Cancel Command"]);
+  return(["Move Left","Move Right","Move Up","Move Down","Jump","Dig","Stop Dig","Activiate Held","Throw","Chop","Grab","Ungrab","Follow Object","Acquire Object","Build Structure","Cancel Command"]);
 }
 
 public func HasCamera(){ return(1); }
@@ -79,6 +79,10 @@ private func HandleInput(){
 
   if(InputActive("Acquire Object") && GetType(InputActive("Acquire Object")) == C4V_C4Object && !GetCommand() && (GetOCF(InputActive("Acquire Object")) & OCF_Collectible)){
       SetCommand(this,"Get",InputActive("Acquire Object"));
+  }
+
+  if(InputActive("Build Structure") && GetType(InputActive("Build Structure")) == C4V_C4Object && !GetCommand() && (GetOCF(InputActive("Build Structure")) & OCF_Construct)){
+      SetCommand(this,"Build",InputActive("Build Structure"));
   }
 
   if(InputActive("Ungrab")){

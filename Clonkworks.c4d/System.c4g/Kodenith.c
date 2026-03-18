@@ -97,3 +97,14 @@ global func StringPieceTogether(list,devider){
 	}
 	return(str);
 }
+
+//returns a logged message with a script you want to use to invoke the object's current command. mostly for testing
+global func LogObjectCommand(pObj){
+	var Name = GetCommand(pObj,0);
+	var Target = GetCommand(pObj,1);
+	var X = GetCommand(pObj,2);
+	var Y= GetCommand(pObj,3);
+	var Target2 = GetCommand(pObj,4);
+	var Data = GetCommand(pObj,5);
+	Log("SetCommand(%v,%v,%v,%v,%v,%v,%v);",pObj,Name,Target,X,Y,Target2,Data);
+}
