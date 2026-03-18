@@ -1,0 +1,1 @@
+Wenn der Eingang „Key“ aktiv ist, wird der Eingang „Check“ zurückgegeben. Andernfalls wird 0 zurückgegeben.
