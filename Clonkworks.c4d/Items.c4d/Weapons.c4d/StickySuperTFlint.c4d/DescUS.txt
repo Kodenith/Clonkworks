@@ -1,1 +1,3 @@
 Extended fusing time. Bigger blast.
+
+It can be stuck to walls or ceilings when activated while climbing.

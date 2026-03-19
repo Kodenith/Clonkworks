@@ -17,7 +17,7 @@ VertexCNAT=8
 Picture=0,7,64,64
 Collectible=1
 Fragile=1
-Components=METL=1;STFN=1
+Components=METL=2;SPHR=3;
 ColorByOwner=1
 Explosive=1
 Rebuy=1
