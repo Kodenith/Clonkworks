@@ -1,0 +1,16 @@
+[Action]
+Name=ShootLeft
+Length=8
+Delay=1
+Facet=0,24,33,24,0,0
+NextAction=Idle
+EnergyUsage=350
+
+[Action]
+Name=ShootRight
+Length=8
+Delay=1
+Facet=0,48,33,24,0,0
+NextAction=Idle
+EnergyUsage=350
+

@@ -14,6 +14,7 @@
 #appendto SAW2
 #appendto FND2
 #appendto CHUB
+#appendto INSR
 #appendto EXDR
 
 public func PDI_Auto(){ return(1); }
