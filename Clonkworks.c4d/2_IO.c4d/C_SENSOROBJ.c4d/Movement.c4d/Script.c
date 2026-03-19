@@ -15,7 +15,7 @@ func Initialize() {
 }
 
 public func OutputList(){
-  return(["Detected","Detected Object","Detected X","Detected Y"]);
+  return(["Detected","Detected Object"]);
 }
 
 public func InputList(){

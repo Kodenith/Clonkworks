@@ -10,7 +10,7 @@ func Initialize() {
 }
 
 public func OutputList(){
-  return(["ID String","Energy","Mana","Breath","Owner Name","X Coordinate","Y Coordinate","Container","Held Item","Contents Amount"]);
+  return(["ID String","Energy","Mana","Breath","Owner Name","X Coordinate","Y Coordinate","Container","Held Item","Contents Amount","Is Construction Site","Is Grabbable","Is a Crew Member","Is Prey"]);
 }
 
 public func InputList(){
@@ -34,6 +34,11 @@ public func OutputActive(string OutputName){
    if(OutputName == "Container") return(Contained(A));
    if(OutputName == "Held Item") return(Contents(0,A));
    if(OutputName == "Contents Amount") return(ContentsCount(,A));
+
+   if(OutputName == "Is Construction Site") return(GetOCF(A) & OCF_Construct);
+   if(OutputName == "Is Grabbable") return(GetOCF(A) & OCF_Grab);
+   if(OutputName == "Is a Crew Member") return(GetOCF(A) & OCF_CrewMember);
+   if(OutputName == "Is Prey") return(GetOCF(A) & OCF_Prey);
      return(0);
 }
 

@@ -13,7 +13,7 @@ func Initialize() {
 }
 
 public func OutputList(){
-  return(["Detected","Detected Object","Detected X","Detected Y"]);
+  return(["Detected","Detected Object","Iterated Object"]);
 }
 
 public func InputList(){
@@ -28,14 +28,15 @@ public func GetDetection(){
   var DetectList = InputActive("Robot Sensor Results");
   if(!DetectList || GetType(DetectList) != C4V_Array) return(nil);
   var pId = C4Id(InputActive("ID String"));
-  if(!pId) return(nil);
+  //if(!pId) return(nil);
 
   for(var i in DetectList){
     if(i == InputActive("Except")) continue;
     if(GetCategory(i) & C4D_Living)
       if(GetAlive(i) != 1 && InputActive("Ignore Dead")) continue;
     if(Contained(i) && InputActive("Ignore Contained")) continue;
-    if(GetID(i) == pId) return(i);
+    if(pId && GetID(i) == pId) return(i);
+    else if(!pId) return(i);
   }
 }
 
@@ -70,6 +71,13 @@ public func OutputActive(string OutputName){
         if(OutputName == "Detected X") return(Dx);
         if(OutputName == "Detected Y") return(Dy);
     }
+
+    if(OutputName == "Iterated Object"){
+      var DetectList = InputActive("Robot Sensor Results");
+      if(!DetectList || GetType(DetectList) != C4V_Array) return(nil);
+      return(DetectList[Abs(FrameCounter())%GetLength(DetectList)]);
+    }
+    
     return(0);
 }
 
