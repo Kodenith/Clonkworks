@@ -1,0 +1,7 @@
+TxtRead=Lesen
+
+TxtAbout1=Über dieses Buch
+TxtCate1=Automatisierung
+TxtCate2=Bergbau
+TxtCate3=Schaltkreise
+TxtCate4=Werkstoffe & Sonstiges

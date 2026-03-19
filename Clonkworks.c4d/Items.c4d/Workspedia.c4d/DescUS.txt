@@ -1,0 +1,4 @@
+The Workspedia allows you to quickly view information about Clonkworks content without the need of finding or building anything.
+A lot of items contain useful instructions and information in their descriptions, it's very worth reading.
+
+If an item is researchable, you can only read about it when it's been researched.

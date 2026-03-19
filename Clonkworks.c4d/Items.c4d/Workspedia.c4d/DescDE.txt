@@ -1,0 +1,4 @@
+Mit der Workspedia kannst du dir schnell Informationen zu Clonkworks-Inhalten anzeigen lassen, ohne etwas suchen oder erstellen zu müssen.
+Viele Gegenstände enthalten in ihren Beschreibungen nützliche Anleitungen und Informationen – es lohnt sich also, diese zu lesen.
+
+Wenn ein Gegenstand erforschbar ist, kannst du die Informationen dazu erst lesen, wenn er erforscht wurde.

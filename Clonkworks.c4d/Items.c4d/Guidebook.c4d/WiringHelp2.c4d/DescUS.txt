@@ -1,4 +1,0 @@
-Robots are considered all vehicles you can control via wire. With them you can do extremely cool stuff that improves automation, defense or boring tasks a lot.
-All robots come with tons of inputs for precise control, a camera, and sensors.
-
-However, programming your robots to do what you want will take time and lots of circuits. Makes sure you know what you are doing while programming them.
