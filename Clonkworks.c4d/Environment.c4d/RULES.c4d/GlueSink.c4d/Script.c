@@ -24,7 +24,7 @@ public func FxGlueSinkTimer(Target,EffectNum,Time){
   if(GetProcedure(Target) != "FLIGHT")
     if(Target->GetMaterial() != Material("Glue")) return(-1);
   if(InLiquid(Target)){
-    var sinkAm = Time/38;
+    var sinkAm = Time/19;
     SetYDir(GetYDir(Target)+sinkAm,Target);
   }
 }
