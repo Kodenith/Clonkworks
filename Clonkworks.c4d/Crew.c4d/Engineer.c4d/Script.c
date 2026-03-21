@@ -253,7 +253,8 @@ public func IsVehicleNoCraftable(pId){
 }
 
 protected func Death(int iKilledBy)
-{
+{   
+    if(ComponentsArrayUsed)
     for(var i in ComponentsArrayUsed){
         if(RandomX(0,1) == 1) CastObjects(i,1,10);
     }
