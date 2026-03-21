@@ -102,6 +102,7 @@ public func InfobarInfo(){
 
 func ControlLeft(){
   [$TxtLeft$]
+    if(Locked) return(0);
   Range -= 10;
   Range = BoundBy(Range,20,500);
   DrawRangeCircle();
@@ -110,6 +111,7 @@ func ControlLeft(){
 
 func ControlRight(){
   [$TxtRight$]
+    if(Locked) return(0);
   Range+=10;
   Range = BoundBy(Range,20,500);
   DrawRangeCircle();

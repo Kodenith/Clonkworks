@@ -76,6 +76,7 @@ public func InfobarInfo(){
 
 public func ControlUp(pClonk){
   [$TxtModify$]
+  if(Locked) return(0);
   CallMessageBoard(this,0,"INT:",GetController(pClonk));
 }
 
