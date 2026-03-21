@@ -1,1 +1,0 @@
-Prüft den Abstand zwischen zwei Objekten.

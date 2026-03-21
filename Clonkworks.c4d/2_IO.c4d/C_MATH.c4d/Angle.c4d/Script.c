@@ -9,24 +9,30 @@ func Initialize() {
   return(1);
 }
 
+public func OutputList(){
+  return(["Result"]);
+}
 
 public func InputList(){
-  return(["Obj 1","Obj 2"]);
-}
-
-public func OutputList(){
-  return(["Distance"]);
-}
-
-public func OutputActive(OutputName){
-  var Obj1 = InputActive("Obj 1");
-  var Obj2 = InputActive("Obj 2");
-  if(GetType(Obj1) != C4V_C4Object) return(nil);
-  if(GetType(Obj2) != C4V_C4Object) return(nil);
-  return(ObjectDistance(Obj1,Obj2));
+  return(["X1","Y1","X2","Y2"]);
 }
 
 func MustBeOnWall(){ return(1); }
+
+//used by wire, check if a certain output is active
+public func OutputActive(string OutputName){
+    var X1 = InputActive("X1");
+    if(GetType(X1) != C4V_Int) X1 = 0;
+    var Y1 = InputActive("Y1");
+    if(GetType(Y1) != C4V_Int) Y1 = 0;
+
+    var X2 = InputActive("X2");
+    if(GetType(X2) != C4V_Int) X2 = 0;
+    var Y2 = InputActive("Y2");
+    if(GetType(Y2) != C4V_Int) Y2 = 0;
+
+    return(Angle(X1,Y1,X2,Y2));
+}
 
 func Malfunction(){ OnDetach(); }
 func Damage(){

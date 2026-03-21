@@ -8,20 +8,16 @@ func Initialize(){
 }
 
 public func OutputList(){
-  return(["[Sensor] Nearby Objects","[Object/Camera] This","[Sensor] Nearby Objects (Unordered)","[Sensor] Nearby Objects (Object)","[Sensor] Nearby Objects (Vehicle)","[Sensor] Nearby Objects (Living)","[Sensor] Nearby Objects (Structure)"]);
+  return(["[Sensor] Nearby Objects","[Object/Camera] This","[Sensor] Nearby Objects (Unordered)","[Sensor] Nearby Objects (Object)","[Sensor] Nearby Objects (Vehicle)","[Sensor] Nearby Objects (Living)","[Sensor] Nearby Objects (Structure)","Current Angle"]);
 }
 public func InputList(){
-  return(["Move Left","Move Right","Thrust Upwards","Aim Up","Aim Down","Fire","Turn","Aim At"]);
+  return(["Move Left","Move Right","Thrust Upwards","Aim Up","Aim Down","Aim to Angle","Fire","Turn"]);
 }
 
 public func HasCamera(){ return(1); }
 
 private func RobotLogic(){
   var doSound = false;
-  if(FrameCounter()%4 == 0){
-  if(InputActive("Aim At") && GetType(InputActive("Aim At")) & C4V_C4Object){
-    WireAimAt(InputActive("Aim At"));
-  }else
   if(InputActive("Move Left")){
     doSound = true;
     if(!Random(5)) CreateParticle("Fire",16,0,RandomX(1,20),RandomX(-2,2),RandomX(30,70),RGBa(255,255,255));
@@ -35,7 +31,6 @@ private func RobotLogic(){
     if(!Random(5)) Smoke(-16,0,RandomX(10,20));
     if(GetXDir() < 20) SetXDir(GetXDir()+RandomX(2,5));
   }
-  }
 
     if(doSound) Sound("Elevator",false,this,50,0,+1);
   else Sound("Elevator",false,this,50,0,-1);
@@ -48,6 +43,11 @@ private func RobotLogic(){
       am = RandomX(2,8); Smoke(RandomX(-5,5),12,RandomX(10,20));
   }
 
+  if(FrameCounter()%4 == 0){
+  if(InputActive("Aim to Angle") && GetType(InputActive("Aim to Angle")) == C4V_Int){
+      WireAimAt(InputActive("Aim to Angle"));
+  }
+  else
   if(InputActive("Aim Up")){
       if(GetPhase() > 0 && FrameCounter()%4 == 0){
         SetPhase(GetPhase()-1);
@@ -58,6 +58,7 @@ private func RobotLogic(){
         SetPhase(GetPhase()+1);
         Sound("Command");
       }
+  }
   }
 
   if(InputActive("Turn")) SetDir(1);
@@ -76,26 +77,20 @@ public func OutputActive(string OutputName){
    if(OutputName == "[Sensor] Nearby Objects (Vehicle)") return(FindObjects(Find_Distance(200),Find_Category(C4D_Vehicle),Sort_Distance()));
    if(OutputName == "[Sensor] Nearby Objects (Living)") return(FindObjects(Find_Distance(200),Find_Category(C4D_Living),Sort_Distance()));
    if(OutputName == "[Sensor] Nearby Objects (Structure)") return(FindObjects(Find_Distance(200),Find_Category(C4D_Structure),Sort_Distance()));
-     return(0);
+   if(OutputName == "Current Angle"){
+    var iAngle = GetPhase() * 90 / 20;
+    if(GetDir() == DIR_Left) iAngle = -iAngle;
+    return(iAngle);
+   }
+    return(0);
 }
 public func GetResearchBase() { return(CANN); }
 
-func WireAimAt(pObj){
-  var iX = GetX(pObj);
-  var iY = GetY(pObj);
-  var iAngle;
-  // Zielwinkel
-  iAngle = Angle(GetX(),GetY(),iX,iY);
-  // Bei gr��erer Distanz h�her zielen
-  if(Inside(iX-GetX(),+1,+300))
-     iAngle -= Abs(iX-GetX())/12;
-  if(Inside(iX-GetX(),-300,-1))
-     iAngle += Abs(iX-GetX())/12;
-
+func WireAimAt(iAngle){
   while(iAngle > 180) iAngle-=360;
   // Richtung
-  if(iAngle > 0) SetDir(DIR_Right);
-  if(iAngle < 0) SetDir(DIR_Left);
+  //if(iAngle > 0) SetDir(DIR_Right);
+  //if(iAngle < 0) SetDir(DIR_Left);
   // Zielrichtung
   var goal = BoundBy( 20*Abs(iAngle)/90, 0,18);
   if(GetPhase() > goal){

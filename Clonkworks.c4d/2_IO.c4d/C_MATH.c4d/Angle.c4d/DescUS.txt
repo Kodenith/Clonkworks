@@ -1,0 +1,1 @@
+Returns the angle from a point to another, you must provide coordinates for both.

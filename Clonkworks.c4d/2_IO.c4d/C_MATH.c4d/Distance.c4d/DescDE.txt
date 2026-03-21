@@ -1,0 +1,1 @@
+Gibt die Entfernung zwischen zwei Punkten zurück; Sie müssen die Koordinaten für beide Punkte angeben.

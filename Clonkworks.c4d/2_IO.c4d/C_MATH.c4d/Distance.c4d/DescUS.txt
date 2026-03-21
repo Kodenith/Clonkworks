@@ -1,0 +1,1 @@
+Returns the distance between two points, you must provide coordinates for both.

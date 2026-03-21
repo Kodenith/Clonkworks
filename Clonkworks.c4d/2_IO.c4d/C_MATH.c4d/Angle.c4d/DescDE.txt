@@ -1,0 +1,1 @@
+Gibt den Winkel zwischen zwei Punkten zurück; dazu müssen Sie die Koordinaten beider Punkte angeben.
