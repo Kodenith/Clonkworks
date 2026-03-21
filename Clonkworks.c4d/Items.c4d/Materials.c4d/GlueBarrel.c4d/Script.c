@@ -18,3 +18,6 @@ global func GetBarrelType(iMaterial)
 func IsChemicalProduct(){
   return(1);
 }
+func IsAnvilProduct(){
+  return(0);
+}
