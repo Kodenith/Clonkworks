@@ -41,6 +41,7 @@ protected func Activate(clonk)
 }
 
 func CanWireThis(obj,clonk){
+  if(obj->~IsCircuitLocked()) return(0);
   if(Hostile(GetController(clonk),GetOwner(obj)) && FindObject(WSAB)) return(1);
   if(!Hostile(GetController(clonk),GetOwner(obj))) return(1);
 }

@@ -89,7 +89,10 @@ private func HandleInput(){
       SetCommand(this,"UnGrab");
   }
 
-  if(InputActive("Cancel Command")) FinishCommand();
+  if(InputActive("Cancel Command")){
+    FinishCommand();
+    if(GetAction() == "Chop") SetAction("Walk");
+  }
 }
 
 public func OutputActive(string OutputName){

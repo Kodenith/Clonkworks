@@ -49,3 +49,8 @@ func Check(){
     SetPhase(0);
   }
 }
+
+public func RejectGrabbed(pObj){
+  if(Locked) return(1);
+  if(Hostile(GetOwner(),GetOwner(pObj)) && !FindObject(WSAB)) return(1);
+}
