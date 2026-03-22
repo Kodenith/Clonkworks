@@ -1,0 +1,1 @@
+Positive Eingänge schalten es ein und aus. Wenn ein Eingang kontinuierlich ist, wird der Schalter nur zu Beginn gesetzt.

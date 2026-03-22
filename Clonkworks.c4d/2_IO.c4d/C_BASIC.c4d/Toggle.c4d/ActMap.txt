@@ -1,0 +1,14 @@
+[Action]
+Name=Off
+Delay=1
+Facet=0,0,13,9,0,0
+NextAction=Off
+Procedure=FLOAT
+
+[Action]
+Name=On
+Delay=1
+Facet=0,9,13,9,0,0
+NextAction=On
+Procedure=FLOAT
+

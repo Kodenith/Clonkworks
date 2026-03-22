@@ -1,0 +1,1 @@
+Positive inputs toggle it on and off. if an input is continuous - the toggle is only set at the start of it.
