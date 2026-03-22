@@ -86,7 +86,6 @@ func ControlRight(){
   Sound("Click");
 }
 
-func Malfunction(){ OnDetach(); }
 func Damage(){
   if(GetDamage() > 50 && !Locked) OnDetach();
 }

@@ -82,3 +82,8 @@ func Destruction(){
   if(Head) RemoveObject(Head);
     return(_inherited());
 }
+
+func Malfunction(){
+  if(Head)
+  Head->SetR(Random(360));
+}

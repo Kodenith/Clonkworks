@@ -153,3 +153,7 @@ private func MakeCorpse(burn){
 }
 
 public func isClobot(){ return(1); }
+
+func Malfunction(){
+  Punch(this,Random(30));
+}

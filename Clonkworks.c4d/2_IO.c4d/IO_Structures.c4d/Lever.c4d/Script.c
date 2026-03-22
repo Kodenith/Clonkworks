@@ -44,7 +44,6 @@ public func OutputActive(string OutputName){
      return(0);
 }
 
-func Malfunction(){ OnDetach(); }
 func Damage(){
   if(GetDamage() > 50 && !Locked) OnDetach();
 }

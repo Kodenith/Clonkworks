@@ -102,3 +102,7 @@ private func DisplayCam(){
 private func ClearDisplay(){
   SetObjDrawTransform(0,0,0,0,0,0,this,2);
 }
+
+func Malfunction(){
+  Incinerate();
+}
