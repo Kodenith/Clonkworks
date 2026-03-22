@@ -11,5 +11,6 @@
 #appendto CW5P
 #appendto CK5P
 #appendto CT5P
+#appendto EXTF
 
 public func PDI_Othr(){ return(1); }

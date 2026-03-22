@@ -31,7 +31,7 @@ func OnDetach(pClonk){
 }
 
 func RejectCollect(pId,pObject){
-  if(pId == TFLN || pId == STFN || pId == MINE || pId == LFLN || pId == MFLN || pId == STFS || pId == TFLS || pId == BAFN ||pId == BTFN) return(1);
+  if(pId == MINE || pId == LFLN || pId == MFLN || pId == STFS || pId == TFLS) return(1);
   if(pObject->~ExplodeSize() != nil && pObject->~ExplodeSize() > 0) return(0);
   return(1);
 }
