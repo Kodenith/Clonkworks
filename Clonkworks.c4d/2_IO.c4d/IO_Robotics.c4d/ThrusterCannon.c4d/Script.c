@@ -87,7 +87,7 @@ public func OutputActive(string OutputName){
 public func GetResearchBase() { return(CANN); }
 
 func WireAimAt(iAngle){
-  while(iAngle > 180) iAngle-=360;
+  while(iAngle > 180) iAngle-=360;  
   // Richtung
   //if(iAngle > 0) SetDir(DIR_Right);
   //if(iAngle < 0) SetDir(DIR_Left);
