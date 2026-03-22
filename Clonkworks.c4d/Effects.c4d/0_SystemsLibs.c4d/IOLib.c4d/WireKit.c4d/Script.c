@@ -123,6 +123,7 @@ func FinishConnection(to,line,input){
   LocalN("InputString",line) = input;
   Message("$TxtConnect$", Contained(), GetName(line), input);
   Sound("Connect");
+    if(FindObject(ENDW) && Contained()) CreateContents(GetID(),Contained(),1);
   RemoveObject();
 }
 

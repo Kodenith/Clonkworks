@@ -1,0 +1,1 @@
+Der Verkabelungssatz wird nicht verbraucht, sobald das Kabel angeschlossen ist.

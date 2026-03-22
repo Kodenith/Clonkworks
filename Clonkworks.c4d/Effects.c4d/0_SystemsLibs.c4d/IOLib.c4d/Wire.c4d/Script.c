@@ -3,8 +3,10 @@
 #strict 3
 protected func Initialize()
 {
+  if(!FindObject(IVWR)){
   Local(0) = 343;
   Local(1) = 2;
+  }
 	
   SetAction("Connect");  
   SetVertex(0, 0, GetX()); SetVertex(0, 1, GetY());

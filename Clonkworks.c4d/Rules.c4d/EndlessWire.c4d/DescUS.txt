@@ -1,0 +1,1 @@
+Wire kits do not get consumed once the wire is connected.
