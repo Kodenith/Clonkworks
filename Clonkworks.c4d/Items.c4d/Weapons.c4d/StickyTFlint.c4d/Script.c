@@ -66,3 +66,5 @@ public func Stickiness(){
 public func GetResearchBase() { return(TFLN); }
 
 func RejectEntrance(){ if(GetAction() != "Idle") return(1); } 
+
+public func IsChemicalProduct(){ return(GetID() != TFLS); }
