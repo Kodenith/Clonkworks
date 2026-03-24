@@ -102,3 +102,8 @@ func WireAimAt(iAngle){
           Sound("Command");
   }
 }
+
+public func ControlThrow(pClonk)  // Schie�en
+{
+  return(0);
+}

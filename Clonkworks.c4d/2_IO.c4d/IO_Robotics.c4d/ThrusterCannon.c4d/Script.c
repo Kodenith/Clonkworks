@@ -101,3 +101,14 @@ func WireAimAt(iAngle){
           Sound("Command");
   }
 }
+
+public func ControlThrow(pClonk)    // Feuern / Inhalt
+{
+  // Der Clonk will doch bestimmt nur etwas nachladen: nicht vorzeitig abfeuern
+  var pThing;
+  if (pThing = pClonk->Contents())
+    if (AllowLoad(GetID(pThing)))
+      return(0);
+  // Abfeuern wenn m�glich, sonst Objekt herausnehmen
+  return(1);
+}
