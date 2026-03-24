@@ -1,1 +1,0 @@
-Keeps enemies from just scaling the walls.

@@ -1,2 +1,0 @@
-TxtDrawbridgeup=Drawbridge up
-TxtDrawbridgedown=Drawbridge down

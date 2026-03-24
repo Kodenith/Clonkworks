@@ -1,2 +1,0 @@
-TxtDown=Down
-TxtExit=Exit

@@ -1,2 +1,0 @@
-DE:Turm
-US:Tower

@@ -1,0 +1,1 @@
+Support for other packs is complicated. using include's in system.c4g doesnt work, and using RequireDef crashes LegacyClonk without the modified pack. So ive decided to move all knights support onto the playground within SupKnights.c4d. It is also to be used for other cw scenario's with Knights Support. If you wanna use knights with CW, grab that file.

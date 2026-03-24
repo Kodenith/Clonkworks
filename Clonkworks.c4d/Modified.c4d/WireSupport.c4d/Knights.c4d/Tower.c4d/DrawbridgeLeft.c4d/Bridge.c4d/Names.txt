@@ -1,2 +1,0 @@
-DE:Zugbrücke links
-US:Draw bridge left
