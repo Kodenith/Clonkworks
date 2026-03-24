@@ -78,6 +78,7 @@ public func DisconnectWire(Wire,Clonk){
   if(!GetActionTarget(1,Wire)) return(0);
 
   GetActionTarget(1,Wire)->Sound("Click");
+  if(!FindObject(ENDW))
   GetActionTarget(1,Wire)->CastObjects(WRKT,1,10);
   RemoveObject(Wire);
   Sound("Click");
