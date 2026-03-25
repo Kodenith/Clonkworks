@@ -6,7 +6,7 @@ func Hit(){
 	if(!Random(3)) Sound("MetalHit*");
 }
 
-func isAnvilProduct(){
+func IsAnvilProduct(){
 	return(1);
 }
 
