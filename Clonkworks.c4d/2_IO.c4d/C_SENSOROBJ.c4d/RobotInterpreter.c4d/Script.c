@@ -70,12 +70,12 @@ public func OutputActive(string OutputName){
         if(OutputName == "Detected Object") return(Detected);
         if(OutputName == "Detected X") return(Dx);
         if(OutputName == "Detected Y") return(Dy);
-    }
 
-    if(OutputName == "Iterated Object"){
-      var DetectList = InputActive("Robot Sensor Results");
-      if(!DetectList || GetType(DetectList) != C4V_Array) return(nil);
-      return(DetectList[Abs(FrameCounter())%GetLength(DetectList)]);
+        if(OutputName == "Iterated Object"){
+          var DetectList = InputActive("Robot Sensor Results");
+          if(!DetectList || GetType(DetectList) != C4V_Array) return(nil);
+          return(DetectList[Abs(FrameCounter())%GetLength(DetectList)]);
+        }
     }
     
     return(0);

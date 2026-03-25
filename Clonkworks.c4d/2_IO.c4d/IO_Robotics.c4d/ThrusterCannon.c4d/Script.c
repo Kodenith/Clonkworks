@@ -64,7 +64,7 @@ private func RobotLogic(){
   if(InputActive("Turn")) SetDir(1);
   else if(DoesInputHaveWire("Turn")) SetDir(0);
 
-  if(InputActive("Fire")) Fire(true);
+  if(InputActive("Fire") && FrameCounter()%28 == 0) Fire(true);
 
 
 }
