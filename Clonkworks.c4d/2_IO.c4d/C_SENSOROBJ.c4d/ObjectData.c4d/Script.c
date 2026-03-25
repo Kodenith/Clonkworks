@@ -10,7 +10,7 @@ func Initialize() {
 }
 
 public func OutputList(){
-  return(["ID String","Energy","Mana","Breath","Owner Name","X Coordinate","Y Coordinate","Container","Held Item","Contents Amount","Is Construction Site","Is Grabbable","Is a Crew Member","Is Prey","Contact Bottom","Contact Top","Contact Left","Contact Right"]);
+  return(["ID String","Energy","Mana","Breath","Owner Name","X Coordinate","Y Coordinate","Container","Held Item","Contents Amount","Is Construction Site","Is Grabbable","Is a Crew Member","Is Prey","Contact Bottom","Contact Top","Contact Left","Contact Right","Direction"]);
 }
 
 public func InputList(){
@@ -44,6 +44,8 @@ public func OutputActive(string OutputName){
    if(OutputName == "Contact Top") return(GetContact(A,-1) & CNAT_Top);
    if(OutputName == "Contact Left") return(GetContact(A,-1) & CNAT_Left);
    if(OutputName == "Contact Right") return(GetContact(A,-1) & CNAT_Right);
+
+   if(OutputName == "Direction") return(GetDir(A));
      return(0);
 }
 
