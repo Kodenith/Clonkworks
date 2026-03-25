@@ -45,8 +45,11 @@ private func HandleInput(){
       SetXDir(5);
       SetAction("Jump");
     }
-    if(GetContact(this, -1) & CNAT_Top) if(GetAction() == "Hangle" && MoveDir == COMD_Down){
+    if(GetContact(this, -1) & CNAT_Top) if(GetAction() == "Hangle" && (MoveDir == COMD_Down || InputActive("Jump")) )){
       SetAction("Jump");
+    }
+    if(GetContact(this, -1) & CNAT_Top) if(GetAction() == "Jump"){
+      SetAction("Hangle");
     }
 
   if(InputActive("Jump")){
@@ -126,6 +129,8 @@ private func Punching()
 
 protected func Death(int iKilledBy)
 {
+  GameCallEx("OnClobotDeath", this(), iKilledBy);
+
   // Der Broadcast k�nnte seltsame Dinge gemacht haben: Clonk ist noch tot?
   if (GetAlive()) return(nil);
   
@@ -135,7 +140,12 @@ protected func Death(int iKilledBy)
   Sound("ClobotDeath");
   CastObjects(CLSC,RandomX(3,7),RandomX(20,45));
   CastParticles("PxSpark",RandomX(2,6),RandomX(30,70),0,5,20,50,RGBa(255,255,0),RGBa(255,150,0));
+  var own = GetOwner();
   MakeCorpse(OnFire());
+
+  if (!FindObject2(Find_ID(CLBT),Find_Owner(own)))
+    GameCallEx("RelaunchClobot",own,iKilledBy);
+
   return(1);
 }
 protected func Destruction()
