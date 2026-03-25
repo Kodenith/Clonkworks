@@ -45,7 +45,7 @@ private func HandleInput(){
       SetXDir(5);
       SetAction("Jump");
     }
-    if(GetContact(this, -1) & CNAT_Top) if(GetAction() == "Hangle" && (MoveDir == COMD_Down || InputActive("Jump")) )){
+    if(GetContact(this, -1) & CNAT_Top) if(GetAction() == "Hangle" && (MoveDir == COMD_Down || InputActive("Jump"))){
       SetAction("Jump");
     }
     if(GetContact(this, -1) & CNAT_Top) if(GetAction() == "Jump"){
