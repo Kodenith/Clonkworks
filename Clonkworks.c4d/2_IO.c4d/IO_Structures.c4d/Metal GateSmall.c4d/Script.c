@@ -14,14 +14,14 @@ public func InputList(){
 }
 
 func Damage(){
-  if(GetDamage() > 80 && !Locked) Explode(30);
+  if(GetDamage() > 35 && !Locked) Explode(20);
 }
-func GetResearchBase(){ return(MGTS); }
+func GetResearchBase(){ return(CC1_); }
 
 local basement2;
 
 func Initialize(){
-  basement2 = CreateObject(GBAS,0,-17);
+  basement2 = CreateObject(GBAS,0,-10);
 
   SetAction("Open");
 }
@@ -34,7 +34,7 @@ func Destruction(){
 func HandleGate(){
   if(GetCon() < 100) return(0);
   if(GetAction() == "Open"){
-    SetSolidMask(10*GetPhase()-1,0,10,35,0,0);
+    SetSolidMask(4*GetPhase()-1,0,4,20,0,0);
     if(GetPhase() >= 15 && InputActive("Close") && EnergyCheck(EnergyCheck(10000))){
       SetAction("Close");
       DoEnergy(-10000);
@@ -42,7 +42,7 @@ func HandleGate(){
   }
 
   if(GetAction() == "Close"){
-    SetSolidMask((10*(16-GetPhase()-1)),0,10,35,0,0);
+    SetSolidMask((4*(16-GetPhase()-1)),0,4,20,0,0);
     if(GetPhase() >= 15 && !InputActive("Close") && EnergyCheck(EnergyCheck(10000))){
       SetAction("Open");
       DoEnergy(-10000);

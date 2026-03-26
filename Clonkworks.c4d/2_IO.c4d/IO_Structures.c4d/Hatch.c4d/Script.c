@@ -22,8 +22,8 @@ local basement2;
 
 func Initialize(){
   RemoveObject(basement);
-  basement2 = CreateObject(BAS1,-29,5);
-  basement = CreateObject(BAS1,29,5);
+  basement2 = CreateObject(GBAS,-23,5);
+  basement = CreateObject(GBAS,23,5);
   SetAction("Open");
 }
 
@@ -35,7 +35,7 @@ func Destruction(){
 func HandleGate(){
   if(GetCon() < 100) return(0);
   if(GetAction() == "Open"){
-    SetSolidMask(35*GetPhase(),0,35,10,0,0);
+    SetSolidMask(35*GetPhase()-1,0,35,10,0,0);
     if(GetPhase() >= 15 && InputActive("Close") && EnergyCheck(EnergyCheck(10000))){
       SetAction("Close");
       DoEnergy(-10000);
@@ -43,7 +43,7 @@ func HandleGate(){
   }
 
   if(GetAction() == "Close"){
-    SetSolidMask(35*(16-GetPhase()),0,35,10,0,0);
+    SetSolidMask(35*(16-GetPhase()-1),0,35,10,0,0);
     if(GetPhase() >= 15 && !InputActive("Close") && EnergyCheck(EnergyCheck(10000))){
       SetAction("Open");
       DoEnergy(-10000);
