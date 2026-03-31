@@ -19,3 +19,13 @@ func Activate(){
 }
 
 func IsAdvancedProduct(){ return(1); }
+
+func CalcValue(){
+	if(FindObject(ENDC)) return(0);
+	return(7);
+}
+
+func CalcDefValue(){
+	if(FindObject(ENDC)) return(0);
+	return(7);
+}
