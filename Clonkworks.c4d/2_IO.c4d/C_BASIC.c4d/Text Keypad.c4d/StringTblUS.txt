@@ -1,0 +1,2 @@
+TxtModify=Use
+TxtPlaceError=<c ff0000>Strings can only use the %v placeholder!</c>

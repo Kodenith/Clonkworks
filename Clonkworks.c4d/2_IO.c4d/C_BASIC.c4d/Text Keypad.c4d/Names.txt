@@ -1,0 +1,2 @@
+DE:Buchstabentastatur
+US:Text Keypad

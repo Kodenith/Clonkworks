@@ -1,0 +1,1 @@
+Allows you to type in text for temporary use and calculations. Use math circuits to perform such things on the output.

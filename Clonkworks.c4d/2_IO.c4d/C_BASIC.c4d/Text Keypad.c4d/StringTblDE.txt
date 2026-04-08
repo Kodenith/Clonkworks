@@ -1,0 +1,2 @@
+TxtModify=Verwendung
+TxtPlaceError=<c ff0000>Zeichenfolgen können nur Platzhalter %v verwenden!</c>

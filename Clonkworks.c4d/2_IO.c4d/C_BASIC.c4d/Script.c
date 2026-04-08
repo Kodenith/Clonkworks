@@ -5,13 +5,13 @@ func Hit(){ if(!Random(3)) Sound("MetalHit*"); }
 func GetResearchBase(){ return(WRKT); }
 func IsAnvilProduct(){ return(1); }
 
-public func UsedCircuits(){ return([I1_B,I1_S,I1_K,I2_L,I2_T,I2_S,I1_T,I1_A,I1MN,I1TG]); }
+public func UsedCircuits(){ return([I1_B,I1_S,I1_K,I2_L,I2_T,I2_S,I1_T,I1_A,I1NP,I1SP,I1MN,I1TG]); }
 
 public func Activate(pClonk){
     [$TxtUse$]
     CreateMenu(GetID(),pClonk,this,4,"$TxtMenu$");
     for(var Thing in UsedCircuits()){
-        AddMenuItem("$TxtUse$: %s","NewCircuit",Thing,pClonk,0,0,GetDesc(,Thing),6,GetPlrColorDw(GetOwner(Contained())));
+        AddMenuItem("%s","NewCircuit",Thing,pClonk,0,0,GetDesc(,Thing),6,GetPlrColorDw(GetOwner(Contained())));
     }
 
     return(1);
