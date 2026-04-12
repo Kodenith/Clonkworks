@@ -1,27 +1,27 @@
-Clonk
-Ensign
-Lieutenant
-Captain
-Major
-Lieutenant Colonel
-Colonel
-Brigade General
-Major General
-Lieutenant General
-General
-Midshipman
-Commander
-Commodore
-Rear-Admiral
-Vice-Admiral
-Admiral
-Fleet Admiral
-Counsellor of State
-Secretary of State
-Chancellor
-Vice President
-President
-Premier
+Tinkerer
+Apprentice
+Aide
+Junior
+Mechanic
+Engineer
+Automation Engineer
+Electrical Engineer
+Mechanical Engineer
+Software Engineer
+Technician
+Engineering Manager
+Software Engineering Manager
+Project Engineering Manager
+Engineering Director
+Vice-Engineering Director
+Lead Engineer
+Engineering Executive
+Chief Engineer
+Chief Engineering Officer
+Chief Technical Office
+Head of Engineering
+President of Engineering
+Vice-President of Engineering
 *%s First Class
 *%s Second Degree
 *%s Without Equal
