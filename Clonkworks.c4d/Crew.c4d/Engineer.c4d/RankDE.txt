@@ -20,8 +20,8 @@ Chefingenieur
 Chief Engineering Officer
 Chief Technical Officer
 Leiter der Entwicklungsabteilung
-Präsident der Entwicklungsabteilung
 Vizepräsident der Entwicklungsabteilung
+Präsident der Entwicklungsabteilung
 *%s Erster Klasse
 *%s Zweiten Grades
 *%s ohne Gleichen

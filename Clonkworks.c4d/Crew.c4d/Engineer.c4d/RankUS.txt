@@ -20,8 +20,8 @@ Chief Engineer
 Chief Engineering Officer
 Chief Technical Office
 Head of Engineering
-President of Engineering
 Vice-President of Engineering
+President of Engineering
 *%s First Class
 *%s Second Degree
 *%s Without Equal
