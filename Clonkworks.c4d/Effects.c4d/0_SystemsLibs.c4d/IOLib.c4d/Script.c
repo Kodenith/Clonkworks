@@ -166,3 +166,24 @@ func FxCircuitDependanceTimer(Target,EffectNum,Time){
       return(-1);
   }
 }
+
+//Scripted Wiring Function!
+//Wire you circuits via script!
+
+global func ScriptWire(OutputFrom,InputTo,OutputName,InputName){
+    if(!OutputFrom || GetType(OutputFrom) != C4V_C4Object) FatalError("Output Object Parameter in Function 'ScriptWire()' is nil or not an object!");
+    if(!InputTo || GetType(InputTo) != C4V_C4Object) FatalError("Input Object Parameter in Function 'ScriptWire()' is nil or not an object!");
+
+    if(!OutputFrom->~IsCircuit()) FatalError("Output Object Parameter in Function 'ScriptWire()' is not a circuit or wireable object!");
+    if(!OutputFrom->~WireFrom()) FatalError("Output Object Parameter in Function 'ScriptWire()' does not allow outputs!");
+    
+    if(!InputTo->~IsCircuit()) FatalError("Input Object Parameter in Function 'ScriptWire()' is not a circuit or wireable object!");
+    if(!InputTo->~WireTo()) FatalError("Input Object Parameter in Function 'ScriptWire()' does not allow inputs!");
+
+    var NewWire = CreateObject(WIRE);
+    NewWire->SetAction("Connect",OutputFrom,InputTo);
+
+    LocalN("OutputString",NewWire) = OutputName;
+    LocalN("InputString",NewWire) = InputName;
+}
+

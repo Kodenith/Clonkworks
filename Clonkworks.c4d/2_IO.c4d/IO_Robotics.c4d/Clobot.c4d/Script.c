@@ -31,7 +31,7 @@ private func HandleInput(){
 
   if(InputActive("Cancel Command")) FinishCommand();
 
-    SetComDir(MoveDir);
+    if(!GetCommand()) SetComDir(MoveDir);
     if(GetContact(this, -1) & CNAT_Right) if(GetAction() == "Walk" && GetDir() == DIR_Right) SetAction("Scale");
     if(GetContact(this, -1) & CNAT_Left) if(GetAction() == "Walk" && GetDir() == DIR_Left) SetAction("Scale");
     if(GetContact(this, -1) & CNAT_Right) if(GetAction() == "Jump" && GetDir() == DIR_Right) SetAction("Scale");
