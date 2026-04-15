@@ -14,7 +14,7 @@ public func OutputList(){
 }
 
 public func InputList(){
-  return(["Move Left","Move Right","Move Up","Move Down","Jump","Dig","Stop Dig","Activiate Held","Throw","Chop","Grab","Ungrab","Follow Object","Acquire Object","Build Structure","Cancel Command"]);
+  return(["Move Left","Move Right","Move Up","Move Down","Jump","Dig","Stop Dig","Activiate Held","Throw","Chop","Grab Object","Ungrab","Push Grabbed Into Object","Follow Object","Acquire Object","Build Structure","Cancel Command"]);
 }
 
 public func HasCamera(){ return(1); }
@@ -71,10 +71,11 @@ private func HandleInput(){
 
   if(InputActive("Chop")) ContextChop();
 
-  if(InputActive("Grab") && !GetCommand()){
-      var ToGrab = FindObject2(Find_AtPoint(),Find_NoContainer(),Find_OCF(OCF_Grab));
+  if(InputActive("Grab Object") && !GetCommand() && GetAction() != "Push"){
+      var ToGrab = InputActive("Grab Object");
+      if(GetType(ToGrab) == C4V_C4Object) 
       if(ToGrab)
-      SetCommand(this,"Grab",ToGrab);
+        SetCommand(this,"Grab",ToGrab);
   }
 
   if(InputActive("Follow Object") && GetType(InputActive("Follow Object")) == C4V_C4Object && !GetCommand()){
