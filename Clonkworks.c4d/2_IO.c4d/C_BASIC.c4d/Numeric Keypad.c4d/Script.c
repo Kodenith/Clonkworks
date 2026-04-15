@@ -21,7 +21,7 @@ func MustBeOnWall(){ return(1); }
 
 //used by wire, check if a certain output is active
 public func OutputActive(string OutputName){
-    if(Value)
+    if(Value != nil)
      return(Value);
 
      return(nil);
