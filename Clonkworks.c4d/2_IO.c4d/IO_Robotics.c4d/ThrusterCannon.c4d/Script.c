@@ -2,7 +2,10 @@
 #include CANN
 #include IO__
 
+local LastFired;
+
 func Initialize(){
+  LastFired = 0;
   SetPlrViewRange(200,this);
   return(_inherited());
 }
@@ -64,7 +67,10 @@ private func RobotLogic(){
   if(InputActive("Turn")) SetDir(1);
   else if(DoesInputHaveWire("Turn")) SetDir(0);
 
-  if(InputActive("Fire") && FrameCounter()%28 == 0) Fire(true);
+  if(InputActive("Fire") && LastFired < FrameCounter()-38){
+      Fire(true);
+      LastFired = FrameCounter();
+  }
 
 
 }
