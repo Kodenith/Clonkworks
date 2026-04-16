@@ -28,7 +28,7 @@ Timer=1
 TimerCall=HandleInput
 LineConnect=128
 Pathfinder=3
-NoPushEnter=1
+
 NoBreath=1
 
 [Physical]

@@ -14,7 +14,7 @@ public func OutputList(){
 }
 
 public func InputList(){
-  return(["Move Left","Move Right","Move Up","Move Down","Jump","Dig","Stop Dig","Activiate Held","Throw","Chop","Grab Object","Ungrab","Push Grabbed Into Object","Follow Object","Acquire Object","Build Structure","Cancel Command"]);
+  return(["Move Left","Move Right","Move Up","Move Down","Jump","Dig","Stop Dig","Activiate Held","Throw","Chop","Grab Specific Object","Grab Any Nearby Object","Ungrab","Push Grabbed Into Object","Follow Object","Acquire Object","Build Structure","Cancel Command"]);
 }
 
 public func HasCamera(){ return(1); }
@@ -31,7 +31,8 @@ private func HandleInput(){
 
   if(InputActive("Cancel Command")) FinishCommand();
 
-    if(!GetCommand()) SetComDir(MoveDir);
+  if(!GetCommand()) SetComDir(MoveDir);
+  
     if(GetContact(this, -1) & CNAT_Right) if(GetAction() == "Walk" && GetDir() == DIR_Right) SetAction("Scale");
     if(GetContact(this, -1) & CNAT_Left) if(GetAction() == "Walk" && GetDir() == DIR_Left) SetAction("Scale");
     if(GetContact(this, -1) & CNAT_Right) if(GetAction() == "Jump" && GetDir() == DIR_Right) SetAction("Scale");
@@ -69,13 +70,27 @@ private func HandleInput(){
     }
   }
 
-  if(InputActive("Chop")) ContextChop();
+  if(InputActive("Chop") && !GetCommand()) ContextChop();
 
-  if(InputActive("Grab Object") && !GetCommand() && GetAction() != "Push"){
-      var ToGrab = InputActive("Grab Object");
+  if(InputActive("Grab Specific Object") && !GetCommand() && GetAction() != "Push"){
+      var ToGrab = InputActive("Grab Specific Object");
       if(GetType(ToGrab) == C4V_C4Object) 
       if(ToGrab)
         SetCommand(this,"Grab",ToGrab);
+  }
+
+  if(InputActive("Push Grabbed Into Object") && !GetCommand() && GetAction() == "Push"){
+      var Building = InputActive("Push Grabbed Into Object");
+      var Grabbed = GetActionTarget();
+
+      if(Building && GetType(Building) == C4V_C4Object && Grabbed) 
+        SetCommand(this,"PushTo",Grabbed,0,0,Building);
+  }
+
+  if(InputActive("Grab Any Nearby Object") && !GetCommand()){
+      var ToGrab = FindObject2(Find_AtPoint(),Find_NoContainer(),Find_OCF(OCF_Grab));
+      if(ToGrab)
+      SetCommand(this,"Grab",ToGrab);
   }
 
   if(InputActive("Follow Object") && GetType(InputActive("Follow Object")) == C4V_C4Object && !GetCommand()){
@@ -98,6 +113,8 @@ private func HandleInput(){
     FinishCommand();
     if(GetAction() == "Chop") SetAction("Walk");
   }
+
+  if(GetCommand() == "PushTo" && Contained(GetCommand(this,1))) FinishCommand();
 }
 
 public func OutputActive(string OutputName){
@@ -169,3 +186,5 @@ public func isClobot(){ return(1); }
 func Malfunction(){
   Punch(this,Random(30));
 }
+
+func RejectEntrance(){ return(1); }
