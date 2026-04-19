@@ -88,7 +88,7 @@ private func HandleInput(){
   }
 
   if(InputActive("Grab Any Nearby Object") && !GetCommand()){
-      var ToGrab = FindObject2(Find_AtPoint(),Find_NoContainer(),Find_OCF(OCF_Grab));
+      var ToGrab = FindObject2(Find_AtPoint(),Find_NoContainer(),Find_OCF(OCF_Grab),Find_Exclude(this),Find_Not(Find_ID(CLBT)));
       if(ToGrab)
       SetCommand(this,"Grab",ToGrab);
   }
