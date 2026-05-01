@@ -1,2 +1,2 @@
-DE:Klebstoffbeh√§lter
+DE:Klebstoffbeh‰lter
 US:Glue barrel

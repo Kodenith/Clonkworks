@@ -1,0 +1,10 @@
+TxtUse=Anzeigen
+
+TxtMenu1=%s Schaltungsdaten:
+CHead1=Eingänge:
+CInput=[%s]: %v
+CHead2=Ausgänge:
+COutput=[%s]: %v
+
+TxtMenu2=IDs benachbarter Objekte
+IDesc=%s : %v

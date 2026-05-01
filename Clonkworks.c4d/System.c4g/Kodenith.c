@@ -108,3 +108,11 @@ global func LogObjectCommand(pObj){
 	var Data = GetCommand(pObj,5);
 	Log("SetCommand(%v,%v,%v,%v,%v,%v,%v);",pObj,Name,Target,X,Y,Target2,Data);
 }
+
+global func SLog(Anything){
+	if(GetType(Anything) != C4V_String){
+		Anything = Format("%v",Anything);
+	}
+
+	DebugLog(Anything);
+}

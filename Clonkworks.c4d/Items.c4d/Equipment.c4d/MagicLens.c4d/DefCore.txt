@@ -1,0 +1,23 @@
+[DefCore]
+Name=Engineer's Lens
+id=ELNS
+Version=4,9,8
+Category=C4D_Object|C4D_SelectMaterial|C4D_SelectKnowledge|C4D_SelectHomebase
+MaxUserSelect=5
+Value=15
+Mass=10
+Width=11
+Height=16
+Offset=-5,-8
+Picture=13,17,46,62
+Vertices=3
+VertexX=0,-1,1
+VertexY=0,6,-6
+VertexFriction=20,20,20
+VertexCNAT=16,8,4
+Timer=5
+TimerCall=UpdateMenu
+Rotate=1
+Rebuy=1
+Components=METL=1;SAND=1;WOOD=1
+Collectible=1

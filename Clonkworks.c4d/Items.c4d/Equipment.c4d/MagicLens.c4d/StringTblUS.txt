@@ -1,0 +1,12 @@
+TxtUse=View
+
+TxtMenu1=%s circuit data:
+CHead1=Inputs:
+CInput=[%s]: %v
+CHead2=Outputs:
+COutput=[%s]: %v
+
+TxtMenu2=ID's of nearby objects
+IDesc=%s : %v
+
+Bummer=Error! This circuit has no input and output!

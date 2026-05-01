@@ -1,0 +1,2 @@
+Der beste Freund eines Ingenieurs.
+Hiermit kannst du alle Daten zu Schaltkreisen und verkabelbaren Objekten an deiner aktuellen Position einsehen. Außerdem kannst du die IDs von Objekten in der Nähe anzeigen.

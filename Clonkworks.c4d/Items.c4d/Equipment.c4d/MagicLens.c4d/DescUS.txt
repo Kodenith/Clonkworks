@@ -1,0 +1,2 @@
+Engineer's best friend.
+Allows you to view all data about circuits and wireable objects currently at your position. Alongside that, you can also view the ID's of nearby objects.

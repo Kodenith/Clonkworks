@@ -1,8 +1,10 @@
 #strict 3
 #include CLNK
 #include IO__
+local ExistFrame;
 
 func Initialize(){
+  ExistFrame = FrameCounter();
   SetAction("Walk");
   SetDir(Random(2));
   Resort(this);
@@ -187,4 +189,7 @@ func Malfunction(){
   Punch(this,Random(30));
 }
 
-func RejectEntrance(){ return(1); }
+func RejectEntrance(){ 
+  if(FrameCounter()-5 < ExistFrame) return(0);
+  return(1);
+}
