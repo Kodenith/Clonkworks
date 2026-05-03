@@ -1,12 +1,12 @@
 # <p align="center">Clonkworks</p>
 
-<p align="center">Automation and Better Mining for LegacyClonk</p>
+<p align="center">The new technological era for LegacyClonk</p>
 
-Clonkworks is a In-development mod for LegacyClonk, that adds a lot of new technology and more stuff to do underground. Alongside that it adds a lot of useful features, systens, and functions.
+Clonkworks brings you brand new technology never-seen before!
+Build settlement sized factories, Extract hundreds of ore from the ground, make your own traps and contraptions, the possibilities are endless! This project was handcrafted by me, with love for the franchise, and with the help of some kind people :)
 
-Currently, there's a working automation system done with many more things planned for it. alongside new gear, weapons, hazards, structures, and more.
 
-<p align="center"><b>Current Version: Release 1</b></p>
+<p align="center"><b>Current Version: R1.0</b></p>
 
 Want to contribute to this mod's creation? feel free to do so! you are free to report bugs, suggest anything, or even add things. If you wanna discuss something outside of github, feel free to ask me anything on the Clonk Games discord server.
 
@@ -31,4 +31,5 @@ The mod is fully translated in English & German, english being the primary langu
 
 Credits are included in the c4d folder, in Credits.txt.
 
-Music composed by Hans-Christian Kühl & Sebastian Burkhart (Originally for Clonk Endeavor)
+Most Music is composed by Hans-Christian Kühl & Sebastian Burkhart (Originally for Clonk Endeavor).<br>
+Hard Work is composed by Kodenith.
