@@ -1,0 +1,10 @@
+[Action]
+Name=Pumping
+Length=42
+Delay=1
+Facet=0,0,48,40,0,0
+PhaseCall=PumpOut
+NextAction=Pumping
+Sound=Gear
+EnergyUsage=500
+

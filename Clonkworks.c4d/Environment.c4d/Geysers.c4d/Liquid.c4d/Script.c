@@ -12,7 +12,7 @@ func Initialize() {
     SetY(GetY()-1);
     if(GetY() <= 0) break;
   }
-  SetCategory(C4D_Structure); 
+  SetCategory(C4D_Vehicle); 
 
   SetLiquid("Lava");
   SetRandom(RandomX(120,1500));
