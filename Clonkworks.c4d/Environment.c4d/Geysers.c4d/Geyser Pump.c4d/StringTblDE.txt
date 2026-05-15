@@ -1,2 +1,3 @@
 Warnung1=Diese Pumpe muss auf einen Geysir gestellt werden!
 Warnung2=Geysir leer!
+Info=Wird extrahiert: %s

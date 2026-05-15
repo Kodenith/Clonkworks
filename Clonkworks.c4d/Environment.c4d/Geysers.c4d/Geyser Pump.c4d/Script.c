@@ -6,9 +6,10 @@
 
 local Extract; //Either the string name of the material, or the id of the gas.
 local Amount; //Amount of material or gas. if it runs out it stops extracting.
+local IBmax; //Used as the max value for infobar.
+local TempGey; //No, this doesnt temporarily store a gay person. it stores the geyser its placed on to be later deleted.
 
 //wiring
-
 public func InputList(){
   return(["Lock"]);
 }
@@ -44,20 +45,29 @@ public func RejectConstruction(iX,iY,pBuilder){
 	return(0);
 }
 
-protected func Initialize(){
-  var LiquidGeyser = FindObject2(Find_AtPoint(0,10),Find_ID(GEY1));
+protected func Construction(){
+  var LiquidGeyser = FindObject2(Find_Or(Find_OnLine(-24,0,24,0),Find_OnLine(-24,-6,24,-6)),Find_ID(GEY1));
   var GasGeyser = 0; //TODO: Add this
 
   if(LiquidGeyser){
     Extract = LocalN("Liquid",LiquidGeyser);
-    Amount = 20000;  //may be either low or high, can be changed later if so.
-    RemoveObject(LiquidGeyser);
+    Amount = RandomX(20,100)*200;  //now its random to be consistant with deposits.
+    TempGey = LiquidGeyser;
+    SetX(GetX(TempGey));
   }else if(GasGeyser){
     //TODO: Add this
   }else{
     Extract = 0;
     Amount = 0; //no data, machine does not function.
   }
+
+  IBmax = Amount;
+
+  return(_inherited());
+}
+
+func Initialize(){
+  if(TempGey) RemoveObject(TempGey);
 }
 
 protected func Manage(){
@@ -75,6 +85,11 @@ protected func PumpOut(){
   //pump out either liquid or gas. both are their own functions.
   if(GetType(Extract) == C4V_String){
     PumpLiquid();
+  }
+
+  if(!Amount){
+    Sound("Discharge");
+    Message("$Warning2$",this);
   }
 }
 
@@ -132,8 +147,43 @@ func Damage(){
 func Incineration(){
   //explode everything inside before burning.
   if(GetType(Extract) == C4V_String){
-    CastPXS(Extract,Max(Amount,1000),100,0,-10);
+    TempGey = CreateObject(GEY1,0,18);
+    LocalN("Liquid",TempGey) = Extract;
+    TempGey->DoDamage(200);
   }
 
+  if(basement) RemoveObject(basement);
   ChangeDef(DGPP);
+}
+
+/* INFOBAR */
+public func InfobarTrigger(){
+	return(IB_Grab);
+}
+
+public func InfobarMax(){
+	return(IBmax);
+}
+
+public func InfobarValue(){
+	return(Amount);
+}
+
+public func InfobarColor(){
+  if(GetType(Extract) == C4V_String){
+    var R = GetMaterialVal("Color","Material",Material(Extract),0);
+    var G = GetMaterialVal("Color","Material",Material(Extract),1);
+    var B = GetMaterialVal("Color","Material",Material(Extract),2);
+
+    return(RGBa(R,G,B));
+  }
+}
+
+public func InfobarInfo(){
+  var ExtractWhat;
+  if(GetType(Extract) == C4V_String) ExtractWhat = Extract;
+
+  if(Amount)
+	return(Format("$Info$",ExtractWhat));
+  else return("$Warning2$");
 }

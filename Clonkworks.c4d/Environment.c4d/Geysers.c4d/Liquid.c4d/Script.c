@@ -21,7 +21,21 @@ func Initialize() {
 }
 
 func Damage(){
-  if(GetDamage() > 150) RemoveObject();
+  if(GetDamage() > 150){
+    //Let's make the destruction cool!
+    // 1. Dirt - it's made of it.
+    CastPXS("Earth",48*3,20);
+
+    // 2. Spew stuff one last time.
+    CastPXS(Liquid,RandomX(100,280),RandomX(40,100));
+
+    // 3. Shake the camera.
+    ShakeViewPort(15,0,GetX(),GetY());
+    Sound("Earthquake");
+
+    // 4. die.
+    RemoveObject();
+  }
 }
 
 public func SetLiquid(string Type){
@@ -40,8 +54,6 @@ private func Update(){
       if(!GBackSolid(GetVertex(0,0),GetVertex(0,1))){
         Intensity = RandomX(10,25);
         SetAction("Spew");
-      }else{
-        DoDamage(RandomX(1,15));
       }
     }
   }else{
@@ -55,9 +67,6 @@ private func Update(){
         }
         if(Intensity < Intensity2) Intensity += RandomX(2,10);
         ShakeViewPort(Intensity/3,this,0,0);
-      }else{
-        SetAction("Idle");
-        DoDamage(RandomX(1,15));
       }
   }
 }
