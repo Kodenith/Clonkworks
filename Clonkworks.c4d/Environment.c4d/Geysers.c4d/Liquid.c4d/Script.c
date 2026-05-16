@@ -16,7 +16,7 @@ func Initialize() {
 
   SetLiquid("Lava");
   SetRandom(RandomX(120,1500));
-
+  AddEffect("Gli",this,1,0,this);
   return(1);
 }
 
@@ -39,8 +39,10 @@ func Damage(){
 }
 
 public func SetLiquid(string Type){
+  /*
   if(Type == "DuroLava") SetName(Format("Lava Geyser",Type));
   else SetName(Format("%s Geyser",Type));
+  */
   return(Liquid = Type);
 }
 
@@ -69,4 +71,15 @@ private func Update(){
         ShakeViewPort(Intensity/3,this,0,0);
       }
   }
+}
+
+
+/* EFFECT
+for displaying data in the description. no more, no less. */
+
+public func FxGliInfo(target,effectnum){
+  var cId = RMMG; //random magic id, its a bunch of questionmarks.
+  if(GetBarrelType(Material(Liquid))) cId = GetBarrelType(Material(Liquid)); //id fo a barrel if it exists
+
+  return(Format("$IF$",cId,Liquid));
 }
