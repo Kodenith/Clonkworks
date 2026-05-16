@@ -1,3 +1,4 @@
 Warning1=This pump must be placed on a geyser!
 Warning2=Geyser Exhausted!
 Info=Extracting: %s
+Fill=Fill Canister

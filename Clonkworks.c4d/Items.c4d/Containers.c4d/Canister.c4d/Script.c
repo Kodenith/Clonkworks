@@ -82,3 +82,13 @@ public func IncinerationEX(){
     if(iFillType) CastObjects(iFillType,iFillLevel);
     Explode(10);
 }
+
+//the code for this sucks, so i made a solution, excuse me for my horrid code
+public func TransformCanister(iLevel,FillType){
+  var Canist=GetCanisterType(FillType);
+  if(!Canist) return(0);
+  iFillLevel = iLevel;
+  iFillType = FillType;
+  ChangeDef(Canist);
+  return(1);
+}

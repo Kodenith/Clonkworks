@@ -265,3 +265,15 @@ public func IsNaturalGasGeyser(){
   if(GetCon() < 100) return(0);
   if(Extract == GS_2 && Amount > 0) return(1);
 }
+
+public func ControlThrow(pClonk){
+  [$Fill$|Image=GCAN]
+  var Canister = Contents(0,pClonk);
+  if(GetID(Canister) != GCAN || GetType(Extract) != C4V_C4ID || Amount == 0) return(0);
+  if(!GetCanisterType(Extract)) return(0);
+  var AmountToGive = BoundBy(Amount,0,50);
+  Amount -= AmountToGive;
+  Canister->TransformCanister(AmountToGive,Extract);
+  Sound("Fuse");
+  return(1);
+}
