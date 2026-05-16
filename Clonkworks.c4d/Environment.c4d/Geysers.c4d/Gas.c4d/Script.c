@@ -81,3 +81,7 @@ for displaying data in the description. no more, no less. */
 public func FxGliInfo(target,effectnum){
   return(Format("$IF$",Gas,GetName(,Gas)));
 }
+
+public func IsNaturalGasGeyser(){
+  if(Gas == GS_2) return(1);
+}

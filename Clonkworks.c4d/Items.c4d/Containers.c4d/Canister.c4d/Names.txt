@@ -1,2 +1,2 @@
-DE:Leerer GasbehÃ¤lter
+DE:Leerer Gasbehälter
 US:Empty Gas Canister

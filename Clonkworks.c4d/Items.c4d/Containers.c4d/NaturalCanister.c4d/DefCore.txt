@@ -1,0 +1,24 @@
+[DefCore]
+Name=Earth Gas Canister
+id=NCAN
+Version=4,9,8
+Category=C4D_Object|C4D_SelectMaterial|C4D_SelectHomebase
+MaxUserSelect=10
+Value=25
+Mass=20
+Width=8
+Height=10
+Offset=-4,-5
+Picture=0,10,64,64
+Vertices=4
+VertexX=-4,3,-4,3
+VertexY=-4,-4,3,3
+VertexFriction=80,80,80,80
+VertexCNAT=16
+Components=METL=1
+Rebuy=1
+Rotate=1
+Timer=1
+TimerCall=Release
+Collectible=1
+BlastIncinerate=5

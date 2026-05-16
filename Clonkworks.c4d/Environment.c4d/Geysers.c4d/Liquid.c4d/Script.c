@@ -83,3 +83,8 @@ public func FxGliInfo(target,effectnum){
 
   return(Format("$IF$",cId,Liquid));
 }
+
+//for goal
+public func IsOilGeyser(){
+  if(Liquid == "Oil") return(1);
+}

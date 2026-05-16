@@ -74,6 +74,7 @@ func Initialize(){
 }
 
 protected func Manage(){
+  if(GetCon() < 100) return(0);
   //Manage action based on energy and data.
   var pDrainPipe = FindObject(DPIP,0,0,0,0,0,"Connect",this());
   var CanPump = (Extract != 0 && Amount > 0 && EnergyCheck(10000) && GetCon() >= 100 && pDrainPipe && !InputActive("Lock"));
@@ -253,4 +254,14 @@ public func InfobarInfo(){
   if(Amount)
 	return(Format("$Info$",ExtractWhat));
   else return("$Warning2$");
+}
+
+public func IsOilGeyser(){
+  if(GetCon() < 100) return(0);
+  if(Extract == "Oil" && Amount > 0) return(1);
+}
+
+public func IsNaturalGasGeyser(){
+  if(GetCon() < 100) return(0);
+  if(Extract == GS_2 && Amount > 0) return(1);
 }

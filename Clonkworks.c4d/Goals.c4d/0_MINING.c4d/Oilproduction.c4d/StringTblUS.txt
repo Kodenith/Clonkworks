@@ -1,0 +1,15 @@
+TxtTasklist=Tasks:
+
+TxtChunks1=There's <c ffff00>%d barrels of oil</c> waiting to be sold. %d of them are outside any container.
+TxtChunks2=No barrels left!
+
+TxtOre1=There's still around <c ffff00>%d Barrels</c> worth of oil to extract.
+TxtOre2=All oil has been extracted!
+
+TxtDepo1=There's still <c ffff00>%d oil geysers</c> to be taken care of.
+TxtDepo2=All oil geysers have been extracted!
+
+TxtComp1=You/Your Team have sold %d clunkers worth of barrels. <c ff0000>Biggest: %d</c>
+TxtComp2=You/Your Team have sold %d clunkers worth of barrels. <c 00ff00>Youre the top extractor!</c>
+
+TxtComplete=<c 00ff00> All Tasks Complete! </c>
