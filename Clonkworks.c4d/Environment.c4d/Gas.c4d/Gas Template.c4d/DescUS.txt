@@ -1,0 +1,1 @@
+This template allows you to make your own gas objects. simply include GS__ onto your custom gas object.
