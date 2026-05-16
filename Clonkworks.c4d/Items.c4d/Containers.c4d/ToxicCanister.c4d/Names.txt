@@ -1,0 +1,2 @@
+DE:Giftgaskanister
+US:Toxic Gas Canister

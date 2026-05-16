@@ -20,6 +20,7 @@ local AlphaOff;
 
 //When this gas is made, set default values and actions.
 func Initialize(){
+  if(GetID() == GS__) return(RemoveObject());
   if(Initialized) return(0);
   Initialized = true;
   SetCon(StartCon()+StartSizeOffset());
@@ -85,7 +86,9 @@ func UpdateAlphaByCon() {
 
 //Gas Fading Logic.
 protected func SmokeUpdate(){
+
   //Fading
+  if(!Contained()){
   if(GetMaterial() == Material("Sky")){
     if(!Random(SkyFade())) DoCon(FadeSize());
   }else if(GBackLiquid()){
@@ -99,6 +102,7 @@ protected func SmokeUpdate(){
     return(RemoveObject()); //no gas in the ground.
   }else{
     if(!Random(TunnelFade())) DoCon(FadeSize());
+  }
   }
 
   Alpha = UpdateAlphaByCon();
@@ -121,9 +125,13 @@ protected func SmokeUpdate(){
   }
 
   //Custom Timer Stuff :)
+  if(!Contained())
   GasCustomTimer();
 }
 
 public func GasCustomTimer(){
   return(1); //play around with this on your own gas object!
 }
+
+public func GasColor(){ return(RGBa(255,255,255)); } //used by pump
+//public func GasName(){ return("Gas"); } //used by pump, used instead of GetName to prevent potential sync errors

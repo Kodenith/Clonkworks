@@ -34,7 +34,7 @@ public func OutputActive(string OutputName){
 //custom placement requirements
 public func RejectConstruction(iX,iY,pBuilder){
 	var LiquidGeyser = FindObject2(Find_AtPoint(GetX(pBuilder),GetY(pBuilder)),Find_ID(GEY1));
-  var GasGeyser = 0; //TODO: Add this
+  var GasGeyser = FindObject2(Find_AtPoint(GetX(pBuilder),GetY(pBuilder)),Find_ID(GEY2));
 
   if(!LiquidGeyser && !GasGeyser){
     Message("<c ff0000>$Warning1$</c>",pBuilder);
@@ -47,7 +47,7 @@ public func RejectConstruction(iX,iY,pBuilder){
 
 protected func Construction(){
   var LiquidGeyser = FindObject2(Find_Or(Find_OnLine(-24,0,24,0),Find_OnLine(-24,-6,24,-6)),Find_ID(GEY1));
-  var GasGeyser = 0; //TODO: Add this
+  var GasGeyser = FindObject2(Find_Or(Find_OnLine(-24,0,24,0),Find_OnLine(-24,-6,24,-6)),Find_ID(GEY2));
 
   if(LiquidGeyser){
     Extract = LocalN("Liquid",LiquidGeyser);
@@ -55,7 +55,10 @@ protected func Construction(){
     TempGey = LiquidGeyser;
     SetX(GetX(TempGey));
   }else if(GasGeyser){
-    //TODO: Add this
+    Extract = LocalN("Gas",GasGeyser);
+    Amount = RandomX(20,100)*50;
+    TempGey = GasGeyser;
+    SetX(GetX(TempGey));
   }else{
     Extract = 0;
     Amount = 0; //no data, machine does not function.
@@ -85,6 +88,8 @@ protected func PumpOut(){
   //pump out either liquid or gas. both are their own functions.
   if(GetType(Extract) == C4V_String){
     PumpLiquid();
+  }else if(GetType(Extract) == C4V_C4ID){
+    PumpGas();
   }
 
   if(!Amount){
@@ -138,6 +143,55 @@ protected func PumpLiquid(){
   }
 }
 
+//Gas Pumping
+//i was too lazy to change variable names here :P
+protected func PumpGas(){
+  if(FrameCounter()%5 != 0) return(0); //Artificial slowdown
+  var pDrainPipe = FindObject(DPIP,0,0,0,0,0,"Connect",this());
+  var pPumpTarget = GetActionTarget(1, pDrainPipe);
+
+  if(!pDrainPipe) return(0);
+
+  //Line kits simply spew gas.
+  if(GetID(pPumpTarget) == LNKT){
+    pPumpTarget->CreateObject(Extract);
+    Amount--;
+    return(0);
+  }
+
+  //containers have their canisters filled
+  if(GetOCF(pPumpTarget) & OCF_Container){
+      //check for canisters that aren't empty
+      var Set = 0;
+      var BarrelType = GetCanisterType(Extract);
+      if(BarrelType && BarrelType != GetID(this)){
+        for(var i in FindObjects(Find_ID(BarrelType),Find_Container(pPumpTarget))){
+          if(!i->IsCanisterFull()){
+            i->CanisterDoFill(1,Extract);
+            LocalN("iFillType",i) = Extract;
+            Amount--;
+            Set=1;
+            break;
+          }
+
+        }
+
+      }else{  
+        return(0);
+      }
+
+      if(Set) return(0);
+
+      //otherwise fill an empty canister
+      var Barrel = FindContents(GCAN,pPumpTarget);
+      if(Barrel){
+        Barrel->ChangeDef(GetCanisterType(Extract));
+        Barrel->CanisterDoFill(1,Extract);
+        LocalN("iFillType",Barrel) = Extract;
+      }
+  }
+}
+
 public func GetResearchBase() { return(PUMP); }
 
 func Damage(){
@@ -146,10 +200,19 @@ func Damage(){
 
 func Incineration(){
   //explode everything inside before burning.
+  if(Amount != 0){
   if(GetType(Extract) == C4V_String){
     TempGey = CreateObject(GEY1,0,18);
     LocalN("Liquid",TempGey) = Extract;
     TempGey->DoDamage(200);
+  }
+
+  if(GetType(Extract) == C4V_C4ID){
+    TempGey = CreateObject(GEY2,0,18);
+    LocalN("Gas",TempGey) = Extract;
+    TempGey->DoDamage(200);
+    CastObjects(Extract,RandomX(80,180));
+  }
   }
 
   if(basement) RemoveObject(basement);
@@ -158,7 +221,8 @@ func Incineration(){
 
 /* INFOBAR */
 public func InfobarTrigger(){
-	return(IB_Grab);
+  if(Extract)
+	  return(IB_Grab);
 }
 
 public func InfobarMax(){
@@ -177,11 +241,14 @@ public func InfobarColor(){
 
     return(RGBa(R,G,B));
   }
+
+  return(Extract->~GasColor());
 }
 
 public func InfobarInfo(){
   var ExtractWhat;
-  if(GetType(Extract) == C4V_String) ExtractWhat = Extract;
+  if(GetType(Extract) == C4V_String) ExtractWhat = Concat2(Format("{{%i}}",GetBarrelType(Material(Extract))),Extract);
+  else if(GetType(Extract) == C4V_C4ID) ExtractWhat = Concat2(Format("{{%i}}",Extract),GetName(,Extract));
 
   if(Amount)
 	return(Format("$Info$",ExtractWhat));

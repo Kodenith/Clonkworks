@@ -1,0 +1,2 @@
+Stores Gas.
+Fill it up with the Geyser Pump by Grabbing and Throwing, or by putting it in a building connected to one.
