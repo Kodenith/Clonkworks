@@ -1,0 +1,2 @@
+DE:Druckluftkanister
+US:Pressurized Air Canister

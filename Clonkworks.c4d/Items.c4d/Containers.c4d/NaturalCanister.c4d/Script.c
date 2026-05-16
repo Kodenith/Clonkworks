@@ -44,3 +44,7 @@ public func Purchase(int plr, object buyobj)
   if (obj = FindObject (GAEX, 50 - GetX (), 49 - GetY ()))
     obj -> GAEX::PlayerHasBought (plr, this ());
 }
+
+public func SellTo(){
+  if(FindObject(GAEX)) return(GCAN);
+}
