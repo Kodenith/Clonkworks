@@ -92,3 +92,5 @@ public func TransformCanister(iLevel,FillType){
   ChangeDef(Canist);
   return(1);
 }
+
+public func GetResearchBase(){ return(GPUP); }
