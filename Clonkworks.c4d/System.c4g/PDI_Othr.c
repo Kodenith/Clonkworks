@@ -11,5 +11,8 @@
 #appendto CK5P
 #appendto CT5P
 #appendto EXTF
+#appendto HZMC
+#appendto HZMS
+#appendto HZMF
 
 public func PDI_Othr(){ return(1); }
