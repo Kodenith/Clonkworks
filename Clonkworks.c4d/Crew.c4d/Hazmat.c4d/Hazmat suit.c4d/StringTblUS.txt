@@ -1,0 +1,4 @@
+TxtUse=Put On
+TxtBar1=Filter Durability: %d%
+Warn1=Only regular Clonks can put this on!
+Warn2=%s can't put this on right now.

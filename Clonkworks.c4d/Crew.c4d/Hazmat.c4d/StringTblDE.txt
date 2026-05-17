@@ -1,0 +1,5 @@
+TxtBar1=Filter-Haltbarkeit: %d%
+TxtCantEat=Ähm... Ich kann in dem Anzug nicht essen.
+TxtCantDrink=Ähm... Ich kann in dem Anzug nicht trinken.
+TxtTakeOff=Anzug ausziehen
+TxtTakeOffError=%s kann den Anzug gerade nicht ausziehen.

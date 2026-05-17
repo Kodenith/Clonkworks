@@ -1,0 +1,3 @@
+This clonk's specialized suit and gear let him explore heavily gassed areas without harm. However, his air filters will need replacements from time to time.
+
+You can view the filter's durability via the special info-bar on the bottom left corner of your screen.

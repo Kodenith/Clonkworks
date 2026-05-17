@@ -1,0 +1,2 @@
+DE:Schutzanzug
+US:Hazmat suit

@@ -1,0 +1,2 @@
+DE:Herstellbare Schutzanzüge
+US:Craftable Hazmat Suits
