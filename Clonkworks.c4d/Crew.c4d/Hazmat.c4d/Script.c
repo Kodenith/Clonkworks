@@ -13,7 +13,7 @@ protected func Detoxify(){
     if(Filter < 0) Filter = 0;
     if(!Filter) return(0);
 
-    if(GBackLiquid() && FrameCounter()%28==0){
+    if(GBackLiquid() && FrameCounter()%28==0 && !FindObject(HZNF)){
         Filter-=50;
         if(Filter < 0) Filter = 0;
         CreateObject(HZMF)->SetAction("Broken");

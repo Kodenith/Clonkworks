@@ -1,0 +1,1 @@
+Gas-Durchlauferhitzer laufen nicht aus, wenn sie gepumpt werden.

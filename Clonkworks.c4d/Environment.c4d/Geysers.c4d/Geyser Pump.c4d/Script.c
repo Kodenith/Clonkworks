@@ -89,8 +89,10 @@ protected func PumpOut(){
   //pump out either liquid or gas. both are their own functions.
   if(GetType(Extract) == C4V_String){
     PumpLiquid();
+    if(FindObject(EGY1)) Amount = IBmax;
   }else if(GetType(Extract) == C4V_C4ID){
     PumpGas();
+    if(FindObject(EGY2)) Amount = IBmax;
   }
 
   if(!Amount){
