@@ -42,7 +42,7 @@ protected func Activate(iPlayer)
   var oreTotal = ObjectCount2(Find_ID(OBRL));
   var oreOutside = ObjectCount2(Find_ID(OBRL), Find_NoContainer());
   var deposits = ObjectCount2(Find_Func("IsOilGeyser"));
-  var Units = Max(GetMaterialCount(Material("Oil")) - 50, 0) / 100;
+  var Units = Max(GetMaterialCount(Material("Oil")) - 150, 0) / 200;
   var Sold = Local(iPlayer);
   var HighestSold = GetHighestSold();
   
