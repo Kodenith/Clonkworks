@@ -95,6 +95,9 @@ protected func PumpOut(){
     if(FindObject(EGY2)) Amount = IBmax;
   }
 
+  if(GetPhase() == 19) Sound("GPump1");
+  if(GetPhase() == 39) Sound("GPump2");
+
   if(!Amount){
     Sound("Discharge");
     Message("$Warning2$",this);
