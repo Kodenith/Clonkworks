@@ -5,6 +5,7 @@
 #include CXEC
 
 public func WireFrom(){ return(0); }
+public func GeyserLiquidTo(){ return(1); }
 
 //this function returns a list of string that can be output.
 //default is a single output.
@@ -71,6 +72,7 @@ func DoSprinkling(){
   while(Times--){
     if(Barrel->GetAmount() == nil || Barrel->GetAmount() <= 0) break;
     var mat = Barrel->~BarrelMaterial();
+    if(mat == Material("Ice")) return(0);
     LocalN("iFillLevel",Barrel)--;
     CastPXS(MaterialName(mat),1,50);
   }

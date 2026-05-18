@@ -116,14 +116,14 @@ protected func PumpLiquid(){
   }
 
   //containers have their barrels filled.
-  if(GetOCF(pPumpTarget) & OCF_Container){
+  if(GetOCF(pPumpTarget) & OCF_Container || pPumpTarget->~GeyserLiquidTo()){
       //check for barrels that aren't empty.
       var Set = 0;
       var BarrelType = GetBarrelType(Material(Extract));
       if(BarrelType){
         for(var i in FindObjects(Find_ID(BarrelType),Find_Container(pPumpTarget))){
           if(!i->BarrelIsFull()){
-            i->BarrelDoFill(1,Material(Extract));
+            i->BarrelDoFill(1,Material(Extract)+1);
             Amount--;
             Set=1;
             break;
@@ -163,7 +163,7 @@ protected func PumpGas(){
   }
 
   //containers have their canisters filled
-  if(GetOCF(pPumpTarget) & OCF_Container){
+  if(GetOCF(pPumpTarget) & OCF_Container || pPumpTarget->~GeyserGasTo()){
       //check for canisters that aren't empty
       var Set = 0;
       var BarrelType = GetCanisterType(Extract);

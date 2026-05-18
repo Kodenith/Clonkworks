@@ -1,2 +1,2 @@
-DE:FlÃ¼ssigkeitssprinkler
+DE:Flüssigkeitssprinkler
 US:Liquid Sprinkler

@@ -15,6 +15,6 @@ VertexX=0
 VertexY=0
 VertexFriction=20
 VertexCNAT=16
-Components=COAL=1;TTIG=1
+Components=COAL=1;TTIG=1;CPIG=1
 Collectible=1
 Rotate=1
