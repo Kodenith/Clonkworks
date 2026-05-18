@@ -4,6 +4,7 @@ func Hit(){
 }
 
 func IsAnvilProduct(){ return(1); }
+func GetResearchBase(){ return(GPUP); }
 
 public func DoSmoke(){
   Smoke(0,0,RandomX(5,8));
