@@ -25,7 +25,7 @@ protected func Detoxify(){
 }
 
 protected func ToxChance(){
-    var Count = ObjectCount2(Find_Distance(30),Find_ID(GS_1));
+    var Count = ObjectCount2(Find_Distance(30),Find_ID(GS_1),Find_NoContainer());
     if(!Count) return(0);
     if(Count <= 3) return(FrameCounter()%228==0);
     if(Count <= 9) return(FrameCounter()%152==0);
