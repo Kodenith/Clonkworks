@@ -71,6 +71,21 @@ protected func Construction(){
 
 func Initialize(){
   if(TempGey) RemoveObject(TempGey);
+  SetGraphics("Shortcut",this,GetID(),1,1);
+  AddEffect("Desc",this,1,0,this,GetID());
+}
+
+public func SetLightColor(){
+  if(!Extract || !Amount) return(RGBa(255,255,255,255));
+  if(GetType(Extract) == C4V_String){
+    var R = GetMaterialVal("Color","Material",Material(Extract),0);
+    var G = GetMaterialVal("Color","Material",Material(Extract),1);
+    var B = GetMaterialVal("Color","Material",Material(Extract),2);
+
+    return(RGBa(R,G,B));
+  }
+
+  return(Extract->~GasColor());
 }
 
 protected func Manage(){
@@ -83,6 +98,8 @@ protected func Manage(){
   }else{
     if(GetAction() != "Idle") SetAction("Idle");
   }
+
+  SetClrModulation(SetLightColor(),this,1);
 }
 
 protected func PumpOut(){
@@ -281,4 +298,21 @@ public func ControlThrow(pClonk){
   Canister->TransformCanister(AmountToGive,Extract);
   Sound("Fuse");
   return(1);
+}
+
+
+/* EFFECT
+for displaying data in the description. no more, no less. */
+
+public func FxDescInfo(target,effectnum){
+  if(GetType(Extract) == C4V_String){
+    var cId = RMMG; //random magic id, its a bunch of questionmarks.
+    if(GetBarrelType(Material(Extract))) cId = GetBarrelType(Material(Extract)); //id fo a barrel if it exists
+
+    return(Format("$TxtPumping$",cId,Extract));
+  }else if(GetType(Extract) == C4V_C4ID){
+    return(Format("$TxtPumping$",Extract,GetName(,Extract)));
+  }
+
+  return("$Warning2$");
 }
