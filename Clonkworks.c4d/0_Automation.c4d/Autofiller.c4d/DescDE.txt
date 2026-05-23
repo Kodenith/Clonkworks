@@ -1,0 +1,1 @@
+Lagert leere Fässer und Kanister und gibt sie frei, sobald sie voll sind. Schließen Sie zum Befüllen ein Leitungsset an.

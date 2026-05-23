@@ -16,5 +16,6 @@
 #appendto CHUB
 #appendto INSR
 #appendto EXDR
+#appendto AFIL
 
 public func PDI_Auto(){ return(1); }

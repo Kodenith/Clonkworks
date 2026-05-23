@@ -13,10 +13,12 @@
 * Added the Hazmat Clonk. This Clonk Can stay in Toxic Fumes until his filters run out.
 	- Included are rules to make filters not needed at all, and to make a craftable hazmat suit wearable by clonks.
 	- Filters are craftable and purchasable
-	- Low-res model taken from QuakeR. High-Res model was made by me (Kodenith) based on the Low-res model.
+	- Low-res model taken from QuakeR. High-Res model was made by me (Kodenith) based on the Low-res model, and Ryou's HD Portrait Clonk Model.
 * Updated Several Rule Graphics.
 * Added the Humidifier - Basically Sprinkler for Gas.
 * Humidifier and Sprinkler can now have their respective matter delivered to them via line kit.
+* The Workspedia doesnt require an object to be researched in order to learn it. This used to not be the case.
+* Added Autofiller, new conveyor station for barrels and gas.
 
 
 [May 4th 2026 - Version 1.0.1 fix]
