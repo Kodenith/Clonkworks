@@ -1,1 +1,0 @@
-Stores Empty Barrels and Canisters, and releases them when theyre full. Connect a line kit pipe to this to do the filling.
