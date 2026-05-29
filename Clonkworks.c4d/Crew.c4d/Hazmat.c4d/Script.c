@@ -19,7 +19,7 @@ protected func Detoxify(){
         CreateObject(HZMF)->SetAction("Broken");
     }
 
-    if(ToxChance()){
+    if(ToxChance() && !Contained()){
         Filter--;
     }
 }

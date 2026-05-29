@@ -19,6 +19,7 @@ public func DoBoom(){
 public func Activate(pHaz){
   [$TxtUse$]
   if(GetID(pHaz) == HZMC && GetAction() == "Alright"){
+    if(LocalN("Filter",pHaz) > 80) return(0);
     Sound("Connect");
     pHaz->SetAction("KneelDown");
     LocalN("Filter",pHaz) = BoundBy(LocalN("Filter",pHaz)+50,0,100);
