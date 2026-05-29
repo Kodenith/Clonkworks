@@ -1,0 +1,1 @@
+This scenario has a ton of gas! this rule limits the amount of it so that your computer will not blow up during online matches, or if it's simply weak :)

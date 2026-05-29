@@ -14,6 +14,10 @@ protected func RandomFloat(){ return(RandomX(30,110)); } //Random Float Stat
 protected func AlphaOffset(){ return(RandomX(-45,200)); } //Offset in alpha so every bit of smoke doesnt feel the same.
 protected func StartSizeOffset(){ return(RandomX(-10,10)); } //Differenciate all gasses even more.
 
+public func isGas(){
+  return(1); //used for helpers
+} 
+
 local Alpha; //Transparency.
 local Initialized; //To Avoid accidentally initializing again.
 local AlphaOff;
