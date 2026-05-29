@@ -66,6 +66,7 @@ private func Update(){
           var Intensity1 = RandomX(10,25);
           var Intensity2 = RandomX(30,120);
           var Gas1 = CreateObject(Gas,0,RandomX(0,-10));
+          if(Gas1)
           Gas1->~SetComDir(COMD_Up);
         }
         if(Intensity < Intensity2) Intensity += RandomX(2,10);

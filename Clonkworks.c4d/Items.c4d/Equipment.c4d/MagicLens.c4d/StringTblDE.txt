@@ -8,3 +8,5 @@ COutput=[%s]: %v
 
 TxtMenu2=IDs benachbarter Objekte
 IDesc=%s : %v
+
+Bummer=Fehler! Diese Schaltung hat weder Eingang noch Ausgang!

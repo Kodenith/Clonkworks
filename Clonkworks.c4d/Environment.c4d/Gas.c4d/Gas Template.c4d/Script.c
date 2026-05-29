@@ -29,6 +29,8 @@ func Initialize(){
 
   SetPhysical("Float",RandomFloat(),2,this);
   AlphaOff = AlphaOffset();
+
+  SmokeUpdate();
 }
 
 //random smoke sprite selection.
