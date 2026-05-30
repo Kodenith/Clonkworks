@@ -18,6 +18,7 @@
 * Added the Humidifier - Basically Sprinkler for Gas.
 * Humidifier and Sprinkler can now have their respective matter delivered to them via line kit.
 * The Workspedia doesnt require an object to be researched in order to learn it. This used to not be the case.
+* Added the Magic Detoxification Field spell.
 
 
 [May 4th 2026 - Version 1.0.1 fix]
