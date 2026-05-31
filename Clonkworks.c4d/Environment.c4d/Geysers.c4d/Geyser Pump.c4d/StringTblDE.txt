@@ -1,0 +1,6 @@
+Warning1=Diese Pumpe muss auf einen Geysir gestellt werden!
+Warning2=Geysir erschöpft!
+Info=Entnahme: %s
+Fill=Kanister füllen
+
+TxtPumping=Abpumpen: {{%i}} %s.

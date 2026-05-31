@@ -21,7 +21,7 @@ LineConnect=101
 Timer=1
 TimerCall=Update
 Grab=2
-Components=CPIG=2;TTIG=2;
+Components=CPIG=2;TTIG=2;BARL=1
 
 [Physical]
 Energy=100000

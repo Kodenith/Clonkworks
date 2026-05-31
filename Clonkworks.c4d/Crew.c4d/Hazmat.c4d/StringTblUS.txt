@@ -1,0 +1,5 @@
+TxtBar1=Filter Durability: %d%
+TxtCantEat=Uh... i can't eat in the suit.
+TxtCantDrink=Uh... i can't drink in the suit.
+TxtTakeOff=Take Off Suit
+TxtTakeOffError=%s can't take off the suit right now.

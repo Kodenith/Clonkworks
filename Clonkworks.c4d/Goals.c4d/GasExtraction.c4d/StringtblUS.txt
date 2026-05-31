@@ -1,0 +1,12 @@
+TxtTasklist=Tasks:
+
+TxtChunks1=There's <c ffff00>%d natural gas canisters</c> waiting to be sold. %d of them are outside any container.
+TxtChunks2=All canisters have been sold!
+
+TxtDepo1=There's still <c ffff00>%d Natural Gas Geysers</c> to be exhausted.
+TxtDepo2=All geysers have been exhausted!
+
+TxtComp1=You/Your Team have sold %d clunkers worth of canisters. <c ff0000>Biggest: %d</c>
+TxtComp2=You/Your Team have sold %d clunkers worth of canisters. <c 00ff00>Youre the top extractor!</c>
+
+TxtComplete=<c 00ff00> All Tasks Complete! </c>

@@ -15,11 +15,11 @@ func ComFire(object clonk)
   //Sound("Click");
   if(!firing){
 	  if(FindObject2(Find_Container(GetActionTarget()),Find_ID(OBRL))){
-		  AddEffect("LaserFuelConsume",GetActionTarget(),1,(38*2)+19,this());
+		  AddEffect("LaserFuelConsume",GetActionTarget(),1,1,this());
 		  ShootStart();
 	  }else{
-		 // RemoveEffect("LaserFuelConsume",GetActionTarget());
-		 //the effect erases itself so this is maybe pointless
+		 RemoveEffect("LaserFuelConsume",GetActionTarget());
+		 //nothing is pointless! :D
 		  Sound("Error");
 	  }
   }
@@ -113,7 +113,11 @@ func LaserStrike(object pObj, int iTime)
 func FxLaserFuelConsumeTimer(pTarget,iNum,iTime){
 	if(!firing) return(-1);
 	if(FindObject2(Find_Container(pTarget),Find_ID(OBRL))){
-		ChangeDef(BARL,FindObject2(Find_Container(pTarget),Find_ID(OBRL)));
+    //decrease the fuel instead of eating the whole barrel.
+    var Barrel = FindObject2(Find_Container(pTarget),Find_ID(OBRL));
+    LocalN("iFillLevel",Barrel) -= 1;
+    if(LocalN("iFillLevel",Barrel) <= 0)
+		  ChangeDef(BARL,Barrel);
 	}else{
 		Sound("Discharge");
 		ShootStop();

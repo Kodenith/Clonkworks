@@ -1,0 +1,1 @@
+Dieses Szenario enthält eine Unmenge an Gasobjekten! Diese Regel begrenzt deren Anzahl, damit dein Computer bei Online-Matches nicht abstürzt – oder einfach nur, weil er zu schwach ist :)

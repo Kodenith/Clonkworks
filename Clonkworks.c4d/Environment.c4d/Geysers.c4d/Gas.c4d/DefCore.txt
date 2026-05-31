@@ -1,0 +1,18 @@
+[DefCore]
+Name=Gas geyser
+id=GEY2
+Version=4,9,8
+Category=C4D_StaticBack|C4D_SelectVegetation
+Width=48
+Height=15
+Offset=-24,-7
+Picture=0,0,48,15
+Vertices=3
+VertexX=0,-23,22
+VertexY=-6,7,7
+VertexFriction=20,20,20
+VertexCNAT=4,8,8
+SolidMask=0,15,48,5,0,15
+MaxUserSelect=5
+Timer=5
+TimerCall=Update

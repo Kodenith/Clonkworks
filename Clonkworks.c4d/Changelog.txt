@@ -1,0 +1,31 @@
+#OFFICIAL CLONKWORKS CHANGELOG#
+
+[??? 2026 - Version 1.1 Gaseous Update] < CURRENT!
+* Added Gas - a new state of matter that can be used as hazards in levels or as weapons.
+	- Includes Template Object to make your own Gas fast.
+	- Gas Types: Toxic Fumes, Natural Gas.
+* Added Geysers, new hazards that spew material or gas.
+* Added Geyser Pumps, which pump out gas and liquid from geysers until theyre sucked dry.
+	- Included are 2 Environment Rules to make extraction infinite!
+* Added Gas Canisters - Barrels for gas.
+* New Goal: Gas Extraction. Extract all geysers with Natural Gas, and then sell all canisters with the gas.
+* Updated Goal: Oil Production now has similiar UI to the changed up oremine goals.
+* Added the Hazmat Clonk. This Clonk Can stay in Toxic Fumes until his filters run out.
+	- Included are rules to make filters not needed at all, and to make a craftable hazmat suit wearable by clonks.
+	- Filters are craftable and purchasable
+	- Low-res model taken from QuakeR. High-Res model was made by me (Kodenith) based on the Low-res model, and Ryou's HD Portrait Clonk Model.
+* Updated Several Rule Graphics.
+* Added the Humidifier - Basically Sprinkler for Gas.
+* Humidifier and Sprinkler can now have their respective matter delivered to them via line kit.
+* The Workspedia doesnt require an object to be researched in order to learn it. This used to not be the case.
+* Added the Magic Detoxification Field spell.
+
+
+[May 4th 2026 - Version 1.0.1 fix]
+* For scenario folder only: 
+	- Clonkworks Playground has a German title now.
+	- Fixed German title encoding in "Protect Me!"
+	- All scenarios in the "Classics" Subfolder now have [CW} before their title names.
+
+[May 3rd 2026 - Release Version 1.0]
+* Clonkworks Released! Hooray!

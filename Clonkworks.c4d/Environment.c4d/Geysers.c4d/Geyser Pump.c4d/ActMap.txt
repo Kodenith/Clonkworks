@@ -1,0 +1,10 @@
+[Action]
+Name=Pumping
+Length=60
+Delay=1
+Facet=0,0,48,46,0,0
+PhaseCall=PumpOut
+NextAction=Pumping
+Sound=GeyserPumping
+EnergyUsage=500
+

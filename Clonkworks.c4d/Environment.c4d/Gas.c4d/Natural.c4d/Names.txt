@@ -1,0 +1,2 @@
+DE:Erdgas
+US:Natural Gas

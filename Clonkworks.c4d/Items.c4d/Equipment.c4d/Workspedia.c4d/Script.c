@@ -34,7 +34,7 @@ public func Automation(){
     var i, x;
     while(x = GetDefinition(i++)){
         if(x->~PDI_Auto()){
-            if((GetCategory(,x) & C4D_Knowledge) && GetPlrKnowledge(GetController(pClonk),x) != true) continue;
+            //if((GetCategory(,x) & C4D_Knowledge) && GetPlrKnowledge(GetController(pClonk),x) != true) continue;
             ArrayAdd(Items,x);
             if(x->~PDI_Children()){
                 for(var j in x->~PDI_Children()){
@@ -55,7 +55,7 @@ public func Mining(){
     var i, x;
     while(x = GetDefinition(i++)){
         if(x->~PDI_Mine()){
-            if((GetCategory(,x) & C4D_Knowledge) && GetPlrKnowledge(GetController(pClonk),x) != true) continue;
+            //if((GetCategory(,x) & C4D_Knowledge) && GetPlrKnowledge(GetController(pClonk),x) != true) continue;
             ArrayAdd(Items,x);
             if(x->~PDI_Children()){
                 for(var j in x->~PDI_Children()){
@@ -76,7 +76,7 @@ public func Other(){
     var i, x;
     while(x = GetDefinition(i++)){
         if(x->~PDI_Othr()){
-            if((GetCategory(,x) & C4D_Knowledge) && GetPlrKnowledge(GetController(pClonk),x) != true) continue;
+            //if((GetCategory(,x) & C4D_Knowledge) && GetPlrKnowledge(GetController(pClonk),x) != true) continue;
             ArrayAdd(Items,x);
             if(x->~PDI_Children()){
                 for(var j in x->~PDI_Children()){
@@ -97,7 +97,7 @@ public func Wiring(){
     var i, x;
     while(x = GetDefinition(i++)){
         if(x->~PDI_Wire()){
-            if((GetCategory(,x) & C4D_Knowledge) && GetPlrKnowledge(GetController(pClonk),x) != true) continue;
+            //if((GetCategory(,x) & C4D_Knowledge) && GetPlrKnowledge(GetController(pClonk),x) != true) continue;
             ArrayAdd(Items,x);
             if(x->~PDI_Children()){
                 for(var j in x->~PDI_Children()){

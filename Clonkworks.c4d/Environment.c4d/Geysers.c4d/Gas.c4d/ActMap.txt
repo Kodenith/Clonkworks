@@ -1,0 +1,8 @@
+[Action]
+Name=Spew
+Length=1
+Delay=100
+Facet=0,0,48,15,0,0
+NextAction=Idle
+Sound=Fusing
+

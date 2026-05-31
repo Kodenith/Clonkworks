@@ -1,0 +1,2 @@
+DE:Erdgasflasche
+US:Natural Gas Canister

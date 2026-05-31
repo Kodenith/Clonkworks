@@ -1,0 +1,4 @@
+TxtUse=Anlegen
+TxtBar1=Filter-Haltbarkeit: %d%
+Warn1=Nur normale Clonks können das anlegen!
+Warn2=%s kann das derzeit nicht anlegen.

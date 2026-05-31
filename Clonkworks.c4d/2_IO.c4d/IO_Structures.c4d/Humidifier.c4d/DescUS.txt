@@ -1,0 +1,1 @@
+If activated by wire, spews out gas sourced from geyser pumps.

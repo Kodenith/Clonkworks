@@ -1,0 +1,12 @@
+TxtTasklist=Aufgaben:
+
+TxtChunks1=Es warten <c ffff00>%d Erdgasflaschen</c> darauf, verkauft zu werden. %d davon befinden sich außerhalb eines Containers.
+TxtChunks2=Alle Flaschen wurden verkauft!
+
+TxtDepo1=Es sind noch <c ffff00>%d Erdgas-Geysire</c> übrig, die entleert werden müssen.
+TxtDepo2=Alle Gasflaschen sind leer!
+
+TxtComp1=Du/Dein Team habt Gasflaschen im Wert von %d Clunkers verkauft. <c ff0000>Größte: %d</c>
+TxtComp2=Du/Dein Team habt Gasflaschen im Wert von %d Clunkers verkauft. <c 00ff00>Du bist der beste Produzent!</c>
+
+TxtComplete=<c 00ff00> Alle Aufgaben abgeschlossen! </c>
