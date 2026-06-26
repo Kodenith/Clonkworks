@@ -1,6 +1,8 @@
 #OFFICIAL CLONKWORKS CHANGELOG#
 
-[??? 2026 - Version 1.1 Gaseous Update] < CURRENT!
+[??? - Version 1.2 Technological Expansion] < CURRENT!
+
+[May 31st 2026 - Version 1.1 Gaseous Update]
 * Added Gas - a new state of matter that can be used as hazards in levels or as weapons.
 	- Includes Template Object to make your own Gas fast.
 	- Gas Types: Toxic Fumes, Natural Gas.
