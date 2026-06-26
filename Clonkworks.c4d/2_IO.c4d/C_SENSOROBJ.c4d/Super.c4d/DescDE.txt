@@ -1,0 +1,3 @@
+Ein wesentlich komplexerer benutzerdefinierter Sensor, mit dem Sie Objekte in individuell anpassbaren Bereichen mit Offsets und Bedingungen erkennen können. Ideal für anspruchsvollere Aufgaben.
+
+<c ff0000>(Für einige Funktionen sind gewisse Programmierkenntnisse erforderlich)</c>
