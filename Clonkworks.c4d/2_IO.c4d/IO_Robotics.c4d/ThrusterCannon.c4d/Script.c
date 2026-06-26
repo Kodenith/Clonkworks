@@ -11,7 +11,7 @@ func Initialize(){
 }
 
 public func OutputList(){
-  return(["[Sensor] Nearby Objects","[Object/Camera] This","[Sensor] Nearby Objects (Unordered)","[Sensor] Nearby Objects (Object)","[Sensor] Nearby Objects (Vehicle)","[Sensor] Nearby Objects (Living)","[Sensor] Nearby Objects (Structure)","Current Angle"]);
+  return(["[Object/Camera] This","Current Angle"]);
 }
 public func InputList(){
   return(["Move Left","Move Right","Thrust Upwards","Aim Up","Aim Down","Aim to Angle","Fire","Turn"]);
@@ -76,13 +76,7 @@ private func RobotLogic(){
 }
 
 public func OutputActive(string OutputName){
-   if(OutputName == "[Sensor] Nearby Objects") return(FindObjects(Find_Distance(200),Sort_Distance()));
    if(OutputName == "[Object/Camera] This") return(this);
-    if(OutputName == "[Sensor] Nearby Objects (Unordered)") return(FindObjects(Find_Distance(200)));
-   if(OutputName == "[Sensor] Nearby Objects (Object)") return(FindObjects(Find_Distance(200),Find_Category(C4D_Object),Sort_Distance()));
-   if(OutputName == "[Sensor] Nearby Objects (Vehicle)") return(FindObjects(Find_Distance(200),Find_Category(C4D_Vehicle),Sort_Distance()));
-   if(OutputName == "[Sensor] Nearby Objects (Living)") return(FindObjects(Find_Distance(200),Find_Category(C4D_Living),Sort_Distance()));
-   if(OutputName == "[Sensor] Nearby Objects (Structure)") return(FindObjects(Find_Distance(200),Find_Category(C4D_Structure),Sort_Distance()));
    if(OutputName == "Current Angle"){
     var iAngle = GetPhase() * 90 / 20;
     if(GetDir() == DIR_Left) iAngle = -iAngle;

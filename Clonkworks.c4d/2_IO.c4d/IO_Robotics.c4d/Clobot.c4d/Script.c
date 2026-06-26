@@ -12,7 +12,7 @@ func Initialize(){
 }
 
 public func OutputList(){
-  return(["[Sensor] Nearby Objects","[Sensor] Nearby Objects (Unordered)","[Sensor] Nearby Objects (Object)","[Sensor] Nearby Objects (Vehicle)","[Sensor] Nearby Objects (Living)","[Sensor] Nearby Objects (Structure)","[Object/Camera] This","[Object] Held item"]);
+  return(["[Object/Camera] This","[Object] Held item"]);
 }
 
 public func InputList(){
@@ -120,12 +120,6 @@ private func HandleInput(){
 }
 
 public func OutputActive(string OutputName){
-   if(OutputName == "[Sensor] Nearby Objects") return(FindObjects(Find_Distance(500),Sort_Distance()));
-   if(OutputName == "[Sensor] Nearby Objects (Unordered)") return(FindObjects(Find_Distance(500)));
-   if(OutputName == "[Sensor] Nearby Objects (Object)") return(FindObjects(Find_Distance(500),Find_Category(C4D_Object),Sort_Distance()));
-   if(OutputName == "[Sensor] Nearby Objects (Vehicle)") return(FindObjects(Find_Distance(500),Find_Category(C4D_Vehicle),Sort_Distance()));
-   if(OutputName == "[Sensor] Nearby Objects (Living)") return(FindObjects(Find_Distance(500),Find_Category(C4D_Living),Sort_Distance()));
-   if(OutputName == "[Sensor] Nearby Objects (Structure)") return(FindObjects(Find_Distance(500),Find_Category(C4D_Structure),Sort_Distance()));
    if(OutputName == "[Object/Camera] This") return(this);
    if(OutputName == "[Object] Held item") return(Contents());
      return(0);
