@@ -12,6 +12,8 @@
 	- Orderer (Objects/Sensors)
 	- Hologram (Basic Input/Output)
 	- Image Sign (Basic Input/Output)
+	- Cos (Math)
+	- Sin (Math)
 
 [May 31st 2026 - Version 1.1 Gaseous Update]
 * Added Gas - a new state of matter that can be used as hazards in levels or as weapons.
