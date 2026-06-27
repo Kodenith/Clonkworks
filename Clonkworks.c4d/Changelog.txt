@@ -1,6 +1,15 @@
 #OFFICIAL CLONKWORKS CHANGELOG#
 
 [??? - Version 1.2 Technological Expansion] < CURRENT!
+* The Cluster Flint has been replaced by 2 new flints:
+	- CFlint
+	- Super C-Flint
+	Both use actual clusters instead of random explosions, and are cheaper.
+* Robots no longer have sensors, and the Robot Sensor Interpreter is gone. They've been replaced with the Super Sensor which is more customizeable.
+* New Circuits:
+	- Super Sensor	(Objects/Sensors)
+	- Random Choice (Math)
+	- Orderer (Objects/Sensors)
 
 [May 31st 2026 - Version 1.1 Gaseous Update]
 * Added Gas - a new state of matter that can be used as hazards in levels or as weapons.

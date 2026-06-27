@@ -4,38 +4,31 @@
 #include IO__
 
 func Initialize() {
-  SetAction("Unclicked");
+  SetAction("Attached");
   SetComDir(COMD_None);
-  UpdateTransferZone();
   return(1);
 }
 
-func UpdateTransferZone(){
-  SetShape(-6,-4,12,8);
-}
-
-func ControlThrow(){
-  [$TxtClick$]
-  if(GetAction() == "Unclicked"){
-    SetAction("Clicked");
-    Sound("Click");
-  }
-}
-
-public func WireTo(){ return(0); }
-
-//this function returns a list of string that can be output.
-//default is a single output.
 public func OutputList(){
-  return(["OnClick"]);
+  return(["Selected Value"]);
+}
+
+public func InputList(){
+  return(["V1","V2","V3","V4","V5","V6","V7","V8","V9","V10"]);
 }
 
 func MustBeOnWall(){ return(1); }
 
 //used by wire, check if a certain output is active
 public func OutputActive(string OutputName){
-   if(OutputName == "OnClick" && GetAction() == "Clicked" && GetActTime() == 0) return(1);
-     return(0);
+   var Values = [];
+   for(var x = 1; x != 11; x++){
+      if(DoesInputHaveWire(Format("V%d",x))) ArrayAdd(Values,InputActive(Format("V%d",x)));
+   }
+
+   if(GetLength(Values) != 0) return(Values[RandomX(0,GetLength(Values)-1)]);
+
+   return(nil);
 }
 
 func Malfunction(){ OnDetach(); }

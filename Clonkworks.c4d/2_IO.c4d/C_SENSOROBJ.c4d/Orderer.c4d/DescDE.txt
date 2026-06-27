@@ -1,0 +1,1 @@
+Ermöglicht die automatische Bestellung über den Control Hub. Es kann nur eine Bestellung darin hinterlegt werden, die nicht überschrieben werden kann.
