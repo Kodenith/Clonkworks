@@ -10,6 +10,8 @@
 	- Super Sensor	(Objects/Sensors)
 	- Random Choice (Math)
 	- Orderer (Objects/Sensors)
+	- Hologram (Basic Input/Output)
+	- Image Sign (Basic Input/Output)
 
 [May 31st 2026 - Version 1.1 Gaseous Update]
 * Added Gas - a new state of matter that can be used as hazards in levels or as weapons.

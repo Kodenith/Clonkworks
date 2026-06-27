@@ -1,0 +1,1 @@
+Displays particles around itself, the positions must be set via wire.

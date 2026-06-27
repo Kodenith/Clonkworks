@@ -1,0 +1,1 @@
+Zeigt Partikel um sich herum an; die Positionen müssen über Wire festgelegt werden.
