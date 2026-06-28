@@ -3,21 +3,29 @@
 #strict 3
 #include IO__
 
+local ItemID;
+local Amount;
+local TopAmount;
+
 func Initialize() {
   SetAction("Attached");
   SetComDir(COMD_None);
   return(1);
 }
 
-func WireFrom(){ return(0); }
+public func OutputList(){
+  return(["Object ID","Amount"]);
+}
+
+public func OutputActive(iName){
+  if(iName == "Object ID") return(Format("%i",ItemID));
+  if(iName == Amount) return(Amount);
+}
 
 public func InputList(){
   return(["Object ID","Amount","Send Order","Clear Order"]);
 }
 
-local ItemID;
-local Amount;
-local TopAmount;
 protected func Update(){
   if(InputActive("Send Order") && !ItemID){
     var TempID, TempAmount;
