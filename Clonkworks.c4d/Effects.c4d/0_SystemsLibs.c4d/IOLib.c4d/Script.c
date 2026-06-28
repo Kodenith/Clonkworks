@@ -48,6 +48,15 @@ public func DoesInputHaveWire(string InputName){
   }
 }
 
+//does an output have a wire connected from it?
+public func DoesOutputHaveWire(string OutputName){
+  for(var Wire in FindObjects(Find_ID(WIRE))){
+      if(GetActionTarget(0,Wire) == this){
+         if(Wire->ConnectedFrom() == OutputName) return(1);
+      }
+  }
+}
+
 /* WIRE CLEAN MENU */
 
 public func ControlDigDouble(pClonk){

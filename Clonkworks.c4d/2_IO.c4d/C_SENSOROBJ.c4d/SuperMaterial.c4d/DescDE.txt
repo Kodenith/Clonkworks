@@ -1,0 +1,1 @@
+Ein wesentlich komplexerer Materialsensor ermöglicht es Ihnen, Strahlen von Objekten auszusenden, um deren Material zu ermitteln. Alle Werte werden über Kabel eingestellt.

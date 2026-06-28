@@ -25,3 +25,4 @@ public func GetOutputValue(){
 }
 
 public func ConnectedTo(){ return(InputString); }
+public func ConnectedFrom(){ return(OutputString); }
