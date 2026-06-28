@@ -14,8 +14,10 @@
 	- Image Sign (Basic Input/Output)
 	- Cos (Math)
 	- Sin (Math)
+	- Super Material Sensor (Sensors)
 * Circuit kits have new overhauled graphics.
 * A lot of wiring components have been made cheaper.
+* The Mechanical Arm can be hooked up to wires now.
 
 [May 31st 2026 - Version 1.1 Gaseous Update]
 * Added Gas - a new state of matter that can be used as hazards in levels or as weapons.
