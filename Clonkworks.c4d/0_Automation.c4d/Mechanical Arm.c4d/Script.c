@@ -12,7 +12,7 @@ local GrabFromContainer;
 
 func WireFrom(){ return(0); }
 public func InputList(){
-	return(["Move Cursor X","Move Cursor Y"]);
+	return(["Move Cursor X","Move Cursor Y","Set Cursor ID"]);
 }	
 
 func Initialize() {
@@ -83,6 +83,14 @@ func Logic(){
 		if(Index >= 0 && Index < GetLength(PointerList)) SelectedPointer = Index;
 	}
 	*/
+
+	if(InputActive("Set Cursor ID") && GetType(InputActive("Set Cursor ID")) == C4V_String){
+		var iStr = InputActive("Set Cursor ID");
+		if(C4Id(iStr)){
+			var pID = C4Id(iStr);
+			if(GetCategory(0,pID) & C4D_Object) PointerList[SelectedPointer]->~Set(pID);
+		}
+	}
 
 	if(InputActive("Move Cursor X") && GetType(InputActive("Move Cursor X")) == C4V_Int){
 		var iX = InputActive("Move Cursor X");
