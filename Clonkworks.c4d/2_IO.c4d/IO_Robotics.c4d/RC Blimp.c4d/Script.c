@@ -8,7 +8,7 @@ public func OutputList(){
 }
 
 public func InputList(){
-  return(["Move Left","Move Right","Move Up","Move Down","Drop Item","Stop Flight"]);
+  return(["Move Left","Move Right","Move Up","Move Down","Drop Item","Stop Flight","Start Flight (Alternative)","Move To Object"]);
 }
 
 public func HasCamera(){ return(1); }
@@ -40,13 +40,27 @@ func Logic(){
   else if(HorD) FinD = HorD;
   else FinD = VerD;
 
+  if(InputActive("Move To Object")){
+    var ToObj = InputActive("Move To Object");
+    if(GetType(ToObj) == C4V_C4Object && !GetCommand()){
+      SetCommand(this,"MoveTo",ToObj);
+    }
+  }
+
+  if(FinD) FinishCommand();
+
   if(HorD == COMD_Right && GetDir() == DIR_Left) SetDir(DIR_Right);
   if(HorD == COMD_Left && GetDir() == DIR_Right) SetDir(DIR_Left);
   
-  if(FinD && GetAction() == "OnGround") SetAction("Fly");
-  if(GetProcedure() == "FLOAT") SetComDir(FinD);
-  if(!HorD && GetProcedure() == "FLOAT") SetXDir(0);
-  if(!VerD && GetProcedure() == "FLOAT") SetYDir(0);
+  if( (FinD && GetAction() == "OnGround") || InputActive("Start Flight (Alternative)")) SetAction("Fly");
+  if(!GetCommand()){
+    if(GetProcedure() == "FLOAT") SetComDir(FinD);
+    if(!HorD && GetProcedure() == "FLOAT") SetXDir(0);
+    if(!VerD && GetProcedure() == "FLOAT") SetYDir(0);
+  }else{
+    if(GetXDir() > 0) SetDir(DIR_Right);
+    else if(GetXDir() <= 0) SetDir(DIR_Left);
+  }
 
 
   if(InputActive("Drop Item") && Contents()){
@@ -68,6 +82,10 @@ func IncinerationEx(){
 
 func Grabbed(pBy,fGrab){
   if(fGrab) SetAction("OnGround");
+}
+
+func Collection(pObj,fPut){
+  if(!fPut) Sound("Grapple");
 }
 
 public func GetResearchBase() { return(BALN); }

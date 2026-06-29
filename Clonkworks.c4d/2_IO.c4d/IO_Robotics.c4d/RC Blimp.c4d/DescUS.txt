@@ -1,1 +1,3 @@
-This small blimp can be controlled via wiring. You can use it to explore, steal, attack, and more. It can hold 3 items at a time.
+A small blimp that resembles a drone in its functionality. You can use this blimp to do deliveries, attacks, exploration, and much more. It can carry 15 items.
+
+It must be hooked up to wires to be controlled.
