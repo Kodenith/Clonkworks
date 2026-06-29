@@ -80,7 +80,7 @@ func OutputActive(iName){
     ArrayAdd(Criteria,nil);
   }
 
-  var ObjectList = Parent->FindObjects(Find_Distance(Range,XOff,YOff),Criteria[0],Criteria[1],Criteria[2],Criteria[3],Criteria[4],Criteria[5],Find_Not(Find_ID(GetID())),Sort_Distance());
+  var ObjectList = FindObjects(Find_Distance(Range,AbsX(GetX(Parent))+XOff,AbsY(GetY(Parent))+YOff),Criteria[0],Criteria[1],Criteria[2],Criteria[3],Criteria[4],Criteria[5],Find_Not(Find_ID(GetID(Parent))),Sort_Distance());
   if(!ObjectList) return(0);
   if(iName == "Detected"){
     if(ObjectList[0]) return(1);
