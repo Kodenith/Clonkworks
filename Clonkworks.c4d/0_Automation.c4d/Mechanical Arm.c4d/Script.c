@@ -12,7 +12,7 @@ local GrabFromContainer;
 
 func WireFrom(){ return(0); }
 public func InputList(){
-	return(["Move Cursor X","Move Cursor Y","Set Cursor ID"]);
+	return(["Move Cursor X","Move Cursor Y","Set Cursor ID","Set Cursor"]);
 }	
 
 func Initialize() {
@@ -77,12 +77,12 @@ func Logic(){
     else if(GetX(Claw) > GetX()+10) SetPhase(5);
 	else if(GetX(Claw) > GetX()+5) SetPhase(4);
 
-	/*
 	if(InputActive("Set Cursor") && GetType(InputActive("Set Cursor")) == C4V_Int){
 		var Index = InputActive("Set Cursor");
 		if(Index >= 0 && Index < GetLength(PointerList)) SelectedPointer = Index;
+	}else if(DoesInputHaveWire("Set Cursor")){
+		SelectedPointer = 0;
 	}
-	*/
 
 	if(InputActive("Set Cursor ID") && GetType(InputActive("Set Cursor ID")) == C4V_String){
 		var iStr = InputActive("Set Cursor ID");
