@@ -34,7 +34,7 @@ func MustBeOnWall(){ return(1); }
 
 //used by wire, check if a certain output is active
 public func OutputActive(string OutputName){
-   if(OutputName == "OnClick" && GetAction() == "Clicked" && GetActTime() == 0) return(1);
+   if(OutputName == "OnClick" && GetAction() == "Clicked" && GetActTime() <= 1) return(1);
      return(0);
 }
 

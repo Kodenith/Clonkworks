@@ -1,0 +1,1 @@
+This small blimp can be controlled via wiring. You can use it to explore, steal, attack, and more. It can hold 3 items at a time.
