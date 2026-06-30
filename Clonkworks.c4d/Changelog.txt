@@ -1,6 +1,6 @@
 #OFFICIAL CLONKWORKS CHANGELOG#
 
-[??? - Version 1.2 Technological Expansion] < CURRENT!
+[June 30th 2026 - Version 1.2 Technological Expansion] < CURRENT!
 * The Cluster Flint has been replaced by 2 new flints:
 	- CFlint
 	- Super C-Flint
@@ -18,6 +18,9 @@
 * Circuit kits have new overhauled graphics.
 * A lot of wiring components have been made cheaper.
 * The Mechanical Arm can be hooked up to wires now.
+* A New Robot Has been Added: RC Blimp.
+* Bug Fix: Buttons no longer activate for multiple frames.
+* Bug Fix: Extraction drills no longer forget what they were doing after they run out of power.
 
 [May 31st 2026 - Version 1.1 Gaseous Update]
 * Added Gas - a new state of matter that can be used as hazards in levels or as weapons.

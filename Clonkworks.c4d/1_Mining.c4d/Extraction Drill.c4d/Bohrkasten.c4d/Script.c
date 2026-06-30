@@ -3,6 +3,10 @@
 #strict 2
 local Owner;
 
+//both are used for checks
+local SavedDir;
+local EnergyDepleted;
+
 func Initialize(){
 	SetAction("NoHead");
 	PutHead();
@@ -13,6 +17,7 @@ func Timer(){
 	if(GetY() < GetY(Owner)){
 		SetY(GetY(Owner));
 		SetComDir(COMD_Stop);
+		SavedDir = COMD_Stop;
 	}
 
 	if(GetComDir() != COMD_Stop){
@@ -25,6 +30,7 @@ func Timer(){
 	if(ObjectDistance(this(),Owner) > 360 && GetComDir() == COMD_Down){
 		SetY(GetY()-2);
 		SetComDir(COMD_Stop);
+		SavedDir = COMD_Stop;
 		Sound("Click");
 	}
 	
@@ -34,6 +40,10 @@ func Timer(){
 	
 	if(!EnergyCheck(1,Owner)){
 		SetComDir(COMD_Stop);
+		EnergyDepleted = true;
+	}else if(EnergyDepleted){
+		EnergyDepleted = false;
+		SetComDir(SavedDir);
 	}
 	
 	if((GetYDir() > 0 || GetComDir() == COMD_Down) && GetAction() == "DrillIdle") SetAction("Drilling");

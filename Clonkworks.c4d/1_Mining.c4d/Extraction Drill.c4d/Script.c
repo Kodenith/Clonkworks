@@ -52,6 +52,7 @@ func Update(){
 func ControlDownSingle(pClonk){
 	[$TxtDown$|Image=EXDC:2]
 	SetComDir(COMD_Down,head);
+	LocalN("SavedDir",head) = COMD_Down;
 	return(1);
 }
 
@@ -60,6 +61,7 @@ func ControlUpSingle(pClonk){
 	[$TxtUp$|Image=EXDC:1]
 	if(GetY(head)-1 < GetY()) return(1);
 	SetComDir(COMD_Up,head);
+	LocalN("SavedDir",head) = COMD_Up;
 	return(1);
 }
 
