@@ -1,0 +1,15 @@
+[Action]
+Name=Attached
+Delay=1
+FacetBase=1
+Procedure=FLOAT
+NextAction=Attached
+
+[Action]
+Name=Shine
+Length=4
+Delay=1
+Facet=0,0,13,13,0,0
+Procedure=FLOAT
+NextAction=Attached
+

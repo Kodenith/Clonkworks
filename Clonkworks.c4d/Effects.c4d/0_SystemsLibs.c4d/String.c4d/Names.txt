@@ -1,2 +1,0 @@
-DE:String Funktionen
-US:String functions

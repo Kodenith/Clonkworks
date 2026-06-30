@@ -1,4 +1,4 @@
-Erkennt Objekte eines wählbaren Typs in einem festgelegten Bereich. Gibt zurück: Einen booleschen Wert, das erkannte Objekt, die X-Position, die Y-Position.
+Erkennt Objekte eines wählbaren Typs in einem festgelegten Bereich.
 
 Der Bereich kann manuell oder per Kabel eingestellt werden.
 Die ID des Objekts ist eine Eingabe, die eine Zeichenfolge entgegennimmt. Möglicherweise benötigen Sie Entwicklungskenntnisse, um alle IDs zu kennen.

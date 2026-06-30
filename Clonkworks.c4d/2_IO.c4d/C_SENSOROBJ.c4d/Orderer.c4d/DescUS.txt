@@ -1,0 +1,1 @@
+Allows automatic ordering with the Control Hub. Only one order can be put inside it and cannot be overwritten.

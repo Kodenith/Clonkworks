@@ -1,0 +1,3 @@
+A small blimp that resembles a drone in its functionality. You can use this blimp to do deliveries, attacks, exploration, and much more. It can carry 15 items.
+
+It must be hooked up to wires to be controlled.

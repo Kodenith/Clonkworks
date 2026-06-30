@@ -1,0 +1,1 @@
+Gibt einen zufälligen Eingang aus, sofern dieser angeschlossen ist. Sind nicht alle Eingänge angeschlossen, wird nichts zurückgegeben.

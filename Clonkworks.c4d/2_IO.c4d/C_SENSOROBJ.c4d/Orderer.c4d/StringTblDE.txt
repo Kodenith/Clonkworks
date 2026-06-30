@@ -1,0 +1,2 @@
+NoOrd=Kein Auftragssatz.
+Ord={{%i}} bestellt. Noch %d übrig.

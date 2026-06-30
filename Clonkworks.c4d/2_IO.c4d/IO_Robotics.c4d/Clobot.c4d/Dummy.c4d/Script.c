@@ -17,3 +17,7 @@ func Redefine(){
   }
   return(RemoveObject());
 }
+
+func GetResearchBase(){
+  return(PRCS);
+}

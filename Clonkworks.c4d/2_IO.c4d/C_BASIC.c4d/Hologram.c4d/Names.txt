@@ -1,0 +1,2 @@
+DE:Hologramm
+US:Hologram

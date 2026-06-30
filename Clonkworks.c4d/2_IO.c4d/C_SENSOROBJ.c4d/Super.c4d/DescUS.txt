@@ -1,0 +1,3 @@
+A much more complicated custom sensor, allows you to detect things in customizable ranges with offsets and conditions. Perfect for more advanced tasks.
+
+<c ff0000>(Some features require a bit of development knowledge)</c>

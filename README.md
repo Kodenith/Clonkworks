@@ -6,7 +6,7 @@ Clonkworks brings you brand new technology never-seen before!
 Build settlement sized factories, Extract hundreds of ore from the ground, make your own traps and contraptions, the possibilities are endless! This project was handcrafted by me, with love for the franchise, and with the help of some kind people :)
 
 
-<p align="center"><b>Current Version: R1.1 Gaseous Update</b></p>
+<p align="center"><b>Current Version: R1.2 Technological Expansion (WIP BRANCH)</b></p>
 
 Want to contribute to this mod's creation? feel free to do so! you are free to report bugs, suggest anything, or even add things. If you wanna discuss something outside of github, feel free to ask me anything on the Clonk Games discord server.
 

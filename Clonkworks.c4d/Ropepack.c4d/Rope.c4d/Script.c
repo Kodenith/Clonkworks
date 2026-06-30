@@ -94,7 +94,7 @@ private func NewConnect(idTo, pTo)
   pPulley = CreateObject(CL5P, 0, 0, GetOwner(Contained()));
   pPulley->Enter(Contained());
   ConnectObjects(pTo, pPulley);
-  pPulley->SetRope(this, pTo);
+  //pPulley->SetRope(this, pTo);
   Sound("ArrowHit", 0, pPulley);
   return 1;
 }

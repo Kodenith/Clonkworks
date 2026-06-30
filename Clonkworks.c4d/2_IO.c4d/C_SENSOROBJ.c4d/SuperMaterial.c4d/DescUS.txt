@@ -1,0 +1,1 @@
+A much more complicated material sensor, allows you to cast rays from objects to check for materials. All values are set via wire.

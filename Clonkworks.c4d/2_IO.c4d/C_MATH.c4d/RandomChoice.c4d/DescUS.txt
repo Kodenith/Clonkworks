@@ -1,0 +1,1 @@
+Outputs a random input if said input is connected. If all inputs are not connected, nothing is returned.

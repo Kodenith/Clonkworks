@@ -1,1 +1,0 @@
-Ermöglicht es Ihnen, dank eines integrierten Sensors bestimmte Objekte in der Nähe eines Roboters zu finden.

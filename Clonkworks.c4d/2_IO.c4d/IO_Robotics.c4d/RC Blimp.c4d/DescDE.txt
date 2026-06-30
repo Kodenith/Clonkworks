@@ -1,0 +1,3 @@
+Ein kleiner Luftschiff, das in seiner Funktionsweise einer Drohne ähnelt. Mit diesem Luftschiff kannst du Lieferungen durchführen, Angriffe starten, Erkundungen unternehmen und vieles mehr. Es kann 15 Gegenstände transportieren.
+
+Es muss an Kabel angeschlossen werden, um gesteuert werden zu können.

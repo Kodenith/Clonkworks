@@ -201,6 +201,8 @@ func DoAutoDeposit(){
         SetY(GetY(pItem)-1,pItem);
     }
 
+    AutoDepositTo->~ConfirmSent();
+
     return(1);
 }
 

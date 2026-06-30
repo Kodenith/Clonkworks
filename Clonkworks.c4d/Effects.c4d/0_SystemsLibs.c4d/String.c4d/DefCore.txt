@@ -1,6 +1,0 @@
-[DefCore]
-id=STRI
-Name=String_Funktionen
-Version=4,9,5
-Category=18960
- 
