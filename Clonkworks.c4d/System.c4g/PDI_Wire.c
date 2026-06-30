@@ -18,6 +18,7 @@
 #appendto EBOW
 #appendto ELRY
 #appendto HUMD
+#appendto RCBP
 
 public func PDI_Wire(){ return(1); }
 

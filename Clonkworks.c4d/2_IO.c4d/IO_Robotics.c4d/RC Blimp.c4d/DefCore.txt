@@ -2,14 +2,14 @@
 Name=RC Blimp
 id=RCBP
 Version=4,9,8
-Category=C4D_Vehicle|C4D_SelectMaterial|C4D_SelectKnowledge|C4D_SelectHomebase
+Category=3844
 MaxUserSelect=5
 Value=45
 Mass=50
 Width=36
 Height=25
 Offset=-18,-12
-Picture=0,50,64,65
+Picture=0,50,64,64
 Vertices=6
 VertexX=-8,7,-15,-1,14,0
 VertexY=12,12,-1,-12,-1,0
