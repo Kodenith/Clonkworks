@@ -4,7 +4,7 @@ id=CFL1
 Version=4,9,8
 Category=C4D_Object|C4D_SelectMaterial|C4D_SelectKnowledge|C4D_SelectHomebase
 MaxUserSelect=6
-Value=10
+Value=15
 Mass=25
 Width=6
 Height=6
@@ -20,4 +20,4 @@ Collectible=1
 Fragile=1
 Explosive=1
 Projectile=1
-Components=FLNT=1;GUNP=1
+Components=FLNT=1;GUNP=2

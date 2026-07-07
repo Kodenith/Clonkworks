@@ -14,9 +14,9 @@ public func GetResearchBase() { return(FLNT); }
 protected func Hit()
 {
   Explode(ExplodeSize());
-  for(var x = 0; x < 12; x++){
+  for(var x = 0; x < 10; x++){
     var Cluster = CreateObject(CLUS);
-    SetXDir(RandomX(-15,15),Cluster);
-    SetYDir(RandomX(-2,-30),Cluster);
+    SetXDir(RandomX(-20,20),Cluster);
+    SetYDir(RandomX(-20,-30),Cluster);
   }
 }

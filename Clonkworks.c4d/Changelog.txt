@@ -1,6 +1,12 @@
 #OFFICIAL CLONKWORKS CHANGELOG#
 
-[June 30th 2026 - Version 1.2 Technological Expansion] < CURRENT!
+[July 7th 2026 - Version 1.2.1 fix] < CURRENT!
+* Cluster flints are more expensive to buy and craft.
+* Clusters can no longer get stuck.
+* Clusters are launched a bit higher so they dont do as much damage anymore, you can still do some radical destruction with them tho
+	- changed especially for the normal c flint as it could still explode a stone hut with 1 lucky throw
+
+[June 30th 2026 - Version 1.2 Technological Expansion]
 * The Cluster Flint has been replaced by 2 new flints:
 	- CFlint
 	- Super C-Flint
