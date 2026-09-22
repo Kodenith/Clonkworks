@@ -1,0 +1,16 @@
+When modifying, remixing, or taking my assets and code, please do not use AI.
+I would not like my models, images, and code ran through or be modified by any AI, no exception.
+
+If your mod or scenario takes stuff from Clonkworks, but does not depend on it - please credit me :)
+However if it depends on it, no need to credit (even if some clonkworks stuff in your mod/scenario have been modified)
+
+Some of the Models originate from existing models made by:
+* Ryou (luhi on CCAN) - Portrait/Detailed Clonk Model
+* The OpenClonk Team - Monster
+* Boni - HazmatClonk
+
+If you want to use some clonkworks models, or need to ask me about something not listed here, feels free to get in contact :)
+i am available on the Clonk Games discord server.
+
+Thanks for reading.
+- Kodenith.

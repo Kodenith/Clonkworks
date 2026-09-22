@@ -1,6 +1,14 @@
 #OFFICIAL CLONKWORKS CHANGELOG#
+[September 20th 2026 - Version 1.2.3] < CURRENT!
+* Fixed bug where gas would cease to spawn from canisters in cave maps.
+* New Ore Deposit: Crystal
+* Added distribution help files, if you wanna modify clonkworks stuff or you wanna take it standalone (and/or tweak it), read the files please.
+! There is currently a bug with the quarry that causes it to collapse and cease to function further after saving and loading the game. So far i have no idea what causes this, i will try to fix this in future versions.
 
-[July 7th 2026 - Version 1.2.1 fix] < CURRENT!
+[August 2nd 2026 - Version 1.2.2]
+* Knights changes are now fully integrated into the mod thanks to the newest version of LC.
+
+[July 7th 2026 - Version 1.2.1 fix] 
 * Cluster flints are more expensive to buy and craft.
 * Clusters can no longer get stuck.
 * Clusters are launched a bit higher so they dont do as much damage anymore, you can still do some radical destruction with them tho

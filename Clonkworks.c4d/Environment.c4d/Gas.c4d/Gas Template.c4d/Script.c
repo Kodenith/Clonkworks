@@ -21,6 +21,7 @@ public func isGas(){
 local Alpha; //Transparency.
 local Initialized; //To Avoid accidentally initializing again.
 local AlphaOff;
+local QueueInvinc; //Do not touch. 
 
 //When this gas is made, set default values and actions.
 func Initialize(){
@@ -33,6 +34,7 @@ func Initialize(){
 
   SetPhysical("Float",RandomFloat(),2,this);
   AlphaOff = AlphaOffset();
+  QueueInvinc = true;
 
   SmokeUpdate();
 }
@@ -94,7 +96,7 @@ func UpdateAlphaByCon() {
 protected func SmokeUpdate(){
 
   //Fading
-  if(!Contained()){
+  if(!Contained() && !QueueInvinc){
   if(GetMaterial() == Material("Sky")){
     if(!Random(SkyFade())) DoCon(FadeSize());
   }else if(GBackLiquid()){
@@ -110,6 +112,8 @@ protected func SmokeUpdate(){
     if(!Random(TunnelFade())) DoCon(FadeSize());
   }
   }
+
+  if(QueueInvinc) QueueInvinc = false;
 
   Alpha = UpdateAlphaByCon();
   SetClrModulation(RGBa(255,255,255,Alpha),this);
@@ -141,3 +145,7 @@ public func GasCustomTimer(){
 
 public func GasColor(){ return(RGBa(255,255,255)); } //used by pump
 //public func GasName(){ return("Gas"); } //used by pump, used instead of GetName to prevent potential sync errors
+
+func SetQueueInvincibility(){
+  QueueInvinc = true;
+}

@@ -63,8 +63,10 @@ protected func Release(){
   if(iFillLevel > GCAN_MaxFill) iFillLevel = GCAN_MaxFill;
   if(iFillLevel < 0) iFillLevel = 0;
   if(iFillLevel == 0 && GetID() != GCAN) ChangeDef(GCAN);
-  if(Contents())
-    Exit(Contents());
+  if(Contents()){
+    var Cont = Contents();
+    Exit(Cont);
+  }
 }
 
 protected func Activate()

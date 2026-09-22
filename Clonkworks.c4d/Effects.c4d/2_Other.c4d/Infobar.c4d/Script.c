@@ -26,7 +26,7 @@ func Update(){
 	
 	var Current = GetCursor(iPlr);
 	if(!Current){
-		DebugLog("No Cursor!");
+		//DebugLog("No Cursor!");
 		SetVisibility(VIS_None,this());
 		return(0);
 	}
